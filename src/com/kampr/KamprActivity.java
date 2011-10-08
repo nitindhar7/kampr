@@ -3,6 +3,7 @@ package com.kampr;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 public class KamprActivity extends Activity {
 
@@ -12,6 +13,7 @@ public class KamprActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
     }
     
