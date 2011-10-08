@@ -36,7 +36,7 @@ public class KamprActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(ACTIVITY_TAG, "onPause");
+        Log.i(ACTIVITY_TAG, "onStop");
     }
     
     @Override
