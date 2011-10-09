@@ -14,4 +14,5 @@
 
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
 </manifest>
