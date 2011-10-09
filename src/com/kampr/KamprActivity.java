@@ -80,6 +80,7 @@ public class KamprActivity extends Activity implements OnClickListener {
             case VALIDATE_RESULT_CODE:
                 if(resultCode == ValidateActivity.RESULT_SUCCESS) {
                     // start postsactivity
+                    Toast.makeText(getApplicationContext() , "Successfully Authenticated!", Toast.LENGTH_SHORT).show();
                 }
                 else if(resultCode == ValidateActivity.RESULT_FAILURE) {
                     Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
