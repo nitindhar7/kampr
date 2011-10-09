@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:id="@+id/content"
+	android:background="#FFFFFF">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:orientation="vertical"
+		android:id="@+id/header">
+		<TextView android:id="@+id/logo" android:layout_weight="0.7"
+			android:layout_height="fill_parent" android:layout_width="fill_parent"
+			android:layout_gravity="left" android:text="KAMPR" android:minHeight="30px" android:gravity="center" android:textColor="#333333" android:textStyle="bold" android:textSize="20px"></TextView>
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent" android:orientation="vertical" android:id="@+id/body" android:layout_height="fill_parent" android:padding="15px">
+		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/login_username" android:typeface="normal" android:visibility="visible" android:autoText="true" android:hint="Username">
+			<requestFocus></requestFocus>
+		</EditText>
+		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:inputType="textPassword" android:id="@+id/login_password"></EditText>
+	</LinearLayout>
 </LinearLayout>
