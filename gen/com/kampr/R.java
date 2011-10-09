@@ -18,6 +18,7 @@ public final class R {
         public static final int content=0x7f050000;
         public static final int header=0x7f050001;
         public static final int login_password=0x7f050005;
+        public static final int login_submit=0x7f050006;
         public static final int login_username=0x7f050004;
         public static final int logo=0x7f050002;
     }

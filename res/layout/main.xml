@@ -14,6 +14,7 @@
 		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/login_username" android:typeface="normal" android:visibility="visible" android:autoText="true" android:hint="Username" android:layout_marginBottom="15px">
 			<requestFocus></requestFocus>
 		</EditText>
-		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:inputType="textPassword" android:id="@+id/login_password" android:hint="Password"></EditText>
+		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:inputType="textPassword" android:id="@+id/login_password" android:hint="Password" android:layout_marginBottom="15px"></EditText>
+		<Button android:layout_height="wrap_content" android:id="@+id/login_submit" android:text="Login" android:layout_width="fill_parent"></Button>
 	</LinearLayout>
 </LinearLayout>
