@@ -1,6 +1,7 @@
 package com.kampr;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 public class KamprActivity extends Activity implements OnClickListener {
 
     private final String ACTIVITY_TAG = "KamprActivity";
+    private final int VALIDATE_RESULT_CODE = 1;
     
     private EditText _loginUsername;
     private EditText _loginPassword;
@@ -65,8 +67,23 @@ public class KamprActivity extends Activity implements OnClickListener {
     public void onClick(View src) {
         switch(src.getId()) {
             case R.id.login_submit:
-                String loginUsername = _loginUsername.getText().toString();
-                String loginPassword = _loginPassword.getText().toString();
+                Intent validate = new Intent(KamprActivity.this, ValidateActivity.class);
+                validate.putExtra("login_username", _loginUsername.getText().toString());
+                validate.putExtra("login_password", _loginPassword.getText().toString());
+                startActivityForResult(validate, VALIDATE_RESULT_CODE);
+                break;
+        }
+    }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case VALIDATE_RESULT_CODE:
+                if(resultCode == ValidateActivity.RESULT_SUCCESS) {
+                    // start postsactivity
+                }
+                else if(resultCode == ValidateActivity.RESULT_FAILURE) {
+                    Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
