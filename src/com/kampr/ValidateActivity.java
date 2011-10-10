@@ -1,8 +1,10 @@
 package com.kampr;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,6 +16,7 @@ public class ValidateActivity extends Activity {
     
     private final String ACTIVITY_TAG = "ValidateActivity";
     
+    protected static final String KAMPR_APP_PREFS = "KamprAppPrefs";
     protected static final int RESULT_SUCCESS = 1;
     protected static final int RESULT_FAILURE = -1;
     
@@ -86,10 +89,20 @@ public class ValidateActivity extends Activity {
         JSONObject json = null;
         try {
             json = _forrst.usersAuth(username, password);
-            // TODO: save token/user_id to session
+            SharedPreferences settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            
+            // TODO: save password as a MD5 hash
+            editor.putString("login_username", _loginUsername);
+            editor.putString("login_password", _loginPassword);
+            editor.putString("login_token", json.getString("token"));
+            editor.putString("login_user_id", json.getString("user_id"));
+            editor.commit();
             return true;
         } catch (ForrstAuthenticationException e) {
             return false;
+        } catch (JSONException e) {
+            throw new RuntimeException("Error retrieving user data from Forrst authentication", e);
         }
         
     }

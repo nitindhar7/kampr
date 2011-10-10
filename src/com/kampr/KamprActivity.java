@@ -2,6 +2,7 @@ package com.kampr;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,14 +25,21 @@ public class KamprActivity extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.main);
-        
-        _loginUsername = (EditText)findViewById(R.id.login_username);
-        _loginPassword = (EditText)findViewById(R.id.login_password);
-        _loginSubmit = (Button)findViewById(R.id.login_submit);
-        
-        _loginSubmit.setOnClickListener(this);
+
+        if(sessionExists()) {
+            Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
+            startActivity(posts);
+        }
+        else {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setContentView(R.layout.main);
+            
+            _loginUsername = (EditText)findViewById(R.id.login_username);
+            _loginPassword = (EditText)findViewById(R.id.login_password);
+            _loginSubmit = (Button)findViewById(R.id.login_submit);
+            
+            _loginSubmit.setOnClickListener(this);
+        }
     }
     
     @Override
@@ -76,16 +84,30 @@ public class KamprActivity extends Activity implements OnClickListener {
     }
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
         switch(requestCode) {
             case VALIDATE_RESULT_CODE:
-                if(resultCode == ValidateActivity.RESULT_SUCCESS) {
-                    // start postsactivity
+                if(resultCode == ValidateActivity.RESULT_SUCCESS)
                     Toast.makeText(getApplicationContext() , "Successfully Authenticated!", Toast.LENGTH_SHORT).show();
-                }
-                else if(resultCode == ValidateActivity.RESULT_FAILURE) {
+                else if(resultCode == ValidateActivity.RESULT_FAILURE)
                     Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
-                }
+                else
+                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+    
+    protected boolean sessionExists() {
+        SharedPreferences settings = getSharedPreferences(ValidateActivity.KAMPR_APP_PREFS, 0);
+        if(settings.getString("login_username", null) != null &&
+                settings.getString("login_password", null) != null &&
+                settings.getString("login_token", null) != null &&
+                settings.getString("login_user_id", null) != null) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
