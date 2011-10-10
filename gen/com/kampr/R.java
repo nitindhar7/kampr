@@ -11,7 +11,12 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int ic_tab_links=0x7f020000;
+        public static final int icon=0x7f020001;
+        public static final int tab_size_mdpi_codes=0x7f020002;
+        public static final int tab_size_mdpi_links=0x7f020003;
+        public static final int tab_size_mdpi_questions=0x7f020004;
+        public static final int tab_size_mdpi_snaps=0x7f020005;
     }
     public static final class id {
         public static final int body=0x7f050003;
