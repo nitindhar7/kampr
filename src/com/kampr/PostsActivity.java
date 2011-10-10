@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.TabHost;
 
+import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
+import com.kampr.tabs.QuestionsActivity;
+import com.kampr.tabs.SnapsActivity;
 
 public class PostsActivity extends TabActivity {
 
@@ -19,7 +22,7 @@ public class PostsActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //setContentView(R.layout.my_posts);
+        setContentView(R.layout.posts);
         
         Resources res = getResources();
         TabHost tabHost = getTabHost();
@@ -30,15 +33,15 @@ public class PostsActivity extends TabActivity {
         spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(R.drawable.tab_size_mdpi_links)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, LinksActivity.class);
+        intent = new Intent().setClass(this, SnapsActivity.class);
         spec = tabHost.newTabSpec("snaps").setIndicator("Snaps", res.getDrawable(R.drawable.tab_size_mdpi_snaps)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, LinksActivity.class);
+        intent = new Intent().setClass(this, CodesActivity.class);
         spec = tabHost.newTabSpec("codes").setIndicator("Codes", res.getDrawable(R.drawable.tab_size_mdpi_codes)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, LinksActivity.class);
+        intent = new Intent().setClass(this, QuestionsActivity.class);
         spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(R.drawable.tab_size_mdpi_questions)).setContent(intent);
         tabHost.addTab(spec);
 

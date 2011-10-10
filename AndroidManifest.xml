@@ -12,10 +12,10 @@
 		</activity>
 		<activity android:name=".ValidateActivity"></activity>
 		<activity android:permission="android.permission.INTERNET" android:name=".PostsActivity"></activity>
-		<activity android:name=".LinksActivity"></activity>
-		<activity android:name=".SnapsActivity"></activity>
-		<activity android:name=".CodesActivity"></activity>
-		<activity android:name=".QuestionsActivity"></activity>
+		<activity android:name=".tabs.LinksActivity"></activity>
+		<activity android:name=".tabs.SnapsActivity"></activity>
+		<activity android:name=".tabs.CodesActivity"></activity>
+		<activity android:name=".tabs.QuestionsActivity"></activity>
 
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
