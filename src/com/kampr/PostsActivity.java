@@ -29,19 +29,19 @@ public class PostsActivity extends TabActivity {
         TabHost.TabSpec spec;
         Intent intent;
 
-        intent = new Intent().setClass(this, LinksActivity.class);
+        intent = new Intent(PostsActivity.this, LinksActivity.class);
         spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(R.drawable.tab_size_mdpi_links)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, SnapsActivity.class);
+        intent = new Intent(PostsActivity.this, SnapsActivity.class);
         spec = tabHost.newTabSpec("snaps").setIndicator("Snaps", res.getDrawable(R.drawable.tab_size_mdpi_snaps)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, CodesActivity.class);
+        intent = new Intent(PostsActivity.this, CodesActivity.class);
         spec = tabHost.newTabSpec("codes").setIndicator("Codes", res.getDrawable(R.drawable.tab_size_mdpi_codes)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, QuestionsActivity.class);
+        intent = new Intent(PostsActivity.this, QuestionsActivity.class);
         spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(R.drawable.tab_size_mdpi_questions)).setContent(intent);
         tabHost.addTab(spec);
 
