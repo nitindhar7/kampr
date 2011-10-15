@@ -48,10 +48,10 @@ public class LinksAdapter extends BaseAdapter {
         }
         
         TextView linkUsername = (TextView) convertView.findViewById(R.id.link_username);
-        linkUsername.setText(link.getLinkProperty("id"));
-
+        linkUsername.setText(link.getLinkProperty("name"));
+        
         TextView linkDate = (TextView) convertView.findViewById(R.id.link_date);
-        linkDate.setText(link.getLinkProperty("title"));
+        linkDate.setText(link.getLinkProperty("created_at"));
         
         TextView linkBody = (TextView) convertView.findViewById(R.id.link_body);
         linkBody.setText(link.getLinkProperty("description"));

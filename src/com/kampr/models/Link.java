@@ -10,14 +10,10 @@ public class Link {
     public Link() {
         _linkProperties = new HashMap<String, String>();
         _linkProperties.put("id", null);
-        _linkProperties.put("tiny_id", null);
         _linkProperties.put("post_type", null);
         _linkProperties.put("post_url", null);
         _linkProperties.put("created_at", null);
-        _linkProperties.put("updated_at", null);
-        _linkProperties.put("user", null);
-        _linkProperties.put("published", null);
-        _linkProperties.put("public", null);
+        _linkProperties.put("name", null);
         _linkProperties.put("title", null);
         _linkProperties.put("url", null);
         _linkProperties.put("content", null);
@@ -27,11 +23,11 @@ public class Link {
         _linkProperties.put("view_count", null);
         _linkProperties.put("like_count", null);
         _linkProperties.put("comment_count", null);
-        _linkProperties.put("typecast_view_count", null);
-        _linkProperties.put("typecast_like_count", null);
-        _linkProperties.put("typecase_comment_count", null);
         _linkProperties.put("tag_string", null);
-        _linkProperties.put("tags", null);
+    }
+    
+    public Link(Map<String, String> linkProperties) {
+        _linkProperties = linkProperties;
     }
     
     public Map<String, String> getLinkProperties() {

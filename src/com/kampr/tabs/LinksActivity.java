@@ -4,7 +4,9 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -41,11 +43,26 @@ public class LinksActivity extends ListActivity {
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
+                Map<String, String> linkProperties = new HashMap<String, String>();
                 JSONObject json = postsJSONArray.getJSONObject(count);
-                Link link = new Link();
-                link.setLinkProperty("id", json.getString("id"));
-                link.setLinkProperty("title", json.getString("title"));
-                link.setLinkProperty("description", json.getString("description"));
+                
+                linkProperties.put("id", json.getString("id"));
+                linkProperties.put("post_type", json.getString("post_type"));
+                linkProperties.put("post_url", json.getString("post_url"));
+                linkProperties.put("created_at", json.getString("created_at"));
+                linkProperties.put("name", json.getJSONObject("user").getString("name"));
+                linkProperties.put("title", json.getString("title"));
+                linkProperties.put("url", json.getString("url"));
+                linkProperties.put("content", json.getString("content"));
+                linkProperties.put("description", json.getString("description"));
+                linkProperties.put("formatted_content", json.getString("formatted_content"));
+                linkProperties.put("formatted_description", json.getString("formatted_description"));
+                linkProperties.put("view_count", Integer.toString(json.getInt("view_count")));
+                linkProperties.put("like_count", json.getString("like_count"));
+                linkProperties.put("comment_count", json.getString("comment_count"));
+                linkProperties.put("tag_string", json.getString("tag_string"));
+                
+                Link link = new Link(linkProperties);
                 listOfLinks.add(link);
             }
             
