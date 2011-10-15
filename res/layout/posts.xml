@@ -8,14 +8,16 @@
 		<LinearLayout android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:orientation="vertical"
 			android:id="@+id/header">
-			<TextView android:id="@+id/logo" android:layout_height="fill_parent" android:layout_width="fill_parent"
-				android:text="KAMPR"
+			<TextView android:id="@+id/logo" android:layout_height="fill_parent"
+				android:layout_width="fill_parent" android:text="KAMPR"
 				android:minHeight="30px" android:gravity="center" android:textColor="#333333"
 				android:textStyle="bold" android:textSize="20px"></TextView>
 		</LinearLayout>
 		<TabWidget android:id="@android:id/tabs"
-			android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="30px"/>
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:minHeight="30px" />
 		<FrameLayout android:id="@android:id/tabcontent"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+			android:layout_width="fill_parent" android:layout_height="fill_parent">
+		</FrameLayout>
 	</LinearLayout>
 </TabHost>

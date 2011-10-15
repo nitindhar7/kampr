@@ -36,7 +36,7 @@ public final class R {
         public static final int logo=0x7f05000a;
     }
     public static final class layout {
-        public static final int link=0x7f030000;
+        public static final int link_item=0x7f030000;
         public static final int main=0x7f030001;
         public static final int posts=0x7f030002;
     }

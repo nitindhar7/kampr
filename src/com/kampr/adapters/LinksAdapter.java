@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.kampr.R;
 import com.kampr.models.Link;
 
 public class LinksAdapter extends BaseAdapter {
@@ -42,8 +44,17 @@ public class LinksAdapter extends BaseAdapter {
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(com.kampr.R.layout.link, null);
+            convertView = inflater.inflate(R.layout.link_item, null);
         }
+        
+        TextView linkUsername = (TextView) convertView.findViewById(R.id.link_username);
+        linkUsername.setText(link.getLinkProperty("id"));
+
+        TextView linkDate = (TextView) convertView.findViewById(R.id.link_date);
+        linkDate.setText(link.getLinkProperty("title"));
+        
+        TextView linkBody = (TextView) convertView.findViewById(R.id.link_body);
+        linkBody.setText(link.getLinkProperty("description"));
 
         return convertView;
     }
