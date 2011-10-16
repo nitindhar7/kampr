@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#FFFFFF"
+	android:id="@+id/question">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:orientation="vertical"
+		android:id="@+id/header" android:background="#FF9900">
+		<TextView android:id="@+id/logo" android:layout_height="fill_parent"
+			android:layout_width="fill_parent" android:textStyle="bold"
+			android:gravity="left" android:minHeight="30dp" android:textSize="30sp"
+			android:text="kampr" android:paddingLeft="10dp" android:textColor="#FFFFFF"></TextView>
+	</LinearLayout>
+	<TextView android:layout_height="wrap_content" android:text="title"
+		android:minHeight="30dp" android:gravity="center_vertical"
+		android:layout_width="fill_parent" android:paddingLeft="5dp"
+		android:paddingRight="5dp" android:textStyle="bold" android:textSize="20sp"
+		android:textColor="#FF9900" android:id="@+id/question_title"></TextView>
+	<TextView android:layout_height="wrap_content" android:text="url"
+		android:layout_width="fill_parent" android:minHeight="20dp"
+		android:gravity="center_vertical" android:paddingLeft="5dp"
+		android:paddingRight="5dp" android:textColor="#333333"
+		android:textStyle="italic" android:id="@+id/question_url"></TextView>
+	<RelativeLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:minHeight="30dp"
+		android:id="@+id/question_user">
+		<ImageView android:src="@drawable/ic_tab_links"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true" android:maxHeight="20dp"
+			android:maxWidth="20dp" android:minHeight="20dp" android:minWidth="20dp"
+			android:id="@+id/question_user_icon"></ImageView>
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:text="name"
+			android:minHeight="30dp" android:gravity="center_vertical"
+			android:paddingLeft="5dp" android:paddingRight="5dp"
+			android:textColor="#333333" android:textStyle="bold"
+			android:id="@+id/question_user_name" android:layout_toRightOf="@+id/question_user_icon"></TextView>
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_alignParentRight="true"
+			android:text="date" android:gravity="center_vertical"
+			android:minHeight="30dp" android:paddingLeft="5dp"
+			android:paddingRight="5dp" android:textStyle="italic"
+			android:textColor="#999999" android:id="@+id/question_date"></TextView>
+	</RelativeLayout>
+	<ScrollView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/question_scroll">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:orientation="vertical"
+			android:id="@+id/question_scroll_linear">
+			<TextView android:scrollbarAlwaysDrawVerticalTrack="true"
+				android:textColor="#333" android:padding="5dp" android:text="description"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:id="@+id/question_content"></TextView>
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

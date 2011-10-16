@@ -67,6 +67,8 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
             
             TextView postTitle = (TextView) convertView.findViewById(R.id.post_title);
             postTitle.setText(post.getProperty("title"));
+            
+            convertView.setId(Integer.parseInt(post.getProperty("id")));
         } catch (MalformedURLException e) {
             throw new RuntimeException("Error: malformed URI", e);
         } catch (IOException e) {

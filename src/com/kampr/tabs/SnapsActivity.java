@@ -11,16 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.adapters.SnapsAdapter;
 import com.kampr.models.Snap;
+import com.kampr.posts.SnapActivity;
 
-public class SnapsActivity extends PostsListActivity {
+public class SnapsActivity extends PostsListActivity implements OnItemClickListener {
     
     private final String ACTIVITY_TAG = "SnapsActivity";
 
@@ -62,21 +67,30 @@ public class SnapsActivity extends PostsListActivity {
                 snapProperties.put("comment_count", json.getString("comment_count"));
                 snapProperties.put("tag_string", json.getString("tag_string"));
                 snapProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-                snapProperties.put("snaps_original_url", json.getJSONObject("snaps").getString("original_url"));
+                snapProperties.put("large_small_url", json.getJSONObject("snaps").getString("large_url"));
                 
                 Snap snap = new Snap(snapProperties);
                 listOfSnaps.add(snap);
             }
             
+            SnapsAdapter snapsAdapter = new SnapsAdapter(SnapsActivity.this, listOfSnaps);
+            
             ListView snaps = getListView();
             snaps.setVerticalFadingEdgeEnabled(false);
-            SnapsAdapter snapsAdapter = new SnapsAdapter(SnapsActivity.this, listOfSnaps);
+            snaps.setOnItemClickListener(this);
             snaps.setAdapter(snapsAdapter);
         } catch (JSONException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error fetching snap from Forrst", e);
         } catch (ParseException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error parsing snap date", e);
         }
+    }
+    
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent snap = new Intent(SnapsActivity.this, SnapActivity.class);
+        snap.putExtra("id", view.getId());
+        startActivity(snap);
     }
 
 }

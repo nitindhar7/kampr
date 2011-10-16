@@ -11,16 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.adapters.LinksAdapter;
 import com.kampr.models.Link;
+import com.kampr.posts.LinkActivity;
 
-public class LinksActivity extends PostsListActivity {
+public class LinksActivity extends PostsListActivity implements OnItemClickListener {
 
     private final String ACTIVITY_TAG = "LinksActivity";
     
@@ -67,15 +72,24 @@ public class LinksActivity extends PostsListActivity {
                 listOfLinks.add(link);
             }
             
+            LinksAdapter linksAdapter = new LinksAdapter(LinksActivity.this, listOfLinks);
+            
             ListView links = getListView();
             links.setVerticalFadingEdgeEnabled(false);
-            LinksAdapter linksAdapter = new LinksAdapter(LinksActivity.this, listOfLinks);
+            links.setOnItemClickListener(this);
             links.setAdapter(linksAdapter);
         } catch (JSONException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error fetching link from Forrst", e);
         } catch (ParseException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error parsing link date", e);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent link = new Intent(LinksActivity.this, LinkActivity.class);
+        link.putExtra("id", view.getId());
+        startActivity(link);
     }
     
 }

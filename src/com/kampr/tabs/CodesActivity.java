@@ -11,16 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.adapters.CodesAdapter;
 import com.kampr.models.Code;
+import com.kampr.posts.CodeActivity;
 
-public class CodesActivity extends PostsListActivity {
+public class CodesActivity extends PostsListActivity implements OnItemClickListener {
     
     private final String ACTIVITY_TAG = "CodesActivity";
 
@@ -67,15 +72,24 @@ public class CodesActivity extends PostsListActivity {
                 listOfCodes.add(code);
             }
             
+            CodesAdapter codesAdapter = new CodesAdapter(CodesActivity.this, listOfCodes);
+            
             ListView codes = getListView();
             codes.setVerticalFadingEdgeEnabled(false);
-            CodesAdapter codesAdapter = new CodesAdapter(CodesActivity.this, listOfCodes);
+            codes.setOnItemClickListener(this);
             codes.setAdapter(codesAdapter);
         } catch (JSONException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error fetching code from Forrst", e);
         } catch (ParseException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error parsing code date", e);
         }
+    }
+    
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent code = new Intent(CodesActivity.this, CodeActivity.class);
+        code.putExtra("id", view.getId());
+        startActivity(code);
     }
 
 }

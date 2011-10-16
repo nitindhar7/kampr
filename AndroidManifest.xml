@@ -18,6 +18,10 @@
 		<activity android:name=".tabs.SnapsActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name=".tabs.CodesActivity" android:screenOrientation="portrait"></activity>
 		<activity android:name=".tabs.QuestionsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.LinkActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.SnapActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.CodeActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.QuestionActivity" android:screenOrientation="portrait"></activity>
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>

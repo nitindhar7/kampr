@@ -11,16 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.adapters.QuestionsAdapter;
 import com.kampr.models.Question;
+import com.kampr.posts.QuestionActivity;
 
-public class QuestionsActivity extends PostsListActivity {
+public class QuestionsActivity extends PostsListActivity implements OnItemClickListener {
 
     private final String ACTIVITY_TAG = "QuestionsActivity";
 
@@ -67,15 +72,24 @@ public class QuestionsActivity extends PostsListActivity {
                 listOfQuestions.add(question);
             }
             
+            QuestionsAdapter questionsAdapter = new QuestionsAdapter(QuestionsActivity.this, listOfQuestions);
+            
             ListView questions = getListView();
             questions.setVerticalFadingEdgeEnabled(false);
-            QuestionsAdapter questionsAdapter = new QuestionsAdapter(QuestionsActivity.this, listOfQuestions);
+            questions.setOnItemClickListener(this);
             questions.setAdapter(questionsAdapter);
         } catch (JSONException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error fetching question from Forrst", e);
         } catch (ParseException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error parsing question date", e);
         }
+    }
+    
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent question = new Intent(QuestionsActivity.this, QuestionActivity.class);
+        question.putExtra("id", view.getId());
+        startActivity(question);
     }
 
 }
