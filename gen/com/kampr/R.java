@@ -42,21 +42,30 @@ public final class R {
         public static final int login_submit=0x7f050016;
         public static final int login_username=0x7f050014;
         public static final int logo=0x7f050012;
-        public static final int snap=0x7f050017;
-        public static final int snap_content=0x7f05001c;
-        public static final int snap_date=0x7f05001b;
-        public static final int snap_header=0x7f050018;
-        public static final int snap_post_icon=0x7f05001d;
-        public static final int snap_title=0x7f05001e;
-        public static final int snap_user_icon=0x7f050019;
-        public static final int snap_username=0x7f05001a;
+        public static final int question=0x7f050017;
+        public static final int question_content=0x7f05001c;
+        public static final int question_date=0x7f05001b;
+        public static final int question_header=0x7f050018;
+        public static final int question_post_icon=0x7f05001d;
+        public static final int question_title=0x7f05001e;
+        public static final int question_user_icon=0x7f050019;
+        public static final int question_username=0x7f05001a;
+        public static final int snap=0x7f05001f;
+        public static final int snap_content=0x7f050024;
+        public static final int snap_date=0x7f050023;
+        public static final int snap_header=0x7f050020;
+        public static final int snap_post_icon=0x7f050025;
+        public static final int snap_title=0x7f050026;
+        public static final int snap_user_icon=0x7f050021;
+        public static final int snap_username=0x7f050022;
     }
     public static final class layout {
         public static final int code_item=0x7f030000;
         public static final int link_item=0x7f030001;
         public static final int main=0x7f030002;
         public static final int posts=0x7f030003;
-        public static final int snap_item=0x7f030004;
+        public static final int question_item=0x7f030004;
+        public static final int snap_item=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
