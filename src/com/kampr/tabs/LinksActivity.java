@@ -3,6 +3,8 @@ package com.kampr.tabs;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
@@ -35,6 +38,8 @@ public class LinksActivity extends ListActivity {
         
         trustAllHosts();
         
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
         try {
             List<Link> listOfLinks = new ArrayList<Link>();
             ForrstAPI forrst = new ForrstAPIClient();
@@ -49,7 +54,11 @@ public class LinksActivity extends ListActivity {
                 linkProperties.put("id", json.getString("id"));
                 linkProperties.put("post_type", json.getString("post_type"));
                 linkProperties.put("post_url", json.getString("post_url"));
-                linkProperties.put("created_at", json.getString("created_at"));
+
+                long linkDateInMillis = sdf.parse(json.getString("created_at")).getTime();
+                String linkDate = DateUtils.formatDateTime(null, linkDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
+                linkProperties.put("created_at", linkDate);
+                
                 linkProperties.put("name", json.getJSONObject("user").getString("name"));
                 linkProperties.put("title", json.getString("title"));
                 linkProperties.put("url", json.getString("url"));
@@ -71,6 +80,8 @@ public class LinksActivity extends ListActivity {
             links.setAdapter(linksAdapter);
         } catch (JSONException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error fetching links from Forrst", e);
+        } catch (ParseException e) {
+            throw new RuntimeException(ACTIVITY_TAG + ": Error parsing link date", e);
         }
     }
 
