@@ -4,20 +4,20 @@
 	<uses-sdk android:minSdkVersion="7" />
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".KamprActivity"  android:label="@string/app_name">
+		<activity android:name=".KamprActivity" android:label="@string/app_name"
+			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".LoginActivity"></activity>
-		<activity android:permission="android.permission.INTERNET" android:name=".PostsActivity"></activity>
-		<activity android:name=".tabs.LinksActivity"></activity>
-		<activity android:name=".tabs.SnapsActivity"></activity>
-		<activity android:name=".tabs.CodesActivity"></activity>
-		<activity android:name=".tabs.QuestionsActivity"></activity>
-		<activity android:name="LogoutActivity"></activity>
-
+		<activity android:name=".LoginActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".PostsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".LogoutActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.LinksActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.SnapsActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.CodesActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.QuestionsActivity" android:screenOrientation="portrait"></activity>
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>

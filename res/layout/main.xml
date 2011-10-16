@@ -5,28 +5,37 @@
 	android:background="#FFFFFF">
 	<LinearLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:orientation="vertical"
-		android:id="@+id/header">
-		<TextView android:id="@+id/logo" android:layout_weight="0.7"
-			android:layout_height="fill_parent" android:layout_width="fill_parent"
-			android:layout_gravity="left" android:text="KAMPR" android:minHeight="30px"
-			android:gravity="center" android:textColor="#333333"
-			android:textStyle="bold" android:textSize="20px"></TextView>
+		android:id="@+id/header" android:background="#FF9900">
+		<TextView android:id="@+id/logo" android:layout_height="fill_parent"
+			android:layout_width="fill_parent" android:textStyle="bold"
+			android:gravity="left" android:minHeight="30dp" android:textSize="30sp"
+			android:text="kampr" android:paddingLeft="10dp" android:textColor="#FFFFFF"></TextView>
 	</LinearLayout>
 	<LinearLayout android:layout_width="fill_parent"
 		android:orientation="vertical" android:id="@+id/body"
-		android:layout_height="fill_parent" android:padding="15px">
+		android:layout_height="fill_parent" android:padding="10dp">
+		<TextView android:id="@+id/login_label_username"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:text="Username/Email" android:textStyle="bold"
+			android:textColor="#FF9900" android:layout_marginBottom="3dp"
+			android:textSize="15sp"></TextView>
 		<EditText android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:id="@+id/login_username"
-			android:typeface="normal" android:visibility="visible"
-			android:autoText="true" android:hint="Username"
-			android:layout_marginBottom="15px">
+			android:autoText="true" android:layout_marginBottom="10dp">
 			<requestFocus></requestFocus>
 		</EditText>
+		<TextView android:id="@+id/login_label_password"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:text="Password" android:textStyle="bold" android:textColor="#FF9900"
+			android:layout_marginBottom="3dp" android:textSize="15sp"></TextView>
 		<EditText android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:inputType="textPassword"
-			android:id="@+id/login_password" android:hint="Password"
-			android:layout_marginBottom="15px"></EditText>
+			android:id="@+id/login_password" android:layout_marginBottom="10dp"></EditText>
 		<Button android:layout_height="wrap_content" android:id="@+id/login_submit"
-			android:text="Login" android:layout_width="fill_parent"></Button>
+			android:text="Login" android:layout_width="wrap_content"
+			android:layout_gravity="right" android:paddingLeft="40dp"
+			android:paddingRight="40dp" android:background="#FF9900"
+			android:minHeight="30dp" android:textColor="#FFFFFF"
+			android:textStyle="bold" android:textSize="20sp"></Button>
 	</LinearLayout>
 </LinearLayout>

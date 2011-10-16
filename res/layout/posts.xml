@@ -7,15 +7,15 @@
 		android:id="@+id/content" android:background="#FFF">
 		<LinearLayout android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:orientation="vertical"
-			android:id="@+id/header">
+			android:id="@+id/header" android:background="#FF9900">
 			<TextView android:id="@+id/logo" android:layout_height="fill_parent"
-				android:layout_width="fill_parent" android:text="KAMPR"
-				android:minHeight="30px" android:gravity="center" android:textColor="#333333"
-				android:textStyle="bold" android:textSize="20px"></TextView>
+				android:layout_width="fill_parent" android:textStyle="bold"
+				android:gravity="left" android:minHeight="30dp" android:textSize="30sp"
+				android:text="kampr" android:paddingLeft="10dp" android:textColor="#FFFFFF"></TextView>
 		</LinearLayout>
 		<TabWidget android:id="@android:id/tabs"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:minHeight="30px" />
+			android:minHeight="30px"/>
 		<FrameLayout android:id="@android:id/tabcontent"
 			android:layout_width="fill_parent" android:layout_height="fill_parent">
 		</FrameLayout>
