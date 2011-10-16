@@ -10,26 +10,26 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.models.Link;
+import com.kampr.models.Snap;
 
-public class LinksAdapter extends BaseAdapter {
+public class SnapsAdapter extends BaseAdapter {
     
     private Context _context;
-    private List<Link> _links;
+    private List<Snap> _snaps;
     
-    public LinksAdapter(Context context, List<Link> links) {
+    public SnapsAdapter(Context context, List<Snap> snaps) {
         this._context = context;
-        this._links = links;
+        this._snaps = snaps;
     }
 
     @Override
     public int getCount() {
-        return _links.size();
+        return _snaps.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return _links.get(position);
+        return _snaps.get(position);
     }
 
     @Override
@@ -40,21 +40,21 @@ public class LinksAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = null;
-        Link link = _links.get(position);
+        Snap snap = _snaps.get(position);
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.link_item, null);
+            convertView = inflater.inflate(R.layout.snap_item, null);
         }
         
-        TextView linkUsername = (TextView) convertView.findViewById(R.id.link_username);
-        linkUsername.setText(link.getLinkProperty("name"));
+        TextView snapUsername = (TextView) convertView.findViewById(R.id.snap_username);
+        snapUsername.setText(snap.getSnapProperty("name"));
         
-        TextView linkDate = (TextView) convertView.findViewById(R.id.link_date);
-        linkDate.setText(link.getLinkProperty("created_at"));
+        TextView snapDate = (TextView) convertView.findViewById(R.id.snap_date);
+        snapDate.setText(snap.getSnapProperty("created_at"));
         
-        TextView linkTitle = (TextView) convertView.findViewById(R.id.link_title);
-        linkTitle.setText(link.getLinkProperty("title"));
+        TextView snapTitle = (TextView) convertView.findViewById(R.id.snap_title);
+        snapTitle.setText(snap.getSnapProperty("title"));
 
         return convertView;
     }

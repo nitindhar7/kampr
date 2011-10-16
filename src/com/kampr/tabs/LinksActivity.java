@@ -79,7 +79,7 @@ public class LinksActivity extends ListActivity {
             LinksAdapter linksAdapter = new LinksAdapter(LinksActivity.this, listOfLinks);
             links.setAdapter(linksAdapter);
         } catch (JSONException e) {
-            throw new RuntimeException(ACTIVITY_TAG + ": Error fetching links from Forrst", e);
+            throw new RuntimeException(ACTIVITY_TAG + ": Error fetching link from Forrst", e);
         } catch (ParseException e) {
             throw new RuntimeException(ACTIVITY_TAG + ": Error parsing link date", e);
         }
