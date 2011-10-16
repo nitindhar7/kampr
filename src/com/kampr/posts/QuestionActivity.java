@@ -1,20 +1,12 @@
 package com.kampr.posts;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -22,19 +14,12 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
 import com.kampr.models.Question;
 
-public class QuestionActivity extends Activity {
+public class QuestionActivity extends PostActivity {
     
     private final String ACTIVITY_TAG = "QuestionActivity";
-    
-    protected static final int DEFAULT_QUESTION_ID = -1;
-    
-    private ForrstAPI _forrst;
-    private JSONObject _questionJSON;
     
     private TextView questionTitle;
     private TextView questionUrl;
@@ -50,9 +35,7 @@ public class QuestionActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.question);
         
-        _forrst = new ForrstAPIClient();
-        
-        Question question = fetchQuestion(getIntent().getIntExtra("id", DEFAULT_QUESTION_ID));
+        Question question = fetchQuestion(getIntent().getIntExtra("id", DEFAULT_POST_ID));
         
         questionTitle = (TextView) findViewById(R.id.question_title);
         questionUrl = (TextView) findViewById(R.id.question_url);
@@ -66,66 +49,36 @@ public class QuestionActivity extends Activity {
         questionUsername.setText(question.getProperty("name"));
         questionDate.setText(question.getProperty("created_at"));
         questionContent.setText(question.getProperty("content"));
-        questionUserIcon.setImageBitmap(fetchQuestionUserIcon(question.getProperty("user_photos_thumb_url")));
-    }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(ACTIVITY_TAG, "onStart");
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(ACTIVITY_TAG, "onResume");
+        questionUserIcon.setImageBitmap(fetchImageBitmap(question.getProperty("user_photos_thumb_url")));
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(ACTIVITY_TAG, "onPause");
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(ACTIVITY_TAG, "onStop");
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(ACTIVITY_TAG, "onDestroy");
-    }
-    
     protected Question fetchQuestion(int id) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Map<String, String> questionProperties = new HashMap<String, String>();
 
         try {
-            _questionJSON = _forrst.postsShow(id);
+            _postJSON = _forrst.postsShow(id);
             
-            questionProperties.put("id", _questionJSON.getString("id"));
-            questionProperties.put("post_type", _questionJSON.getString("post_type"));
-            questionProperties.put("post_url", _questionJSON.getString("post_url"));
+            questionProperties.put("id", _postJSON.getString("id"));
+            questionProperties.put("post_type", _postJSON.getString("post_type"));
+            questionProperties.put("post_url", _postJSON.getString("post_url"));
 
-            long questionDateInMillis = sdf.parse(_questionJSON.getString("created_at")).getTime();
+            long questionDateInMillis = sdf.parse(_postJSON.getString("created_at")).getTime();
             String questionDate = DateUtils.formatDateTime(null, questionDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
             questionProperties.put("created_at", questionDate);
             
-            questionProperties.put("name", _questionJSON.getJSONObject("user").getString("name"));
-            questionProperties.put("title", _questionJSON.getString("title"));
-            questionProperties.put("url", _questionJSON.getString("url"));
-            questionProperties.put("content", _questionJSON.getString("content"));
-            questionProperties.put("description", _questionJSON.getString("description"));
-            questionProperties.put("formatted_content", _questionJSON.getString("formatted_content"));
-            questionProperties.put("formatted_description", _questionJSON.getString("formatted_description"));
-            questionProperties.put("view_count", Integer.toString(_questionJSON.getInt("view_count")));
-            questionProperties.put("like_count", _questionJSON.getString("like_count"));
-            questionProperties.put("comment_count", _questionJSON.getString("comment_count"));
-            questionProperties.put("user_photos_thumb_url", _questionJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-            questionProperties.put("tag_string", _questionJSON.getString("tag_string"));
+            questionProperties.put("name", _postJSON.getJSONObject("user").getString("name"));
+            questionProperties.put("title", _postJSON.getString("title"));
+            questionProperties.put("url", _postJSON.getString("url"));
+            questionProperties.put("content", _postJSON.getString("content"));
+            questionProperties.put("description", _postJSON.getString("description"));
+            questionProperties.put("formatted_content", _postJSON.getString("formatted_content"));
+            questionProperties.put("formatted_description", _postJSON.getString("formatted_description"));
+            questionProperties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
+            questionProperties.put("like_count", _postJSON.getString("like_count"));
+            questionProperties.put("comment_count", _postJSON.getString("comment_count"));
+            questionProperties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+            questionProperties.put("tag_string", _postJSON.getString("tag_string"));
 
             return new Question(questionProperties);
         } catch (JSONException e) {
@@ -133,19 +86,6 @@ public class QuestionActivity extends Activity {
         } catch (ParseException e) {
             throw new RuntimeException("Error parsing question date", e);
         }
-    }
-    
-    protected Bitmap fetchQuestionUserIcon(String uri) {
-        Bitmap questionUserIconData = null;
-        try {
-            InputStream is = (InputStream) new URL(uri).getContent();
-            questionUserIconData = BitmapFactory.decodeStream(is);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error processing question url", e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error fetch data from stream", e);
-        }
-        return questionUserIconData;
     }
 
 }
