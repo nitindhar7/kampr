@@ -91,7 +91,7 @@ public class PostsActivity extends TabActivity {
         inflater.inflate(R.menu.posts_menu, menu);
         return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

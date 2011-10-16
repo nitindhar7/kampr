@@ -13,10 +13,12 @@ public final class R {
     public static final class drawable {
         public static final int ic_tab_links=0x7f020000;
         public static final int icon=0x7f020001;
-        public static final int tab_size_mdpi_codes=0x7f020002;
-        public static final int tab_size_mdpi_links=0x7f020003;
-        public static final int tab_size_mdpi_questions=0x7f020004;
-        public static final int tab_size_mdpi_snaps=0x7f020005;
+        public static final int posts_menu_logout=0x7f020002;
+        public static final int posts_menu_settings=0x7f020003;
+        public static final int tab_size_mdpi_codes=0x7f020004;
+        public static final int tab_size_mdpi_links=0x7f020005;
+        public static final int tab_size_mdpi_questions=0x7f020006;
+        public static final int tab_size_mdpi_snaps=0x7f020007;
     }
     public static final class id {
         public static final int body=0x7f060003;
@@ -37,6 +39,7 @@ public final class R {
         public static final int post_user_icon=0x7f06000b;
         public static final int post_username=0x7f06000c;
         public static final int posts_menu_logout=0x7f060011;
+        public static final int posts_menu_settings=0x7f060012;
     }
     public static final class layout {
         public static final int main=0x7f030000;
