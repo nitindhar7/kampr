@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:background="#FFF" android:paddingBottom="5dp" android:paddingTop="5dp" android:id="@+id/post">
+	android:background="#FFF" android:paddingBottom="5dp"
+	android:paddingTop="5dp" android:id="@+id/post">
 	<RelativeLayout android:layout_width="fill_parent"
-	android:layout_height="wrap_content" android:minHeight="30dp" android:id="@+id/post_header">
+		android:layout_height="wrap_content" android:minHeight="30dp"
+		android:id="@+id/post_header">
 		<ImageView android:src="@drawable/tab_size_mdpi_snaps"
-			android:layout_height="wrap_content" android:layout_width="wrap_content" android:maxHeight="20dp" android:maxWidth="20dp" android:minHeight="20dp" android:minWidth="20dp" android:id="@+id/post_user_icon"></ImageView>
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:maxHeight="20dp" android:maxWidth="20dp" android:minHeight="20dp"
+			android:minWidth="20dp" android:id="@+id/post_user_icon"></ImageView>
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="name" android:gravity="center_vertical"
-			android:paddingLeft="5dp" android:paddingRight="5dp"
-			android:textStyle="bold" android:textSize="14sp" android:textColor="#333333" android:minHeight="30dp" android:layout_toRightOf="@+id/post_user_icon" android:id="@+id/post_username"></TextView>
+			android:layout_height="wrap_content" android:text="name"
+			android:gravity="center_vertical" android:paddingLeft="5dp"
+			android:paddingRight="5dp" android:textStyle="bold" android:textSize="14sp"
+			android:textColor="#333333" android:minHeight="30dp"
+			android:layout_toRightOf="@+id/post_user_icon" android:id="@+id/post_username"></TextView>
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="date" android:gravity="center_vertical"
-			android:layout_alignParentRight="true" android:paddingRight="5dp"
-			android:textColor="#999999" android:textStyle="italic"
-			android:textSize="14sp" android:paddingLeft="5dp" android:minHeight="30dp" android:id="@+id/post_date"></TextView>
+			android:layout_height="wrap_content" android:text="date"
+			android:gravity="center_vertical" android:layout_alignParentRight="true"
+			android:paddingRight="5dp" android:textColor="#999999"
+			android:textStyle="italic" android:textSize="14sp"
+			android:paddingLeft="5dp" android:minHeight="30dp" android:id="@+id/post_date"></TextView>
 	</RelativeLayout>
 	<RelativeLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:minHeight="30dp" android:layout_below="@+id/post_header" android:id="@+id/post_content">
+		android:layout_height="wrap_content" android:minHeight="30dp"
+		android:layout_below="@+id/post_header" android:id="@+id/post_content">
 		<TextView android:layout_height="wrap_content"
-			android:layout_toRightOf="@+id/link_post_icon" android:text="title" android:gravity="center_vertical"
-			android:paddingLeft="5dp" android:paddingRight="5dp"
-			android:textSize="14sp" android:textColor="#333333"
-			android:layout_width="fill_parent" android:minHeight="30dp" android:id="@+id/post_title"></TextView>
+			android:layout_toRightOf="@+id/link_post_icon" android:text="title"
+			android:gravity="center_vertical" android:paddingLeft="5dp"
+			android:paddingRight="5dp" android:textSize="14sp" android:textColor="#333333"
+			android:layout_width="fill_parent" android:minHeight="30dp"
+			android:id="@+id/post_title"></TextView>
 	</RelativeLayout>
 </RelativeLayout>

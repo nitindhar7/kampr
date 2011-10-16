@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.kampr" android:versionCode="1" android:versionName="1.0">
-	<uses-sdk android:minSdkVersion="7" />
+	<uses-sdk android:minSdkVersion="7" android:maxSdkVersion="11" android:targetSdkVersion="11"/>
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:name=".KamprActivity" android:label="@string/app_name"
@@ -11,17 +11,28 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".LoginActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".PostsActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".LogoutActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".tabs.LinksActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".tabs.SnapsActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".tabs.CodesActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".tabs.QuestionsActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".posts.LinkActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".posts.SnapActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".posts.CodeActivity" android:screenOrientation="portrait"></activity>
-		<activity android:name=".posts.QuestionActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".LoginActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".PostsActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".LogoutActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.LinksActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.SnapsActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.CodesActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".tabs.QuestionsActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.LinkActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.SnapActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.CodeActivity"
+			android:screenOrientation="portrait"></activity>
+		<activity android:name=".posts.QuestionActivity"
+			android:screenOrientation="portrait"></activity>
 	</application>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>

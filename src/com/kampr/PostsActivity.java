@@ -21,6 +21,7 @@ public class PostsActivity extends TabActivity {
 
     private final String ACTIVITY_TAG = "PostsActivity";
     private final int LOGOUT_RESULT_CODE = 1;
+    private final int SETTINGS_RESULT_CODE = 1;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,8 +97,12 @@ public class PostsActivity extends TabActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.posts_menu_logout:
-                Intent addProfile = new Intent(PostsActivity.this, LogoutActivity.class);
-                startActivityForResult(addProfile, LOGOUT_RESULT_CODE);
+                Intent logout = new Intent(PostsActivity.this, LogoutActivity.class);
+                startActivityForResult(logout, LOGOUT_RESULT_CODE);
+                break;
+            case R.id.posts_menu_settings:
+                Intent settings = new Intent(PostsActivity.this, LogoutActivity.class);
+                startActivityForResult(settings, SETTINGS_RESULT_CODE);
                 break;
         }
         return true;
