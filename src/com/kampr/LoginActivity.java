@@ -1,5 +1,8 @@
 package com.kampr;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -90,10 +93,12 @@ public class LoginActivity extends Activity {
             json = _forrst.usersAuth(username, password);
             SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
             SharedPreferences.Editor editor = settings.edit();
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashedPassword = md.digest(_loginPassword.getBytes());
             
-            // TODO: save password as a MD5 hash
             editor.putString("login_username", _loginUsername);
-            editor.putString("login_password", _loginPassword);
+            editor.putString("login_password", hashedPassword.toString());
             editor.putString("login_token", json.getString("token"));
             editor.putString("login_user_id", json.getString("user_id"));
             editor.commit();
@@ -102,6 +107,8 @@ public class LoginActivity extends Activity {
             return false;
         } catch (JSONException e) {
             throw new RuntimeException("Error retrieving user data from Forrst authentication", e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error validating user", e);
         }
         
     }
