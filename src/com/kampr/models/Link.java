@@ -20,6 +20,7 @@ public class Link extends Post {
         _properties.put("view_count", null);
         _properties.put("like_count", null);
         _properties.put("comment_count", null);
+        _properties.put("user_photos_thumb_url", null);
         _properties.put("tag_string", null);
     }
     

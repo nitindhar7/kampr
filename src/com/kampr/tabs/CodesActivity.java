@@ -60,6 +60,7 @@ public class CodesActivity extends PostsListActivity {
                 codeProperties.put("view_count", Integer.toString(json.getInt("view_count")));
                 codeProperties.put("like_count", json.getString("like_count"));
                 codeProperties.put("comment_count", json.getString("comment_count"));
+                codeProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
                 codeProperties.put("tag_string", json.getString("tag_string"));
                 
                 Code code = new Code(codeProperties);

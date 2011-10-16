@@ -60,6 +60,7 @@ public class QuestionsActivity extends PostsListActivity {
                 questionProperties.put("view_count", Integer.toString(json.getInt("view_count")));
                 questionProperties.put("like_count", json.getString("like_count"));
                 questionProperties.put("comment_count", json.getString("comment_count"));
+                questionProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
                 questionProperties.put("tag_string", json.getString("tag_string"));
                 
                 Question question = new Question(questionProperties);

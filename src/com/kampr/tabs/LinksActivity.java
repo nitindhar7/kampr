@@ -60,6 +60,7 @@ public class LinksActivity extends PostsListActivity {
                 linkProperties.put("view_count", Integer.toString(json.getInt("view_count")));
                 linkProperties.put("like_count", json.getString("like_count"));
                 linkProperties.put("comment_count", json.getString("comment_count"));
+                linkProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
                 linkProperties.put("tag_string", json.getString("tag_string"));
                 
                 Link link = new Link(linkProperties);

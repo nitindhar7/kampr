@@ -61,6 +61,7 @@ public class SnapsActivity extends PostsListActivity {
                 snapProperties.put("like_count", json.getString("like_count"));
                 snapProperties.put("comment_count", json.getString("comment_count"));
                 snapProperties.put("tag_string", json.getString("tag_string"));
+                snapProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
                 snapProperties.put("snaps_original_url", json.getJSONObject("snaps").getString("original_url"));
                 
                 Snap snap = new Snap(snapProperties);

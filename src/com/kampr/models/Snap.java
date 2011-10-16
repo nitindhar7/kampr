@@ -21,6 +21,7 @@ public class Snap extends Post {
         _properties.put("like_count", null);
         _properties.put("comment_count", null);
         _properties.put("tag_string", null);
+        _properties.put("user_photos_thumb_url", null);
         _properties.put("snaps_original_url", null);
     }
     
