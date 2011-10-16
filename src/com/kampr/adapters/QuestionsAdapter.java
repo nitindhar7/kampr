@@ -24,17 +24,17 @@ public class QuestionsAdapter extends PostsAdapter<Question> {
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.question_item, null);
+            convertView = inflater.inflate(R.layout.post_item, null);
         }
         
-        TextView questionUsername = (TextView) convertView.findViewById(R.id.question_username);
-        questionUsername.setText(question.getProperty("name"));
+        TextView postUsername = (TextView) convertView.findViewById(R.id.post_username);
+        postUsername.setText(question.getProperty("name"));
         
-        TextView questionDate = (TextView) convertView.findViewById(R.id.question_date);
-        questionDate.setText(question.getProperty("created_at"));
+        TextView postDate = (TextView) convertView.findViewById(R.id.post_date);
+        postDate.setText(question.getProperty("created_at"));
         
-        TextView questionTitle = (TextView) convertView.findViewById(R.id.question_title);
-        questionTitle.setText(question.getProperty("title"));
+        TextView postTitle = (TextView) convertView.findViewById(R.id.post_title);
+        postTitle.setText(question.getProperty("title"));
 
         return convertView;
     }

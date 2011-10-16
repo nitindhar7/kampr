@@ -77,6 +77,7 @@ public class SnapsActivity extends ListActivity {
             }
             
             ListView snaps = getListView();
+            snaps.setVerticalFadingEdgeEnabled(false);
             SnapsAdapter snapsAdapter = new SnapsAdapter(SnapsActivity.this, listOfSnaps);
             snaps.setAdapter(snapsAdapter);
         } catch (JSONException e) {

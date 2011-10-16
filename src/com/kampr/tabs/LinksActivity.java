@@ -76,6 +76,7 @@ public class LinksActivity extends ListActivity {
             }
             
             ListView links = getListView();
+            links.setVerticalFadingEdgeEnabled(false);
             LinksAdapter linksAdapter = new LinksAdapter(LinksActivity.this, listOfLinks);
             links.setAdapter(linksAdapter);
         } catch (JSONException e) {

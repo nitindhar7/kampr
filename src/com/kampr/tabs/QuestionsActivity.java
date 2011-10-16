@@ -76,6 +76,7 @@ public class QuestionsActivity extends ListActivity {
             }
             
             ListView questions = getListView();
+            questions.setVerticalFadingEdgeEnabled(false);
             QuestionsAdapter questionsAdapter = new QuestionsAdapter(QuestionsActivity.this, listOfQuestions);
             questions.setAdapter(questionsAdapter);
         } catch (JSONException e) {

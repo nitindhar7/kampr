@@ -29,6 +29,7 @@ public class PostsActivity extends TabActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.posts);
         
+        // Tab styling: http://stackoverflow.com/questions/3538946/create-smaller-tabs-in-android
         Resources res = getResources();
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;

@@ -24,17 +24,17 @@ public class LinksAdapter extends PostsAdapter<Link> {
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.link_item, null);
+            convertView = inflater.inflate(R.layout.post_item, null);
         }
         
-        TextView linkUsername = (TextView) convertView.findViewById(R.id.link_username);
-        linkUsername.setText(link.getProperty("name"));
+        TextView postUsername = (TextView) convertView.findViewById(R.id.post_username);
+        postUsername.setText(link.getProperty("name"));
         
-        TextView linkDate = (TextView) convertView.findViewById(R.id.link_date);
-        linkDate.setText(link.getProperty("created_at"));
+        TextView postDate = (TextView) convertView.findViewById(R.id.post_date);
+        postDate.setText(link.getProperty("created_at"));
         
-        TextView linkTitle = (TextView) convertView.findViewById(R.id.link_title);
-        linkTitle.setText(link.getProperty("title"));
+        TextView postTitle = (TextView) convertView.findViewById(R.id.post_title);
+        postTitle.setText(link.getProperty("title"));
 
         return convertView;
     }

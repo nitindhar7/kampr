@@ -76,6 +76,7 @@ public class CodesActivity extends ListActivity {
             }
             
             ListView codes = getListView();
+            codes.setVerticalFadingEdgeEnabled(false);
             CodesAdapter codesAdapter = new CodesAdapter(CodesActivity.this, listOfCodes);
             codes.setAdapter(codesAdapter);
         } catch (JSONException e) {

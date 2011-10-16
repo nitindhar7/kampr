@@ -24,17 +24,17 @@ public class CodesAdapter extends PostsAdapter<Code> {
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.code_item, null);
+            convertView = inflater.inflate(R.layout.post_item, null);
         }
         
-        TextView codeUsername = (TextView) convertView.findViewById(R.id.code_username);
-        codeUsername.setText(code.getProperty("name"));
+        TextView postUsername = (TextView) convertView.findViewById(R.id.post_username);
+        postUsername.setText(code.getProperty("name"));
         
-        TextView codeDate = (TextView) convertView.findViewById(R.id.code_date);
-        codeDate.setText(code.getProperty("created_at"));
+        TextView postDate = (TextView) convertView.findViewById(R.id.post_date);
+        postDate.setText(code.getProperty("created_at"));
         
-        TextView codeTitle = (TextView) convertView.findViewById(R.id.code_title);
-        codeTitle.setText(code.getProperty("title"));
+        TextView postTitle = (TextView) convertView.findViewById(R.id.post_title);
+        postTitle.setText(code.getProperty("title"));
 
         return convertView;
     }

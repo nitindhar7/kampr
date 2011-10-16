@@ -24,17 +24,17 @@ public class SnapsAdapter extends PostsAdapter<Snap> {
         
         if(convertView == null) {
             inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.snap_item, null);
+            convertView = inflater.inflate(R.layout.post_item, null);
         }
         
-        TextView snapUsername = (TextView) convertView.findViewById(R.id.snap_username);
-        snapUsername.setText(snap.getProperty("name"));
+        TextView postUsername = (TextView) convertView.findViewById(R.id.post_username);
+        postUsername.setText(snap.getProperty("name"));
         
-        TextView snapDate = (TextView) convertView.findViewById(R.id.snap_date);
-        snapDate.setText(snap.getProperty("created_at"));
+        TextView postDate = (TextView) convertView.findViewById(R.id.post_date);
+        postDate.setText(snap.getProperty("created_at"));
         
-        TextView snapTitle = (TextView) convertView.findViewById(R.id.snap_title);
-        snapTitle.setText(snap.getProperty("title"));
+        TextView postTitle = (TextView) convertView.findViewById(R.id.post_title);
+        postTitle.setText(snap.getProperty("title"));
 
         return convertView;
     }
