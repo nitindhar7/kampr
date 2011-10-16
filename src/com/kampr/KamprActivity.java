@@ -15,7 +15,8 @@ import android.widget.Toast;
 public class KamprActivity extends Activity implements OnClickListener {
 
     private final String ACTIVITY_TAG = "KamprActivity";
-    private final int VALIDATE_RESULT_CODE = 1;
+    private final int LOGIN_RESULT_CODE = 1;
+    protected static final String KAMPR_APP_PREFS = "KamprAppPrefs";
     
     private EditText _loginUsername;
     private EditText _loginPassword;
@@ -27,8 +28,7 @@ public class KamprActivity extends Activity implements OnClickListener {
         Log.i(ACTIVITY_TAG, "onCreate");
 
         if(sessionExists()) {
-            Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
-            startActivity(posts);
+            startPostsActivity();
         }
         else {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -75,10 +75,10 @@ public class KamprActivity extends Activity implements OnClickListener {
     public void onClick(View src) {
         switch(src.getId()) {
             case R.id.login_submit:
-                Intent validate = new Intent(KamprActivity.this, ValidateActivity.class);
+                Intent validate = new Intent(KamprActivity.this, LoginActivity.class);
                 validate.putExtra("login_username", _loginUsername.getText().toString());
                 validate.putExtra("login_password", _loginPassword.getText().toString());
-                startActivityForResult(validate, VALIDATE_RESULT_CODE);
+                startActivityForResult(validate, LOGIN_RESULT_CODE);
                 break;
         }
     }
@@ -87,10 +87,10 @@ public class KamprActivity extends Activity implements OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch(requestCode) {
-            case VALIDATE_RESULT_CODE:
-                if(resultCode == ValidateActivity.RESULT_SUCCESS)
-                    Toast.makeText(getApplicationContext() , "Successfully Authenticated!", Toast.LENGTH_SHORT).show();
-                else if(resultCode == ValidateActivity.RESULT_FAILURE)
+            case LOGIN_RESULT_CODE:
+                if(resultCode == LoginActivity.RESULT_SUCCESS)
+                    startPostsActivity();
+                else if(resultCode == LoginActivity.RESULT_FAILURE)
                     Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class KamprActivity extends Activity implements OnClickListener {
     }
     
     protected boolean sessionExists() {
-        SharedPreferences settings = getSharedPreferences(ValidateActivity.KAMPR_APP_PREFS, 0);
+        SharedPreferences settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
         if(settings.getString("login_username", null) != null &&
                 settings.getString("login_password", null) != null &&
                 settings.getString("login_token", null) != null &&
@@ -109,6 +109,11 @@ public class KamprActivity extends Activity implements OnClickListener {
         else {
             return false;
         }
+    }
+    
+    protected void startPostsActivity() {
+        Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
+        startActivity(posts);
     }
 
 }

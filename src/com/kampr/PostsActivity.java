@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
@@ -16,6 +20,7 @@ import com.kampr.tabs.SnapsActivity;
 public class PostsActivity extends TabActivity {
 
     private final String ACTIVITY_TAG = "PostsActivity";
+    private final int LOGOUT_RESULT_CODE = 1;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,42 @@ public class PostsActivity extends TabActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(ACTIVITY_TAG, "onDestroy");
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.i(ACTIVITY_TAG, "onCreateOptionsMenu");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.posts_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.posts_menu_logout:
+                Intent addProfile = new Intent(PostsActivity.this, LogoutActivity.class);
+                startActivityForResult(addProfile, LOGOUT_RESULT_CODE);
+                break;
+        }
+        return true;
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode) {
+            case LOGOUT_RESULT_CODE:
+                if(resultCode == LogoutActivity.RESULT_SUCCESS) {
+                    Intent kampr = new Intent(PostsActivity.this, KamprActivity.class);
+                    startActivity(kampr);
+                }
+                else if(resultCode == LogoutActivity.RESULT_FAILURE)
+                    Toast.makeText(getApplicationContext() , "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
 }

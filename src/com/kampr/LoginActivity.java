@@ -12,11 +12,10 @@ import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.forrst.api.util.ForrstAuthenticationException;
 
-public class ValidateActivity extends Activity {
+public class LoginActivity extends Activity {
     
-    private final String ACTIVITY_TAG = "ValidateActivity";
-    
-    protected static final String KAMPR_APP_PREFS = "KamprAppPrefs";
+    private final String ACTIVITY_TAG = "LoginActivity";
+
     protected static final int RESULT_SUCCESS = 1;
     protected static final int RESULT_FAILURE = -1;
     
@@ -89,7 +88,7 @@ public class ValidateActivity extends Activity {
         JSONObject json = null;
         try {
             json = _forrst.usersAuth(username, password);
-            SharedPreferences settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
+            SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
             SharedPreferences.Editor editor = settings.edit();
             
             // TODO: save password as a MD5 hash
