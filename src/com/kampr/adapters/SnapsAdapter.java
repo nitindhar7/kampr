@@ -48,13 +48,13 @@ public class SnapsAdapter extends BaseAdapter {
         }
         
         TextView snapUsername = (TextView) convertView.findViewById(R.id.snap_username);
-        snapUsername.setText(snap.getSnapProperty("name"));
+        snapUsername.setText(snap.getProperty("name"));
         
         TextView snapDate = (TextView) convertView.findViewById(R.id.snap_date);
-        snapDate.setText(snap.getSnapProperty("created_at"));
+        snapDate.setText(snap.getProperty("created_at"));
         
         TextView snapTitle = (TextView) convertView.findViewById(R.id.snap_title);
-        snapTitle.setText(snap.getSnapProperty("title"));
+        snapTitle.setText(snap.getProperty("title"));
 
         return convertView;
     }
