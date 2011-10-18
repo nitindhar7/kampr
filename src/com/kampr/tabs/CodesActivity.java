@@ -4,20 +4,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
@@ -25,64 +26,26 @@ import com.kampr.adapters.CodesAdapter;
 import com.kampr.models.Code;
 import com.kampr.posts.CodeActivity;
 
-public class CodesActivity extends PostsListActivity implements OnItemClickListener {
+public class CodesActivity extends PostsListActivity<Code> implements OnItemClickListener {
     
     private final String ACTIVITY_TAG = "CodesActivity";
+
+    private CodesAdapter _postsAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         trustAllHosts();
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        _listOfPosts = new ArrayList<Code>();
         
-        try {
-            List<Code> listOfCodes = new ArrayList<Code>();
-            ForrstAPI forrst = new ForrstAPIClient();
-            
-            JSONObject postsJSON = forrst.postsList("code", null);
-            JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
-            
-            for(int count = 0; count < postsJSONArray.length(); count++) {
-                Map<String, String> codeProperties = new HashMap<String, String>();
-                JSONObject json = postsJSONArray.getJSONObject(count);
-                
-                codeProperties.put("id", json.getString("id"));
-                codeProperties.put("post_type", json.getString("post_type"));
-                codeProperties.put("post_url", json.getString("post_url"));
+        _posts = getListView();
+        _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setOnItemClickListener(this);
 
-                long codeDateInMillis = sdf.parse(json.getString("created_at")).getTime();
-                String codeDate = DateUtils.formatDateTime(null, codeDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
-                codeProperties.put("created_at", codeDate);
-                
-                codeProperties.put("name", json.getJSONObject("user").getString("name"));
-                codeProperties.put("title", json.getString("title"));
-                codeProperties.put("url", json.getString("url"));
-                codeProperties.put("content", json.getString("content"));
-                codeProperties.put("description", json.getString("description"));
-                codeProperties.put("formatted_content", json.getString("formatted_content"));
-                codeProperties.put("formatted_description", json.getString("formatted_description"));
-                codeProperties.put("view_count", Integer.toString(json.getInt("view_count")));
-                codeProperties.put("like_count", json.getString("like_count"));
-                codeProperties.put("comment_count", json.getString("comment_count"));
-                codeProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-                codeProperties.put("tag_string", json.getString("tag_string"));
-                
-                Code code = new Code(codeProperties);
-                listOfCodes.add(code);
-            }
-            
-            CodesAdapter codesAdapter = new CodesAdapter(CodesActivity.this, listOfCodes);
-            
-            ListView codes = getListView();
-            codes.setVerticalFadingEdgeEnabled(false);
-            codes.setOnItemClickListener(this);
-            codes.setAdapter(codesAdapter);
-        } catch (JSONException e) {
-            throw new RuntimeException(ACTIVITY_TAG + ": Error fetching code from Forrst", e);
-        } catch (ParseException e) {
-            throw new RuntimeException(ACTIVITY_TAG + ": Error parsing code date", e);
-        }
+        _dialog = ProgressDialog.show(CodesActivity.this, "", "Loading codes...", true);
+
+        _fetchPostsThread.start();
     }
     
     @Override
@@ -91,5 +54,74 @@ public class CodesActivity extends PostsListActivity implements OnItemClickListe
         code.putExtra("id", view.getId());
         startActivity(code);
     }
+    
+    private Handler _handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.getData().getInt(FETCH_STATUS)) {
+                case FETCH_COMPLETE:
+                    _postsAdapter = new CodesAdapter(CodesActivity.this, _listOfPosts);
+                    _posts.setAdapter(_postsAdapter);
+                    _dialog.cancel();
+                    break;
+            }
+        }
+    };
+    
+    private Thread _fetchPostsThread = new Thread(new Runnable() {
+        
+        public void run() {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            
+            try {
+                ForrstAPI forrst = new ForrstAPIClient();
+                
+                JSONObject postsJSON = forrst.postsList("code", null);
+                JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
+                
+                for(int count = 0; count < postsJSONArray.length(); count++) {
+                    Map<String, String> codeProperties = new HashMap<String, String>();
+                    JSONObject json = postsJSONArray.getJSONObject(count);
+                    
+                    codeProperties.put("id", json.getString("id"));
+                    codeProperties.put("post_type", json.getString("post_type"));
+                    codeProperties.put("post_url", json.getString("post_url"));
+
+                    long codeDateInMillis = sdf.parse(json.getString("created_at")).getTime();
+                    String codeDate = DateUtils.formatDateTime(null, codeDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
+                    codeProperties.put("created_at", codeDate);
+                    
+                    codeProperties.put("name", json.getJSONObject("user").getString("name"));
+                    codeProperties.put("title", json.getString("title"));
+                    codeProperties.put("url", json.getString("url"));
+                    codeProperties.put("content", json.getString("content"));
+                    codeProperties.put("description", json.getString("description"));
+                    codeProperties.put("formatted_content", json.getString("formatted_content"));
+                    codeProperties.put("formatted_description", json.getString("formatted_description"));
+                    codeProperties.put("view_count", Integer.toString(json.getInt("view_count")));
+                    codeProperties.put("like_count", json.getString("like_count"));
+                    codeProperties.put("comment_count", json.getString("comment_count"));
+                    codeProperties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                    codeProperties.put("tag_string", json.getString("tag_string"));
+                    
+                    Code code = new Code(codeProperties);
+                    _listOfPosts.add(code);
+                }
+                
+                Bundle handlerData = new Bundle();
+                handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
+                
+                Message fetchingCompleteMessage = new Message();
+                fetchingCompleteMessage.setData(handlerData);
+                
+                _handler.sendMessage(fetchingCompleteMessage);
+            } catch (JSONException e) {
+                throw new RuntimeException(ACTIVITY_TAG + ": Error fetching code from Forrst", e);
+            } catch (ParseException e) {
+                throw new RuntimeException(ACTIVITY_TAG + ": Error parsing code date", e);
+            }
+        }
+        
+    });
 
 }

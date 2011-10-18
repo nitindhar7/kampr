@@ -3,6 +3,7 @@ package com.kampr.tabs;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -10,8 +11,17 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.widget.ListView;
 
-public class PostsListActivity extends ListActivity {
+public abstract class PostsListActivity<T> extends ListActivity {
+    
+    protected static final String FETCH_STATUS = "fetch_status";
+    protected static final int FETCH_COMPLETE = 1;
+    
+    protected List<T> _listOfPosts;
+    protected ListView _posts;
+    protected ProgressDialog _dialog;
     
     /**
      * Trust every server - dont check for any certificate
@@ -42,5 +52,4 @@ public class PostsListActivity extends ListActivity {
              throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
          }
      }
-
 }

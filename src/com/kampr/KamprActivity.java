@@ -1,6 +1,7 @@
 package com.kampr;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,15 +22,15 @@ public class KamprActivity extends Activity implements OnClickListener {
     private EditText _loginUsername;
     private EditText _loginPassword;
     private Button _loginSubmit;
+    private ProgressDialog _dialog;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
 
-        if(sessionExists()) {
+        if(sessionExists())
             startPostsActivity();
-        }
         else {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             setContentView(R.layout.main);
@@ -75,6 +76,7 @@ public class KamprActivity extends Activity implements OnClickListener {
     public void onClick(View src) {
         switch(src.getId()) {
             case R.id.login_submit:
+                _dialog = ProgressDialog.show(KamprActivity.this, "", "Logging in. Please wait...", true);
                 Intent validate = new Intent(KamprActivity.this, LoginActivity.class);
                 validate.putExtra("login_username", _loginUsername.getText().toString());
                 validate.putExtra("login_password", _loginPassword.getText().toString());
@@ -88,8 +90,10 @@ public class KamprActivity extends Activity implements OnClickListener {
 
         switch(requestCode) {
             case LOGIN_RESULT_CODE:
-                if(resultCode == LoginActivity.RESULT_SUCCESS)
+                if(resultCode == LoginActivity.RESULT_SUCCESS) {
+                    _dialog.cancel();
                     startPostsActivity();
+                }
                 else if(resultCode == LoginActivity.RESULT_FAILURE)
                     Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
                 else

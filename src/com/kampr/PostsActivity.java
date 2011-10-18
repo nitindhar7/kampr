@@ -35,7 +35,7 @@ public class PostsActivity extends TabActivity {
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
-
+        
         intent = new Intent(PostsActivity.this, LinksActivity.class);
         spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(R.drawable.tab_size_mdpi_links)).setContent(intent);
         tabHost.addTab(spec);
@@ -51,8 +51,6 @@ public class PostsActivity extends TabActivity {
         intent = new Intent(PostsActivity.this, QuestionsActivity.class);
         spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(R.drawable.tab_size_mdpi_questions)).setContent(intent);
         tabHost.addTab(spec);
-
-        tabHost.setCurrentTab(0);
     }
     
     @Override
