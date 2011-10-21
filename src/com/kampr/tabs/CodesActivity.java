@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.R;
 import com.kampr.adapters.CodesAdapter;
 import com.kampr.models.Code;
 import com.kampr.posts.CodeActivity;
@@ -40,7 +41,10 @@ public class CodesActivity extends PostsListActivity<Code> implements OnItemClic
         _listOfPosts = new ArrayList<Code>();
         
         _posts = getListView();
+        _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
+        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
 
         _dialog = ProgressDialog.show(CodesActivity.this, "", "Loading codes...", true);

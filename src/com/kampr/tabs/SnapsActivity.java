@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.R;
 import com.kampr.adapters.SnapsAdapter;
 import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
@@ -40,7 +41,10 @@ public class SnapsActivity extends PostsListActivity<Snap> implements OnItemClic
         _listOfPosts = new ArrayList<Snap>();
         
         _posts = getListView();
+        _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
+        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
 
         _dialog = ProgressDialog.show(SnapsActivity.this, "", "Loading snaps...", true);

@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.R;
 import com.kampr.adapters.QuestionsAdapter;
 import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
@@ -40,7 +41,10 @@ public class QuestionsActivity extends PostsListActivity<Question> implements On
         _listOfPosts = new ArrayList<Question>();
         
         _posts = getListView();
+        _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
+        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
 
         _dialog = ProgressDialog.show(QuestionsActivity.this, "", "Loading questions...", true);

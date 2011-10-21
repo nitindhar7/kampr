@@ -25,6 +25,7 @@ import com.forrst.api.ForrstAPIClient;
 import com.kampr.adapters.LinksAdapter;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
+import com.kampr.R;
 
 public class LinksActivity extends PostsListActivity<Link> implements OnItemClickListener {
 
@@ -42,6 +43,8 @@ public class LinksActivity extends PostsListActivity<Link> implements OnItemClic
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
+        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
 
         _dialog = ProgressDialog.show(LinksActivity.this, "", "Loading links...", true);
