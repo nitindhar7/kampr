@@ -37,19 +37,19 @@ public class PostsActivity extends TabActivity {
         Intent intent;
         
         intent = new Intent(PostsActivity.this, LinksActivity.class);
-        spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(R.drawable.tab_size_mdpi_links)).setContent(intent);
+        spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(android.R.drawable.ic_menu_set_as)).setContent(intent);
         tabHost.addTab(spec);
         
         intent = new Intent(PostsActivity.this, SnapsActivity.class);
-        spec = tabHost.newTabSpec("snaps").setIndicator("Snaps", res.getDrawable(R.drawable.tab_size_mdpi_snaps)).setContent(intent);
+        spec = tabHost.newTabSpec("snaps").setIndicator("Snaps", res.getDrawable(android.R.drawable.ic_menu_gallery)).setContent(intent);
         tabHost.addTab(spec);
         
         intent = new Intent(PostsActivity.this, CodesActivity.class);
-        spec = tabHost.newTabSpec("codes").setIndicator("Codes", res.getDrawable(R.drawable.tab_size_mdpi_codes)).setContent(intent);
+        spec = tabHost.newTabSpec("codes").setIndicator("Codes", res.getDrawable(android.R.drawable.ic_menu_edit)).setContent(intent);
         tabHost.addTab(spec);
         
         intent = new Intent(PostsActivity.this, QuestionsActivity.class);
-        spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(R.drawable.tab_size_mdpi_questions)).setContent(intent);
+        spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(android.R.drawable.ic_menu_help)).setContent(intent);
         tabHost.addTab(spec);
     }
     
