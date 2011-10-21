@@ -40,6 +40,7 @@ public class LinksActivity extends PostsListActivity<Link> implements OnItemClic
         _listOfPosts = new ArrayList<Link>();
         
         _posts = getListView();
+        _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
         _posts.setOnItemClickListener(this);
 
