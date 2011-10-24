@@ -23,9 +23,12 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
     protected Context _context;
     protected List<T> _posts;
     
+    private LayoutInflater _inflater;
+    
     public PostsAdapter(Context context, List<T> posts) {
         this._context = context;
         this._posts = posts;
+        _inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     
     @Override
@@ -45,13 +48,12 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = null;
-        Post post = (Post) _posts.get(position);
         
         if(convertView == null) {
-            inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.post_item, null);
+            convertView = _inflater.inflate(R.layout.post_item, null);
         }
+        
+        Post post = (Post) _posts.get(position);
         
         try {
             InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
