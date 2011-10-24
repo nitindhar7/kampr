@@ -56,16 +56,16 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
         try {
             InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
             
-            ImageView postUserIcon = (ImageView) convertView.findViewById(R.id.post_item_user_icon);
+            ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.post_item_user_icon);
             postUserIcon.setImageBitmap(BitmapFactory.decodeStream(is));
             
-            TextView postUsername = (TextView) convertView.findViewById(R.id.post_item_username);
+            TextView postUsername = (TextView) getViewHandle(convertView, R.id.post_item_username);
             postUsername.setText(post.getProperty("name"));
             
-            TextView postDate = (TextView) convertView.findViewById(R.id.post_item_date);
+            TextView postDate = (TextView) getViewHandle(convertView, R.id.post_item_date);
             postDate.setText(post.getProperty("created_at"));
             
-            TextView postTitle = (TextView) convertView.findViewById(R.id.post_item_content);
+            TextView postTitle = (TextView) getViewHandle(convertView, R.id.post_item_content);
             postTitle.setText(post.getProperty("title"));
             
             convertView.setId(Integer.parseInt(post.getProperty("id")));
@@ -76,6 +76,15 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
         }
 
         return convertView;
+    }
+    
+    protected Object getViewHandle(View parent, int viewId) {
+        Object view = parent.getTag(viewId);
+        if(view == null) {
+            view = parent.findViewById(viewId);
+            parent.setTag(viewId, view);
+        }
+        return view;
     }
 
 }

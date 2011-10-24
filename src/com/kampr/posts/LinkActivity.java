@@ -49,6 +49,7 @@ public class LinkActivity extends PostActivity {
         linkUsername.setText(link.getProperty("name"));
         linkDate.setText(link.getProperty("created_at"));
         linkDescription.setText(link.getProperty("description"));
+        linkDescription.setVerticalScrollBarEnabled(false);
         linkUserIcon.setImageBitmap(fetchImageBitmap(link.getProperty("user_photos_thumb_url")));
     }
     
