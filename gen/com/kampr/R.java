@@ -13,6 +13,7 @@ public final class R {
     public static final class color {
         public static final int post_item_background=0x7f040001;
         public static final int post_item_divider=0x7f040000;
+        public static final int transparent=0x7f040002;
     }
     public static final class drawable {
         public static final int action_bar=0x7f020000;
