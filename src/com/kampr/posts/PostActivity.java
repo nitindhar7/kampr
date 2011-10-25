@@ -16,7 +16,6 @@ import android.util.Log;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.R;
 import com.kampr.models.Post;
 import com.markupartist.android.widget.ActionBar;
 
@@ -40,8 +39,6 @@ public class PostActivity extends Activity {
         Log.i(ACTIVITY_TAG, "onCreate");
 
         _forrst = new ForrstAPIClient();
-        _actionBar = (ActionBar) findViewById(R.id.actionbar);
-        _actionBar.setTitle("kampr");
     }
     
     @Override

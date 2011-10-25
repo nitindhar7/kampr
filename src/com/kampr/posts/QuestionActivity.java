@@ -10,12 +10,12 @@ import org.json.JSONException;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.models.Question;
+import com.markupartist.android.widget.ActionBar;
 
 public class QuestionActivity extends PostActivity {
     
@@ -32,8 +32,10 @@ public class QuestionActivity extends PostActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.question);
+        
+        _actionBar = (ActionBar) findViewById(R.id.actionbar);
+        _actionBar.setTitle("kampr");
         
         Question question = fetchQuestion(getIntent().getIntExtra("id", DEFAULT_POST_ID));
         

@@ -13,12 +13,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 import android.util.Log;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.models.Snap;
+import com.markupartist.android.widget.ActionBar;
 
 public class SnapActivity extends PostActivity {
     
@@ -36,8 +36,13 @@ public class SnapActivity extends PostActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.snap);
+        
+        _actionBar = (ActionBar) findViewById(R.id.actionbar);
+        _actionBar.setTitle("kampr");
+        
+        _actionBar = (ActionBar) findViewById(R.id.actionbar);
+        _actionBar.setTitle("kampr");
         
         _dialog = ProgressDialog.show(SnapActivity.this, "", "Loading snap...", true);
 
