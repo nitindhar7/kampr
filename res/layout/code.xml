@@ -3,16 +3,8 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:background="#FFFFFF"
 	android:id="@+id/snap">
-	<LinearLayout android:layout_height="wrap_content"
-        android:layout_width="fill_parent" android:orientation="vertical"
-        android:id="@+id/header" android:background="@drawable/action_bar">
-        <TextView android:id="@+id/logo" android:layout_height="fill_parent"
-            android:layout_width="fill_parent" android:textStyle="bold"
-            android:gravity="left" android:minHeight="30dp" android:textSize="30sp"
-            android:text="kampr" android:paddingLeft="10dp" android:textColor="#FFFFFF"
-            android:shadowRadius="1" android:shadowDy="1" android:shadowDx="1"
-            android:shadowColor="#995C00"></TextView>
-	</LinearLayout>
+	<com.markupartist.android.widget.ActionBar
+		android:id="@+id/actionbar" style="@style/ActionBar" />
 	<TextView android:layout_height="wrap_content" android:text="title"
 		android:minHeight="30dp" android:gravity="center_vertical"
 		android:layout_width="fill_parent" android:paddingLeft="5dp"
@@ -45,7 +37,8 @@
 			android:textColor="#999999" android:id="@+id/snap_date"></TextView>
 	</RelativeLayout>
 	<ScrollView android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/snap_scroll" android:scrollbarAlwaysDrawVerticalTrack="false">
+		android:layout_width="fill_parent" android:id="@+id/snap_scroll"
+		android:scrollbarAlwaysDrawVerticalTrack="false">
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:orientation="vertical"
 			android:id="@+id/snap_scroll_linear">
