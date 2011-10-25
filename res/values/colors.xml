@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="post_item_divider">#999</color>
-	<color name="post_item_background">#FFE0B2</color>
+
+	<!-- General -->
 	<color name="transparent">#00000000</color>
+
+	<!-- Post Item -->
+	<color name="post_item_divider">#DDD</color>
+	<color name="post_item_background">#FFE0B2</color>
+
+	<!-- ActionBar -->
+	<color name="actionbar_separator">#CC7A00</color>
+    <color name="actionbar_background_start">#FF9900</color>
+    <color name="actionbar_background_end">#CC7A00</color>
+
 </resources>

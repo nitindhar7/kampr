@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -16,19 +15,24 @@ import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
+import com.markupartist.android.widget.ActionBar;
 
 public class PostsActivity extends TabActivity {
-
+    
     private final String ACTIVITY_TAG = "PostsActivity";
     private final int LOGOUT_RESULT_CODE = 1;
     private final int SETTINGS_RESULT_CODE = 1;
+    
+    private ActionBar _actionBar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_TAG, "onCreate");
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.posts);
+        
+        _actionBar = (ActionBar) findViewById(R.id.actionbar);
+        _actionBar.setTitle("kampr");
         
         // Tab styling: http://stackoverflow.com/questions/3538946/create-smaller-tabs-in-android
         Resources res = getResources();

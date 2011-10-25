@@ -8,6 +8,7 @@ import java.net.URL;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,15 +16,20 @@ import android.util.Log;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.models.Post;
 
 public class PostActivity extends Activity {
     
     private final String ACTIVITY_TAG = "PostActivity";
     
+    protected static final String FETCH_STATUS = "fetch_status";
+    protected static final int FETCH_COMPLETE = 1;
     protected static final int DEFAULT_POST_ID = -1;
 
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
+    protected ProgressDialog _dialog;
+    protected Post _post;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {

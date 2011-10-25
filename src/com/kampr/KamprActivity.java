@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.markupartist.android.widget.ActionBar;
 
 public class KamprActivity extends Activity implements OnClickListener {
 
@@ -23,6 +24,7 @@ public class KamprActivity extends Activity implements OnClickListener {
     private EditText _loginPassword;
     private Button _loginSubmit;
     private ProgressDialog _dialog;
+    private ActionBar _actionBar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,10 @@ public class KamprActivity extends Activity implements OnClickListener {
         if(sessionExists())
             startPostsActivity();
         else {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
             setContentView(R.layout.main);
+            
+            _actionBar = (ActionBar) findViewById(R.id.actionbar);
+            _actionBar.setTitle("kampr");
             
             _loginUsername = (EditText)findViewById(R.id.login_username);
             _loginPassword = (EditText)findViewById(R.id.login_password);

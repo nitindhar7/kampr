@@ -7,7 +7,10 @@ import java.util.Map;
 
 import org.json.JSONException;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Window;
@@ -21,12 +24,13 @@ public class LinkActivity extends PostActivity {
     
     private final String ACTIVITY_TAG = "LinkActivity";
     
-    private TextView linkTitle;
-    private TextView linkUrl;
-    private TextView linkUsername;
-    private TextView linkDate;
-    private TextView linkDescription;
-    private ImageView linkUserIcon;
+    private TextView _linkTitle;
+    private TextView _linkUrl;
+    private TextView _linkUsername;
+    private TextView _linkDate;
+    private TextView _linkDescription;
+    private ImageView _linkUserIcon;
+
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,58 +39,82 @@ public class LinkActivity extends PostActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.link);
         
-        Link link = fetchLink(getIntent().getIntExtra("id", DEFAULT_POST_ID));
+        _dialog = ProgressDialog.show(LinkActivity.this, "", "Loading link...", true);
+
+        _fetchPostThread.start();
         
-        linkTitle = (TextView) findViewById(R.id.link_title);
-        linkUrl = (TextView) findViewById(R.id.link_url);
-        linkUsername = (TextView) findViewById(R.id.link_user_name);
-        linkDate = (TextView) findViewById(R.id.link_date);
-        linkDescription = (TextView) findViewById(R.id.link_description);
-        linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
-        
-        linkTitle.setText(link.getProperty("title"));
-        linkUrl.setText(link.getProperty("url"));
-        linkUsername.setText(link.getProperty("name"));
-        linkDate.setText(link.getProperty("created_at"));
-        linkDescription.setText(link.getProperty("description"));
-        linkDescription.setVerticalScrollBarEnabled(false);
-        linkUserIcon.setImageBitmap(fetchImageBitmap(link.getProperty("user_photos_thumb_url")));
+        _linkTitle = (TextView) findViewById(R.id.link_title);
+        _linkUrl = (TextView) findViewById(R.id.link_url);
+        _linkUsername = (TextView) findViewById(R.id.link_user_name);
+        _linkDate = (TextView) findViewById(R.id.link_date);
+        _linkDescription = (TextView) findViewById(R.id.link_description);
+        _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
     }
     
-    protected Link fetchLink(int id) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Map<String, String> linkProperties = new HashMap<String, String>();
-
-        try {
-            _postJSON = _forrst.postsShow(id);
-            
-            linkProperties.put("id", _postJSON.getString("id"));
-            linkProperties.put("post_type", _postJSON.getString("post_type"));
-            linkProperties.put("post_url", _postJSON.getString("post_url"));
-
-            long linkDateInMillis = sdf.parse(_postJSON.getString("created_at")).getTime();
-            String linkDate = DateUtils.formatDateTime(null, linkDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
-            linkProperties.put("created_at", linkDate);
-            
-            linkProperties.put("name", _postJSON.getJSONObject("user").getString("name"));
-            linkProperties.put("title", _postJSON.getString("title"));
-            linkProperties.put("url", _postJSON.getString("url"));
-            linkProperties.put("content", _postJSON.getString("content"));
-            linkProperties.put("description", _postJSON.getString("description"));
-            linkProperties.put("formatted_content", _postJSON.getString("formatted_content"));
-            linkProperties.put("formatted_description", _postJSON.getString("formatted_description"));
-            linkProperties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
-            linkProperties.put("like_count", _postJSON.getString("like_count"));
-            linkProperties.put("comment_count", _postJSON.getString("comment_count"));
-            linkProperties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-            linkProperties.put("tag_string", _postJSON.getString("tag_string"));
-
-            return new Link(linkProperties);
-        } catch (JSONException e) {
-            throw new RuntimeException("Error fetching link from Forrst", e);
-        } catch (ParseException e) {
-            throw new RuntimeException("Error parsing link date", e);
+    private Handler _handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.getData().getInt(FETCH_STATUS)) {
+                case FETCH_COMPLETE:
+                    _linkTitle.setText(_post.getProperty("title"));
+                    _linkUrl.setText(_post.getProperty("url"));
+                    _linkUsername.setText(_post.getProperty("name"));
+                    _linkDate.setText(_post.getProperty("created_at"));
+                    _linkDescription.setText(_post.getProperty("description"));
+                    _linkDescription.setVerticalScrollBarEnabled(false);
+                    _linkUserIcon.setImageBitmap(fetchImageBitmap(_post.getProperty("user_photos_thumb_url")));
+                    _dialog.cancel();
+                    break;
+            }
         }
-    }
+    };
+    
+    private Thread _fetchPostThread = new Thread(new Runnable() {
+        
+        public void run() {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Map<String, String> linkProperties = new HashMap<String, String>();
+
+            try {
+                _postJSON = _forrst.postsShow(getIntent().getIntExtra("id", DEFAULT_POST_ID));
+                
+                linkProperties.put("id", _postJSON.getString("id"));
+                linkProperties.put("post_type", _postJSON.getString("post_type"));
+                linkProperties.put("post_url", _postJSON.getString("post_url"));
+
+                long linkDateInMillis = sdf.parse(_postJSON.getString("created_at")).getTime();
+                String linkDate = DateUtils.formatDateTime(null, linkDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
+                linkProperties.put("created_at", linkDate);
+                
+                linkProperties.put("name", _postJSON.getJSONObject("user").getString("name"));
+                linkProperties.put("title", _postJSON.getString("title"));
+                linkProperties.put("url", _postJSON.getString("url"));
+                linkProperties.put("content", _postJSON.getString("content"));
+                linkProperties.put("description", _postJSON.getString("description"));
+                linkProperties.put("formatted_content", _postJSON.getString("formatted_content"));
+                linkProperties.put("formatted_description", _postJSON.getString("formatted_description"));
+                linkProperties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
+                linkProperties.put("like_count", _postJSON.getString("like_count"));
+                linkProperties.put("comment_count", _postJSON.getString("comment_count"));
+                linkProperties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                linkProperties.put("tag_string", _postJSON.getString("tag_string"));
+                
+                _post = new Link(linkProperties);
+                
+                Bundle handlerData = new Bundle();
+                handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
+                
+                Message fetchingCompleteMessage = new Message();
+                fetchingCompleteMessage.setData(handlerData);
+                
+                _handler.sendMessage(fetchingCompleteMessage);
+            } catch (JSONException e) {
+                throw new RuntimeException("Error fetching link from Forrst", e);
+            } catch (ParseException e) {
+                throw new RuntimeException("Error parsing link date", e);
+            }
+        }
+        
+    });
 
 }
