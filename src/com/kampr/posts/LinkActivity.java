@@ -14,6 +14,7 @@ import android.os.Message;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
@@ -30,7 +31,7 @@ public class LinkActivity extends PostActivity {
     private TextView _linkDate;
     private TextView _linkDescription;
     private ImageView _linkUserIcon;
-
+    private ScrollView _linkDesciptionScrollView;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class LinkActivity extends PostActivity {
         _linkDate = (TextView) findViewById(R.id.link_date);
         _linkDescription = (TextView) findViewById(R.id.link_description);
         _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
+        _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
+        _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
     }
     
     private Handler _handler = new Handler() {
@@ -62,7 +65,7 @@ public class LinkActivity extends PostActivity {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
                     _linkTitle.setText(_post.getProperty("title"));
-                    _linkUrl.setText(_post.getProperty("url"));
+                    _linkUrl.setText(getTruncatedText(_post.getProperty("url"), TRUNCATED_URL_LENGTH) + "...");
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(_post.getProperty("description"));

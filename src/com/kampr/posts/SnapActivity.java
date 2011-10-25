@@ -13,7 +13,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
@@ -31,6 +33,7 @@ public class SnapActivity extends PostActivity {
     private TextView _snapDescription;
     private ImageView _snapUserIcon;
     private ImageView _snapLargeUrl;
+    private ScrollView _snapDesciptionScrollView;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class SnapActivity extends PostActivity {
         _snapDescription = (TextView) findViewById(R.id.snap_description);
         _snapUserIcon = (ImageView) findViewById(R.id.snap_user_icon);
         _snapLargeUrl = (ImageView) findViewById(R.id.snap_large_url);
+        _snapDesciptionScrollView = (ScrollView) findViewById(R.id.snap_description_scroll);
+        _snapDesciptionScrollView.setVerticalScrollBarEnabled(false);
     }
     
     private Handler _handler = new Handler() {
@@ -63,7 +68,15 @@ public class SnapActivity extends PostActivity {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
                     _snapTitle.setText(_post.getProperty("title"));
-                    _snapUrl.setText(_post.getProperty("url"));
+                    
+                    String localSnapUrl = _post.getProperty("url");
+                    if(localSnapUrl == null || localSnapUrl.length() == 0) {
+                        _snapUrl.setVisibility(View.GONE);
+                    }
+                    else {
+                        _snapUrl.setText(getTruncatedText(localSnapUrl, TRUNCATED_URL_LENGTH) + "...");
+                    }
+                    
                     _snapUsername.setText(_post.getProperty("name"));
                     _snapDate.setText(_post.getProperty("created_at"));
                     _snapDescription.setText(_post.getProperty("description"));

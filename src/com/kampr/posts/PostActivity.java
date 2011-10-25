@@ -27,6 +27,8 @@ public class PostActivity extends Activity {
     protected static final int FETCH_COMPLETE = 1;
     protected static final int DEFAULT_POST_ID = -1;
 
+    protected final int TRUNCATED_URL_LENGTH = 40;
+
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
     protected ProgressDialog _dialog;
@@ -82,6 +84,18 @@ public class PostActivity extends Activity {
             throw new RuntimeException("Error fetching data from stream", e);
         }
         return imageData;
+    }
+    
+    protected String getTruncatedText(String text, int maxLength) {
+        if(text == null) {
+            return null;
+        }
+        else if(text.length() >= maxLength) {
+            return text.substring(0, maxLength);
+        }
+        else {
+            return text;
+        }
     }
 
 }

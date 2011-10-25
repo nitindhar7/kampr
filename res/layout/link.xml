@@ -7,47 +7,42 @@
 		android:id="@+id/actionbar" style="@style/ActionBar" />
 	<TextView android:id="@+id/link_title" android:layout_height="wrap_content"
 		android:text="title" android:minHeight="30dp" android:gravity="center_vertical"
-		android:layout_width="fill_parent" android:paddingLeft="5dp"
-		android:paddingRight="5dp" android:textStyle="bold" android:textSize="20sp"
-		android:textColor="#FF9900"></TextView>
+		android:layout_width="fill_parent" android:textStyle="bold"
+		android:textSize="20sp" android:textColor="#FF9900" android:padding="10dp"></TextView>
 	<TextView android:id="@+id/link_url" android:layout_height="wrap_content"
 		android:text="url" android:layout_width="fill_parent"
 		android:minHeight="20dp" android:gravity="center_vertical"
-		android:textColor="#333333" android:textStyle="italic"
-		android:padding="5dp"></TextView>
+		android:background="@drawable/post_link_bg" android:shadowColor="#FFF"
+		android:shadowDx="1" android:shadowRadius="1" android:shadowDy="1"
+		android:textColor="#333" android:padding="10dp"></TextView>
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/link_user"
-		android:minHeight="30dp">
+		android:minHeight="30dp" android:padding="10dp" android:background="#EEE">
 		<ImageView android:src="@drawable/ic_tab_links"
 			android:layout_height="wrap_content" android:layout_width="wrap_content"
 			android:layout_alignParentLeft="true" android:id="@+id/link_user_icon"
-			android:maxHeight="20dp" android:maxWidth="20dp" android:minHeight="20dp"
-			android:minWidth="20dp"></ImageView>
+			android:maxHeight="40dp" android:maxWidth="40dp" android:minHeight="40dp"
+			android:minWidth="40dp"></ImageView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_width="wrap_content" android:id="@+id/link_user_name"
 			android:text="name" android:layout_toRightOf="@+id/link_user_icon"
-			android:minHeight="30dp" android:gravity="center_vertical"
 			android:paddingLeft="5dp" android:paddingRight="5dp"
 			android:textColor="#333333" android:textStyle="bold"
-			android:layout_marginLeft="10dp"></TextView>
+			android:layout_marginLeft="10dp" android:gravity="center_vertical"
+			android:minHeight="40dp"></TextView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_width="wrap_content" android:id="@+id/link_date"
 			android:layout_alignParentRight="true" android:text="date"
-			android:gravity="center_vertical" android:minHeight="30dp"
 			android:paddingLeft="5dp" android:paddingRight="5dp"
-			android:textColor="#999999"></TextView>
+			android:textColor="#555" android:gravity="center_vertical"
+			android:minHeight="40dp"></TextView>
 	</RelativeLayout>
 	<ScrollView android:layout_width="fill_parent"
 		android:id="@+id/link_description_scroll" android:layout_height="fill_parent"
-		android:padding="5dp" android:isScrollContainer="true">
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:id="@+id/link_description_scroll_linear"
-			android:scrollbarAlwaysDrawVerticalTrack="false">
-			<TextView android:scrollbarAlwaysDrawVerticalTrack="true"
-				android:id="@+id/link_description" android:textColor="#333"
-				android:padding="5dp" android:text="description"
-				android:layout_height="wrap_content" android:layout_width="fill_parent"></TextView>
-		</LinearLayout>
+		android:isScrollContainer="true" android:padding="10dp">
+		<TextView android:id="@+id/link_description"
+			android:layout_height="wrap_content" android:text="description"
+			android:textColor="#333" android:layout_width="fill_parent"
+			android:scrollbarAlwaysDrawVerticalTrack="false"></TextView>
 	</ScrollView>
-
 </LinearLayout>
