@@ -31,6 +31,7 @@ containing a value of this type.
         /**  Post Item 
          */
         public static final int post_item_divider=0x7f040007;
+        public static final int post_item_selected=0x7f040009;
         /**  General 
          */
         public static final int transparent=0x7f040006;

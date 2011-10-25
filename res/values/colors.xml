@@ -7,6 +7,7 @@
 	<!-- Post Item -->
 	<color name="post_item_divider">#DDD</color>
 	<color name="post_item_background">#FFE0B2</color>
+	<color name="post_item_selected">#FF9900</color>
 
 	<!-- ActionBar -->
 	<color name="actionbar_separator">#CC7A00</color>

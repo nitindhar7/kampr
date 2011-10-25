@@ -16,6 +16,8 @@ import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
 import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class PostsActivity extends TabActivity {
     
@@ -33,6 +35,9 @@ public class PostsActivity extends TabActivity {
         
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
+        
+        Action shareAction = new IntentAction(this, new Intent(PostsActivity.this, LogoutActivity.class), android.R.drawable.ic_dialog_info);
+        _actionBar.addAction(shareAction);
         
         // Tab styling: http://stackoverflow.com/questions/3538946/create-smaller-tabs-in-android
         Resources res = getResources();

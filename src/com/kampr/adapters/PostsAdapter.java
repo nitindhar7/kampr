@@ -71,6 +71,7 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
             postTitle.setText(post.getProperty("title"));
             
             convertView.setId(Integer.parseInt(post.getProperty("id")));
+            //convertView.setBackgroundDrawable(_context.getResources().getDrawable(R.drawable.post_item_states));
         } catch (MalformedURLException e) {
             throw new RuntimeException("Error: malformed URI", e);
         } catch (IOException e) {
