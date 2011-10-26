@@ -6,7 +6,7 @@
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:id="@+id/content" android:background="#FFF">
 		<com.markupartist.android.widget.ActionBar
-			android:id="@+id/actionbar" style="@style/ActionBar" />
+            android:id="@+id/actionbar" style="@style/ActionBar" />
 		<TabWidget android:id="@android:id/tabs"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:minHeight="30px" />

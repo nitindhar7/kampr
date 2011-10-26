@@ -42,9 +42,6 @@ public class LinkActivity extends PostActivity {
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
         
-        _actionBar = (ActionBar) findViewById(R.id.actionbar);
-        _actionBar.setTitle("kampr");
-        
         _dialog = ProgressDialog.show(LinkActivity.this, "", "Loading link...", true);
 
         _fetchPostThread.start();

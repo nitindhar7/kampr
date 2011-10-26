@@ -14,6 +14,7 @@ import android.os.Message;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
@@ -25,12 +26,12 @@ public class CodeActivity extends PostActivity {
     private final String ACTIVITY_TAG = "CodeActivity";
     
     private TextView _codeTitle;
-    private TextView _codeUrl;
     private TextView _codeUsername;
     private TextView _codeDate;
     private TextView _codeContent;
     private TextView _codeDescription;
     private ImageView _codeUserIcon;
+    private ScrollView _codeScroll;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,13 +46,14 @@ public class CodeActivity extends PostActivity {
 
         _fetchPostThread.start();
         
-        _codeTitle = (TextView) findViewById(R.id.snap_title);
-        _codeUrl = (TextView) findViewById(R.id.snap_url);
-        _codeUsername = (TextView) findViewById(R.id.snap_user_name);
-        _codeDate = (TextView) findViewById(R.id.snap_date);
-        _codeContent = (TextView) findViewById(R.id.snap_content);
-        _codeDescription = (TextView) findViewById(R.id.snap_description);
-        _codeUserIcon = (ImageView) findViewById(R.id.snap_user_icon);
+        _codeTitle = (TextView) findViewById(R.id.code_title);
+        _codeUsername = (TextView) findViewById(R.id.code_user_name);
+        _codeDate = (TextView) findViewById(R.id.code_date);
+        _codeContent = (TextView) findViewById(R.id.code_content);
+        _codeDescription = (TextView) findViewById(R.id.code_description);
+        _codeUserIcon = (ImageView) findViewById(R.id.code_user_icon);
+        _codeScroll = (ScrollView) findViewById(R.id.code_scroll);
+        _codeScroll.setVerticalScrollBarEnabled(false);
     }
     
     private Handler _handler = new Handler() {
@@ -60,7 +62,6 @@ public class CodeActivity extends PostActivity {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
                     _codeTitle.setText(_post.getProperty("title"));
-                    _codeUrl.setText(_post.getProperty("url"));
                     _codeUsername.setText(_post.getProperty("name"));
                     _codeDate.setText(_post.getProperty("created_at"));
                     _codeContent.setText(_post.getProperty("content"));
