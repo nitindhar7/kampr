@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -79,13 +78,7 @@ public class QuestionsActivity extends PostsListActivity<Question> {
                     _listOfPosts.add(question);
                 }
 
-                Bundle handlerData = new Bundle();
-                handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
-                
-                Message fetchingCompleteMessage = new Message();
-                fetchingCompleteMessage.setData(handlerData);
-                
-                _handler.sendMessage(fetchingCompleteMessage);
+                notifyHandler();
             } catch (JSONException e) {
                 throw new RuntimeException(ACTIVITY_TAG + ": Error fetching question from Forrst", e);
             } catch (ParseException e) {

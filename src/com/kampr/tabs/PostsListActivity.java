@@ -87,4 +87,14 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
             }
         }
     };
+    
+    protected void notifyHandler() {
+        Bundle handlerData = new Bundle();
+        handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
+        
+        Message fetchingCompleteMessage = new Message();
+        fetchingCompleteMessage.setData(handlerData);
+        
+        _handler.sendMessage(fetchingCompleteMessage);
+    }
 }
