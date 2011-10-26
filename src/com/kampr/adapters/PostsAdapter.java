@@ -8,52 +8,25 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.models.Post;
 
-public abstract class PostsAdapter<T> extends BaseAdapter {
+public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
-    protected Context _context;
-    protected List<T> _posts;
-    
-    private LayoutInflater _inflater;
-    
     public PostsAdapter(Context context, List<T> posts) {
-        this._context = context;
-        this._posts = posts;
-        _inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-    
-    @Override
-    public int getCount() {
-        return _posts.size();
+        super(context, posts);
     }
 
     @Override
-    public Object getItem(int position) {
-        return _posts.get(position);
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {        
+        convertView = getConvertView(convertView, R.layout.post_item);
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        
-        if(convertView == null) {
-            convertView = _inflater.inflate(R.layout.post_item, null);
-        }
-        
-        Post post = (Post) _posts.get(position);
+        Post post = (Post) _objects.get(position);
         
         try {
             InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
@@ -71,7 +44,6 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
             postTitle.setText(post.getProperty("title"));
             
             convertView.setId(Integer.parseInt(post.getProperty("id")));
-            //convertView.setBackgroundDrawable(_context.getResources().getDrawable(R.drawable.post_item_states));
         } catch (MalformedURLException e) {
             throw new RuntimeException("Error: malformed URI", e);
         } catch (IOException e) {
@@ -79,15 +51,6 @@ public abstract class PostsAdapter<T> extends BaseAdapter {
         }
 
         return convertView;
-    }
-    
-    protected Object getViewHandle(View parent, int viewId) {
-        Object view = parent.getTag(viewId);
-        if(view == null) {
-            view = parent.findViewById(viewId);
-            parent.setTag(viewId, view);
-        }
-        return view;
     }
 
 }

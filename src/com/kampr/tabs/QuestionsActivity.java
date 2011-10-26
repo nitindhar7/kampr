@@ -23,7 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
-import com.kampr.adapters.QuestionsAdapter;
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
 
@@ -31,7 +31,7 @@ public class QuestionsActivity extends PostsListActivity<Question> implements On
 
     private final String ACTIVITY_TAG = "QuestionsActivity";
 
-    private QuestionsAdapter _postsAdapter;
+    private PostsAdapter<Question> _postsAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class QuestionsActivity extends PostsListActivity<Question> implements On
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _postsAdapter = new QuestionsAdapter(QuestionsActivity.this, _listOfPosts);
+                    _postsAdapter = new PostsAdapter<Question>(QuestionsActivity.this, _listOfPosts);
                     _posts.setAdapter(_postsAdapter);
                     _dialog.cancel();
                     break;

@@ -22,16 +22,16 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.adapters.LinksAdapter;
+import com.kampr.R;
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
-import com.kampr.R;
 
 public class LinksActivity extends PostsListActivity<Link> implements OnItemClickListener {
 
     private final String ACTIVITY_TAG = "LinksActivity";
 
-    private LinksAdapter _postsAdapter;
+    private PostsAdapter<Link> _postsAdapter;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class LinksActivity extends PostsListActivity<Link> implements OnItemClic
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _postsAdapter = new LinksAdapter(LinksActivity.this, _listOfPosts);
+                    _postsAdapter = new PostsAdapter<Link>(LinksActivity.this, _listOfPosts);
                     _posts.setAdapter(_postsAdapter);
                     _dialog.cancel();
                     break;

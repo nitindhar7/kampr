@@ -23,7 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
-import com.kampr.adapters.CodesAdapter;
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Code;
 import com.kampr.posts.CodeActivity;
 
@@ -31,7 +31,7 @@ public class CodesActivity extends PostsListActivity<Code> implements OnItemClic
     
     private final String ACTIVITY_TAG = "CodesActivity";
 
-    private CodesAdapter _postsAdapter;
+    private PostsAdapter<Code> _postsAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class CodesActivity extends PostsListActivity<Code> implements OnItemClic
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _postsAdapter = new CodesAdapter(CodesActivity.this, _listOfPosts);
+                    _postsAdapter = new PostsAdapter<Code>(CodesActivity.this, _listOfPosts);
                     _posts.setAdapter(_postsAdapter);
                     _dialog.cancel();
                     break;

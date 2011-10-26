@@ -23,7 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
-import com.kampr.adapters.SnapsAdapter;
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
 
@@ -31,7 +31,7 @@ public class SnapsActivity extends PostsListActivity<Snap> implements OnItemClic
     
     private final String ACTIVITY_TAG = "SnapsActivity";
 
-    private SnapsAdapter _postsAdapter;
+    private PostsAdapter<Snap> _postsAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class SnapsActivity extends PostsListActivity<Snap> implements OnItemClic
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _postsAdapter = new SnapsAdapter(SnapsActivity.this, _listOfPosts);
+                    _postsAdapter = new PostsAdapter<Snap>(SnapsActivity.this, _listOfPosts);
                     _posts.setAdapter(_postsAdapter);
                     _dialog.cancel();
                     break;
