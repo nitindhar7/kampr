@@ -2,7 +2,6 @@ package com.kampr.tabs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,43 +12,23 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.R;
-import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
 
-public class QuestionsActivity extends PostsListActivity<Question> implements OnItemClickListener {
+public class QuestionsActivity extends PostsListActivity<Question> {
 
     private final String ACTIVITY_TAG = "QuestionsActivity";
 
-    private PostsAdapter<Question> _postsAdapter;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        trustAllHosts();
-        
-        _listOfPosts = new ArrayList<Question>();
-        
-        _posts = getListView();
-        _posts.setVerticalScrollBarEnabled(false);
-        _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setCacheColorHint(R.color.transparent);
-        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
-        _posts.setDividerHeight(1);
-        _posts.setOnItemClickListener(this);
-
         _dialog = ProgressDialog.show(QuestionsActivity.this, "", "Loading questions...", true);
-
         _fetchPostsThread.start();
     }
     
@@ -59,19 +38,6 @@ public class QuestionsActivity extends PostsListActivity<Question> implements On
         question.putExtra("id", view.getId());
         startActivity(question);
     }
-    
-    private Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _postsAdapter = new PostsAdapter<Question>(QuestionsActivity.this, _listOfPosts);
-                    _posts.setAdapter(_postsAdapter);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
     
     private Thread _fetchPostsThread = new Thread(new Runnable() {
         

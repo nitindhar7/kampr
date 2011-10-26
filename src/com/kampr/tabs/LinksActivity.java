@@ -2,7 +2,6 @@ package com.kampr.tabs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,43 +12,23 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.R;
-import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
 
-public class LinksActivity extends PostsListActivity<Link> implements OnItemClickListener {
+public class LinksActivity extends PostsListActivity<Link> {
 
     private final String ACTIVITY_TAG = "LinksActivity";
-
-    private PostsAdapter<Link> _postsAdapter;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        trustAllHosts();
-        
-        _listOfPosts = new ArrayList<Link>();
-        
-        _posts = getListView();
-        _posts.setVerticalScrollBarEnabled(false);
-        _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setCacheColorHint(R.color.transparent);
-        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
-        _posts.setDividerHeight(1);
-        _posts.setOnItemClickListener(this);
-
         _dialog = ProgressDialog.show(LinksActivity.this, "", "Loading links...", true);
-
         _fetchPostsThread.start();
     }
 
@@ -59,19 +38,6 @@ public class LinksActivity extends PostsListActivity<Link> implements OnItemClic
         link.putExtra("id", view.getId());
         startActivity(link);
     }
-    
-    private Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _postsAdapter = new PostsAdapter<Link>(LinksActivity.this, _listOfPosts);
-                    _posts.setAdapter(_postsAdapter);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
     
     private Thread _fetchPostsThread = new Thread(new Runnable() {
         

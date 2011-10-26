@@ -2,7 +2,6 @@ package com.kampr.tabs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,43 +12,23 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.R;
-import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.Code;
 import com.kampr.posts.CodeActivity;
 
-public class CodesActivity extends PostsListActivity<Code> implements OnItemClickListener {
+public class CodesActivity extends PostsListActivity<Code> {
     
     private final String ACTIVITY_TAG = "CodesActivity";
 
-    private PostsAdapter<Code> _postsAdapter;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        trustAllHosts();
-        
-        _listOfPosts = new ArrayList<Code>();
-        
-        _posts = getListView();
-        _posts.setVerticalScrollBarEnabled(false);
-        _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setCacheColorHint(R.color.transparent);
-        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
-        _posts.setDividerHeight(1);
-        _posts.setOnItemClickListener(this);
-
         _dialog = ProgressDialog.show(CodesActivity.this, "", "Loading codes...", true);
-
         _fetchPostsThread.start();
     }
     
@@ -59,19 +38,6 @@ public class CodesActivity extends PostsListActivity<Code> implements OnItemClic
         code.putExtra("id", view.getId());
         startActivity(code);
     }
-    
-    private Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _postsAdapter = new PostsAdapter<Code>(CodesActivity.this, _listOfPosts);
-                    _posts.setAdapter(_postsAdapter);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
     
     private Thread _fetchPostsThread = new Thread(new Runnable() {
         
