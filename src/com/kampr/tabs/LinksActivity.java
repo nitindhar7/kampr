@@ -1,7 +1,6 @@
 package com.kampr.tabs;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +38,6 @@ public class LinksActivity extends PostsListActivity<Link> {
     private Thread _fetchPostsThread = new Thread(new Runnable() {
         
         public void run() {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
             try {
                 JSONObject postsJSON = _forrst.postsList("link", null);
                 JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
@@ -53,7 +50,7 @@ public class LinksActivity extends PostsListActivity<Link> {
                     linkProperties.put("post_type", json.getString("post_type"));
                     linkProperties.put("post_url", json.getString("post_url"));
 
-                    long linkDateInMillis = sdf.parse(json.getString("created_at")).getTime();
+                    long linkDateInMillis = _dateFormat.parse(json.getString("created_at")).getTime();
                     String linkDate = DateUtils.formatDateTime(null, linkDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
                     linkProperties.put("created_at", linkDate);
                     

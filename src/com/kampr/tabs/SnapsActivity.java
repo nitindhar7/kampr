@@ -1,7 +1,6 @@
 package com.kampr.tabs;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +38,6 @@ public class SnapsActivity extends PostsListActivity<Snap> {
     private Thread _fetchPostsThread = new Thread(new Runnable() {
         
         public void run() {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
             try {
                 JSONObject postsJSON = _forrst.postsList("snap", null);
                 JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
@@ -53,7 +50,7 @@ public class SnapsActivity extends PostsListActivity<Snap> {
                     snapProperties.put("post_type", json.getString("post_type"));
                     snapProperties.put("post_url", json.getString("post_url"));
 
-                    long snapDateInMillis = sdf.parse(json.getString("created_at")).getTime();
+                    long snapDateInMillis = _dateFormat.parse(json.getString("created_at")).getTime();
                     String snapDate = DateUtils.formatDateTime(null, snapDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
                     snapProperties.put("created_at", snapDate);
                     

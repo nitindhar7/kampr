@@ -3,6 +3,7 @@ package com.kampr.tabs;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected static final int FETCH_COMPLETE = 1;
     
     protected static ForrstAPI _forrst = new ForrstAPIClient();
+    protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     protected List<T> _listOfPosts;
     protected ListView _posts;
