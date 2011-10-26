@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -24,7 +23,6 @@ public class LinksActivity extends PostsListActivity<Link> {
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _dialog = ProgressDialog.show(LinksActivity.this, "", "Loading links...", true);
         _fetchPostsThread.start();
     }
 

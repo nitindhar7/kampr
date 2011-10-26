@@ -49,6 +49,30 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
+        _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
+    }
+    
+    protected Handler _handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.getData().getInt(FETCH_STATUS)) {
+                case FETCH_COMPLETE:
+                    _postsAdapter = new PostsAdapter<T>(PostsListActivity.this, _listOfPosts);
+                    _posts.setAdapter(_postsAdapter);
+                    _dialog.cancel();
+                    break;
+            }
+        }
+    };
+    
+    protected void notifyHandler() {
+        Bundle handlerData = new Bundle();
+        handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
+        
+        Message fetchingCompleteMessage = new Message();
+        fetchingCompleteMessage.setData(handlerData);
+        
+        _handler.sendMessage(fetchingCompleteMessage);
     }
     
     /**
@@ -79,28 +103,5 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         } catch (KeyManagementException e) {
             throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
         }
-    }
-     
-    protected Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _postsAdapter = new PostsAdapter<T>(PostsListActivity.this, _listOfPosts);
-                    _posts.setAdapter(_postsAdapter);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
-    
-    protected void notifyHandler() {
-        Bundle handlerData = new Bundle();
-        handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
-        
-        Message fetchingCompleteMessage = new Message();
-        fetchingCompleteMessage.setData(handlerData);
-        
-        _handler.sendMessage(fetchingCompleteMessage);
     }
 }
