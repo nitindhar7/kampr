@@ -16,8 +16,6 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
 import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
 
@@ -44,9 +42,7 @@ public class SnapsActivity extends PostsListActivity<Snap> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             
             try {
-                ForrstAPI forrst = new ForrstAPIClient();
-                
-                JSONObject postsJSON = forrst.postsList("snap", null);
+                JSONObject postsJSON = _forrst.postsList("snap", null);
                 JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
                 
                 for(int count = 0; count < postsJSONArray.length(); count++) {

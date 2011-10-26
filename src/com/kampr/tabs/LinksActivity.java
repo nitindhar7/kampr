@@ -16,8 +16,6 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
 
@@ -44,9 +42,7 @@ public class LinksActivity extends PostsListActivity<Link> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             
             try {
-                ForrstAPI forrst = new ForrstAPIClient();
-                
-                JSONObject postsJSON = forrst.postsList("link", null);
+                JSONObject postsJSON = _forrst.postsList("link", null);
                 JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
                 
                 for(int count = 0; count < postsJSONArray.length(); count++) {

@@ -19,6 +19,8 @@ import android.os.Message;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.forrst.api.ForrstAPI;
+import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 
@@ -26,6 +28,8 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     
     protected static final String FETCH_STATUS = "fetch_status";
     protected static final int FETCH_COMPLETE = 1;
+    
+    protected static ForrstAPI _forrst = new ForrstAPIClient();
     
     protected List<T> _listOfPosts;
     protected ListView _posts;
