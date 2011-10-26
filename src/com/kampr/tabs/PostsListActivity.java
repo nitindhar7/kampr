@@ -45,7 +45,6 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setCacheColorHint(R.color.transparent);
         _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);

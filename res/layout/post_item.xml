@@ -4,7 +4,7 @@
 	android:layout_height="fill_parent" android:id="@+id/post_item" android:background="@drawable/post_item_bg">
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/post_item_sections"
-		android:padding="5dp">
+		android:padding="5dp" android:background="@drawable/post_item_states">
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/post_item_graphics" android:minHeight="40dp"

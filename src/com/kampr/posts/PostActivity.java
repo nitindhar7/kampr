@@ -27,7 +27,7 @@ public class PostActivity extends Activity {
     protected static final int FETCH_COMPLETE = 1;
     protected static final int DEFAULT_POST_ID = -1;
 
-    protected final int TRUNCATED_URL_LENGTH = 40;
+    protected final int TRUNCATED_URL_LENGTH = 35;
 
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
