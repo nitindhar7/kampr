@@ -32,6 +32,11 @@ containing a value of this type.
          */
         public static final int post_item_divider=0x7f040007;
         public static final int post_item_selected=0x7f040009;
+        public static final int setting_item_background=0x7f04000b;
+        /**  Settings 
+         */
+        public static final int setting_item_divider=0x7f04000a;
+        public static final int setting_item_selected=0x7f04000c;
         /**  General 
          */
         public static final int transparent=0x7f040006;
@@ -106,8 +111,8 @@ containing a value of this type.
         public static final int post_item_title=0x7f09002a;
         public static final int post_item_user_icon=0x7f090028;
         public static final int post_item_username=0x7f09002b;
-        public static final int posts_menu_logout=0x7f090040;
-        public static final int posts_menu_settings=0x7f090041;
+        public static final int posts_menu_logout=0x7f090043;
+        public static final int posts_menu_settings=0x7f090044;
         public static final int question=0x7f09002e;
         public static final int question_content=0x7f090035;
         public static final int question_content_scroll=0x7f090034;
@@ -117,17 +122,20 @@ containing a value of this type.
         public static final int question_user_icon=0x7f090031;
         public static final int question_user_name=0x7f090032;
         public static final int screen=0x7f090000;
+        public static final int setting=0x7f090037;
+        public static final int setting_item=0x7f090036;
+        public static final int settings=0x7f090038;
         public static final int snap=0x7f09000a;
-        public static final int snap_date=0x7f09003b;
-        public static final int snap_description=0x7f09003f;
-        public static final int snap_description_scroll=0x7f09003e;
-        public static final int snap_image=0x7f09003c;
-        public static final int snap_large_url=0x7f09003d;
-        public static final int snap_title=0x7f090036;
-        public static final int snap_url=0x7f090037;
-        public static final int snap_user=0x7f090038;
-        public static final int snap_user_icon=0x7f090039;
-        public static final int snap_user_name=0x7f09003a;
+        public static final int snap_date=0x7f09003e;
+        public static final int snap_description=0x7f090042;
+        public static final int snap_description_scroll=0x7f090041;
+        public static final int snap_image=0x7f09003f;
+        public static final int snap_large_url=0x7f090040;
+        public static final int snap_title=0x7f090039;
+        public static final int snap_url=0x7f09003a;
+        public static final int snap_user=0x7f09003b;
+        public static final int snap_user_icon=0x7f09003c;
+        public static final int snap_user_name=0x7f09003d;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;
@@ -138,7 +146,9 @@ containing a value of this type.
         public static final int post_item=0x7f030005;
         public static final int posts=0x7f030006;
         public static final int question=0x7f030007;
-        public static final int snap=0x7f030008;
+        public static final int setting_item=0x7f030008;
+        public static final int settings=0x7f030009;
+        public static final int snap=0x7f03000a;
     }
     public static final class menu {
         public static final int posts_menu=0x7f080000;

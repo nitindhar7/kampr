@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/posts_menu_logout" android:icon="@drawable/posts_menu_logout" android:title="Logout" />
-	<item android:icon="@drawable/posts_menu_settings" android:id="@+id/posts_menu_settings" android:title="Settings" />
+	<item android:id="@+id/posts_menu_logout" android:icon="@drawable/posts_menu_logout"
+		android:title="Logout" />
+	<item android:icon="@drawable/posts_menu_settings" android:id="@+id/posts_menu_settings"
+		android:title="Settings" />
 </menu>

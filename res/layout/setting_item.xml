@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:padding="10dp" android:id="@+id/setting_item" android:background="#555">
+	<TextView android:textStyle="bold" android:text="setting" android:layout_height="fill_parent" android:layout_width="fill_parent" android:gravity="center_vertical" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:id="@+id/setting" android:textColor="#FFF" android:shadowColor="#333"></TextView>
+
+</RelativeLayout>

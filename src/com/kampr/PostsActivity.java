@@ -21,7 +21,6 @@ public class PostsActivity extends TabActivity {
     
     private final String ACTIVITY_TAG = "PostsActivity";
     private final int LOGOUT_RESULT_CODE = 1;
-    private final int SETTINGS_RESULT_CODE = 1;
     
     private ActionBar _actionBar;
     
@@ -103,8 +102,8 @@ public class PostsActivity extends TabActivity {
                 startActivityForResult(logout, LOGOUT_RESULT_CODE);
                 break;
             case R.id.posts_menu_settings:
-                Intent settings = new Intent(PostsActivity.this, LogoutActivity.class);
-                startActivityForResult(settings, SETTINGS_RESULT_CODE);
+                Intent settings = new Intent(PostsActivity.this, SettingsActivity.class);
+                startActivity(settings);
                 break;
         }
         return true;

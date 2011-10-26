@@ -13,5 +13,10 @@
 	<color name="actionbar_separator">#CC7A00</color>
     <color name="actionbar_background_start">#FF9900</color>
     <color name="actionbar_background_end">#CC7A00</color>
+    
+    <!-- Settings -->
+    <color name="setting_item_divider">#333</color>
+    <color name="setting_item_background">#FFE0B2</color>
+    <color name="setting_item_selected">#FF9900</color>
 
 </resources>

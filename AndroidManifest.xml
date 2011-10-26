@@ -17,6 +17,9 @@
 		<activity android:name=".PostsActivity"
 			android:screenOrientation="portrait"
 			android:theme="@android:style/Theme.NoTitleBar"></activity>
+		<activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:name=".LogoutActivity"
 			android:screenOrientation="portrait"></activity>
 		<activity android:name=".tabs.LinksActivity"
