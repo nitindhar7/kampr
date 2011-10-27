@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -12,7 +15,9 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
+import android.text.format.DateUtils;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
@@ -20,14 +25,14 @@ import com.kampr.models.Post;
 import com.markupartist.android.widget.ActionBar;
 
 public class PostActivity extends Activity {
-    
-    private final String ACTIVITY_TAG = "PostActivity";
-    
+
     protected static final String FETCH_STATUS = "fetch_status";
     protected static final int FETCH_COMPLETE = 1;
     protected static final int DEFAULT_POST_ID = -1;
 
     protected final int TRUNCATED_URL_LENGTH = 35;
+    
+    protected final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
@@ -38,39 +43,8 @@ public class PostActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(ACTIVITY_TAG, "onCreate");
-
         _forrst = new ForrstAPIClient();
-    }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(ACTIVITY_TAG, "onStart");
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(ACTIVITY_TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(ACTIVITY_TAG, "onPause");
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(ACTIVITY_TAG, "onStop");
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(ACTIVITY_TAG, "onDestroy");
+        _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
     }
     
     protected Bitmap fetchImageBitmap(String uri) {
@@ -91,11 +65,32 @@ public class PostActivity extends Activity {
             return null;
         }
         else if(text.length() >= maxLength) {
-            return text.substring(0, maxLength);
+            return text.substring(0, maxLength) + "...";
         }
         else {
             return text;
         }
+    }
+    
+    protected String getPostDate() {
+        try {
+            long inMillis = _dateFormat.parse(_postJSON.getString("created_at")).getTime();
+            return DateUtils.formatDateTime(null, inMillis, DateUtils.FORMAT_ABBREV_ALL);
+        } catch (ParseException e) {
+            throw new RuntimeException("Error parsing post date", e);
+        } catch (JSONException e) {
+            throw new RuntimeException("Error retrieving date from json", e);
+        }
+    }
+    
+    protected void notifyHandler(Handler handler) {
+        Bundle handlerData = new Bundle();
+        handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
+        
+        Message fetchingCompleteMessage = new Message();
+        fetchingCompleteMessage.setData(handlerData);
+        
+        handler.sendMessage(fetchingCompleteMessage);
     }
 
 }

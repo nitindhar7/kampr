@@ -1,18 +1,13 @@
 package com.kampr.posts;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -22,9 +17,7 @@ import com.kampr.models.Question;
 import com.markupartist.android.widget.ActionBar;
 
 public class QuestionActivity extends PostActivity {
-    
-    private final String ACTIVITY_TAG = "QuestionActivity";
-    
+
     private TextView _questionTitle;
     private TextView _questionUsername;
     private TextView _questionDate;
@@ -35,13 +28,10 @@ public class QuestionActivity extends PostActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(ACTIVITY_TAG, "onCreate");
         setContentView(R.layout.question);
         
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
-        
-        _dialog = ProgressDialog.show(QuestionActivity.this, "", "Loading question...", true);
 
         _fetchPostThread.start();
         
@@ -73,46 +63,32 @@ public class QuestionActivity extends PostActivity {
     private Thread _fetchPostThread = new Thread(new Runnable() {
         
         public void run() {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Map<String, String> questionProperties = new HashMap<String, String>();
-
             try {
                 _postJSON = _forrst.postsShow(getIntent().getIntExtra("id", DEFAULT_POST_ID));
-                
-                questionProperties.put("id", _postJSON.getString("id"));
-                questionProperties.put("post_type", _postJSON.getString("post_type"));
-                questionProperties.put("post_url", _postJSON.getString("post_url"));
 
-                long questionDateInMillis = sdf.parse(_postJSON.getString("created_at")).getTime();
-                String questionDate = DateUtils.formatDateTime(null, questionDateInMillis, DateUtils.FORMAT_ABBREV_ALL);
-                questionProperties.put("created_at", questionDate);
+                Map<String, String> properties = new HashMap<String, String>();
+                properties.put("id", _postJSON.getString("id"));
+                properties.put("post_type", _postJSON.getString("post_type"));
+                properties.put("post_url", _postJSON.getString("post_url"));
+                properties.put("created_at", getPostDate());
+                properties.put("name", _postJSON.getJSONObject("user").getString("name"));
+                properties.put("title", _postJSON.getString("title"));
+                properties.put("url", _postJSON.getString("url"));
+                properties.put("content", _postJSON.getString("content"));
+                properties.put("description", _postJSON.getString("description"));
+                properties.put("formatted_content", _postJSON.getString("formatted_content"));
+                properties.put("formatted_description", _postJSON.getString("formatted_description"));
+                properties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
+                properties.put("like_count", _postJSON.getString("like_count"));
+                properties.put("comment_count", _postJSON.getString("comment_count"));
+                properties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                properties.put("tag_string", _postJSON.getString("tag_string"));
                 
-                questionProperties.put("name", _postJSON.getJSONObject("user").getString("name"));
-                questionProperties.put("title", _postJSON.getString("title"));
-                questionProperties.put("url", _postJSON.getString("url"));
-                questionProperties.put("content", _postJSON.getString("content"));
-                questionProperties.put("description", _postJSON.getString("description"));
-                questionProperties.put("formatted_content", _postJSON.getString("formatted_content"));
-                questionProperties.put("formatted_description", _postJSON.getString("formatted_description"));
-                questionProperties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
-                questionProperties.put("like_count", _postJSON.getString("like_count"));
-                questionProperties.put("comment_count", _postJSON.getString("comment_count"));
-                questionProperties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-                questionProperties.put("tag_string", _postJSON.getString("tag_string"));
+                _post = new Question(properties);
                 
-                _post = new Question(questionProperties);
-                
-                Bundle handlerData = new Bundle();
-                handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
-                
-                Message fetchingCompleteMessage = new Message();
-                fetchingCompleteMessage.setData(handlerData);
-                
-                _handler.sendMessage(fetchingCompleteMessage);
+                notifyHandler(_handler);
             } catch (JSONException e) {
                 throw new RuntimeException("Error fetching question from Forrst", e);
-            } catch (ParseException e) {
-                throw new RuntimeException("Error parsing question date", e);
             }
         }
         
