@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:id="@+id/post_item" android:background="@drawable/post_item_bg">
+	android:layout_height="fill_parent" android:id="@+id/post_item"
+	android:background="@drawable/post_item_bg">
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/post_item_sections"
 		android:padding="5dp" android:background="@drawable/post_item_states">
@@ -27,6 +28,17 @@
 					android:layout_height="wrap_content"
 					android:layout_alignParentRight="true" android:textColor="#999"
 					android:text="date"></TextView>
+			</RelativeLayout>
+			<RelativeLayout android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/post_item_counts">
+				<TextView android:layout_width="wrap_content" android:id="@+id/post_item_likes"
+					android:layout_height="wrap_content" android:text="likes"
+					android:textColor="#F90" android:layout_marginRight="10dp"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="views" android:layout_toRightOf="@+id/post_item_likes"
+					android:textColor="#F90" android:id="@+id/post_item_views" android:layout_marginRight="10dp"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="comments" android:textColor="#F90" android:id="@+id/post_item_comments" android:layout_toRightOf="@+id/post_item_views"></TextView>
 			</RelativeLayout>
 			<TextView android:id="@+id/post_item_content"
 				android:layout_height="wrap_content" android:textColor="#333"
