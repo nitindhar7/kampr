@@ -38,13 +38,13 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
         postDate.setText(post.getProperty("created_at"));
         
         TextView postLikes = (TextView) getViewHandle(convertView, R.id.post_item_likes);
-        postLikes.setText(post.getProperty("like_count") + " Likes");
+        postLikes.setText(post.getProperty("like_count"));
         
         TextView postViews = (TextView) getViewHandle(convertView, R.id.post_item_views);
-        postViews.setText(post.getProperty("view_count") + " Views");
+        postViews.setText(post.getProperty("view_count"));
         
         TextView postComments = (TextView) getViewHandle(convertView, R.id.post_item_comments);
-        postComments.setText(post.getProperty("comment_count") + " Comments");
+        postComments.setText(post.getProperty("comment_count"));
 
         TextView postTitle = (TextView) getViewHandle(convertView, R.id.post_item_content);
         postTitle.setText(post.getProperty("title"));

@@ -104,11 +104,21 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected void fetchUserIcon(Post post) {
         try {
             InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
-            _userIcons.put(post.getProperty("id"), BitmapFactory.decodeStream(is));
+            _userIcons.put(post.getProperty("id"), getBitmapFromStream(is));
         } catch (MalformedURLException e) {
             throw new RuntimeException("Error: malformed URI", e);
         } catch (IOException e) {
             throw new RuntimeException("Error: could not read from stream", e);
+        }
+    }
+    
+    private Bitmap getBitmapFromStream(InputStream is) {
+        Bitmap bmp = BitmapFactory.decodeStream(is);
+        if(bmp == null) {
+            return BitmapFactory.decodeResource(getResources(), R.drawable.forrst_default_25);
+        }
+        else {
+            return bmp;
         }
     }
     

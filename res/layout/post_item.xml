@@ -32,13 +32,20 @@
 			<RelativeLayout android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:id="@+id/post_item_counts">
 				<TextView android:layout_width="wrap_content" android:id="@+id/post_item_likes"
-					android:layout_height="wrap_content" android:text="likes"
-					android:textColor="#F90" android:layout_marginRight="10dp"></TextView>
+					android:layout_height="wrap_content" android:textColor="#FFF"
+					android:paddingLeft="5dp" android:paddingRight="5dp"
+					android:background="#CCC" android:layout_alignParentRight="true" android:textSize="10sp"></TextView>
 				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:text="views" android:layout_toRightOf="@+id/post_item_likes"
-					android:textColor="#F90" android:id="@+id/post_item_views" android:layout_marginRight="10dp"></TextView>
+					android:layout_height="wrap_content" android:id="@+id/post_item_views"
+					android:layout_marginRight="5dp" android:paddingRight="5dp"
+					android:paddingLeft="5dp" android:textColor="#FFF"
+					android:background="#CCC" android:layout_toLeftOf="@+id/post_item_likes" android:textSize="10sp"></TextView>
 				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:text="comments" android:textColor="#F90" android:id="@+id/post_item_comments" android:layout_toRightOf="@+id/post_item_views"></TextView>
+					android:layout_height="wrap_content" android:id="@+id/post_item_comments"
+					android:textColor="#FFF" android:paddingLeft="5dp"
+					android:paddingRight="5dp" android:background="#CCC"
+					android:layout_toLeftOf="@+id/post_item_views"
+					android:layout_marginRight="5dp" android:textSize="10sp"></TextView>
 			</RelativeLayout>
 			<TextView android:id="@+id/post_item_content"
 				android:layout_height="wrap_content" android:textColor="#333"
