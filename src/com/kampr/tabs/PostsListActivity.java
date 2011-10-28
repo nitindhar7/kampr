@@ -1,22 +1,35 @@
 package com.kampr.tabs;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.DateUtils;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -24,6 +37,7 @@ import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
+import com.kampr.models.Post;
 
 public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
     
@@ -37,11 +51,13 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected ListView _posts;
     protected ProgressDialog _dialog;
     protected PostsAdapter<T> _postsAdapter;
+    protected Map<String,Bitmap> _userIcons;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         trustAllHosts();
         _listOfPosts = new ArrayList<T>();
+        _userIcons = new HashMap<String,Bitmap>();
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
@@ -50,13 +66,13 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _posts.setOnItemClickListener(this);
         _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
     }
-    
+
     protected Handler _handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _postsAdapter = new PostsAdapter<T>(PostsListActivity.this, _listOfPosts);
+                    _postsAdapter = new PostsAdapter<T>(PostsListActivity.this, _listOfPosts, _userIcons);
                     _posts.setAdapter(_postsAdapter);
                     _dialog.cancel();
                     break;
@@ -72,6 +88,28 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         fetchingCompleteMessage.setData(handlerData);
         
         _handler.sendMessage(fetchingCompleteMessage);
+    }
+    
+    protected String getPostDate(JSONObject json) {
+        try {
+            long inMillis = _dateFormat.parse(json.getString("created_at")).getTime();
+            return DateUtils.formatDateTime(null, inMillis, DateUtils.FORMAT_ABBREV_ALL);
+        } catch (ParseException e) {
+            throw new RuntimeException("Error parsing post date", e);
+        } catch (JSONException e) {
+            throw new RuntimeException("Error retrieving date from json", e);
+        }
+    }
+    
+    protected void fetchUserIcon(Post post) {
+        try {
+            InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
+            _userIcons.put(post.getProperty("id"), BitmapFactory.decodeStream(is));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: malformed URI", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error: could not read from stream", e);
+        }
     }
     
     /**
