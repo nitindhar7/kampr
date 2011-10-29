@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.JSONException;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,8 +15,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
+import com.kampr.SettingsActivity;
 import com.kampr.models.Snap;
 import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class SnapActivity extends PostActivity {
 
@@ -35,6 +39,9 @@ public class SnapActivity extends PostActivity {
         
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
+        
+        Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
+        _actionBar.addAction(settingsAction);
 
         _fetchPostThread.start();
         

@@ -12,7 +12,7 @@
 	<RelativeLayout android:layout_height="wrap_content"
         android:layout_width="fill_parent" android:id="@+id/question_user"
         android:minHeight="30dp" android:padding="10dp" android:background="#EEE">
-        <ImageView android:src="@drawable/ic_tab_links"
+        <ImageView 
             android:layout_height="wrap_content" android:layout_width="wrap_content"
             android:layout_alignParentLeft="true" android:id="@+id/question_user_icon"
             android:maxHeight="40dp" android:maxWidth="40dp" android:minHeight="40dp"

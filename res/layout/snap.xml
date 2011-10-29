@@ -17,7 +17,7 @@
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/snap_user"
 		android:minHeight="30dp" android:padding="10dp" android:background="#EEE">
-		<ImageView android:src="@drawable/ic_tab_links"
+		<ImageView 
 			android:layout_height="wrap_content" android:layout_width="wrap_content"
 			android:layout_alignParentLeft="true" android:id="@+id/snap_user_icon"
 			android:maxHeight="40dp" android:maxWidth="40dp" android:minHeight="40dp"
@@ -38,7 +38,7 @@
 	</RelativeLayout>
 	<LinearLayout android:orientation="vertical"
 		android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/snap_image" android:layout_margin="10dp">
-		<ImageView android:layout_height="wrap_content" android:src="@drawable/ic_tab_links"
+		<ImageView android:layout_height="wrap_content" 
 			android:id="@+id/snap_large_url" android:layout_width="fill_parent"
 			android:background="@drawable/snap_image_bg"></ImageView>
 	</LinearLayout>

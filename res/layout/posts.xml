@@ -8,8 +8,8 @@
 		<com.markupartist.android.widget.ActionBar
 			android:id="@+id/actionbar" style="@style/ActionBar" />
 		<TabWidget android:id="@android:id/tabs"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:minHeight="30px" />
+			android:layout_width="fill_parent" android:background="@drawable/tabs_bg"
+			android:paddingBottom="5dp" android:paddingTop="5dp" android:layout_height="40dp" android:gravity="center_horizontal"/>
 		<FrameLayout android:id="@android:id/tabcontent"
 			android:layout_width="fill_parent" android:layout_height="fill_parent">
 			<ListView android:layout_width="fill_parent"

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ListView;
 
 import com.kampr.adapters.SettingsAdapter;
 import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class SettingsActivity extends ListActivity implements OnItemClickListener {
     
@@ -30,6 +33,9 @@ public class SettingsActivity extends ListActivity implements OnItemClickListene
         
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
+        
+        Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
+        _actionBar.addAction(settingsAction);
         
         _settings = getListView();
         _settings.setVerticalScrollBarEnabled(false);

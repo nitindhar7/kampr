@@ -2,12 +2,13 @@ package com.kampr;
 
 import android.app.TabActivity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
 import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.Action;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class PostsActivity extends TabActivity {
     
@@ -30,62 +33,64 @@ public class PostsActivity extends TabActivity {
         Log.i(ACTIVITY_TAG, "onCreate");
         setContentView(R.layout.posts);
         
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(5, 0, 5, 0);
+        
+        LinearLayout linkTabLayout = new LinearLayout(this);
+        linkTabLayout.setBackgroundResource(R.drawable.tab);
+        linkTabLayout.setLayoutParams(params);
+        
+        LinearLayout snapTabLayout = new LinearLayout(this);
+        snapTabLayout.setBackgroundResource(R.drawable.tab);
+        snapTabLayout.setLayoutParams(params);
+        
+        LinearLayout codeTabLayout = new LinearLayout(this);
+        codeTabLayout.setBackgroundResource(R.drawable.tab);
+        codeTabLayout.setLayoutParams(params);
+        
+        LinearLayout questionTabLayout = new LinearLayout(this);
+        questionTabLayout.setBackgroundResource(R.drawable.tab);
+        questionTabLayout.setLayoutParams(params);
+        
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
-        
-        // Tab styling: http://stackoverflow.com/questions/3538946/create-smaller-tabs-in-android
-        Resources res = getResources();
+
+        Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
+        _actionBar.addAction(settingsAction);
+
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
-        
+
+        ImageView linkTab = new ImageView(this);
+        linkTab.setImageResource(R.drawable.ic_tab_link);
+        linkTabLayout.addView(linkTab);
         intent = new Intent(PostsActivity.this, LinksActivity.class);
-        spec = tabHost.newTabSpec("links").setIndicator("Links", res.getDrawable(android.R.drawable.ic_menu_set_as)).setContent(intent);
+        spec = tabHost.newTabSpec("links").setIndicator(linkTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
+        ImageView snapTab = new ImageView(this);
+        snapTab.setImageResource(R.drawable.ic_tab_snap);
+        snapTabLayout.addView(snapTab);
         intent = new Intent(PostsActivity.this, SnapsActivity.class);
-        spec = tabHost.newTabSpec("snaps").setIndicator("Snaps", res.getDrawable(android.R.drawable.ic_menu_gallery)).setContent(intent);
+        spec = tabHost.newTabSpec("snaps").setIndicator(snapTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
+        ImageView codeTab = new ImageView(this);
+        codeTab.setImageResource(R.drawable.ic_tab_code);
+        codeTabLayout.addView(codeTab);
         intent = new Intent(PostsActivity.this, CodesActivity.class);
-        spec = tabHost.newTabSpec("codes").setIndicator("Codes", res.getDrawable(android.R.drawable.ic_menu_edit)).setContent(intent);
+        spec = tabHost.newTabSpec("code").setIndicator(codeTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
+        ImageView questionTab = new ImageView(this);
+        questionTab.setImageResource(R.drawable.ic_tab_question);
+        questionTabLayout.addView(questionTab);
         intent = new Intent(PostsActivity.this, QuestionsActivity.class);
-        spec = tabHost.newTabSpec("questions").setIndicator("Questions", res.getDrawable(android.R.drawable.ic_menu_help)).setContent(intent);
+        spec = tabHost.newTabSpec("question").setIndicator(questionTabLayout).setContent(intent);
         tabHost.addTab(spec);
-    }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(ACTIVITY_TAG, "onStart");
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(ACTIVITY_TAG, "onResume");
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(ACTIVITY_TAG, "onPause");
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(ACTIVITY_TAG, "onStop");
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(ACTIVITY_TAG, "onDestroy");
-    }
-    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i(ACTIVITY_TAG, "onCreateOptionsMenu");
