@@ -6,11 +6,11 @@
 	<com.markupartist.android.widget.ActionBar
 		android:id="@+id/actionbar" style="@style/ActionBar" />
 	<TextView android:id="@+id/snap_title" android:layout_height="wrap_content"
-		android:text="title" android:minHeight="30dp" android:gravity="center_vertical"
+		android:minHeight="30dp" android:gravity="center_vertical"
 		android:layout_width="fill_parent" android:textStyle="bold"
 		android:textSize="20sp" android:textColor="#FF9900" android:padding="10dp"></TextView>
 	<TextView android:id="@+id/snap_url" android:layout_height="wrap_content"
-		android:text="url" android:layout_width="fill_parent" android:gravity="center_vertical"
+		android:layout_width="fill_parent" android:gravity="center_vertical"
 		android:background="@drawable/post_link_bg" android:shadowColor="#FFF"
 		android:shadowDx="1" android:shadowRadius="1" android:shadowDy="1"
 		android:textColor="#333" android:padding="10dp"></TextView>
@@ -24,15 +24,14 @@
 			android:minWidth="40dp"></ImageView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_width="wrap_content" android:id="@+id/snap_user_name"
-			android:text="name" android:layout_toRightOf="@+id/snap_user_icon"
+			android:layout_toRightOf="@+id/snap_user_icon"
 			android:paddingLeft="5dp" android:paddingRight="5dp"
 			android:textColor="#333333" android:textStyle="bold"
 			android:layout_marginLeft="10dp" android:gravity="center_vertical"
 			android:minHeight="40dp"></TextView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_width="wrap_content" android:id="@+id/snap_date"
-			android:layout_alignParentRight="true" android:text="date"
-			android:paddingLeft="5dp" android:paddingRight="5dp"
+			android:layout_alignParentRight="true" android:paddingLeft="5dp" android:paddingRight="5dp"
 			android:textColor="#555" android:gravity="center_vertical"
 			android:minHeight="40dp"></TextView>
 	</RelativeLayout>
@@ -46,8 +45,7 @@
 		android:id="@+id/snap_description_scroll" android:layout_height="fill_parent"
 		android:isScrollContainer="true" android:padding="10dp">
 		<TextView android:id="@+id/snap_description"
-			android:layout_height="wrap_content" android:text="description"
-			android:textColor="#333" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:textColor="#333" android:layout_width="fill_parent"
 			android:scrollbarAlwaysDrawVerticalTrack="false"></TextView>
 	</ScrollView>
 </LinearLayout>
