@@ -11,8 +11,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Question;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public class QuestionsRunnable extends PostsRunnable<Question> {
 

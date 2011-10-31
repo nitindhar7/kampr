@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
 import com.kampr.runnables.tabs.LinksRunnable;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public class LinksActivity extends PostsListActivity<Link> {
 

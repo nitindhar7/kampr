@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
 import com.kampr.runnables.tabs.SnapsRunnable;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public class SnapsActivity extends PostsListActivity<Snap> {
     

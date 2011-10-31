@@ -18,7 +18,7 @@ import android.text.format.DateUtils;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
-import com.kampr.tabs.handlers.PostsHandler;
+import com.kampr.handlers.PostsHandler;
 
 public abstract class AbstractRunnable implements Runnable {
 

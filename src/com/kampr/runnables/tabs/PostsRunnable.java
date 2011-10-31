@@ -11,9 +11,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.kampr.R;
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Post;
 import com.kampr.runnables.AbstractRunnable;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public abstract class PostsRunnable<T> extends AbstractRunnable {
 

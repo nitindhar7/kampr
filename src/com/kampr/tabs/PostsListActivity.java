@@ -24,7 +24,7 @@ import android.widget.ListView;
 
 import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
-import com.kampr.tabs.handlers.PostsHandler;
+import com.kampr.handlers.PostsHandler;
 
 public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener, OnScrollListener {
 

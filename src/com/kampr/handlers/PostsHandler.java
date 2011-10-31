@@ -1,4 +1,4 @@
-package com.kampr.tabs.handlers;
+package com.kampr.handlers;
 
 import java.util.List;
 import java.util.Map;

@@ -11,8 +11,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Code;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public class CodesRunnable extends PostsRunnable<Code> {
     

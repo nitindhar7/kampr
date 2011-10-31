@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
 import com.kampr.runnables.tabs.QuestionsRunnable;
-import com.kampr.tabs.handlers.PostsHandler;
 
 public class QuestionsActivity extends PostsListActivity<Question> {
 
