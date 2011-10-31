@@ -1,4 +1,4 @@
-package com.kampr.tabs.runnables;
+package com.kampr.runnables.tabs;
 
 import java.util.HashMap;
 import java.util.List;

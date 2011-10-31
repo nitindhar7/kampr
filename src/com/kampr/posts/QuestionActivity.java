@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.SettingsActivity;
-import com.kampr.posts.runnables.QuestionRunnable;
+import com.kampr.runnables.posts.QuestionRunnable;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.Action;
 import com.markupartist.android.widget.ActionBar.IntentAction;
@@ -35,7 +35,7 @@ public class QuestionActivity extends PostActivity {
         Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
         _actionBar.addAction(settingsAction);
 
-        _fetchPostThread = new Thread(new QuestionRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _forrst, _handler, _post));
+        _fetchPostThread = new Thread(new QuestionRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
         _fetchPostThread.start();
         
         _questionTitle = (TextView) findViewById(R.id.question_title);

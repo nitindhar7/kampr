@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.SettingsActivity;
-import com.kampr.posts.runnables.SnapRunnable;
+import com.kampr.runnables.posts.SnapRunnable;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.Action;
 import com.markupartist.android.widget.ActionBar.IntentAction;
@@ -48,7 +48,7 @@ public class SnapActivity extends PostActivity {
         _snapDesciptionScrollView = (ScrollView) findViewById(R.id.snap_description_scroll);
         _snapDesciptionScrollView.setVerticalScrollBarEnabled(false);
         
-        _fetchPostThread = new Thread(new SnapRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _forrst, _handler, _post));
+        _fetchPostThread = new Thread(new SnapRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
         _fetchPostThread.start();
     }
     

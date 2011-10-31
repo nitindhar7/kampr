@@ -1,4 +1,4 @@
-package com.kampr.posts.runnables;
+package com.kampr.runnables.posts;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,13 +7,12 @@ import org.json.JSONException;
 
 import android.os.Handler;
 
-import com.forrst.api.ForrstAPI;
 import com.kampr.models.Post;
 
 public class LinkRunnable extends PostRunnable {
     
-    public LinkRunnable(int postId, ForrstAPI forrst, Handler handler, Post post) {
-        super(postId, forrst, handler, post);
+    public LinkRunnable(int postId, Handler handler, Post post) {
+        super(postId, handler, post);
     }
     
     public void run() {
@@ -24,7 +23,7 @@ public class LinkRunnable extends PostRunnable {
             properties.put("id", _postJSON.getString("id"));
             properties.put("post_type", _postJSON.getString("post_type"));
             properties.put("post_url", _postJSON.getString("post_url"));
-            properties.put("created_at", getPostDate());
+            properties.put("created_at", getPostDate(_postJSON));
             properties.put("name", _postJSON.getJSONObject("user").getString("name"));
             properties.put("title", _postJSON.getString("title"));
             properties.put("url", _postJSON.getString("url"));
@@ -40,7 +39,7 @@ public class LinkRunnable extends PostRunnable {
             
             _post.setProperties(properties);
             
-            notifyHandler(_handler);
+            notifyHandler();
         } catch (JSONException e) {
             throw new RuntimeException("Error fetching link from Forrst", e);
         }

@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
+import com.kampr.runnables.tabs.LinksRunnable;
 import com.kampr.tabs.handlers.PostsHandler;
-import com.kampr.tabs.runnables.LinksRunnable;
 
 public class LinksActivity extends PostsListActivity<Link> {
 

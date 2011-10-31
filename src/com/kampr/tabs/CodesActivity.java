@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 
 import com.kampr.models.Code;
 import com.kampr.posts.CodeActivity;
+import com.kampr.runnables.tabs.CodesRunnable;
 import com.kampr.tabs.handlers.PostsHandler;
-import com.kampr.tabs.runnables.CodesRunnable;
 
 public class CodesActivity extends PostsListActivity<Code> {
 

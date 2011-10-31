@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 
 import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
+import com.kampr.runnables.tabs.QuestionsRunnable;
 import com.kampr.tabs.handlers.PostsHandler;
-import com.kampr.tabs.runnables.QuestionsRunnable;
 
 public class QuestionsActivity extends PostsListActivity<Question> {
 

@@ -1,4 +1,4 @@
-package com.kampr.tabs.runnables;
+package com.kampr.runnables.tabs;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,18 +11,18 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.kampr.models.Code;
+import com.kampr.models.Link;
 import com.kampr.tabs.handlers.PostsHandler;
 
-public class CodesRunnable extends PostsRunnable<Code> {
-    
-    public CodesRunnable(Context context, PostsHandler<Code> handler, List<Code> listOfPosts, Map<String,Bitmap> userIcons) {
+public class LinksRunnable extends PostsRunnable<Link> {
+
+    public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons) {
         super(context, handler, listOfPosts, userIcons);
     }
     
     public void run() {
         try {
-            JSONObject postsJSON = _forrst.postsList("code", null);
+            JSONObject postsJSON = _forrst.postsList("link", null);
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
@@ -41,15 +41,15 @@ public class CodesRunnable extends PostsRunnable<Code> {
                 properties.put("comment_count", json.getString("comment_count"));
                 properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
                 
-                Code code = new Code(properties);
-                _listOfPosts.add(code);
+                Link link = (Link) new Link(properties);
+                _listOfPosts.add(link);
                 
-                fetchUserIcon(code);
+                fetchUserIcon(link);
             }
-            
+
             notifyHandler();
         } catch (JSONException e) {
-            throw new RuntimeException("Error fetching code from Forrst", e);
+            throw new RuntimeException("Error fetching link from Forrst", e);
         }
     }
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.SettingsActivity;
-import com.kampr.posts.runnables.LinkRunnable;
+import com.kampr.runnables.posts.LinkRunnable;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.Action;
 import com.markupartist.android.widget.ActionBar.IntentAction;
@@ -45,7 +45,7 @@ public class LinkActivity extends PostActivity {
         _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
         _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
         
-        _fetchPostThread = new Thread(new LinkRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _forrst, _handler, _post));
+        _fetchPostThread = new Thread(new LinkRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
         _fetchPostThread.start();
     }
     
