@@ -40,11 +40,13 @@ public class PostActivity extends Activity {
     protected ProgressDialog _dialog;
     protected Post _post;
     protected ActionBar _actionBar;
+    protected Thread _fetchPostThread;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _forrst = new ForrstAPIClient();
+        _post = new Post();
         _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
     }
     

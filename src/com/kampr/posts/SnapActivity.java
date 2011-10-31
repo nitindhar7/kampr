@@ -1,10 +1,5 @@
 package com.kampr.posts;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,7 +11,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.SettingsActivity;
-import com.kampr.models.Snap;
+import com.kampr.posts.runnables.SnapRunnable;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.Action;
 import com.markupartist.android.widget.ActionBar.IntentAction;
@@ -43,8 +38,6 @@ public class SnapActivity extends PostActivity {
         Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
         _actionBar.addAction(settingsAction);
 
-        _fetchPostThread.start();
-        
         _snapTitle = (TextView) findViewById(R.id.snap_title);
         _snapUrl = (TextView) findViewById(R.id.snap_url);
         _snapUsername = (TextView) findViewById(R.id.snap_user_name);
@@ -54,6 +47,9 @@ public class SnapActivity extends PostActivity {
         _snapLargeUrl = (ImageView) findViewById(R.id.snap_large_url);
         _snapDesciptionScrollView = (ScrollView) findViewById(R.id.snap_description_scroll);
         _snapDesciptionScrollView.setVerticalScrollBarEnabled(false);
+        
+        _fetchPostThread = new Thread(new SnapRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _forrst, _handler, _post));
+        _fetchPostThread.start();
     }
     
     private Handler _handler = new Handler() {
@@ -81,40 +77,5 @@ public class SnapActivity extends PostActivity {
             }
         }
     };
-    
-    private Thread _fetchPostThread = new Thread(new Runnable() {
-        
-        public void run() {
-            try {
-                _postJSON = _forrst.postsShow(getIntent().getIntExtra("id", DEFAULT_POST_ID));
-
-                Map<String, String> properties = new HashMap<String, String>();
-                properties.put("id", _postJSON.getString("id"));
-                properties.put("post_type", _postJSON.getString("post_type"));
-                properties.put("post_url", _postJSON.getString("post_url"));
-                properties.put("created_at", getPostDate());
-                properties.put("name", _postJSON.getJSONObject("user").getString("name"));
-                properties.put("title", _postJSON.getString("title"));
-                properties.put("url", _postJSON.getString("url"));
-                properties.put("content", _postJSON.getString("content"));
-                properties.put("description", _postJSON.getString("description"));
-                properties.put("formatted_content", _postJSON.getString("formatted_content"));
-                properties.put("formatted_description", _postJSON.getString("formatted_description"));
-                properties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
-                properties.put("like_count", _postJSON.getString("like_count"));
-                properties.put("comment_count", _postJSON.getString("comment_count"));
-                properties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
-                properties.put("snaps_large_url", _postJSON.getJSONObject("snaps").getString("large_url"));
-                properties.put("tag_string", _postJSON.getString("tag_string"));
-                
-                _post = new Snap(properties);
-                
-                notifyHandler(_handler);
-            } catch (JSONException e) {
-                throw new RuntimeException("Error fetching snap from Forrst", e);
-            }
-        }
-        
-    });
 
 }
