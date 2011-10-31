@@ -64,7 +64,7 @@ public class LinkActivity extends PostActivity {
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(_post.getProperty("description"));
                     _linkDescription.setVerticalScrollBarEnabled(false);
-                    _linkUserIcon.setImageBitmap(fetchImageBitmap(_post.getProperty("user_photos_thumb_url")));
+                    _linkUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _dialog.cancel();
                     break;
             }

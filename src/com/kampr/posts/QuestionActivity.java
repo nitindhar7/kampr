@@ -60,7 +60,7 @@ public class QuestionActivity extends PostActivity {
                     _questionUsername.setText(_post.getProperty("name"));
                     _questionDate.setText(_post.getProperty("created_at"));
                     _questionContent.setText(_post.getProperty("content"));
-                    _questionUserIcon.setImageBitmap(fetchImageBitmap(_post.getProperty("user_photos_thumb_url")));
+                    _questionUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _dialog.cancel();
                     break;
             }

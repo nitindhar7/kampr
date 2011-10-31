@@ -10,13 +10,13 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Handler;
 
 import com.kampr.models.Link;
+import com.kampr.tabs.handlers.PostsHandler;
 
 public class LinksRunnable extends PostsRunnable<Link> {
 
-    public LinksRunnable(Context context, Handler handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons) {
+    public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons) {
         super(context, handler, listOfPosts, userIcons);
     }
     

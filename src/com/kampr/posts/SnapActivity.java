@@ -74,7 +74,7 @@ public class SnapActivity extends PostActivity {
                     _snapUsername.setText(_post.getProperty("name"));
                     _snapDate.setText(_post.getProperty("created_at"));
                     _snapDescription.setText(_post.getProperty("description"));
-                    _snapUserIcon.setImageBitmap(fetchImageBitmap(_post.getProperty("user_photos_thumb_url")));
+                    _snapUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _snapLargeUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_large_url")));
                     _dialog.cancel();
                     break;

@@ -17,20 +17,24 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.kampr.R;
+import com.kampr.adapters.PostsAdapter;
+import com.kampr.tabs.handlers.PostsHandler;
 
-public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
+public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener, OnScrollListener {
 
     protected ListView _posts;
     protected ProgressDialog _dialog;
     protected Map<String,Bitmap> _userIcons;
     protected List<T> _listOfPosts;
     protected Thread _fetchPostsThread;
-    protected Handler _handler;
+    protected PostsHandler<T> _handler;
+    protected PostsAdapter<T> _postsAdapter;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +49,22 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
+        _posts.setOnScrollListener(this);
 
         _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
     }
+    
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        /* TODO
+         * 
+         * boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
+         * if(loadMore) {
+         *      _postsAdapter.notifyDataSetChanged();
+         * }
+         */
+    }
+    
+    public void onScrollStateChanged(AbsListView view, int scrollState) {}
     
     /**
      * Trust every server - dont check for any certificate

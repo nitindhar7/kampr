@@ -63,7 +63,7 @@ public class CodeActivity extends PostActivity {
                     _codeDate.setText(_post.getProperty("created_at"));
                     _codeContent.setText(_post.getProperty("content"));
                     _codeDescription.setText(_post.getProperty("description"));
-                    _codeUserIcon.setImageBitmap(fetchImageBitmap(_post.getProperty("user_photos_thumb_url")));
+                    _codeUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _dialog.cancel();
                     break;
             }

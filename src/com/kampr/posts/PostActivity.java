@@ -21,6 +21,7 @@ import android.text.format.DateUtils;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.R;
 import com.kampr.models.Post;
 import com.markupartist.android.widget.ActionBar;
 
@@ -91,6 +92,27 @@ public class PostActivity extends Activity {
         fetchingCompleteMessage.setData(handlerData);
         
         handler.sendMessage(fetchingCompleteMessage);
+    }
+    
+    protected Bitmap fetchUserIcon(String uri) {
+        try {
+            InputStream is = (InputStream) new URL(uri).getContent();
+            return getBitmapFromStream(is);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: malformed URI", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error: could not read from stream", e);
+        }
+    }
+    
+    private Bitmap getBitmapFromStream(InputStream is) {
+        Bitmap bmp = BitmapFactory.decodeStream(is);
+        if(bmp == null) {
+            return BitmapFactory.decodeResource(getResources(), R.drawable.forrst_default_25);
+        }
+        else {
+            return bmp;
+        }
     }
 
 }

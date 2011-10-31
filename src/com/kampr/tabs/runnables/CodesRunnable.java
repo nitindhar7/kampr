@@ -10,13 +10,13 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Handler;
 
 import com.kampr.models.Code;
+import com.kampr.tabs.handlers.PostsHandler;
 
 public class CodesRunnable extends PostsRunnable<Code> {
     
-    public CodesRunnable(Context context, Handler handler, List<Code> listOfPosts, Map<String,Bitmap> userIcons) {
+    public CodesRunnable(Context context, PostsHandler<Code> handler, List<Code> listOfPosts, Map<String,Bitmap> userIcons) {
         super(context, handler, listOfPosts, userIcons);
     }
     

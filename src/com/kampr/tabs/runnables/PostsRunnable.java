@@ -16,7 +16,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.text.format.DateUtils;
 
@@ -32,11 +31,11 @@ public abstract class PostsRunnable<T> implements Runnable {
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     protected Context _context;
-    protected Handler _handler;
+    protected PostsHandler<T> _handler;
     protected List<T> _listOfPosts;
     protected Map<String,Bitmap> _userIcons;
     
-    public PostsRunnable(Context context, Handler handler, List<T> listOfPosts, Map<String,Bitmap> userIcons) {
+    public PostsRunnable(Context context, PostsHandler<T> handler, List<T> listOfPosts, Map<String,Bitmap> userIcons) {
         _context = context;
         _handler = handler;
         _listOfPosts = listOfPosts;

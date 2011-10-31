@@ -10,13 +10,13 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Handler;
 
 import com.kampr.models.Snap;
+import com.kampr.tabs.handlers.PostsHandler;
 
 public class SnapsRunnable extends PostsRunnable<Snap> {
     
-    public SnapsRunnable(Context context, Handler handler, List<Snap> listOfPosts, Map<String,Bitmap> userIcons) {
+    public SnapsRunnable(Context context, PostsHandler<Snap> handler, List<Snap> listOfPosts, Map<String,Bitmap> userIcons) {
         super(context, handler, listOfPosts, userIcons);
     }
     

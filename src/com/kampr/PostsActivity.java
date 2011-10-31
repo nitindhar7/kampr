@@ -39,18 +39,22 @@ public class PostsActivity extends TabActivity {
         LinearLayout linkTabLayout = new LinearLayout(this);
         linkTabLayout.setBackgroundResource(R.drawable.tab);
         linkTabLayout.setLayoutParams(params);
+        linkTabLayout.setPadding(30, 5, 30, 5);
         
         LinearLayout snapTabLayout = new LinearLayout(this);
         snapTabLayout.setBackgroundResource(R.drawable.tab);
         snapTabLayout.setLayoutParams(params);
+        snapTabLayout.setPadding(30, 5, 30, 5);
         
         LinearLayout codeTabLayout = new LinearLayout(this);
         codeTabLayout.setBackgroundResource(R.drawable.tab);
         codeTabLayout.setLayoutParams(params);
+        codeTabLayout.setPadding(30, 5, 30, 5);
         
         LinearLayout questionTabLayout = new LinearLayout(this);
         questionTabLayout.setBackgroundResource(R.drawable.tab);
         questionTabLayout.setLayoutParams(params);
+        questionTabLayout.setPadding(30, 5, 30, 5);
         
         _actionBar = (ActionBar) findViewById(R.id.actionbar);
         _actionBar.setTitle("kampr");
