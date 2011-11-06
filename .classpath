@@ -6,5 +6,5 @@
 	<classpathentry kind="lib" path="lib/forrst.jar"/>
 	<classpathentry kind="lib" path="lib/java-json.jar"/>
 	<classpathentry kind="src" path="actionbar_src"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
