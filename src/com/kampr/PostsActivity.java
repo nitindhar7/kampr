@@ -67,28 +67,28 @@ public class PostsActivity extends TabActivity {
         Intent intent;
 
         ImageView linkTab = new ImageView(this);
-        linkTab.setImageResource(R.drawable.ic_tab_link);
+        linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
         linkTabLayout.addView(linkTab);
         intent = new Intent(PostsActivity.this, LinksActivity.class);
         spec = tabHost.newTabSpec("links").setIndicator(linkTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
         ImageView snapTab = new ImageView(this);
-        snapTab.setImageResource(R.drawable.ic_tab_snap);
+        snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau);
         snapTabLayout.addView(snapTab);
         intent = new Intent(PostsActivity.this, SnapsActivity.class);
         spec = tabHost.newTabSpec("snaps").setIndicator(snapTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
         ImageView codeTab = new ImageView(this);
-        codeTab.setImageResource(R.drawable.ic_tab_code);
+        codeTab.setImageResource(R.drawable.ic_tab_code_nouveau);
         codeTabLayout.addView(codeTab);
         intent = new Intent(PostsActivity.this, CodesActivity.class);
         spec = tabHost.newTabSpec("code").setIndicator(codeTabLayout).setContent(intent);
         tabHost.addTab(spec);
         
         ImageView questionTab = new ImageView(this);
-        questionTab.setImageResource(R.drawable.ic_tab_question);
+        questionTab.setImageResource(R.drawable.ic_tab_question_nouveau);
         questionTabLayout.addView(questionTab);
         intent = new Intent(PostsActivity.this, QuestionsActivity.class);
         spec = tabHost.newTabSpec("question").setIndicator(questionTabLayout).setContent(intent);

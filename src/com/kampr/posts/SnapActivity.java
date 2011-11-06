@@ -23,6 +23,9 @@ public class SnapActivity extends PostActivity {
     private TextView _snapUsername;
     private TextView _snapDate;
     private TextView _snapDescription;
+    private TextView _snapLikes;
+    private TextView _snapViews;
+    private TextView _snapComments;
     private ImageView _snapUserIcon;
     private ImageView _snapLargeUrl;
     private ScrollView _snapDesciptionScrollView;
@@ -43,10 +46,14 @@ public class SnapActivity extends PostActivity {
         _snapUsername = (TextView) findViewById(R.id.snap_user_name);
         _snapDate = (TextView) findViewById(R.id.snap_date);
         _snapDescription = (TextView) findViewById(R.id.snap_description);
+        _snapLikes = (TextView) findViewById(R.id.snap_likes);
+        _snapViews = (TextView) findViewById(R.id.snap_views);
+        _snapComments = (TextView) findViewById(R.id.snap_comments);
         _snapUserIcon = (ImageView) findViewById(R.id.snap_user_icon);
         _snapLargeUrl = (ImageView) findViewById(R.id.snap_large_url);
         _snapDesciptionScrollView = (ScrollView) findViewById(R.id.snap_description_scroll);
         _snapDesciptionScrollView.setVerticalScrollBarEnabled(false);
+        _snapDesciptionScrollView.setVerticalFadingEdgeEnabled(false);
         
         _fetchPostThread = new Thread(new SnapRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
         _fetchPostThread.start();
@@ -70,6 +77,9 @@ public class SnapActivity extends PostActivity {
                     _snapUsername.setText(_post.getProperty("name"));
                     _snapDate.setText(_post.getProperty("created_at"));
                     _snapDescription.setText(_post.getProperty("description"));
+                    _snapLikes.setText(_post.getProperty("like_count") + " Likes");
+                    _snapViews.setText(_post.getProperty("view_count") + " Views");
+                    _snapComments.setText(_post.getProperty("comment_count") + " Comments");
                     _snapUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _snapLargeUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_large_url")));
                     _dialog.cancel();

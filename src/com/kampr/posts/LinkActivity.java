@@ -22,6 +22,9 @@ public class LinkActivity extends PostActivity {
     private TextView _linkUsername;
     private TextView _linkDate;
     private TextView _linkDescription;
+    private TextView _linkLikes;
+    private TextView _linkViews;
+    private TextView _linkComments;
     private ImageView _linkUserIcon;
     private ScrollView _linkDesciptionScrollView;
     
@@ -41,9 +44,13 @@ public class LinkActivity extends PostActivity {
         _linkUsername = (TextView) findViewById(R.id.link_user_name);
         _linkDate = (TextView) findViewById(R.id.link_date);
         _linkDescription = (TextView) findViewById(R.id.link_description);
+        _linkLikes = (TextView) findViewById(R.id.link_likes);
+        _linkViews = (TextView) findViewById(R.id.link_views);
+        _linkComments = (TextView) findViewById(R.id.link_comments);
         _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
         _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
         _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
+        _linkDesciptionScrollView.setVerticalFadingEdgeEnabled(false);
         
         _fetchPostThread = new Thread(new LinkRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
         _fetchPostThread.start();
@@ -59,6 +66,9 @@ public class LinkActivity extends PostActivity {
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(_post.getProperty("description"));
+                    _linkLikes.setText(_post.getProperty("like_count") + " Likes");
+                    _linkViews.setText(_post.getProperty("view_count") + " Views");
+                    _linkComments.setText(_post.getProperty("comment_count") + " Comments");
                     _linkDescription.setVerticalScrollBarEnabled(false);
                     _linkUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
                     _dialog.cancel();

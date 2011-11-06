@@ -1,44 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="#FFFFFF"
-	android:id="@+id/link">
-	<com.markupartist.android.widget.ActionBar
-		android:id="@+id/actionbar" style="@style/ActionBar" />
-	<TextView android:id="@+id/link_title" android:layout_height="wrap_content"
-		android:minHeight="30dp" android:gravity="center_vertical"
-		android:layout_width="fill_parent" android:textStyle="bold"
-		android:textSize="20sp" android:textColor="#FF9900" android:padding="10dp"></TextView>
-	<TextView android:id="@+id/link_url" android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:minHeight="20dp"
-		android:gravity="center_vertical" android:background="@drawable/post_link_bg"
-		android:shadowColor="#FFF" android:shadowDx="1" android:shadowRadius="1"
-		android:shadowDy="1" android:textColor="#333" android:padding="10dp"></TextView>
-	<RelativeLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/link_user"
-		android:minHeight="30dp" android:padding="10dp" android:background="#EEE">
-		<ImageView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:layout_alignParentLeft="true"
-			android:id="@+id/link_user_icon" android:maxHeight="40dp"
-			android:maxWidth="40dp" android:minHeight="40dp" android:minWidth="40dp"></ImageView>
-		<TextView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/link_user_name"
-			android:layout_toRightOf="@+id/link_user_icon" android:paddingLeft="5dp"
-			android:paddingRight="5dp" android:textColor="#333333"
-			android:textStyle="bold" android:layout_marginLeft="10dp"
-			android:gravity="center_vertical" android:minHeight="40dp"></TextView>
-		<TextView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/link_date"
-			android:layout_alignParentRight="true" android:paddingLeft="5dp"
-			android:paddingRight="5dp" android:textColor="#555" android:gravity="center_vertical"
-			android:minHeight="40dp"></TextView>
-	</RelativeLayout>
-	<ScrollView android:layout_width="fill_parent"
-		android:id="@+id/link_description_scroll" android:layout_height="fill_parent"
-		android:isScrollContainer="true" android:padding="10dp">
-		<TextView android:id="@+id/link_description"
-			android:layout_height="wrap_content" android:textColor="#333"
-			android:layout_width="fill_parent"
-			android:scrollbarAlwaysDrawVerticalTrack="false"></TextView>
-	</ScrollView>
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/link"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+
+    <com.markupartist.android.widget.ActionBar
+        android:id="@+id/actionbar"
+        style="@style/ActionBar" />
+
+    <TextView
+        android:id="@+id/link_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actionbar"
+        android:gravity="center_vertical"
+        android:minHeight="30dp"
+        android:padding="10dp"
+        android:textColor="#FF9900"
+        android:textSize="20sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/link_url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/link_title"
+        android:background="@drawable/post_link_bg"
+        android:gravity="center_vertical"
+        android:minHeight="20dp"
+        android:padding="10dp"
+        android:shadowColor="#FFF"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textColor="#333" >
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/link_user"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/link_url"
+        android:background="#EEE"
+        android:minHeight="30dp"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/link_user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:maxHeight="40dp"
+            android:maxWidth="40dp"
+            android:minHeight="40dp"
+            android:minWidth="40dp" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/link_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/link_user_icon"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="#333333"
+            android:textStyle="bold" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/link_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="#555" >
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/link_nav"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/link_user"
+        android:background="#F90" >
+
+        <TextView
+            android:id="@+id/link_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="likes"
+            android:textColor="#FFF" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/link_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/link_likes"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="views"
+            android:textColor="#FFF" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/link_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/link_views"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="comments"
+            android:textColor="#FFF" >
+        </TextView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/link_description_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/link_nav"
+        android:isScrollContainer="true"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/link_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:textColor="#333" >
+        </TextView>
+    </ScrollView>
+
+</RelativeLayout>
