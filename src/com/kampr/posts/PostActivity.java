@@ -15,8 +15,6 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.format.DateUtils;
 
 import com.forrst.api.ForrstAPI;
@@ -84,16 +82,6 @@ public class PostActivity extends Activity {
         } catch (JSONException e) {
             throw new RuntimeException("Error retrieving date from json", e);
         }
-    }
-    
-    protected void notifyHandler(Handler handler) {
-        Bundle handlerData = new Bundle();
-        handlerData.putInt(FETCH_STATUS, FETCH_COMPLETE);
-        
-        Message fetchingCompleteMessage = new Message();
-        fetchingCompleteMessage.setData(handlerData);
-        
-        handler.sendMessage(fetchingCompleteMessage);
     }
     
     protected Bitmap fetchUserIcon(String uri) {

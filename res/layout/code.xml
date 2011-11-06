@@ -1,44 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="#FFFFFF"
-	android:id="@+id/snap">
-	<com.markupartist.android.widget.ActionBar
-		android:id="@+id/actionbar" style="@style/ActionBar" />
-	<TextView android:id="@+id/code_title" android:layout_height="wrap_content"
-		android:minHeight="30dp" android:gravity="center_vertical"
-		android:layout_width="fill_parent" android:textStyle="bold"
-		android:textSize="20sp" android:textColor="#FF9900" android:padding="10dp"></TextView>
-	<RelativeLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/code_user"
-		android:minHeight="30dp" android:padding="10dp" android:background="#EEE">
-		<ImageView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:layout_alignParentLeft="true"
-			android:id="@+id/code_user_icon" android:maxHeight="40dp"
-			android:maxWidth="40dp" android:minHeight="40dp" android:minWidth="40dp"></ImageView>
-		<TextView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/code_user_name"
-			android:layout_toRightOf="@+id/code_user_icon" android:paddingLeft="5dp"
-			android:paddingRight="5dp" android:textColor="#333333"
-			android:textStyle="bold" android:layout_marginLeft="10dp"
-			android:gravity="center_vertical" android:minHeight="40dp"></TextView>
-		<TextView android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/code_date"
-			android:layout_alignParentRight="true" android:paddingLeft="5dp"
-			android:paddingRight="5dp" android:textColor="#555" android:gravity="center_vertical"
-			android:minHeight="40dp"></TextView>
-	</RelativeLayout>
-	<ScrollView android:layout_width="fill_parent" android:id="@+id/code_scroll"
-		android:layout_height="fill_parent" android:isScrollContainer="true"
-		android:padding="10dp" android:scrollbarAlwaysDrawVerticalTrack="false">
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:orientation="vertical"
-			android:id="@+id/code_scroll_linear">
-			<TextView android:textColor="#333" android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/code_content"
-				android:padding="5dp" android:background="#EEE"></TextView>
-			<TextView android:textColor="#333" android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/code_description"></TextView>
-		</LinearLayout>
-	</ScrollView>
+    android:id="@+id/snap"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <com.markupartist.android.widget.ActionBar
+        android:id="@+id/actionbar"
+        style="@style/ActionBar" />
+
+    <TextView
+        android:id="@+id/code_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="30dp"
+        android:padding="10dp"
+        android:textColor="#FF9900"
+        android:textSize="20sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/code_user"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEE"
+        android:minHeight="30dp"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/code_user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:maxHeight="40dp"
+            android:maxWidth="40dp"
+            android:minHeight="40dp"
+            android:minWidth="40dp" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/code_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/code_user_icon"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="#333333"
+            android:textStyle="bold" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/code_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="#555" >
+        </TextView>
+    </RelativeLayout>
+    
+        <RelativeLayout
+        android:id="@+id/code_nav"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/code_user"
+        android:background="#F90" >
+
+        <TextView
+            android:id="@+id/code_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="likes"
+            android:textColor="#FFF" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/code_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/code_likes"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="views"
+            android:textColor="#FFF" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/code_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/code_views"
+            android:gravity="center_vertical"
+            android:minHeight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="comments"
+            android:textColor="#FFF" >
+        </TextView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/code_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:isScrollContainer="true"
+        android:padding="10dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false" >
+
+        <LinearLayout
+            android:id="@+id/code_scroll_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/code_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#EEE"
+                android:padding="5dp"
+                android:textColor="#333" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/code_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333" >
+            </TextView>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
