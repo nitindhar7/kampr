@@ -1,20 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@android:id/tabhost" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<LinearLayout android:orientation="vertical"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:id="@+id/content" android:background="#FFF">
-		<com.markupartist.android.widget.ActionBar
-			android:id="@+id/actionbar" style="@style/ActionBar" />
-		<TabWidget android:id="@android:id/tabs"
-			android:layout_width="fill_parent" android:background="@drawable/tabs_bg"
-			android:paddingBottom="5dp" android:paddingTop="5dp" android:layout_height="40dp" android:gravity="center_horizontal"/>
-		<FrameLayout android:id="@android:id/tabcontent"
-			android:layout_width="fill_parent" android:layout_height="fill_parent">
-			<ListView android:layout_width="fill_parent"
-				android:layout_height="fill_parent" android:id="@android:id/list"
-				android:scrollingCache="false" android:cacheColorHint="#00000000"></ListView>
-		</FrameLayout>
-	</LinearLayout>
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFF"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/actionbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar"
+            android:minHeight="40dp" >
+
+            <TextView
+                android:id="@+id/actionbar_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:shadowColor="#333"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="kampr"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/actionbar_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_actionbar_settings_nouveau"
+                android:minHeight="40dp"
+                android:minWidth="40dp" />
+        </RelativeLayout>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/tabs_bg"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:scrollingCache="false" >
+            </ListView>
+        </FrameLayout>
+    </LinearLayout>
+
 </TabHost>

@@ -21,7 +21,6 @@ import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
 import com.kampr.models.Post;
-import com.markupartist.android.widget.ActionBar;
 
 public class PostActivity extends Activity {
 
@@ -37,7 +36,6 @@ public class PostActivity extends Activity {
     protected JSONObject _postJSON;
     protected ProgressDialog _dialog;
     protected Post _post;
-    protected ActionBar _actionBar;
     protected Thread _fetchPostThread;
     
     @Override

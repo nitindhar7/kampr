@@ -6,9 +6,41 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
-    <com.markupartist.android.widget.ActionBar
+    <RelativeLayout
         android:id="@+id/actionbar"
-        style="@style/ActionBar" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/action_bar"
+        android:minHeight="40dp" >
+
+        <TextView
+            android:id="@+id/actionbar_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:shadowColor="#333"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="kampr"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actionbar_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_actionbar_settings_nouveau"
+            android:minHeight="40dp"
+            android:minWidth="40dp" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/code_title"
@@ -67,8 +99,8 @@
             android:textColor="#555" >
         </TextView>
     </RelativeLayout>
-    
-        <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/code_nav"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

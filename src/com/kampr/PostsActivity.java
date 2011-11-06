@@ -16,16 +16,11 @@ import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.Action;
-import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class PostsActivity extends TabActivity {
     
     private final String ACTIVITY_TAG = "PostsActivity";
     private final int LOGOUT_RESULT_CODE = 1;
-    
-    private ActionBar _actionBar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,12 +50,6 @@ public class PostsActivity extends TabActivity {
         questionTabLayout.setBackgroundResource(R.drawable.tab);
         questionTabLayout.setLayoutParams(params);
         questionTabLayout.setPadding(30, 5, 30, 5);
-        
-        _actionBar = (ActionBar) findViewById(R.id.actionbar);
-        _actionBar.setTitle("kampr");
-
-        Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
-        _actionBar.addAction(settingsAction);
 
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;

@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.markupartist.android.widget.ActionBar;
-
 public class KamprActivity extends Activity implements OnClickListener {
 
     private final String ACTIVITY_TAG = "KamprActivity";
@@ -24,7 +22,6 @@ public class KamprActivity extends Activity implements OnClickListener {
     private EditText _loginPassword;
     private Button _loginSubmit;
     private ProgressDialog _dialog;
-    private ActionBar _actionBar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,9 +32,6 @@ public class KamprActivity extends Activity implements OnClickListener {
             startPostsActivity();
         else {
             setContentView(R.layout.main);
-            
-            _actionBar = (ActionBar) findViewById(R.id.actionbar);
-            _actionBar.setTitle("kampr");
             
             _loginUsername = (EditText)findViewById(R.id.login_username);
             _loginPassword = (EditText)findViewById(R.id.login_password);

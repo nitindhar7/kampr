@@ -1,6 +1,5 @@
 package com.kampr.posts;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,11 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.SettingsActivity;
 import com.kampr.runnables.posts.LinkRunnable;
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.Action;
-import com.markupartist.android.widget.ActionBar.IntentAction;
 
 public class LinkActivity extends PostActivity {
 
@@ -32,12 +27,6 @@ public class LinkActivity extends PostActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.link);
-        
-        _actionBar = (ActionBar) findViewById(R.id.actionbar);
-        _actionBar.setTitle("kampr");
-        
-        Action settingsAction = new IntentAction(this, new Intent(this, SettingsActivity.class), R.drawable.ic_actionbar_settings);
-        _actionBar.addAction(settingsAction);
         
         _linkTitle = (TextView) findViewById(R.id.link_title);
         _linkUrl = (TextView) findViewById(R.id.link_url);
