@@ -14,9 +14,10 @@ import android.widget.Toast;
 
 public class KamprActivity extends Activity implements OnClickListener {
 
+    public static final String KAMPR_APP_PREFS = "KamprAppPrefs";
+    
     private final String ACTIVITY_TAG = "KamprActivity";
     private final int LOGIN_RESULT_CODE = 1;
-    protected static final String KAMPR_APP_PREFS = "KamprAppPrefs";
     
     private EditText _loginUsername;
     private EditText _loginPassword;

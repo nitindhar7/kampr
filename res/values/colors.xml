@@ -18,5 +18,8 @@
     <color name="setting_item_divider">#333</color>
     <color name="setting_item_background">#FFE0B2</color>
     <color name="setting_item_selected">#FF9900</color>
+    
+    <!-- Comment Item -->
+    <color name="comment_item_divider">#DDD</color>
 
 </resources>

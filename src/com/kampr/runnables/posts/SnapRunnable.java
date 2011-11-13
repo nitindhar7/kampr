@@ -7,11 +7,11 @@ import org.json.JSONException;
 
 import android.os.Handler;
 
-import com.kampr.models.Post;
+import com.kampr.models.PropertyContainer;
 
 public class SnapRunnable extends PostRunnable {
     
-    public SnapRunnable(int postId, Handler handler, Post post) {
+    public SnapRunnable(int postId, Handler handler, PropertyContainer post) {
         super(postId, handler, post);
     }
     

@@ -20,7 +20,7 @@ import android.text.format.DateUtils;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
-import com.kampr.models.Post;
+import com.kampr.models.PropertyContainer;
 
 public class PostActivity extends Activity {
 
@@ -35,14 +35,14 @@ public class PostActivity extends Activity {
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
     protected ProgressDialog _dialog;
-    protected Post _post;
+    protected PropertyContainer _post;
     protected Thread _fetchPostThread;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _forrst = new ForrstAPIClient();
-        _post = new Post();
+        _post = new PropertyContainer();
         _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
     }
     

@@ -2,7 +2,7 @@ package com.kampr.models;
 
 import java.util.Map;
 
-public class Snap extends Post {
+public class Snap extends PropertyContainer {
     
     public Snap() {
         super();

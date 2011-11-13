@@ -17,7 +17,6 @@ import android.text.format.DateUtils;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
-import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
 
 public abstract class AbstractRunnable implements Runnable {
@@ -57,7 +56,7 @@ public abstract class AbstractRunnable implements Runnable {
     protected Bitmap getBitmapFromStream(InputStream is, Context context, int drawableId) {
         Bitmap bmp = BitmapFactory.decodeStream(is);
         if(bmp == null) {
-            return BitmapFactory.decodeResource(context.getResources(), R.drawable.forrst_default_25);
+            return BitmapFactory.decodeResource(context.getResources(), drawableId);
         }
         else {
             return bmp;

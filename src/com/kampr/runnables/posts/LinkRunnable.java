@@ -7,11 +7,11 @@ import org.json.JSONException;
 
 import android.os.Handler;
 
-import com.kampr.models.Post;
+import com.kampr.models.PropertyContainer;
 
 public class LinkRunnable extends PostRunnable {
     
-    public LinkRunnable(int postId, Handler handler, Post post) {
+    public LinkRunnable(int postId, Handler handler, PropertyContainer post) {
         super(postId, handler, post);
     }
     

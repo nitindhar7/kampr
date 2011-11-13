@@ -2,7 +2,7 @@ package com.kampr.models;
 
 import java.util.Map;
 
-public class Link extends Post {
+public class Link extends PropertyContainer {
     
     public Link() {
         super();

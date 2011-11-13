@@ -2,7 +2,7 @@ package com.kampr.models;
 
 import java.util.Map;
 
-public class Code extends Post {
+public class Code extends PropertyContainer {
     
     public Code() {
         super();

@@ -54,36 +54,69 @@
         "created_at":"2011-11-06 05:34:28",
         "updated_at":"2011-11-06 05:34:28",
         "replies":[{
-                "id":482357,
-                "user":{
-                    "id":35649,
-                    "username":"RodneyWeis",
-                    "name":"Rodney Weis",
-                    "url":"http:\/\/forrst.com\/people\/RodneyWeis",
-                    "posts":"2",
-                    "comments":"31",
-                    "likes":"52",
-                    "followers":"15",
-                    "following":"33",
-                    "typecast_posts":2,
-                    "typecast_comments":31,
-                    "typecast_likes":52,
-                    "typecast_followers":15,
-                    "typecast_following":33,
-                    "photos":{
-                        "xl_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=200&d=https:\/\/forrst.com\/assets\/images\/default_200.jpg",
-                        "large_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=150&d=https:\/\/forrst.com\/assets\/images\/default_150.jpg",
-                        "medium_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=75&d=https:\/\/forrst.com\/assets\/images\/default_75.jpg",
-                        "small_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=45&d=https:\/\/forrst.com\/assets\/images\/default_45.jpg",
-                        "thumb_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=25&d=https:\/\/forrst.com\/assets\/images\/default_25.jpg"
+            "id":482357,
+            "user":{
+                "id":35649,
+                "username":"RodneyWeis",
+                "name":"Rodney Weis",
+                "url":"http:\/\/forrst.com\/people\/RodneyWeis",
+                "posts":"2",
+                "comments":"31",
+                "likes":"52",
+                "followers":"15",
+                "following":"33",
+                "typecast_posts":2,
+                "typecast_comments":31,
+                "typecast_likes":52,
+                "typecast_followers":15,
+                "typecast_following":33,
+                "photos":{
+                    "xl_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=200&d=https:\/\/forrst.com\/assets\/images\/default_200.jpg",
+                    "large_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=150&d=https:\/\/forrst.com\/assets\/images\/default_150.jpg",
+                    "medium_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=75&d=https:\/\/forrst.com\/assets\/images\/default_75.jpg",
+                    "small_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=45&d=https:\/\/forrst.com\/assets\/images\/default_45.jpg",
+                    "thumb_url":"https:\/\/secure.gravatar.com\/avatar\/80530c2435432d37c8c1f8d813ac9a74.jpg?s=25&d=https:\/\/forrst.com\/assets\/images\/default_25.jpg"
+                },
+                "bio":"\n<p>Front-end developer and designer, with a special interest in\nopen source technology and web standards. Husband, father and\nconfirmed geek.<\/p>\n\n",
+                "is_a":"developer & designer",
+                "homepage_url":"http:\/\/rodneyweis.com\/",
+                "twitter":"rodneyweis",
+                "in_directory":true,
+                "tag_string":"html5 & css3,javascript \/ jquery \/ ajax,gimp,inkscape,web standards",
+                "available_for_work":true,
+                "location":"Calgary, Canada",
+                "twitter_username":"rodneyweis",
+                "forrst_me":{
+                    "social":{
+                        "linkedin":{
+                            "name":"LinkedIn",
+                            "url":"http:\/\/www.linkedin.com\/in\/RodneyWeis"
+                        }
                     },
-                    "bio":"\n<p>Front-end developer and designer, with a special interest in\nopen source technology and web standards. Husband, father and\nconfirmed geek.<\/p>\n\n",
-                    "is_a":"developer & designer",
-                    "homepage_url":"http:\/\/rodneyweis.com\/",
-                    "twitter":"rodneyweis",
-                    "in_directory":true,
-                    "tag_string":"html5 & css3,javascript \/ jquery \/ ajax,gimp,inkscape,web standards",
-                    "available_for_work":true,
-                    "location":"Calgary, Canada",
-                    "twitter_username":"rodneyweis",
-                    "forrst_me":{"social":{"linkedin":{"name":"LinkedIn","url":"http:\/\/www.linkedin.com\/in\/RodneyWeis"}},"prefs":{"social_github":"","social_dribbble":"","social_facebook":"","social_linkedin":"RodneyWeis","social_aim":"","social_digg":"","social_flickr":"","social_foursquare":"","social_gtalk":"","social_gowalla":"","social_rdio":"","social_tumblr":"","social_vimeo":"","social_yahoo":""},"contact":true,"domain":""}},"body":"\n<p><a href=\"\/people\/ketch\">@ketch<\/a> Thank you very much for your\nfeedback - I agree that if I do pursue this route, the cube itself\ncould benefit from a more realistic perspective, both in the\nstructure of the cube and any features like the circles. For what\nit's worth, the floppy disk that the logo is based on is the\ngeneration before the 3-1\/2 inch \"floppies\" that you describe, that\nhad the metal slider to protect the physical media. I guess that\ndates me even further. ;0) Thanks again!<\/p>\n\n","created_at":"2011-11-06 05:40:12","updated_at":"2011-11-06 05:40:12"}]}],"count":2}
+                    "prefs":{
+                        "social_github":"",
+                        "social_dribbble":"",
+                        "social_facebook":"",
+                        "social_linkedin":"RodneyWeis",
+                        "social_aim":"",
+                        "social_digg":"",
+                        "social_flickr":"",
+                        "social_foursquare":"",
+                        "social_gtalk":"",
+                        "social_gowalla":"",
+                        "social_rdio":"",
+                        "social_tumblr":"",
+                        "social_vimeo":"",
+                        "social_yahoo":""
+                    },
+                    "contact":true,
+                    "domain":""
+                }
+            },
+            "body":"\n<p><a href=\"\/people\/ketch\">@ketch<\/a> Thank you very much for your\nfeedback - I agree that if I do pursue this route, the cube itself\ncould benefit from a more realistic perspective, both in the\nstructure of the cube and any features like the circles. For what\nit's worth, the floppy disk that the logo is based on is the\ngeneration before the 3-1\/2 inch \"floppies\" that you describe, that\nhad the metal slider to protect the physical media. I guess that\ndates me even further. ;0) Thanks again!<\/p>\n\n",
+            "created_at":"2011-11-06 05:40:12",
+            "updated_at":"2011-11-06 05:40:12"
+        }]
+    }],
+    "count":2
+}

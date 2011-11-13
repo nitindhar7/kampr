@@ -3,15 +3,15 @@ package com.kampr.models;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Post {
+public class PropertyContainer {
     
     protected Map<String, String> _properties;
     
-    public Post() {
+    public PropertyContainer() {
         _properties = new HashMap<String, String>();
     }
     
-    public Post(Map<String, String> properties) {
+    public PropertyContainer(Map<String, String> properties) {
         _properties = properties;
     }
     

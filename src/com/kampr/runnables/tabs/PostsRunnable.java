@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
 
 import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Post;
+import com.kampr.models.PropertyContainer;
 import com.kampr.runnables.AbstractRunnable;
 
 public abstract class PostsRunnable<T> extends AbstractRunnable {
@@ -29,7 +29,7 @@ public abstract class PostsRunnable<T> extends AbstractRunnable {
     }
     
     protected void fetchUserIcon(T t) {
-        Post post = (Post) t;
+        PropertyContainer post = (PropertyContainer) t;
         try {
             InputStream is = (InputStream) new URL(post.getProperty("user_photos_thumb_url")).getContent();
             _userIcons.put(post.getProperty("id"), getBitmapFromStream(is, _context, R.drawable.forrst_default_25));

@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import android.os.Handler;
 
-import com.kampr.models.Post;
+import com.kampr.models.PropertyContainer;
 import com.kampr.runnables.AbstractRunnable;
 
 public abstract class PostRunnable extends AbstractRunnable {
@@ -14,9 +14,9 @@ public abstract class PostRunnable extends AbstractRunnable {
     
     protected JSONObject _postJSON;
     protected int _postId;
-    protected Post _post;
+    protected PropertyContainer _post;
     
-    public PostRunnable(int postId, Handler handler, Post post) {
+    public PostRunnable(int postId, Handler handler, PropertyContainer post) {
         super(handler);
         _postId = postId;
         _post = post;
