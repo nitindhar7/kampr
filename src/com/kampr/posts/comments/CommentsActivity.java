@@ -1,12 +1,9 @@
 package com.kampr.posts.comments;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +14,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -32,17 +23,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
-import com.kampr.KamprActivity;
 import com.kampr.R;
-import com.kampr.adapters.CommentsAdapter;
+import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
-import com.kampr.models.PropertyContainer;
+import com.kampr.runnables.CommentsRunnable;
 
 public class CommentsActivity extends ListActivity {
     
     private final int DEFAULT_POST_ID = -1;
+    
+    protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     private TextView _postTitleView;
     private TextView _postUsernameView;
@@ -55,15 +45,14 @@ public class CommentsActivity extends ListActivity {
     private String _postCreatedAt;
     private Bitmap _postUserIcon;
 
-    private ForrstAPI _forrst;
     private ListView _comments;
     private ProgressDialog _dialog;
     private List<Comment> _listOfComments;
     private Map<String,Bitmap> _userIcons;
-    private CommentsAdapter _commentsAdapter;
+    private CommentsHandler _handler;
+    private Thread _fetchCommentsThread;
     
     public CommentsActivity() {
-        _forrst = new ForrstAPIClient();
         _listOfComments = new ArrayList<Comment>();
         _userIcons = new HashMap<String,Bitmap>();
     }
@@ -73,8 +62,6 @@ public class CommentsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments);
         trustAllHosts();
-        
-        SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
 
         _postId = getIntent().getIntExtra("post_id", DEFAULT_POST_ID);
         _postTitle = getIntent().getStringExtra("post_title");
@@ -98,77 +85,16 @@ public class CommentsActivity extends ListActivity {
         _comments.setDivider(getResources().getDrawable(R.color.comment_item_divider));
         _comments.setDividerHeight(1);
 
-//        _commentsAdapter = new CommentsAdapter(this, _listOfComments);
-        
         _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
-
-        try {
-            JSONObject commentsJSON = _forrst.postComments(settings.getString("login_token", null), _postId);
-            
-            JSONArray commentsJSONArray = (JSONArray) commentsJSON.get("comments");
-            for(int commentCount = 0; commentCount < commentsJSONArray.length(); commentCount++) {
-                JSONObject commentJSON = commentsJSONArray.getJSONObject(commentCount);
-                
-                Map<String, String> properties = new HashMap<String, String>();
-                properties.put("id", commentJSON.getString("id"));
-                properties.put("name", commentJSON.getJSONObject("user").getString("name"));
-                properties.put("body", commentJSON.getString("body"));
-                properties.put("created_at", commentJSON.getString("created_id"));
-
-                Comment comment = new Comment(properties);
-                _listOfComments.add(comment);
-
-                fetchUserIcon(comment);
-                
-                JSONArray repliesJSONArray = (JSONArray) commentJSON.get("replies");
-                for(int replyCount = 0; replyCount < commentsJSONArray.length(); replyCount++) {
-                    JSONObject replyJSON = repliesJSONArray.getJSONObject(replyCount);
-                    
-                    Map<String, String> replyProperties = new HashMap<String, String>();
-                    replyProperties.put("id", replyJSON.getString("id"));
-                    replyProperties.put("name", replyJSON.getJSONObject("user").getString("name"));
-                    replyProperties.put("body", replyJSON.getString("body"));
-                    replyProperties.put("created_at", replyJSON.getString("created_id"));
-
-                    Comment replyComment = new Comment(properties);
-                    _listOfComments.add(replyComment);
-
-                    fetchUserIcon(replyComment);
-                }
-            }
-        } catch (JSONException e) {
-            throw new RuntimeException("Error fetching comment from Forrst", e);
-        }
-
-//        _postsAdapter = new PostsAdapter<T>(_context, _listOfPosts, _userIcons);
-//        _posts.setAdapter(_postsAdapter);
-        _dialog.cancel();
+        
+        _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
+        _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));
+        _fetchCommentsThread.start();
     }
     
     protected Bitmap getBitmapFromByteArray() {
         byte[] bmpBytes = getIntent().getByteArrayExtra("post_user_icon");
         return BitmapFactory.decodeByteArray(bmpBytes, 0, bmpBytes.length);
-    }
-    
-    protected void fetchUserIcon(Comment comment) {
-        try {
-            InputStream is = (InputStream) new URL(comment.getProperty("user_photos_thumb_url")).getContent();
-            _userIcons.put(comment.getProperty("id"), getBitmapFromStream(is, this, R.drawable.forrst_default_25));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error: malformed URI", e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error: could not read from stream", e);
-        }
-    }
-    
-    protected Bitmap getBitmapFromStream(InputStream is, Context context, int drawableId) {
-        Bitmap bmp = BitmapFactory.decodeStream(is);
-        if(bmp == null) {
-            return BitmapFactory.decodeResource(context.getResources(), R.drawable.forrst_default_25);
-        }
-        else {
-            return bmp;
-        }
     }
     
     /**

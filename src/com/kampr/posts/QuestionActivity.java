@@ -16,30 +16,24 @@ public class QuestionActivity extends PostActivity {
     private TextView _questionUsername;
     private TextView _questionDate;
     private TextView _questionContent;
-    private TextView _questionLikes;
-    private TextView _questionViews;
-    private TextView _questionComments;
     private ImageView _questionUserIcon;
     private ScrollView _questionContentScrollView;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.question);
+        super.onCreate(savedInstanceState);
 
         _questionTitle = (TextView) findViewById(R.id.question_title);
         _questionUsername = (TextView) findViewById(R.id.question_user_name);
         _questionDate = (TextView) findViewById(R.id.question_date);
         _questionUserIcon = (ImageView) findViewById(R.id.question_user_icon);
         _questionContent = (TextView) findViewById(R.id.question_content);
-        _questionLikes = (TextView) findViewById(R.id.question_likes);
-        _questionViews = (TextView) findViewById(R.id.question_views);
-        _questionComments = (TextView) findViewById(R.id.question_comments);
         _questionContentScrollView = (ScrollView) findViewById(R.id.question_content_scroll);
         _questionContentScrollView.setVerticalScrollBarEnabled(false);
         _questionContentScrollView.setVerticalFadingEdgeEnabled(false);
         
-        _fetchPostThread = new Thread(new QuestionRunnable(getIntent().getIntExtra("id", DEFAULT_POST_ID), _handler, _post));
+        _fetchPostThread = new Thread(new QuestionRunnable(_postId, _handler, _post));
         _fetchPostThread.start();
     }
     
@@ -52,10 +46,11 @@ public class QuestionActivity extends PostActivity {
                     _questionUsername.setText(_post.getProperty("name"));
                     _questionDate.setText(_post.getProperty("created_at"));
                     _questionContent.setText(_post.getProperty("content"));
-                    _questionLikes.setText(_post.getProperty("like_count") + " Likes");
-                    _questionViews.setText(_post.getProperty("view_count") + " Views");
-                    _questionComments.setText(_post.getProperty("comment_count") + " Comments");
-                    _questionUserIcon.setImageBitmap(fetchUserIcon(_post.getProperty("user_photos_thumb_url")));
+                    _postLikes.setText(_post.getProperty("like_count") + " Likes");
+                    _postViews.setText(_post.getProperty("view_count") + " Views");
+                    _postComments.setText(_post.getProperty("comment_count") + " Comments");
+                    _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
+                    _questionUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();
                     break;
             }

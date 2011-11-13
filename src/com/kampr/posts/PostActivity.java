@@ -1,5 +1,6 @@
 package com.kampr.posts;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -12,17 +13,22 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.R;
 import com.kampr.models.PropertyContainer;
+import com.kampr.posts.comments.CommentsActivity;
 
-public class PostActivity extends Activity {
+public class PostActivity extends Activity implements OnClickListener {
 
     protected static final String FETCH_STATUS = "fetch_status";
     protected static final int FETCH_COMPLETE = 1;
@@ -37,13 +43,42 @@ public class PostActivity extends Activity {
     protected ProgressDialog _dialog;
     protected PropertyContainer _post;
     protected Thread _fetchPostThread;
+    protected int _postId;
+    protected Bitmap _userIconBitmap;
+    
+    protected TextView _postLikes;
+    protected TextView _postViews;
+    protected TextView _postComments;
+    
+    public PostActivity() {
+        _forrst = new ForrstAPIClient();
+        _post = new PropertyContainer();
+    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _forrst = new ForrstAPIClient();
-        _post = new PropertyContainer();
         _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
+        
+        _postLikes = (TextView) findViewById(R.id.post_likes);
+        _postViews = (TextView) findViewById(R.id.post_views);
+        _postComments = (TextView) findViewById(R.id.post_comments);
+        _postComments.setOnClickListener(this);
+        
+        _postId = getIntent().getIntExtra("id", DEFAULT_POST_ID);
+    }
+    
+    @Override
+    public void onClick(View v) {
+        Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
+        comments.putExtra("post_id", _postId);
+        comments.putExtra("post_title", _post.getProperty("title"));
+        comments.putExtra("post_name", _post.getProperty("name"));
+        comments.putExtra("post_created_at", _post.getProperty("created_at"));
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        _userIconBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        comments.putExtra("post_user_icon", stream.toByteArray());
+        startActivity(comments);
     }
     
     protected Bitmap fetchImageBitmap(String uri) {

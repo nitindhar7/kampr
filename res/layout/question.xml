@@ -108,7 +108,7 @@
         android:background="#F90" >
 
         <TextView
-            android:id="@+id/question_likes"
+            android:id="@+id/post_likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -120,10 +120,10 @@
         </TextView>
 
         <TextView
-            android:id="@+id/question_views"
+            android:id="@+id/post_views"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/question_likes"
+            android:layout_toRightOf="@+id/post_likes"
             android:gravity="center_vertical"
             android:minHeight="20dp"
             android:paddingLeft="5dp"
@@ -133,10 +133,10 @@
         </TextView>
 
         <TextView
-            android:id="@+id/question_comments"
+            android:id="@+id/post_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/question_views"
+            android:layout_toRightOf="@+id/post_views"
             android:gravity="center_vertical"
             android:minHeight="20dp"
             android:paddingLeft="5dp"
