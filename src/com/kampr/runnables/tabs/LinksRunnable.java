@@ -15,14 +15,17 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
 
 public class LinksRunnable extends PostsRunnable<Link> {
+    
+    private Map<String,String> _forrstParams;
 
-    public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons) {
+    public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
         super(context, handler, listOfPosts, userIcons);
+        _forrstParams = forrstParams;
     }
     
     public void run() {
         try {
-            JSONObject postsJSON = _forrst.postsList("link", null);
+            JSONObject postsJSON = _forrst.postsList("link", _forrstParams);
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {

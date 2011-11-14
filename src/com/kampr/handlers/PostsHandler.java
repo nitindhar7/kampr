@@ -33,5 +33,9 @@ public class PostsHandler<T> extends AbstractHandler<T> {
                 break;
         }
     }
+    
+    public PostsAdapter<T> getAdapter() {
+        return _postsAdapter;
+    }
 
 }

@@ -1,12 +1,23 @@
 package com.kampr;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,11 +27,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.forrst.api.ForrstAPIClient;
+
 public class KamprActivity extends Activity implements OnClickListener, OnKeyListener {
 
     public static final String KAMPR_APP_PREFS = "KamprAppPrefs";
-    
-    private final String ACTIVITY_TAG = "KamprActivity";
+
     private final int LOGIN_RESULT_CODE = 1;
     private final int ENTER_KEY_CODE = 66;
     
@@ -28,14 +40,24 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private EditText _loginPassword;
     private Button _loginSubmit;
     private ProgressDialog _dialog;
+    private SharedPreferences _settings;
+    private int _notificationsCount;
+    
+    public KamprActivity() {
+        _notificationsCount = 0;
+    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(ACTIVITY_TAG, "onCreate");
+        trustAllHosts();
+        
+        _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
 
-        if(sessionExists())
+        if(sessionExists()) {
+            fetchNotificationsCount();
             startPostsActivity();
+        }
         else {
             setContentView(R.layout.main);
             
@@ -71,6 +93,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         switch(requestCode) {
             case LOGIN_RESULT_CODE:
                 if(resultCode == LoginActivity.RESULT_SUCCESS) {
+                    fetchNotificationsCount();
                     _dialog.cancel();
                     startPostsActivity();
                 }
@@ -84,11 +107,10 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     }
     
     protected boolean sessionExists() {
-        SharedPreferences settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
-        if(settings.getString("login_username", null) != null &&
-                settings.getString("login_password", null) != null &&
-                settings.getString("login_token", null) != null &&
-                settings.getString("login_user_id", null) != null) {
+        if(_settings.getString("login_username", null) != null &&
+                _settings.getString("login_password", null) != null &&
+                _settings.getString("login_token", null) != null &&
+                _settings.getString("login_user_id", null) != null) {
             return true;
         }
         else {
@@ -98,6 +120,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     
     protected void startPostsActivity() {
         Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
+        posts.putExtra("notifications_count", _notificationsCount);
         startActivity(posts);
     }
     
@@ -110,6 +133,49 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         validate.putExtra("login_username", _loginUsername.getText().toString());
         validate.putExtra("login_password", _loginPassword.getText().toString());
         startActivityForResult(validate, LOGIN_RESULT_CODE);
+    }
+    
+    protected void fetchNotificationsCount() {
+        try {
+            _notificationsCount = 0;
+            JSONObject notificationsJSON = new ForrstAPIClient().notifications(_settings.getString("login_token", null), null);
+            notificationsJSON = notificationsJSON.getJSONObject("items");
+            
+            JSONObject mentionsJSON = notificationsJSON.getJSONObject("mention");
+            _notificationsCount += mentionsJSON.length();
+        } catch (JSONException e) {
+            throw new RuntimeException("Error retrieving notifications count", e);
+        }
+    }
+    
+    /**
+     * Trust every server - dont check for any certificate
+     * 1. Create a trust manager that does not validate certificate chains
+     * 2. Install the all-trusting trust manager
+     */
+    protected static void trustAllHosts() {
+        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return new java.security.cert.X509Certificate[] {};
+            }
+
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) {}
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) {}
+        }};
+
+        SSLContext sc;
+        try {
+            sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error installing all-trusting trust manager: algorithm not found", e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
+        }
     }
 
 }
