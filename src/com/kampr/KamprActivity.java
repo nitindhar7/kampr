@@ -78,6 +78,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
                     Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                _dialog.cancel();
                 break;
         }
     }
@@ -103,7 +104,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     protected void attemptLogin() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(_loginPassword.getWindowToken(), 0);
-        
+
         _dialog = ProgressDialog.show(KamprActivity.this, "", "Logging in. Please wait...", true);
         Intent validate = new Intent(KamprActivity.this, LoginActivity.class);
         validate.putExtra("login_username", _loginUsername.getText().toString());

@@ -33,35 +33,5 @@ public class LogoutActivity extends Activity {
             finish();
         }
     }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(ACTIVITY_TAG, "onStart");
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(ACTIVITY_TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(ACTIVITY_TAG, "onPause");
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(ACTIVITY_TAG, "onStop");
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(ACTIVITY_TAG, "onDestroy");
-    }
 
 }

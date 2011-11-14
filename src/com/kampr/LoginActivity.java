@@ -9,15 +9,12 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.forrst.api.util.ForrstAuthenticationException;
 
 public class LoginActivity extends Activity {
-    
-    private final String ACTIVITY_TAG = "LoginActivity";
 
     protected static final int RESULT_SUCCESS = 1;
     protected static final int RESULT_FAILURE = -1;
@@ -25,59 +22,29 @@ public class LoginActivity extends Activity {
     private String _loginUsername;
     private String _loginPassword;
     
-    private ForrstAPI _forrst;
+    private static ForrstAPI _forrst = new ForrstAPIClient();
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(ACTIVITY_TAG, "onCreate");
 
-        _forrst = new ForrstAPIClient();
-        
         _loginUsername = getIntent().getStringExtra("login_username");
         _loginPassword = getIntent().getStringExtra("login_password");
-        
-        boolean areCredentialFormatsValid = validateCredentialsFormat(_loginUsername, _loginPassword);
-        boolean areCredentialsValid = validateCredentials(_loginUsername, _loginPassword);
-        
-        if(areCredentialFormatsValid && areCredentialsValid) {
-            setResult(RESULT_SUCCESS);
-            finish();
+
+        if(validateCredentialsFormat(_loginUsername, _loginPassword)) {
+            try {
+                validateCredentials(_loginUsername, _loginPassword);
+                setResult(RESULT_SUCCESS);
+            } catch (ForrstAuthenticationException e) {
+                setResult(RESULT_FAILURE);
+            } finally {
+                finish();
+            }
         }
         else {
             setResult(RESULT_FAILURE);
             finish();
         }
-    }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(ACTIVITY_TAG, "onStart");
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(ACTIVITY_TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(ACTIVITY_TAG, "onPause");
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(ACTIVITY_TAG, "onStop");
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(ACTIVITY_TAG, "onDestroy");
     }
     
     private boolean validateCredentialsFormat(String username, String password) {
@@ -87,7 +54,7 @@ public class LoginActivity extends Activity {
             return false;
     }
     
-    private boolean validateCredentials(String username, String password) {
+    private boolean validateCredentials(String username, String password) throws ForrstAuthenticationException {
         JSONObject json = null;
         try {
             json = _forrst.usersAuth(username, password);
@@ -103,8 +70,6 @@ public class LoginActivity extends Activity {
             editor.putString("login_user_id", json.getString("user_id"));
             editor.commit();
             return true;
-        } catch (ForrstAuthenticationException e) {
-            return false;
         } catch (JSONException e) {
             throw new RuntimeException("Error retrieving user data from Forrst authentication", e);
         } catch (NoSuchAlgorithmException e) {
