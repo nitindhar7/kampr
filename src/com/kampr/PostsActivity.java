@@ -34,22 +34,22 @@ public class PostsActivity extends TabActivity {
         LinearLayout linkTabLayout = new LinearLayout(this);
         linkTabLayout.setBackgroundResource(R.drawable.tab);
         linkTabLayout.setLayoutParams(params);
-        linkTabLayout.setPadding(30, 5, 30, 5);
+        linkTabLayout.setPadding(30, 0, 30, 0);
         
         LinearLayout snapTabLayout = new LinearLayout(this);
         snapTabLayout.setBackgroundResource(R.drawable.tab);
         snapTabLayout.setLayoutParams(params);
-        snapTabLayout.setPadding(30, 5, 30, 5);
+        snapTabLayout.setPadding(30, 0, 30, 0);
         
         LinearLayout codeTabLayout = new LinearLayout(this);
         codeTabLayout.setBackgroundResource(R.drawable.tab);
         codeTabLayout.setLayoutParams(params);
-        codeTabLayout.setPadding(30, 5, 30, 5);
+        codeTabLayout.setPadding(30, 0, 30, 0);
         
         LinearLayout questionTabLayout = new LinearLayout(this);
         questionTabLayout.setBackgroundResource(R.drawable.tab);
         questionTabLayout.setLayoutParams(params);
-        questionTabLayout.setPadding(30, 5, 30, 5);
+        questionTabLayout.setPadding(30, 0, 30, 0);
 
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;

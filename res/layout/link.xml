@@ -26,7 +26,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"
-            android:text="kampr"
+            android:text="Links"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:textStyle="bold" />
