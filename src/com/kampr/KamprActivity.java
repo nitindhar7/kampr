@@ -1,13 +1,6 @@
 package com.kampr;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.kampr.util.KamprUtils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -40,11 +33,10 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        trustAllHosts();
         
         _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
 
-        if(sessionExists()) {
+        if(sessionExists() && KamprUtils.isOnline(getApplicationContext())) {
             startPostsActivity();
         }
         else {
@@ -119,36 +111,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         validate.putExtra("login_username", _loginUsername.getText().toString());
         validate.putExtra("login_password", _loginPassword.getText().toString());
         startActivityForResult(validate, LOGIN_RESULT_CODE);
-    }
-    
-    /**
-     * Trust every server - dont check for any certificate
-     * 1. Create a trust manager that does not validate certificate chains
-     * 2. Install the all-trusting trust manager
-     */
-    protected static void trustAllHosts() {
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                return new java.security.cert.X509Certificate[] {};
-            }
-
-            @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) {}
-
-            @Override
-            public void checkServerTrusted(X509Certificate[] chain, String authType) {}
-        }};
-
-        SSLContext sc;
-        try {
-            sc = SSLContext.getInstance("TLS");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error installing all-trusting trust manager: algorithm not found", e);
-        } catch (KeyManagementException e) {
-            throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
-        }
     }
 
 }

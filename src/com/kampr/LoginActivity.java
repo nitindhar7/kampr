@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.forrst.api.util.ForrstAuthenticationException;
+import com.kampr.util.KamprUtils;
 
 public class LoginActivity extends Activity {
 
@@ -31,7 +32,7 @@ public class LoginActivity extends Activity {
         _loginUsername = getIntent().getStringExtra("login_username");
         _loginPassword = getIntent().getStringExtra("login_password");
 
-        if(validateCredentialsFormat(_loginUsername, _loginPassword)) {
+        if(validateCredentialsFormat(_loginUsername, _loginPassword) && KamprUtils.isOnline(getApplicationContext())) {
             try {
                 validateCredentials(_loginUsername, _loginPassword);
                 setResult(RESULT_SUCCESS);
