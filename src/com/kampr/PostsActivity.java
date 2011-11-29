@@ -3,7 +3,6 @@ package com.kampr;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,8 +17,7 @@ import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
 
 public class PostsActivity extends TabActivity {
-    
-    private final String ACTIVITY_TAG = "PostsActivity";
+
     private final int LOGOUT_RESULT_CODE = 1;
     
     @Override
@@ -85,7 +83,6 @@ public class PostsActivity extends TabActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.i(ACTIVITY_TAG, "onCreateOptionsMenu");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.posts_menu, menu);
         return true;
