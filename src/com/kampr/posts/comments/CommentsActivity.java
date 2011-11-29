@@ -1,36 +1,38 @@
 package com.kampr.posts.comments;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.kampr.KamprActivity;
+import com.kampr.LogoutActivity;
 import com.kampr.R;
+import com.kampr.SettingsActivity;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
+import com.kampr.util.KamprUtils;
 
 public class CommentsActivity extends ListActivity {
     
     private final int DEFAULT_POST_ID = -1;
+    private final int LOGOUT_RESULT_CODE = 1;
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
@@ -61,7 +63,7 @@ public class CommentsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments);
-        trustAllHosts();
+        KamprUtils.trustAllHosts();
 
         _postId = getIntent().getIntExtra("post_id", DEFAULT_POST_ID);
         _postTitle = getIntent().getStringExtra("post_title");
@@ -97,33 +99,42 @@ public class CommentsActivity extends ListActivity {
         return BitmapFactory.decodeByteArray(bmpBytes, 0, bmpBytes.length);
     }
     
-    /**
-     * Trust every server - dont check for any certificate
-     * 1. Create a trust manager that does not validate certificate chains
-     * 2. Install the all-trusting trust manager
-     */
-    protected static void trustAllHosts() {
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                return new java.security.cert.X509Certificate[] {};
-            }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.posts_menu, menu);
+        return true;
+    }
 
-            @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) {}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.posts_menu_logout:
+                Intent logout = new Intent(CommentsActivity.this, LogoutActivity.class);
+                startActivityForResult(logout, LOGOUT_RESULT_CODE);
+                break;
+            case R.id.posts_menu_settings:
+                Intent settings = new Intent(CommentsActivity.this, SettingsActivity.class);
+                startActivity(settings);
+                break;
+        }
+        return true;
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-            @Override
-            public void checkServerTrusted(X509Certificate[] chain, String authType) {}
-        }};
-
-        SSLContext sc;
-        try {
-            sc = SSLContext.getInstance("TLS");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error installing all-trusting trust manager: algorithm not found", e);
-        } catch (KeyManagementException e) {
-            throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
+        switch(requestCode) {
+            case LOGOUT_RESULT_CODE:
+                if(resultCode == LogoutActivity.RESULT_SUCCESS) {
+                    Intent kampr = new Intent(CommentsActivity.this, KamprActivity.class);
+                    startActivity(kampr);
+                }
+                else if(resultCode == LogoutActivity.RESULT_FAILURE)
+                    Toast.makeText(getApplicationContext() , "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 

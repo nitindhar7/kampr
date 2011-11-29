@@ -18,17 +18,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.kampr.KamprActivity;
+import com.kampr.LogoutActivity;
 import com.kampr.R;
+import com.kampr.SettingsActivity;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.comments.CommentsActivity;
 
 public class PostActivity extends Activity implements OnClickListener {
+
+    private final int LOGOUT_RESULT_CODE = 1;
 
     protected static final String FETCH_STATUS = "fetch_status";
     protected static final int FETCH_COMPLETE = 1;
@@ -79,6 +88,45 @@ public class PostActivity extends Activity implements OnClickListener {
         _userIconBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         comments.putExtra("post_user_icon", stream.toByteArray());
         startActivity(comments);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.posts_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.posts_menu_logout:
+                Intent logout = new Intent(PostActivity.this, LogoutActivity.class);
+                startActivityForResult(logout, LOGOUT_RESULT_CODE);
+                break;
+            case R.id.posts_menu_settings:
+                Intent settings = new Intent(PostActivity.this, SettingsActivity.class);
+                startActivity(settings);
+                break;
+        }
+        return true;
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode) {
+            case LOGOUT_RESULT_CODE:
+                if(resultCode == LogoutActivity.RESULT_SUCCESS) {
+                    Intent kampr = new Intent(PostActivity.this, KamprActivity.class);
+                    startActivity(kampr);
+                }
+                else if(resultCode == LogoutActivity.RESULT_FAILURE)
+                    Toast.makeText(getApplicationContext() , "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
     
     protected Bitmap fetchImageBitmap(String uri) {

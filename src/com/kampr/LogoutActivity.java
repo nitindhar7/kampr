@@ -9,8 +9,8 @@ public class LogoutActivity extends Activity {
     
     private final String ACTIVITY_TAG = "LogoutActivity";
 
-    protected static final int RESULT_SUCCESS = 1;
-    protected static final int RESULT_FAILURE = -1;
+    public static final int RESULT_SUCCESS = 1;
+    public static final int RESULT_FAILURE = -1;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
