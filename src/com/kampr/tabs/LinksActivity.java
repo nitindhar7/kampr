@@ -1,8 +1,5 @@
 package com.kampr.tabs;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,32 +22,17 @@ public class LinksActivity extends PostsListActivity<Link> implements OnScrollLi
         _fetchPostsThread.start();
     }
     
-    //http://benjii.me/2010/08/endless-scrolling-listview-in-android/
+    // http://stackoverflow.com/questions/1080811/android-endless-list
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        int visibleThreshold = 10;
-        int currentPage = 1;
-        int previousTotal = 0;
-        boolean loading = true;
-
-        if (loading) {
-            if (totalItemCount > previousTotal) {
-                loading = false;
-                previousTotal = totalItemCount;
-                currentPage++;
-            }
-        }
-        if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-            Map<String,String> forrstParams = new HashMap<String,String>();
-            forrstParams.put("page", Integer.toString(currentPage + 1));
-            
-//            _fetchPostsThread = new Thread(new LinksRunnable(this, _handler, _listOfPosts, _userIcons, forrstParams));
-//            _fetchPostsThread.start();
-            
-            loading = true;
+        boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
+        
+        if(loadMore) {
+//            adapter.count += visibleCount; // or any other amount
+//            adapter.notifyDataSetChanged();
         }
     }
- 
+
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
     }

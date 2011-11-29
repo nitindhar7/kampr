@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.kampr.adapters.PostsAdapter;
 
-public class PostsHandler<T> extends AbstractHandler<T> {
+public class PostsHandler<T> extends ListsHandler<T> {
 
     private PostsAdapter<T> _postsAdapter;
     

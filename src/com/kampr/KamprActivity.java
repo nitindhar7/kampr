@@ -9,9 +9,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,8 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.forrst.api.ForrstAPIClient;
-
 public class KamprActivity extends Activity implements OnClickListener, OnKeyListener {
 
     public static final String KAMPR_APP_PREFS = "KamprAppPrefs";
@@ -41,11 +36,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private Button _loginSubmit;
     private ProgressDialog _dialog;
     private SharedPreferences _settings;
-    private int _notificationsCount;
-    
-    public KamprActivity() {
-        _notificationsCount = 0;
-    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +45,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
 
         if(sessionExists()) {
-            fetchNotificationsCount();
             startPostsActivity();
         }
         else {
@@ -93,8 +82,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         switch(requestCode) {
             case LOGIN_RESULT_CODE:
                 if(resultCode == LoginActivity.RESULT_SUCCESS) {
-                    fetchNotificationsCount();
-                    _dialog.cancel();
                     startPostsActivity();
                 }
                 else if(resultCode == LoginActivity.RESULT_FAILURE)
@@ -120,7 +107,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     
     protected void startPostsActivity() {
         Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
-        posts.putExtra("notifications_count", _notificationsCount);
         startActivity(posts);
     }
     
@@ -133,19 +119,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         validate.putExtra("login_username", _loginUsername.getText().toString());
         validate.putExtra("login_password", _loginPassword.getText().toString());
         startActivityForResult(validate, LOGIN_RESULT_CODE);
-    }
-    
-    protected void fetchNotificationsCount() {
-        try {
-            _notificationsCount = 0;
-            JSONObject notificationsJSON = new ForrstAPIClient().notifications(_settings.getString("login_token", null), null);
-            notificationsJSON = notificationsJSON.getJSONObject("items");
-            
-            JSONObject mentionsJSON = notificationsJSON.getJSONObject("mention");
-            _notificationsCount += mentionsJSON.length();
-        } catch (JSONException e) {
-            throw new RuntimeException("Error retrieving notifications count", e);
-        }
     }
     
     /**

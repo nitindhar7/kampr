@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kampr.tabs.CodesActivity;
@@ -22,19 +21,11 @@ public class PostsActivity extends TabActivity {
     
     private final String ACTIVITY_TAG = "PostsActivity";
     private final int LOGOUT_RESULT_CODE = 1;
-    private final int DEFAULT_NOTIFICATIONS_COUNT = 0;
-    
-    private TextView _notificationsActionbarTab;
-    
-    protected Thread _notificationsThread;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.posts);
-        
-        _notificationsActionbarTab = (TextView) findViewById(R.id.actionbar_notifications);
-        _notificationsActionbarTab.setText(Integer.toString(getIntent().getIntExtra("notifications_count", DEFAULT_NOTIFICATIONS_COUNT)));
         
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(5, 0, 5, 0);
