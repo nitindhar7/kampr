@@ -25,6 +25,10 @@ All major contributers will be acknowledged.
   - Site: http://coding-sense.blogspot.com
   - Twitter: @nitin_dhar
 
+- Rene Merino
+
+  - Contributed the app name ("Kampr")
+
 Copyright
 ---------
 Copyright (c) 2011 Nitin Dhar. See MIT-LICENSE for details.
