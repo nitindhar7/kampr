@@ -3,12 +3,14 @@ package com.kampr.posts;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.runnables.posts.LinkRunnable;
+import com.kampr.util.KamprUtils;
 
 public class LinkActivity extends PostActivity {
     
@@ -48,7 +50,8 @@ public class LinkActivity extends PostActivity {
                     _linkUrl.setText(getTruncatedText(_post.getProperty("url"), TRUNCATED_URL_LENGTH));
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
-                    _linkDescription.setText(_post.getProperty("description"));
+                    _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+                    Log.i("LINK ACTIVITY", KamprUtils.cleanseText(_post.getProperty("description")));
                     _postLikes.setText(_post.getProperty("like_count") + " Likes");
                     _postViews.setText(_post.getProperty("view_count") + " Views");
                     _postComments.setText(_post.getProperty("comment_count") + " Comments");

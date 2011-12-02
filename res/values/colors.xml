@@ -7,17 +7,12 @@
 	<!-- Post Item -->
 	<color name="post_item_divider">#DDD</color>
 	<color name="post_item_background">#FFE0B2</color>
-	<color name="post_item_selected">#FF9900</color>
+	<color name="post_item_selected">#467242</color>
 
 	<!-- ActionBar -->
 	<color name="actionbar_separator">#CC7A00</color>
     <color name="actionbar_background_start">#FF9900</color>
     <color name="actionbar_background_end">#CC7A00</color>
-    
-    <!-- Settings -->
-    <color name="setting_item_divider">#333</color>
-    <color name="setting_item_background">#FFE0B2</color>
-    <color name="setting_item_selected">#FF9900</color>
     
     <!-- Comment Item -->
     <color name="comment_item_divider">#DDD</color>

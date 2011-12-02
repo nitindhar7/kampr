@@ -50,7 +50,7 @@
         android:gravity="center_vertical"
         android:minHeight="30dp"
         android:padding="10dp"
-        android:textColor="#FF9900"
+        android:textColor="#467242"
         android:textSize="20sp"
         android:textStyle="bold" >
     </TextView>

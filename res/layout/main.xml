@@ -27,7 +27,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"
-            android:text="kampr"
+            android:text="Kampr"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="#FF9900"
+            android:background="@drawable/login_button"
             android:minHeight="30dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"

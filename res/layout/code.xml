@@ -49,9 +49,8 @@
         android:gravity="center_vertical"
         android:minHeight="30dp"
         android:padding="10dp"
-        android:textColor="#FF9900"
         android:textSize="20sp"
-        android:textStyle="bold" >
+        android:textStyle="bold" android:textColor="#467242">
     </TextView>
 
     <RelativeLayout
@@ -105,7 +104,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/code_user"
-        android:background="#F90" >
+        android:background="#467242" >
 
         <TextView
             android:id="@+id/post_likes"

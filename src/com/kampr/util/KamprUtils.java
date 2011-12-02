@@ -11,6 +11,7 @@ import javax.net.ssl.X509TrustManager;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.text.Html;
 
 public class KamprUtils {
 
@@ -47,6 +48,20 @@ public class KamprUtils {
         } catch (KeyManagementException e) {
             throw new RuntimeException("Error installing all-trusting trust manager: problems managing key", e);
         }
+    }
+    
+    public static String convertCarriageReturnToNewline(String text) {
+        return text.replaceAll("\\r", "");
+    }
+    
+    public static String convertHtmlToText(String text) {
+        return Html.fromHtml(text).toString();
+    }
+    
+    public static String cleanseText(String text) {
+        String cleansedText = convertCarriageReturnToNewline(text);
+        cleansedText = convertHtmlToText(cleansedText);
+        return cleansedText;
     }
 
 }
