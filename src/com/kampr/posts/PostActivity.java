@@ -31,9 +31,7 @@ import com.forrst.api.ForrstAPIClient;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
-import com.kampr.SettingsActivity;
 import com.kampr.models.PropertyContainer;
-import com.kampr.posts.comments.CommentsActivity;
 
 public class PostActivity extends Activity implements OnClickListener {
 
@@ -103,10 +101,6 @@ public class PostActivity extends Activity implements OnClickListener {
             case R.id.posts_menu_logout:
                 Intent logout = new Intent(PostActivity.this, LogoutActivity.class);
                 startActivityForResult(logout, LOGOUT_RESULT_CODE);
-                break;
-            case R.id.posts_menu_settings:
-                Intent settings = new Intent(PostActivity.this, SettingsActivity.class);
-                startActivity(settings);
                 break;
         }
         return true;

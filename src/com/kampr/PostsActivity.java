@@ -95,10 +95,6 @@ public class PostsActivity extends TabActivity {
                 Intent logout = new Intent(PostsActivity.this, LogoutActivity.class);
                 startActivityForResult(logout, LOGOUT_RESULT_CODE);
                 break;
-            case R.id.posts_menu_settings:
-                Intent settings = new Intent(PostsActivity.this, SettingsActivity.class);
-                startActivity(settings);
-                break;
         }
         return true;
     }

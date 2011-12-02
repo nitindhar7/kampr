@@ -42,7 +42,7 @@
 		<activity android:name=".posts.QuestionActivity"
 			android:screenOrientation="portrait"
 			android:theme="@android:style/Theme.NoTitleBar"></activity>
-		<activity android:name=".posts.comments.CommentsActivity"
+		<activity android:name=".posts.CommentsActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"></activity>
 	</application>

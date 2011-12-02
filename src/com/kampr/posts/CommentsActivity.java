@@ -1,4 +1,4 @@
-package com.kampr.posts.comments;
+package com.kampr.posts;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
-import com.kampr.SettingsActivity;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
@@ -112,10 +111,6 @@ public class CommentsActivity extends ListActivity {
             case R.id.posts_menu_logout:
                 Intent logout = new Intent(CommentsActivity.this, LogoutActivity.class);
                 startActivityForResult(logout, LOGOUT_RESULT_CODE);
-                break;
-            case R.id.posts_menu_settings:
-                Intent settings = new Intent(CommentsActivity.this, SettingsActivity.class);
-                startActivity(settings);
                 break;
         }
         return true;
