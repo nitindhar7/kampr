@@ -1,56 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:id="@+id/post_item"
-	android:background="@drawable/post_item_bg">
-	<RelativeLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/post_item_sections"
-		android:padding="5dp" android:background="@drawable/post_item_states">
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:id="@+id/post_item_graphics" android:minHeight="40dp"
-			android:minWidth="40dp">
-			<ImageView android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:src="@drawable/icon"
-				android:id="@+id/post_item_user_icon" android:maxHeight="40dp"
-				android:maxWidth="40dp" android:minHeight="40dp" android:minWidth="40dp"></ImageView>
-		</LinearLayout>
-		<LinearLayout android:orientation="vertical"
-			android:layout_height="wrap_content" android:layout_marginLeft="5dp"
-			android:layout_toRightOf="@+id/post_item_graphics"
-			android:layout_width="fill_parent" android:id="@+id/post_item_details">
-			<RelativeLayout android:layout_height="wrap_content"
-				android:id="@+id/post_item_title" android:layout_width="fill_parent">
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:id="@+id/post_item_username"
-					android:textColor="#333" android:textStyle="bold" android:text="username"></TextView>
-				<TextView android:layout_width="wrap_content" android:id="@+id/post_item_date"
-					android:layout_height="wrap_content"
-					android:layout_alignParentRight="true" android:textColor="#999"
-					android:text="date"></TextView>
-			</RelativeLayout>
-			<RelativeLayout android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/post_item_counts">
-				<TextView android:layout_width="wrap_content" android:id="@+id/post_item_likes"
-					android:layout_height="wrap_content" android:textColor="#FFF"
-					android:paddingLeft="5dp" android:paddingRight="5dp"
-					android:background="#CCC" android:layout_alignParentRight="true" android:textSize="10sp"></TextView>
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:id="@+id/post_item_views"
-					android:layout_marginRight="5dp" android:paddingRight="5dp"
-					android:paddingLeft="5dp" android:textColor="#FFF"
-					android:background="#CCC" android:layout_toLeftOf="@+id/post_item_likes" android:textSize="10sp"></TextView>
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:id="@+id/post_item_comments"
-					android:textColor="#FFF" android:paddingLeft="5dp"
-					android:paddingRight="5dp" android:background="#CCC"
-					android:layout_toLeftOf="@+id/post_item_views"
-					android:layout_marginRight="5dp" android:textSize="10sp"></TextView>
-			</RelativeLayout>
-			<TextView android:id="@+id/post_item_content"
-				android:layout_height="wrap_content" android:textColor="#333"
-				android:text="content" android:layout_width="fill_parent"></TextView>
-		</LinearLayout>
-	</RelativeLayout>
+    android:id="@+id/post_item"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/post_item_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/post_item_sections"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/post_item_states"
+        android:padding="5dp" >
+
+        <LinearLayout
+            android:id="@+id/post_item_graphics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/post_item_user_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="40dp"
+                android:maxWidth="40dp"
+                android:src="@drawable/icon" android:minHeight="40dp" android:minWidth="40dp">
+            </ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/post_item_details"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/post_item_graphics"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/post_item_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:gravity="top">
+
+                <TextView
+                    android:id="@+id/post_item_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="username"
+                    android:textColor="#333"
+                    android:textStyle="bold" android:gravity="top">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/post_item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="date"
+                    android:textColor="#999" android:gravity="top">
+                </TextView>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/post_item_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="content"
+                android:textColor="#333" >
+            </TextView>
+
+            <RelativeLayout
+                android:id="@+id/post_item_counts"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/post_item_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#CCC"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/post_item_views"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/post_item_likes"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#CCC"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/post_item_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/post_item_views"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#CCC"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
