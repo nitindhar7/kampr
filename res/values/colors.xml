@@ -3,6 +3,8 @@
 
 	<!-- General -->
 	<color name="transparent">#00000000</color>
+	<color name="light_green">#467242</color>
+	<color name="dark_green">#366033</color>
 
 	<!-- Post Item -->
 	<color name="post_item_divider">#DDD</color>
@@ -16,5 +18,8 @@
     
     <!-- Comment Item -->
     <color name="comment_item_divider">#DDD</color>
+    
+    <!-- Buttons -->
+    <color name="login_button_selected">#366033</color>
 
 </resources>

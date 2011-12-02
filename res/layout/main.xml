@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@drawable/login_button"
+            android:background="@drawable/login_button_states"
             android:minHeight="30dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
