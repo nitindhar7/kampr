@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.runnables.posts.CodeRunnable;
+import com.kampr.util.KamprUtils;
 
 public class CodeActivity extends PostActivity {
 
@@ -48,7 +49,7 @@ public class CodeActivity extends PostActivity {
                     _codeUsername.setText(_post.getProperty("name"));
                     _codeDate.setText(_post.getProperty("created_at"));
                     _codeContent.setText(_post.getProperty("content"));
-                    _codeDescription.setText(_post.getProperty("description"));
+                    _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
                     _postLikes.setText(_post.getProperty("like_count") + " Likes");
                     _postViews.setText(_post.getProperty("view_count") + " Views");
                     _postComments.setText(_post.getProperty("comment_count") + " Comments");

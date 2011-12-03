@@ -131,7 +131,7 @@ public final class R {
         public static final int post_user_icon=0x7f07001d;
         public static final int post_user_name=0x7f07001e;
         public static final int post_views=0x7f07000b;
-        public static final int posts_menu_logout=0x7f070052;
+        public static final int posts_menu_logout=0x7f070054;
         public static final int question=0x7f07003e;
         public static final int question_content=0x7f070046;
         public static final int question_content_scroll=0x7f070045;
@@ -145,6 +145,8 @@ public final class R {
         public static final int snap_date=0x7f07004c;
         public static final int snap_description=0x7f070051;
         public static final int snap_description_scroll=0x7f070050;
+        public static final int snap_fullscreen=0x7f070052;
+        public static final int snap_fullscreen_image=0x7f070053;
         public static final int snap_image=0x7f07004e;
         public static final int snap_large_url=0x7f07004f;
         public static final int snap_nav=0x7f07004d;
@@ -164,6 +166,7 @@ public final class R {
         public static final int posts=0x7f030006;
         public static final int question=0x7f030007;
         public static final int snap=0x7f030008;
+        public static final int snap_fullscreen=0x7f030009;
     }
     public static final class menu {
         public static final int posts_menu=0x7f060000;
