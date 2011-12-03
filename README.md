@@ -28,7 +28,10 @@ All major contributers will be acknowledged.
 
 - Rene Merino
 
-  - Graphics
+  - UI Design
+  - Forrst: https://http://forrst.com/people/Alxmerino
+  - Site: http://amayamedia.com
+  - Twitter: @ReneMerino
 
 Copyright
 ---------
