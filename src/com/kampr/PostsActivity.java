@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
 
 import com.kampr.tabs.CodesActivity;
@@ -16,26 +17,25 @@ import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
 
-public class PostsActivity extends TabActivity /*implements OnClickListener*/ {
+public class PostsActivity extends TabActivity {
 
     private static final LinearLayout.LayoutParams _params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     
     private final int LOGOUT_RESULT_CODE = 1;
-
-    private final int TAB_LINKS_ID = 100;
-    private final int TAB_SNAPS_ID = 101;
-    private final int TAB_CODES_ID = 102;
-    private final int TAB_QUESTIONS_ID = 103;
     
     private static LinearLayout _linkTabLayout;
     private static LinearLayout _snapTabLayout;
     private static LinearLayout _codeTabLayout;
     private static LinearLayout _questionTabLayout;
     
-    private ImageView _linkTab;
-    private ImageView _snapTab;
-    private ImageView _codeTab;
-    private ImageView _questionTab;
+    private static ImageView _linkTab;
+    private static ImageView _snapTab;
+    private static ImageView _codeTab;
+    private static ImageView _questionTab;
+    
+    private static TabHost _tabHost;
+    private static TabHost.TabSpec _spec;
+    private static Intent _intent;
     
     public PostsActivity() {
         _params.setMargins(5, 0, 5, 0);
@@ -46,12 +46,10 @@ public class PostsActivity extends TabActivity /*implements OnClickListener*/ {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.posts);
 
-        TabHost tabHost = getTabHost();
-        TabHost.TabSpec spec;
-        Intent intent;
+        _tabHost = getTabHost();
 
         _linkTabLayout = new LinearLayout(this);
-        _linkTabLayout.setBackgroundResource(R.drawable.tab);
+        _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
         _linkTabLayout.setLayoutParams(_params);
         _linkTabLayout.setPadding(30, 0, 30, 0);
         
@@ -71,40 +69,63 @@ public class PostsActivity extends TabActivity /*implements OnClickListener*/ {
         _questionTabLayout.setPadding(30, 0, 30, 0);
 
         _linkTab = new ImageView(this);
-        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
-        _linkTab.setId(TAB_LINKS_ID);
-        //_linkTab.setOnClickListener(this);
+        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
         _linkTabLayout.addView(_linkTab);
-        intent = new Intent(PostsActivity.this, LinksActivity.class);
-        spec = tabHost.newTabSpec("links").setIndicator(_linkTabLayout).setContent(intent);
-        tabHost.addTab(spec);
+        _intent = new Intent(PostsActivity.this, LinksActivity.class);
+        _spec = _tabHost.newTabSpec("links").setIndicator(_linkTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
         
         _snapTab = new ImageView(this);
         _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau);
-        _snapTab.setId(TAB_SNAPS_ID);
-        //_snapTab.setOnClickListener(this);
         _snapTabLayout.addView(_snapTab);
-        intent = new Intent(PostsActivity.this, SnapsActivity.class);
-        spec = tabHost.newTabSpec("snaps").setIndicator(_snapTabLayout).setContent(intent);
-        tabHost.addTab(spec);
+        _intent = new Intent(PostsActivity.this, SnapsActivity.class);
+        _spec = _tabHost.newTabSpec("snaps").setIndicator(_snapTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
         
         _codeTab = new ImageView(this);
         _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau);
-        _codeTab.setId(TAB_CODES_ID);
-        //_codeTab.setOnClickListener(this);
         _codeTabLayout.addView(_codeTab);
-        intent = new Intent(PostsActivity.this, CodesActivity.class);
-        spec = tabHost.newTabSpec("code").setIndicator(_codeTabLayout).setContent(intent);
-        tabHost.addTab(spec);
+        _intent = new Intent(PostsActivity.this, CodesActivity.class);
+        _spec = _tabHost.newTabSpec("codes").setIndicator(_codeTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
         
         _questionTab = new ImageView(this);
         _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau);
-        _questionTab.setId(TAB_QUESTIONS_ID);
-        //_questionTab.setOnClickListener(this);
         _questionTabLayout.addView(_questionTab);
-        intent = new Intent(PostsActivity.this, QuestionsActivity.class);
-        spec = tabHost.newTabSpec("question").setIndicator(_questionTabLayout).setContent(intent);
-        tabHost.addTab(spec);
+        _intent = new Intent(PostsActivity.this, QuestionsActivity.class);
+        _spec = _tabHost.newTabSpec("questions").setIndicator(_questionTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
+        
+        _tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tag) {
+                clearTabStyles();
+                if (tag.equals("links")) {
+                    _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
+                    _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _linkTabLayout.setLayoutParams(_params);
+                    _linkTabLayout.setPadding(30, 0, 30, 0);
+                }
+                else if (tag.equals("snaps")) {
+                    _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau_selected);
+                    _snapTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _snapTabLayout.setLayoutParams(_params);
+                    _snapTabLayout.setPadding(30, 0, 30, 0);
+                }
+                else if (tag.equals("codes")) {
+                    _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau_selected);
+                    _codeTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _codeTabLayout.setLayoutParams(_params);
+                    _codeTabLayout.setPadding(30, 0, 30, 0);
+                }
+                else if (tag.equals("questions")) {
+                    _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau_selected);
+                    _questionTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _questionTabLayout.setLayoutParams(_params);
+                    _questionTabLayout.setPadding(30, 0, 30, 0);
+                }
+            }       
+        });
     }
 
     @Override
@@ -141,23 +162,24 @@ public class PostsActivity extends TabActivity /*implements OnClickListener*/ {
                 break;
         }
     }
-
-//    @Override
-//    public void onClick(View view) {
-//        switch(view.getId()) {
-//        case TAB_LINKS_ID:
-//            _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
-//            break;
-//        case TAB_SNAPS_ID:
-//            _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau_selected);
-//            break;
-//        case TAB_CODES_ID:
-//            _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau_selected);
-//            break;
-//        case TAB_QUESTIONS_ID:
-//            _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau_selected);
-//            break;
-//        }
-//    }
+    
+    private void clearTabStyles() {
+        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
+        _linkTabLayout.setBackgroundResource(R.drawable.tab);
+        _linkTabLayout.setLayoutParams(_params);
+        _linkTabLayout.setPadding(30, 0, 30, 0);
+        _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau);
+        _snapTabLayout.setBackgroundResource(R.drawable.tab);
+        _snapTabLayout.setLayoutParams(_params);
+        _snapTabLayout.setPadding(30, 0, 30, 0);
+        _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau);
+        _codeTabLayout.setBackgroundResource(R.drawable.tab);
+        _codeTabLayout.setLayoutParams(_params);
+        _codeTabLayout.setPadding(30, 0, 30, 0);
+        _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau);
+        _questionTabLayout.setBackgroundResource(R.drawable.tab);
+        _questionTabLayout.setLayoutParams(_params);
+        _questionTabLayout.setPadding(30, 0, 30, 0);
+    }
 
 }

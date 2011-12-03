@@ -29,6 +29,10 @@ public final class R {
          */
         public static final int post_item_divider=0x7f040003;
         public static final int post_item_selected=0x7f040005;
+        public static final int tab_selected_end=0x7f04000c;
+        /**  Tabs 
+         */
+        public static final int tab_selected_start=0x7f04000b;
         /**  General 
          */
         public static final int transparent=0x7f040000;
@@ -67,7 +71,8 @@ public final class R {
         public static final int posts_menu_settings=0x7f02001e;
         public static final int snap_image_bg=0x7f02001f;
         public static final int tab=0x7f020020;
-        public static final int tabs_bg=0x7f020021;
+        public static final int tab_selected=0x7f020021;
+        public static final int tabs_bg=0x7f020022;
     }
     public static final class id {
         public static final int actionbar=0x7f070001;
