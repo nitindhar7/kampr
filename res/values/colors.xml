@@ -3,23 +3,31 @@
 
 	<!-- General -->
 	<color name="transparent">#00000000</color>
-	<color name="light_green">#467242</color>
-	<color name="dark_green">#366033</color>
-
-	<!-- Post Item -->
-	<color name="post_item_divider">#DDD</color>
-	<color name="post_item_background">#FFE0B2</color>
-	<color name="post_item_selected">#467242</color>
+	<color name="light_blue">#4f85c9</color>
+	<color name="dark_blue">#2961a7</color>
 
 	<!-- ActionBar -->
 	<color name="actionbar_separator">#CC7A00</color>
-    <color name="actionbar_background_start">#FF9900</color>
-    <color name="actionbar_background_end">#CC7A00</color>
+    <color name="actionbar_background_start">#4f85c9</color>
+    <color name="actionbar_background_end">#2961a7</color>
     
     <!-- Comment Item -->
     <color name="comment_item_divider">#DDD</color>
     
     <!-- Buttons -->
-    <color name="login_button_selected">#366033</color>
+    <color name="login_button_selected">#326db6</color>
+    
+    <!-- tabs -->
+    <color name="tab_background_start">#f5f5f5</color>
+    <color name="tab_background_end">#c5c5c5</color>
+    
+    <!-- Post Items -->
+    <color name="post_item_selected">#FFE790</color>
+    <color name="post_item_background">#FFE0B2</color>
+    <color name="post_background_start">#f5f5f5</color>
+    <color name="post_background_end">#eaeaea</color>
+    <color name="post_title">#FF7E36</color>
+    <color name="post_item_divider">#999999</color>
+    <color name="post_item_divider_top">#ffffff</color>
 
 </resources>
