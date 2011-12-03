@@ -33,3 +33,8 @@ All major contributers will be acknowledged.
 Copyright
 ---------
 Copyright (c) 2011 Nitin Dhar. See MIT-LICENSE for details.
+
+Resources
+---------
+
+- Get the [android versions here](http://developer.android.com/guide/appendix/api-levels.html).

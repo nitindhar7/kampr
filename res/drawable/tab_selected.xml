@@ -7,7 +7,7 @@
     <gradient
         android:angle="270"
         android:endColor="@color/tab_selected_end"
-        android:gradientRadius="100"
+        android:gradientRadius="250"
         android:startColor="@color/tab_selected_start"
         android:type="radial" />
 

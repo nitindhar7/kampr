@@ -23,7 +23,7 @@
     <color name="login_button_selected">#366033</color>
     
     <!-- Tabs -->
-    <color name="tab_selected_start">#777</color>
+    <color name="tab_selected_start">#999</color>
     <color name="tab_selected_end">#555</color>
 
 </resources>

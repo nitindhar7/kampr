@@ -50,11 +50,11 @@
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@drawable/tabs_bg"
             android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp" />
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"

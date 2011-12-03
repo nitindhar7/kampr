@@ -96,6 +96,7 @@ public class PostsActivity extends TabActivity {
         _spec = _tabHost.newTabSpec("questions").setIndicator(_questionTabLayout).setContent(_intent);
         _tabHost.addTab(_spec);
         
+        // http://bit.ly/w1QV6k
         _tabHost.setOnTabChangedListener(new OnTabChangeListener() {
             @Override
             public void onTabChanged(String tag) {
