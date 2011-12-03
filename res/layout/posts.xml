@@ -8,7 +8,7 @@
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#FFF"
+        android:background="#f5f5f5"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/action_bar"
-            android:minHeight="40dp" >
+            android:minHeight="50dp" >
 
             <TextView
                 android:id="@+id/actionbar_logo"
@@ -25,19 +25,19 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:gravity="center_vertical"
-                android:minHeight="40dp"
+                android:minHeight="50dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:shadowColor="#333"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Posts"
+                android:text="All Posts"
                 android:textColor="#FFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
             
-            <TextView
+            <!-- <TextView
                 android:id="@+id/actionbar_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +45,7 @@
                 android:background="@drawable/ic_actionbar_settings_nouveau"
                 android:minHeight="40dp"
                 android:minWidth="40dp" />
+        	-->
         </RelativeLayout>
 
         <TabWidget
@@ -53,8 +54,8 @@
             android:layout_height="50dp"
             android:background="@drawable/tabs_bg"
             android:gravity="center_horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp" />
+            android:minHeight="50dp"
+            android:paddingTop="5dp" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"

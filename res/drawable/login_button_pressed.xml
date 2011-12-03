@@ -2,9 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
 
-    <corners android:radius="4dp" />
+    <corners android:radius="5dp" />
 
-    <solid android:color="@color/dark_green" />
+    <gradient 
+    	android:startColor="@color/actionbar_background_end" 
+    	android:endColor="@color/actionbar_background_start"
+		android:angle="270" />
 
     <padding
         android:bottom="3dp"
