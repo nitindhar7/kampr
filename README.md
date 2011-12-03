@@ -7,6 +7,7 @@ Android
 The project is being tested on:
 
 * [Android 2.1] - eclair_mr1
+* [Android 2.3.4] - G2
 
 Contribute
 ------------
@@ -29,7 +30,7 @@ All major contributers will be acknowledged.
 - Rene Merino
 
   - UI Design
-  - Forrst: https://http://forrst.com/people/Alxmerino
+  - Forrst: http://forrst.com/people/Alxmerino
   - Site: http://amayamedia.com
   - Twitter: @ReneMerino
 
