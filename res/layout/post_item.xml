@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/post_item_states"
-        android:padding="5dp" >
+        android:padding="8dp" >
 
         <LinearLayout
             android:id="@+id/post_item_graphics"
@@ -25,9 +25,11 @@
                 android:id="@+id/post_item_user_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxHeight="40dp"
-                android:maxWidth="40dp"
-                android:src="@drawable/icon" android:minHeight="40dp" android:minWidth="40dp">
+                android:maxHeight="50dp"
+                android:maxWidth="50dp"
+                android:src="@drawable/icon"
+				android:minHeight="50dp" 
+				android:minWidth="50dp">
             </ImageView>
         </LinearLayout>
 
@@ -59,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="date"
-                    android:textColor="#999" android:gravity="top">
+                    android:textColor="#666" android:gravity="top">
                 </TextView>
             </RelativeLayout>
 
@@ -83,8 +85,8 @@
                     android:layout_alignParentLeft="true"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#CCC"
-                    android:textSize="10sp" />
+                    android:textColor="#666"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/post_item_views"
@@ -94,8 +96,8 @@
                     android:layout_toRightOf="@+id/post_item_likes"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#CCC"
-                    android:textSize="10sp" />
+                    android:textColor="#666"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/post_item_comments"
@@ -105,8 +107,8 @@
                     android:layout_toRightOf="@+id/post_item_views"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#CCC"
-                    android:textSize="10sp" />
+                    android:textColor="#666"
+                    android:textSize="15sp" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
