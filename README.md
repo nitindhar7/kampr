@@ -8,13 +8,13 @@ The project is being tested on:
 
 * Android 2.1 (emulator/device)
 * Android 2.2 (emulator)
-* Android 2.3.4 (device)
+* Android 2.3 (device)
 
 Devices Tested On
 -----------------
 
-* Samsung Galaxy S
-* Google G2
+* Samsung Galaxy S (2.1)
+* Google G2 (2.3.4)
 
 Contribute
 ------------

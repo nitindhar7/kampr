@@ -174,57 +174,11 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/snap_nav"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/snap_user"
-        android:background="@color/light_blue" >
-
-        <TextView
-            android:id="@+id/post_likes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="20dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="likes"
-            android:textColor="#FFF" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/post_views"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/post_likes"
-            android:gravity="center_vertical"
-            android:minHeight="20dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="views"
-            android:textColor="#FFF" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/post_comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/post_views"
-            android:gravity="center_vertical"
-            android:minHeight="20dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="comments"
-            android:textColor="#FFF" >
-        </TextView>
-    </RelativeLayout>
-
     <ScrollView
         android:id="@+id/snap_description_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/snap_nav"
+        android:layout_below="@id/snap_user"
         android:isScrollContainer="true"
         android:padding="10dp" >
 
