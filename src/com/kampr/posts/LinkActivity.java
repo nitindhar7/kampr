@@ -3,6 +3,7 @@ package com.kampr.posts;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Spannable;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.kampr.R;
 import com.kampr.runnables.posts.LinkRunnable;
 import com.kampr.util.KamprUtils;
+import com.kampr.util.URLSpanUtils;
 
 public class LinkActivity extends PostActivity {
     
@@ -25,7 +27,7 @@ public class LinkActivity extends PostActivity {
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.link);
         super.onCreate(savedInstanceState);
-        
+
         _linkTitle = (TextView) findViewById(R.id.link_title);
         _linkUrl = (TextView) findViewById(R.id.link_url);
         _linkUsername = (TextView) findViewById(R.id.link_user_name);
@@ -34,7 +36,6 @@ public class LinkActivity extends PostActivity {
         _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
         _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
         _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
-        _linkDesciptionScrollView.setVerticalFadingEdgeEnabled(false);
         
         _fetchPostThread = new Thread(new LinkRunnable(_postId, _handler, _post));
         _fetchPostThread.start();
@@ -46,7 +47,8 @@ public class LinkActivity extends PostActivity {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
                     _linkTitle.setText(_post.getProperty("title"));
-                    _linkUrl.setText(getTruncatedText(_post.getProperty("url"), TRUNCATED_URL_LENGTH));
+                    _linkUrl.setText(_post.getProperty("url"));
+                    URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));

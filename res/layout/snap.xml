@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/snap"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical" >
+    android:background="#FFFFFF" >
 
     <RelativeLayout
         android:id="@+id/actionbar"
@@ -32,46 +31,34 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/actionbar_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_actionbar_settings_nouveau"
             android:minHeight="40dp"
-            android:minWidth="40dp" />
+            android:minWidth="40dp" /> -->
     </RelativeLayout>
 
     <TextView
         android:id="@+id/snap_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/actionbar"
         android:gravity="center_vertical"
         android:minHeight="30dp"
         android:padding="10dp"
-        android:textColor="#467242"
+        android:textColor="@color/post_title"
         android:textSize="20sp"
         android:textStyle="bold" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/snap_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/post_link_bg"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        android:shadowColor="#FFF"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="#333" >
     </TextView>
 
     <RelativeLayout
         android:id="@+id/snap_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/snap_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
@@ -119,7 +106,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/snap_user"
-        android:background="#467242" >
+        android:background="@color/light_blue" >
 
         <TextView
             android:id="@+id/post_likes"
@@ -163,7 +150,8 @@
     <LinearLayout
         android:id="@+id/snap_image"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/snap_nav"
         android:layout_margin="10dp"
         android:orientation="vertical" >
 
@@ -179,16 +167,17 @@
         android:id="@+id/snap_description_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/snap_image"
         android:isScrollContainer="true"
         android:padding="10dp" >
 
         <TextView
             android:id="@+id/snap_description"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:textColor="#333" >
         </TextView>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

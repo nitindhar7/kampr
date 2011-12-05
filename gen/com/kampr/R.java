@@ -11,37 +11,44 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int actionbar_background_end=0x7f040005;
-        public static final int actionbar_background_start=0x7f040004;
+        public static final int actionbar_background_end=0x7f040007;
+        public static final int actionbar_background_start=0x7f040006;
         /**  ActionBar 
          */
-        public static final int actionbar_separator=0x7f040003;
+        public static final int actionbar_separator=0x7f040005;
+        public static final int black=0x7f040002;
         /**  Comment Item 
          */
-        public static final int comment_item_divider=0x7f040006;
-        public static final int dark_blue=0x7f040002;
-        public static final int light_blue=0x7f040001;
+        public static final int comment_item_divider=0x7f040008;
+        public static final int dark_blue=0x7f040004;
+        /**  Hyperlinks 
+         */
+        public static final int hyperlink=0x7f040017;
+        public static final int light_blue=0x7f040003;
         /**  Buttons 
          */
-        public static final int login_button_selected=0x7f040007;
-        public static final int post_background_end=0x7f04000f;
-        public static final int post_background_start=0x7f04000e;
-        public static final int post_item_background=0x7f04000d;
-        public static final int post_item_divider=0x7f040011;
-        public static final int post_item_divider_top=0x7f040012;
+        public static final int login_button_selected=0x7f040009;
+        public static final int post_background_end=0x7f040011;
+        public static final int post_background_start=0x7f040010;
+        public static final int post_hyperlink_end=0x7f040015;
+        public static final int post_hyperlink_start=0x7f040014;
+        public static final int post_item_background=0x7f04000f;
+        public static final int post_item_date=0x7f040016;
+        public static final int post_item_divider=0x7f040013;
         /**  Post Items 
          */
-        public static final int post_item_selected=0x7f04000c;
-        public static final int post_title=0x7f040010;
-        public static final int tab_background_end=0x7f040009;
+        public static final int post_item_selected=0x7f04000e;
+        public static final int post_title=0x7f040012;
+        public static final int tab_background_end=0x7f04000b;
         /**  tabs 
          */
-        public static final int tab_background_start=0x7f040008;
-        public static final int tab_selected_end=0x7f04000b;
-        public static final int tab_selected_start=0x7f04000a;
+        public static final int tab_background_start=0x7f04000a;
+        public static final int tab_selected_end=0x7f04000d;
+        public static final int tab_selected_start=0x7f04000c;
         /**  General 
          */
         public static final int transparent=0x7f040000;
+        public static final int white=0x7f040001;
     }
     public static final class drawable {
         public static final int action_bar=0x7f020000;
@@ -107,15 +114,15 @@ public final class R {
         public static final int comments=0x7f07001a;
         public static final int content=0x7f07002a;
         public static final int link=0x7f070020;
-        public static final int link_date=0x7f070026;
+        public static final int link_date=0x7f070025;
         public static final int link_description=0x7f070029;
-        public static final int link_description_scroll=0x7f070028;
-        public static final int link_nav=0x7f070027;
+        public static final int link_description_scroll=0x7f070027;
+        public static final int link_nav=0x7f070026;
         public static final int link_title=0x7f070021;
-        public static final int link_url=0x7f070022;
-        public static final int link_user=0x7f070023;
-        public static final int link_user_icon=0x7f070024;
-        public static final int link_user_name=0x7f070025;
+        public static final int link_url=0x7f070028;
+        public static final int link_user=0x7f070022;
+        public static final int link_user_icon=0x7f070023;
+        public static final int link_user_name=0x7f070024;
         public static final int login_label_password=0x7f07002e;
         public static final int login_label_username=0x7f07002c;
         public static final int login_password=0x7f07002f;
@@ -142,7 +149,7 @@ public final class R {
         public static final int post_user_icon=0x7f07001d;
         public static final int post_user_name=0x7f07001e;
         public static final int post_views=0x7f07000b;
-        public static final int posts_menu_logout=0x7f070054;
+        public static final int posts_menu_logout=0x7f070052;
         public static final int question=0x7f07003e;
         public static final int question_content=0x7f070046;
         public static final int question_content_scroll=0x7f070045;
@@ -153,19 +160,17 @@ public final class R {
         public static final int question_user_icon=0x7f070041;
         public static final int question_user_name=0x7f070042;
         public static final int snap=0x7f070000;
-        public static final int snap_date=0x7f07004c;
-        public static final int snap_description=0x7f070051;
-        public static final int snap_description_scroll=0x7f070050;
-        public static final int snap_fullscreen=0x7f070052;
-        public static final int snap_fullscreen_image=0x7f070053;
-        public static final int snap_image=0x7f07004e;
-        public static final int snap_large_url=0x7f07004f;
-        public static final int snap_nav=0x7f07004d;
+        public static final int snap_date=0x7f07004b;
+        public static final int snap_description=0x7f070050;
+        public static final int snap_description_scroll=0x7f07004f;
+        public static final int snap_image=0x7f07004d;
+        public static final int snap_large_url=0x7f07004e;
+        public static final int snap_nav=0x7f07004c;
         public static final int snap_title=0x7f070047;
-        public static final int snap_url=0x7f070048;
-        public static final int snap_user=0x7f070049;
-        public static final int snap_user_icon=0x7f07004a;
-        public static final int snap_user_name=0x7f07004b;
+        public static final int snap_user=0x7f070048;
+        public static final int snap_user_icon=0x7f070049;
+        public static final int snap_user_name=0x7f07004a;
+        public static final int webview=0x7f070051;
     }
     public static final class layout {
         public static final int code=0x7f030000;

@@ -7,6 +7,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
 import com.kampr.posts.LinkActivity;
@@ -42,6 +43,10 @@ public class LinksActivity extends PostsListActivity<Link> implements OnScrollLi
         Intent link = new Intent(LinksActivity.this, LinkActivity.class);
         link.putExtra("id", view.getId());
         startActivity(link);
+    }
+    
+    public PostsAdapter<Link> getListAdapter() {
+        return _handler.getAdapter();
     }
     
 }

@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="date"
-                    android:textColor="#666" android:gravity="top">
+                    android:textColor="@color/post_item_date" android:gravity="top" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1">
                 </TextView>
             </RelativeLayout>
 

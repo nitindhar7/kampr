@@ -14,7 +14,7 @@ Contribute
 Submit well documented code and I will merge your changes in
 as long as your code does not break the build. For a list of some things that need
 to be done visit [my pivotal tracker](https://www.pivotaltracker.com/projects/413087).
-Theres also [lighthouse](http://kampr.lighthouseapp.com/projects/87297/home)
+There's also [lighthouse](http://kampr.lighthouseapp.com/projects/87297/home).
 Tests coming up soon! Until then please help me find bugs.
  
 Contributors

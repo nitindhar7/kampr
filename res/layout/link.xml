@@ -31,7 +31,8 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- <TextView
+        <!--
+             <TextView
             android:id="@+id/actionbar_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
             android:background="@drawable/ic_actionbar_settings_nouveau"
             android:minHeight="40dp"
             android:minWidth="40dp" />
-            -->
+        -->
     </RelativeLayout>
 
     <TextView
@@ -55,27 +56,11 @@
         android:textStyle="bold" >
     </TextView>
 
-    <TextView
-        android:id="@+id/link_url"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/link_title"
-        android:background="@drawable/post_link_bg"
-        android:gravity="center_vertical"
-        android:minHeight="20dp"
-        android:padding="10dp"
-        android:shadowColor="#FFF"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="#333" >
-    </TextView>
-
     <RelativeLayout
         android:id="@+id/link_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/link_url"
+        android:layout_below="@id/link_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
@@ -168,6 +153,7 @@
         android:id="@+id/link_description_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@+id/link_url"
         android:layout_below="@+id/link_nav"
         android:isScrollContainer="true"
         android:padding="10dp" >
@@ -180,5 +166,21 @@
             android:textColor="#333" >
         </TextView>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/link_url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:autoLink="web"
+        android:background="@drawable/post_link_bg"
+        android:gravity="center_vertical"
+        android:minHeight="20dp"
+        android:padding="10dp"
+        android:shadowColor="#FFF"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textColor="@color/hyperlink" />
 
 </RelativeLayout>
