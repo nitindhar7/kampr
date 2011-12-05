@@ -34,7 +34,6 @@ public class CodeActivity extends PostActivity {
         _codeUserIcon = (ImageView) findViewById(R.id.code_user_icon);
         _codeScroll = (ScrollView) findViewById(R.id.code_scroll);
         _codeScroll.setVerticalScrollBarEnabled(false);
-        _codeScroll.setVerticalFadingEdgeEnabled(false);
         
         _fetchPostThread = new Thread(new CodeRunnable(_postId, _handler, _post));
         _fetchPostThread.start();

@@ -32,7 +32,7 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="All Posts"
+                android:text="Links"
                 android:textColor="#FFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -51,11 +51,10 @@
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/tabs_bg"
             android:gravity="center_horizontal"
-            android:minHeight="50dp"
-            android:paddingTop="5dp" />
+            android:paddingBottom="5dp" android:paddingTop="5dp"/>
 
         <FrameLayout
             android:id="@android:id/tabcontent"

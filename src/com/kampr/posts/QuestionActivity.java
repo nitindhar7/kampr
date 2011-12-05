@@ -32,7 +32,6 @@ public class QuestionActivity extends PostActivity {
         _questionContent = (TextView) findViewById(R.id.question_content);
         _questionContentScrollView = (ScrollView) findViewById(R.id.question_content_scroll);
         _questionContentScrollView.setVerticalScrollBarEnabled(false);
-        _questionContentScrollView.setVerticalFadingEdgeEnabled(false);
         
         _fetchPostThread = new Thread(new QuestionRunnable(_postId, _handler, _post));
         _fetchPostThread.start();

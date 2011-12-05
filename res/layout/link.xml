@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:minHeight="40dp"
+            android:minHeight="50dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#555" >

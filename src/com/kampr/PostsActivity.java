@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kampr.tabs.CodesActivity;
@@ -22,6 +23,8 @@ public class PostsActivity extends TabActivity {
     private static final LinearLayout.LayoutParams _params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     
     private final int LOGOUT_RESULT_CODE = 1;
+    
+    private static TextView _actionbarLogo;
     
     private static LinearLayout _linkTabLayout;
     private static LinearLayout _snapTabLayout;
@@ -47,6 +50,8 @@ public class PostsActivity extends TabActivity {
         setContentView(R.layout.posts);
 
         _tabHost = getTabHost();
+        
+        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
 
         _linkTabLayout = new LinearLayout(this);
         _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
@@ -106,24 +111,28 @@ public class PostsActivity extends TabActivity {
                     _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _linkTabLayout.setLayoutParams(_params);
                     _linkTabLayout.setPadding(30, 0, 30, 0);
+                    _actionbarLogo.setText("Links");
                 }
                 else if (tag.equals("snaps")) {
                     _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau_selected);
                     _snapTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _snapTabLayout.setLayoutParams(_params);
                     _snapTabLayout.setPadding(30, 0, 30, 0);
+                    _actionbarLogo.setText("Snaps");
                 }
                 else if (tag.equals("codes")) {
                     _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau_selected);
                     _codeTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _codeTabLayout.setLayoutParams(_params);
                     _codeTabLayout.setPadding(30, 0, 30, 0);
+                    _actionbarLogo.setText("Code");
                 }
                 else if (tag.equals("questions")) {
                     _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau_selected);
                     _questionTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _questionTabLayout.setLayoutParams(_params);
                     _questionTabLayout.setPadding(30, 0, 30, 0);
+                    _actionbarLogo.setText("Questions");
                 }
             }       
         });

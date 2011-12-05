@@ -23,7 +23,7 @@
     <color name="tab_background_start">#f5f5f5</color>
     <color name="tab_background_end">#c5c5c5</color>
     <color name="tab_selected_start">#999</color>
-    <color name="tab_selected_end">#444</color>
+    <color name="tab_selected_end">#666</color>
     
     <!-- Post Items -->
     <color name="post_item_selected">#FFE790</color>

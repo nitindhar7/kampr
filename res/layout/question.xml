@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/action_bar"
-        android:minHeight="40dp" >
+        android:minHeight="50dp" >
 
         <TextView
             android:id="@+id/actionbar_logo"
@@ -20,7 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:gravity="center_vertical"
-            android:minHeight="40dp"
+            android:minHeight="50dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:shadowColor="#333"
@@ -32,7 +32,8 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <!--
+             <TextView
             android:id="@+id/actionbar_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,16 +41,18 @@
             android:background="@drawable/ic_actionbar_settings_nouveau"
             android:minHeight="40dp"
             android:minWidth="40dp" />
+        -->
     </RelativeLayout>
 
     <TextView
         android:id="@+id/question_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/actionbar"
         android:gravity="center_vertical"
         android:minHeight="30dp"
         android:padding="10dp"
-        android:textColor="#467242"
+        android:textColor="@color/post_title"
         android:textSize="20sp"
         android:textStyle="bold" >
     </TextView>
@@ -58,6 +61,7 @@
         android:id="@+id/question_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/question_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
@@ -67,10 +71,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:maxHeight="40dp"
-            android:maxWidth="40dp"
-            android:minHeight="40dp"
-            android:minWidth="40dp" >
+            android:maxHeight="50dp"
+            android:maxWidth="50dp"
+            android:minHeight="50dp"
+            android:minWidth="50dp" >
         </ImageView>
 
         <TextView
@@ -80,7 +84,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/question_user_icon"
             android:gravity="center_vertical"
-            android:minHeight="40dp"
+            android:minHeight="50dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#333333"
@@ -93,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:minHeight="40dp"
+            android:minHeight="50dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#555" >
@@ -105,7 +109,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/question_user"
-        android:background="#467242" >
+        android:background="@color/light_blue" >
 
         <TextView
             android:id="@+id/post_likes"
@@ -156,7 +160,7 @@
         <TextView
             android:id="@+id/question_content"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:textColor="#333" >
         </TextView>
