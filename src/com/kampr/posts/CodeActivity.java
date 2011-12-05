@@ -49,9 +49,9 @@ public class CodeActivity extends PostActivity {
                     _codeDate.setText(_post.getProperty("created_at"));
                     _codeContent.setText(_post.getProperty("content"));
                     _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _postLikes.setText(_post.getProperty("like_count") + " Likes");
-                    _postViews.setText(_post.getProperty("view_count") + " Views");
-                    _postComments.setText(_post.getProperty("comment_count") + " Comments");
+                    _postLikesCount.setText(_post.getProperty("like_count") + " Likes");
+                    _postViewsCount.setText(_post.getProperty("view_count") + " Views");
+                    _postCommentsCount.setText(_post.getProperty("comment_count") + " Comments");
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _codeUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();

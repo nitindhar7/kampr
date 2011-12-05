@@ -6,8 +6,15 @@ Android
 -------
 The project is being tested on:
 
-* [Android 2.1] - eclair_mr1
-* [Android 2.3.4] - G2
+* Android 2.1 (emulator/device)
+* Android 2.2 (emulator)
+* Android 2.3.4 (device)
+
+Devices Tested On
+-----------------
+
+* Samsung Galaxy S
+* Google G2
 
 Contribute
 ------------

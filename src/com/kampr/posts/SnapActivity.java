@@ -51,9 +51,9 @@ public class SnapActivity extends PostActivity {
                     _snapUsername.setText(_post.getProperty("name"));
                     _snapDate.setText(_post.getProperty("created_at"));
                     _snapDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _postLikes.setText(_post.getProperty("like_count") + " Likes");
-                    _postViews.setText(_post.getProperty("view_count") + " Views");
-                    _postComments.setText(_post.getProperty("comment_count") + " Comments");
+                    _postLikesCount.setText(_post.getProperty("like_count") + " Likes");
+                    _postViewsCount.setText(_post.getProperty("view_count") + " Views");
+                    _postCommentsCount.setText(_post.getProperty("comment_count") + " Comments");
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _snapUserIcon.setImageBitmap(_userIconBitmap);
                     _snapOriginalUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_original_url")));

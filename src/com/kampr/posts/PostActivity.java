@@ -53,8 +53,9 @@ public class PostActivity extends Activity implements OnClickListener {
     protected int _postId;
     protected Bitmap _userIconBitmap;
     
-    protected TextView _postLikes;
-    protected TextView _postViews;
+    protected TextView _postLikesCount;
+    protected TextView _postViewsCount;
+    protected TextView _postCommentsCount;
     protected TextView _postComments;
     
     public PostActivity() {
@@ -67,9 +68,11 @@ public class PostActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
         
-        _postLikes = (TextView) findViewById(R.id.post_likes);
-        _postViews = (TextView) findViewById(R.id.post_views);
         _postComments = (TextView) findViewById(R.id.post_comments);
+        _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
+        _postViewsCount = (TextView) findViewById(R.id.post_views_count);
+        _postCommentsCount = (TextView) findViewById(R.id.post_comments_count);
+        _postCommentsCount.setOnClickListener(this);
         _postComments.setOnClickListener(this);
         
         _postId = getIntent().getIntExtra("id", DEFAULT_POST_ID);

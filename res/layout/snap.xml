@@ -70,37 +70,108 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:maxHeight="40dp"
-            android:maxWidth="40dp"
-            android:minHeight="40dp"
-            android:minWidth="40dp" >
+            android:maxHeight="50dp"
+            android:maxWidth="50dp"
+            android:minHeight="50dp"
+            android:minWidth="50dp" >
         </ImageView>
 
-        <TextView
-            android:id="@+id/snap_user_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/snap_user_top"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/snap_user_icon"
-            android:gravity="center_vertical"
-            android:minHeight="40dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#333333"
-            android:textStyle="bold" >
-        </TextView>
+            android:layout_toRightOf="@id/snap_user_icon"
+            android:minHeight="25dp">
 
-        <TextView
-            android:id="@+id/snap_date"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/snap_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="25dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/snap_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:minHeight="25dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#555" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/snap_nav"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:minHeight="40dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#555" >
-        </TextView>
+            android:layout_below="@id/snap_user_top"
+            android:layout_toRightOf="@id/snap_user_icon">
+
+            <TextView
+                android:id="@+id/post_likes_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:textColor="@color/post_item_counts" android:textStyle="bold" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/post_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/post_likes_count"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:text="likes •"
+                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
+
+            <TextView
+                android:id="@+id/post_views_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/post_likes"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:textColor="@color/post_item_counts"
+                android:textStyle="bold" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/post_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/post_views_count"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:text="views •"
+                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
+
+            <TextView
+                android:id="@+id/post_comments_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/post_views"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:textColor="@color/post_item_counts" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textStyle="bold" android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/post_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/post_comments_count"
+                android:gravity="center_vertical"
+                android:minHeight="20dp"
+                android:paddingRight="5dp"
+                android:text="comments"
+                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout

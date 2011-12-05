@@ -35,6 +35,7 @@
     <color name="post_hyperlink_start">#DDD</color>
     <color name="post_hyperlink_end">#EEE</color>
     <color name="post_item_date">#CCC</color>
+    <color name="post_item_counts">#999</color>
     
     <!-- Hyperlinks -->
     <color name="hyperlink">#2961a7</color>

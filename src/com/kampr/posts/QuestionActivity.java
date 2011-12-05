@@ -46,9 +46,9 @@ public class QuestionActivity extends PostActivity {
                     _questionUsername.setText(_post.getProperty("name"));
                     _questionDate.setText(_post.getProperty("created_at"));
                     _questionContent.setText(KamprUtils.cleanseText(_post.getProperty("content")));
-                    _postLikes.setText(_post.getProperty("like_count") + " Likes");
-                    _postViews.setText(_post.getProperty("view_count") + " Views");
-                    _postComments.setText(_post.getProperty("comment_count") + " Comments");
+                    _postLikesCount.setText(_post.getProperty("like_count") + " Likes");
+                    _postViewsCount.setText(_post.getProperty("view_count") + " Views");
+                    _postCommentsCount.setText(_post.getProperty("comment_count") + " Comments");
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _questionUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();

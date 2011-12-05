@@ -52,9 +52,9 @@ public class LinkActivity extends PostActivity {
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _postLikes.setText(_post.getProperty("like_count") + " Likes");
-                    _postViews.setText(_post.getProperty("view_count") + " Views");
-                    _postComments.setText(_post.getProperty("comment_count") + " Comments");
+                    _postLikesCount.setText(_post.getProperty("like_count"));
+                    _postViewsCount.setText(_post.getProperty("view_count"));
+                    _postCommentsCount.setText(_post.getProperty("comment_count"));
                     _linkDescription.setVerticalScrollBarEnabled(false);
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _linkUserIcon.setImageBitmap(_userIconBitmap);
