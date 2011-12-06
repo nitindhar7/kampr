@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Spannable;
+import android.text.method.HideReturnsTransformationMethod;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class LinkActivity extends PostActivity {
                     _linkUsername.setText(_post.getProperty("name"));
                     _linkDate.setText(_post.getProperty("created_at"));
                     _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+                    _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     _postLikesCount.setText(_post.getProperty("like_count"));
                     _postViewsCount.setText(_post.getProperty("view_count"));
                     _postCommentsCount.setText(_post.getProperty("comment_count"));

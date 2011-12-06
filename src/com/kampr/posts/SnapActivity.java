@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -51,6 +52,7 @@ public class SnapActivity extends PostActivity {
                     _snapUsername.setText(_post.getProperty("name"));
                     _snapDate.setText(_post.getProperty("created_at"));
                     _snapDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+                    _snapDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     _postLikesCount.setText(_post.getProperty("like_count"));
                     _postViewsCount.setText(_post.getProperty("view_count"));
                     _postCommentsCount.setText(_post.getProperty("comment_count"));

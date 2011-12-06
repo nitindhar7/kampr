@@ -3,6 +3,7 @@ package com.kampr.posts;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.HideReturnsTransformationMethod;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -48,7 +49,9 @@ public class CodeActivity extends PostActivity {
                     _codeUsername.setText(_post.getProperty("name"));
                     _codeDate.setText(_post.getProperty("created_at"));
                     _codeContent.setText(_post.getProperty("content"));
+                    _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+                    _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     _postLikesCount.setText(_post.getProperty("like_count"));
                     _postViewsCount.setText(_post.getProperty("view_count"));
                     _postCommentsCount.setText(_post.getProperty("comment_count"));

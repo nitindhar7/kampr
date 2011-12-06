@@ -50,18 +50,12 @@ public class KamprUtils {
         }
     }
     
-    public static String convertCarriageReturnToNewline(String text) {
-        return text.replaceAll("\\r", "");
-    }
-    
     public static String convertHtmlToText(String text) {
         return Html.fromHtml(text).toString();
     }
     
     public static String cleanseText(String text) {
-        String cleansedText = convertCarriageReturnToNewline(text);
-        cleansedText = convertHtmlToText(cleansedText);
-        return cleansedText;
+        return convertHtmlToText(text);
     }
 
 }
