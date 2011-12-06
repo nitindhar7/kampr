@@ -34,7 +34,7 @@ public class QuestionRunnable extends PostRunnable {
             properties.put("view_count", Integer.toString(_postJSON.getInt("view_count")));
             properties.put("like_count", _postJSON.getString("like_count"));
             properties.put("comment_count", _postJSON.getString("comment_count"));
-            properties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+            properties.put("user_photos_thumb_url", _postJSON.getJSONObject("user").getJSONObject("photos").getString("small_url"));
             properties.put("tag_string", _postJSON.getString("tag_string"));
             
             _post.setProperties(properties);

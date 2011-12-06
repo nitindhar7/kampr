@@ -81,7 +81,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/link_user_icon"
-            android:minHeight="25dp">
+            android:minHeight="25dp" >
 
             <TextView
                 android:id="@+id/link_user_name"
@@ -111,7 +111,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/link_user_top"
-            android:layout_toRightOf="@id/link_user_icon">
+            android:layout_toRightOf="@id/link_user_icon" >
 
             <TextView
                 android:id="@+id/post_likes_count"
@@ -119,7 +119,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
-                android:textColor="@color/post_item_counts" android:textStyle="bold" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp"/>
+                android:paddingLeft="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/post_item_counts"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/post_likes"
@@ -128,8 +135,14 @@
                 android:layout_toRightOf="@id/post_likes_count"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
+                android:paddingLeft="2dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
                 android:text="likes •"
-                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
+                android:textColor="@color/post_item_counts"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/post_views_count"
@@ -138,8 +151,14 @@
                 android:layout_toRightOf="@id/post_likes"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
+                android:paddingLeft="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
                 android:textColor="@color/post_item_counts"
-                android:textStyle="bold" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/post_views"
@@ -148,8 +167,14 @@
                 android:layout_toRightOf="@id/post_views_count"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
+                android:paddingLeft="2dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
                 android:text="views •"
-                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
+                android:textColor="@color/post_item_counts"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/post_comments_count"
@@ -158,7 +183,14 @@
                 android:layout_toRightOf="@id/post_views"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
-                android:textColor="@color/post_item_counts" android:paddingLeft="5dp" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textStyle="bold" android:textSize="12sp"/>
+                android:paddingLeft="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/post_item_counts"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/post_comments"
@@ -167,10 +199,15 @@
                 android:layout_toRightOf="@id/post_comments_count"
                 android:gravity="center_vertical"
                 android:minHeight="20dp"
+                android:paddingLeft="2dp"
                 android:paddingRight="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
                 android:text="comments"
-                android:textColor="@color/post_item_counts" android:shadowColor="@color/white" android:shadowDx="1" android:shadowDy="1" android:shadowRadius="1" android:textSize="12sp" android:paddingLeft="2dp"/>
-
+                android:textColor="@color/post_item_counts"
+                android:textSize="12sp" />
         </RelativeLayout>
     </RelativeLayout>
 
