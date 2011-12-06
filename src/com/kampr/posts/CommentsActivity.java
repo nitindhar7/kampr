@@ -82,7 +82,6 @@ public class CommentsActivity extends ListActivity {
         
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);
-        _comments.setVerticalFadingEdgeEnabled(false);
         _comments.setDivider(getResources().getDrawable(R.color.comment_item_divider));
         _comments.setDividerHeight(1);
 

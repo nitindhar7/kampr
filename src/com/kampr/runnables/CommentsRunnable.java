@@ -20,6 +20,7 @@ import android.os.Handler;
 import com.kampr.KamprActivity;
 import com.kampr.R;
 import com.kampr.models.Comment;
+import com.kampr.util.KamprUtils;
 
 public class CommentsRunnable extends AbstractRunnable {
 
@@ -67,7 +68,10 @@ public class CommentsRunnable extends AbstractRunnable {
                         Map<String, String> replyProperties = new HashMap<String, String>();
                         replyProperties.put("id", replyJSON.getString("id"));
                         replyProperties.put("name", replyJSON.getJSONObject("user").getString("name"));
-                        replyProperties.put("body", replyJSON.getString("body"));
+                        String body = KamprUtils.cleanseText(replyJSON.getString("body"));
+                        body = KamprUtils.stripHtmlTag(body, "<p>");
+                        body = KamprUtils.stripHtmlTag(body, "</p>");
+                        replyProperties.put("body", body);
                         replyProperties.put("created_at", getPostDate(replyJSON));
                         replyProperties.put("user_photos_thumb_url", replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
     
