@@ -15,20 +15,20 @@
 
         <LinearLayout
             android:id="@+id/post_item_graphics"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:minHeight="40dp"
-            android:minWidth="40dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:minHeight="75dp"
+            android:minWidth="75dp"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/post_item_user_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:maxHeight="40dp"
-                android:maxWidth="40dp"
-                android:minHeight="40dp"
-                android:minWidth="40dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:maxHeight="75dp"
+                android:maxWidth="75dp"
+                android:minHeight="75dp"
+                android:minWidth="75dp"
                 android:src="@drawable/icon" >
             </ImageView>
         </LinearLayout>
@@ -53,8 +53,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="username"
-                    android:textColor="#333"
-                    android:textStyle="bold" >
+                    android:textStyle="bold"
+                    android:textColor="#333" >
                 </TextView>
 
                 <TextView
@@ -71,14 +71,23 @@
                     android:textColor="@color/post_item_date" >
                 </TextView>
             </RelativeLayout>
-
+            
+            <View
+            	android:layout_width="fill_parent" 
+            	android:layout_height="1px" 
+            	android:background="@color/gray"
+            	android:layout_marginTop="4dp"
+            	android:layout_marginBottom="4dp" /> 
+            
             <TextView
                 android:id="@+id/post_item_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="content"
-                android:textColor="#333" >
-            </TextView>
+                android:textColor="@color/post_title"
+                android:textStyle="bold"
+                android:textSize="18sp" >
+            </TextView>   
 
             <RelativeLayout
                 android:id="@+id/post_item_counts"
@@ -103,19 +112,14 @@
 
                 <TextView
                     android:id="@+id/post_item_likes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_likes_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="likes •"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_likes" />
 
                 <TextView
                     android:id="@+id/post_item_views_count"
@@ -135,19 +139,15 @@
 
                 <TextView
                     android:id="@+id/post_item_views"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_views_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="views •"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_views" />
+                    -->
 
                 <TextView
                     android:id="@+id/post_item_comments_count"
@@ -167,20 +167,14 @@
 
                 <TextView
                     android:id="@+id/post_item_comments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_comments_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="5dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="comments"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_comments" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
