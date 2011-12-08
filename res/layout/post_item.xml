@@ -3,8 +3,9 @@
     android:id="@+id/post_item"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/post_item_bg"
+    android:background="@color/post_item_background"
     android:orientation="vertical" >
+    <!-- android:background="@drawable/post_item_bg" -->
 
     <RelativeLayout
         android:id="@+id/post_item_sections"
@@ -15,30 +16,53 @@
 
         <LinearLayout
             android:id="@+id/post_item_graphics"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:minHeight="75dp"
-            android:minWidth="75dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:minHeight="60dp"
+            android:minWidth="60dp"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/post_item_user_icon"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:maxHeight="75dp"
-                android:maxWidth="75dp"
-                android:minHeight="75dp"
-                android:minWidth="75dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
                 android:src="@drawable/icon" >
             </ImageView>
         </LinearLayout>
-
+        
+        <!-- post arrow -->
         <LinearLayout
-            android:id="@+id/post_item_details"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="61dp"
+            android:orientation="vertical" >
+	        <ImageView
+		        android:layout_width="20dp"
+		        android:layout_height="20dp"
+		        android:maxHeight="20dp"
+		        android:maxWidth="20dp"
+		        android:minHeight="20dp"
+		        android:minWidth="20dp"
+		        android:src="@drawable/ic_post_content_arrow" >
+		    </ImageView>
+		</LinearLayout>
+            
+		<!-- post content -->
+        <LinearLayout
+            android:id="@+id/post_item_details"
+            android:background="@drawable/post_content_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
             android:layout_toRightOf="@+id/post_item_graphics"
+            android:padding="8dp"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -100,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -127,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/post_item_likes"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -155,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/post_item_views"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
