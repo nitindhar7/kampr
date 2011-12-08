@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -75,6 +76,7 @@ public class PostActivity extends Activity implements OnClickListener {
         _postComments.setOnClickListener(this);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
+        Log.i("POST", _post.getProperty("id"));
     }
     
     @Override

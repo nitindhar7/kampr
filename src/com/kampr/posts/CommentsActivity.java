@@ -29,8 +29,7 @@ import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.KamprUtils;
 
 public class CommentsActivity extends ListActivity {
-    
-    private final int DEFAULT_POST_ID = -1;
+
     private final int LOGOUT_RESULT_CODE = 1;
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -64,7 +63,7 @@ public class CommentsActivity extends ListActivity {
         setContentView(R.layout.comments);
         KamprUtils.trustAllHosts();
 
-        _postId = getIntent().getIntExtra("post_id", DEFAULT_POST_ID);
+        _postId = Integer.parseInt(getIntent().getStringExtra("post_id"));
         _postTitle = getIntent().getStringExtra("post_title");
         _postName = getIntent().getStringExtra("post_name");
         _postCreatedAt = getIntent().getStringExtra("post_created_at");
