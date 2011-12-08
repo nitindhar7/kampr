@@ -34,7 +34,16 @@ public class QuestionActivity extends PostActivity {
         _questionContentScrollView = (ScrollView) findViewById(R.id.question_content_scroll);
         _questionContentScrollView.setVerticalScrollBarEnabled(false);
         
-        _fetchPostThread = new Thread(new QuestionRunnable(_postId, _handler, _post));
+        _questionTitle.setText(_post.getProperty("title"));
+        _questionUsername.setText(_post.getProperty("name"));
+        _questionDate.setText(_post.getProperty("created_at"));
+        _questionContent.setText(KamprUtils.cleanseText(_post.getProperty("content")));
+        _questionContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postLikesCount.setText(_post.getProperty("like_count"));
+        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postCommentsCount.setText(_post.getProperty("comment_count"));
+        
+        _fetchPostThread = new Thread(new QuestionRunnable(_handler, _post));
         _fetchPostThread.start();
     }
     
@@ -43,14 +52,6 @@ public class QuestionActivity extends PostActivity {
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _questionTitle.setText(_post.getProperty("title"));
-                    _questionUsername.setText(_post.getProperty("name"));
-                    _questionDate.setText(_post.getProperty("created_at"));
-                    _questionContent.setText(KamprUtils.cleanseText(_post.getProperty("content")));
-                    _questionContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _postLikesCount.setText(_post.getProperty("like_count"));
-                    _postViewsCount.setText(_post.getProperty("view_count"));
-                    _postCommentsCount.setText(_post.getProperty("comment_count"));
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _questionUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();

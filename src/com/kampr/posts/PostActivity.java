@@ -45,12 +45,12 @@ public class PostActivity extends Activity implements OnClickListener {
     
     protected final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    protected static PropertyContainer _post;
+
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
     protected ProgressDialog _dialog;
-    protected PropertyContainer _post;
     protected Thread _fetchPostThread;
-    protected int _postId;
     protected Bitmap _userIconBitmap;
     
     protected TextView _postLikesCount;
@@ -60,7 +60,6 @@ public class PostActivity extends Activity implements OnClickListener {
     
     public PostActivity() {
         _forrst = new ForrstAPIClient();
-        _post = new PropertyContainer();
     }
     
     @Override
@@ -74,14 +73,14 @@ public class PostActivity extends Activity implements OnClickListener {
         _postCommentsCount = (TextView) findViewById(R.id.post_comments_count);
         _postCommentsCount.setOnClickListener(this);
         _postComments.setOnClickListener(this);
-        
-        _postId = getIntent().getIntExtra("id", DEFAULT_POST_ID);
+
+        _post = (PropertyContainer) getIntent().getSerializableExtra("link");
     }
     
     @Override
     public void onClick(View v) {
         Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
-        comments.putExtra("post_id", _postId);
+        comments.putExtra("post_id", _post.getProperty("id"));
         comments.putExtra("post_title", _post.getProperty("title"));
         comments.putExtra("post_name", _post.getProperty("name"));
         comments.putExtra("post_created_at", _post.getProperty("created_at"));

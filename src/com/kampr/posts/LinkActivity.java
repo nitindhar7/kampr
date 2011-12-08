@@ -37,8 +37,19 @@ public class LinkActivity extends PostActivity {
         _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
         _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
         _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
+
+        _linkTitle.setText(_post.getProperty("title"));
+        _linkUrl.setText(_post.getProperty("url"));
+        URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
+        _linkUsername.setText(_post.getProperty("name"));
+        _linkDate.setText(_post.getProperty("created_at"));
+        _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postLikesCount.setText(_post.getProperty("like_count"));
+        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postCommentsCount.setText(_post.getProperty("comment_count"));
         
-        _fetchPostThread = new Thread(new LinkRunnable(_postId, _handler, _post));
+        _fetchPostThread = new Thread(new LinkRunnable(_handler, _post));
         _fetchPostThread.start();
     }
     
@@ -47,17 +58,6 @@ public class LinkActivity extends PostActivity {
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
-                    _linkTitle.setText(_post.getProperty("title"));
-                    _linkUrl.setText(_post.getProperty("url"));
-                    URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
-                    _linkUsername.setText(_post.getProperty("name"));
-                    _linkDate.setText(_post.getProperty("created_at"));
-                    _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _postLikesCount.setText(_post.getProperty("like_count"));
-                    _postViewsCount.setText(_post.getProperty("view_count"));
-                    _postCommentsCount.setText(_post.getProperty("comment_count"));
-                    _linkDescription.setVerticalScrollBarEnabled(false);
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _linkUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();

@@ -42,6 +42,7 @@ public class LinksActivity extends PostsListActivity<Link> implements OnScrollLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent link = new Intent(LinksActivity.this, LinkActivity.class);
         link.putExtra("id", view.getId());
+        link.putExtra("link", _handler.getAdapter().getViewObject(position));
         startActivity(link);
     }
     

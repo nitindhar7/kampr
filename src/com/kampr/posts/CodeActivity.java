@@ -36,7 +36,18 @@ public class CodeActivity extends PostActivity {
         _codeScroll = (ScrollView) findViewById(R.id.code_scroll);
         _codeScroll.setVerticalScrollBarEnabled(false);
         
-        _fetchPostThread = new Thread(new CodeRunnable(_postId, _handler, _post));
+        _codeTitle.setText(_post.getProperty("title"));
+        _codeUsername.setText(_post.getProperty("name"));
+        _codeDate.setText(_post.getProperty("created_at"));
+        _codeContent.setText(_post.getProperty("content"));
+        _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postLikesCount.setText(_post.getProperty("like_count"));
+        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postCommentsCount.setText(_post.getProperty("comment_count"));
+        
+        _fetchPostThread = new Thread(new CodeRunnable(_handler, _post));
         _fetchPostThread.start();
     }
     
@@ -44,17 +55,7 @@ public class CodeActivity extends PostActivity {
         @Override
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _codeTitle.setText(_post.getProperty("title"));
-                    _codeUsername.setText(_post.getProperty("name"));
-                    _codeDate.setText(_post.getProperty("created_at"));
-                    _codeContent.setText(_post.getProperty("content"));
-                    _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _postLikesCount.setText(_post.getProperty("like_count"));
-                    _postViewsCount.setText(_post.getProperty("view_count"));
-                    _postCommentsCount.setText(_post.getProperty("comment_count"));
+                case FETCH_COMPLETE:                    
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _codeUserIcon.setImageBitmap(_userIconBitmap);
                     _dialog.cancel();

@@ -1,9 +1,11 @@
 package com.kampr.models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PropertyContainer {
+@SuppressWarnings("serial")
+public class PropertyContainer implements Serializable {
     
     protected Map<String, String> _properties;
     

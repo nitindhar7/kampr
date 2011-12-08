@@ -53,5 +53,9 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         return convertView;
     }
+    
+    public PropertyContainer getViewObject(int position) {
+        return (PropertyContainer) _objects.get(position);
+    }
 
 }

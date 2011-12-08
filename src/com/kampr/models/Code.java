@@ -2,6 +2,7 @@ package com.kampr.models;
 
 import java.util.Map;
 
+@SuppressWarnings("serial")
 public class Code extends PropertyContainer {
     
     public Code() {
