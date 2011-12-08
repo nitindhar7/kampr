@@ -3,8 +3,9 @@
     android:id="@+id/post_item"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/post_item_bg"
+    android:background="@color/post_item_background"
     android:orientation="vertical" >
+    <!-- android:background="@drawable/post_item_bg" -->
 
     <RelativeLayout
         android:id="@+id/post_item_sections"
@@ -15,30 +16,53 @@
 
         <LinearLayout
             android:id="@+id/post_item_graphics"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:minHeight="40dp"
-            android:minWidth="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:minHeight="60dp"
+            android:minWidth="60dp"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/post_item_user_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:maxHeight="40dp"
-                android:maxWidth="40dp"
-                android:minHeight="40dp"
-                android:minWidth="40dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
                 android:src="@drawable/icon" >
             </ImageView>
         </LinearLayout>
-
+        
+        <!-- post arrow -->
         <LinearLayout
-            android:id="@+id/post_item_details"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="61dp"
+            android:orientation="vertical" >
+	        <ImageView
+		        android:layout_width="20dp"
+		        android:layout_height="20dp"
+		        android:maxHeight="20dp"
+		        android:maxWidth="20dp"
+		        android:minHeight="20dp"
+		        android:minWidth="20dp"
+		        android:src="@drawable/ic_post_content_arrow" >
+		    </ImageView>
+		</LinearLayout>
+            
+		<!-- post content -->
+        <LinearLayout
+            android:id="@+id/post_item_details"
+            android:background="@drawable/post_content_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
             android:layout_toRightOf="@+id/post_item_graphics"
+            android:padding="8dp"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -53,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="username"
-                    android:textColor="#333"
-                    android:textStyle="bold" >
+                    android:textStyle="bold"
+                    android:textColor="#333" >
                 </TextView>
 
                 <TextView
@@ -71,14 +95,23 @@
                     android:textColor="@color/post_item_date" >
                 </TextView>
             </RelativeLayout>
-
+            
+            <View
+            	android:layout_width="fill_parent" 
+            	android:layout_height="1px" 
+            	android:background="@color/gray"
+            	android:layout_marginTop="4dp"
+            	android:layout_marginBottom="4dp" /> 
+            
             <TextView
                 android:id="@+id/post_item_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="content"
-                android:textColor="#333" >
-            </TextView>
+                android:textColor="@color/post_title"
+                android:textStyle="bold"
+                android:textSize="18sp" >
+            </TextView>   
 
             <RelativeLayout
                 android:id="@+id/post_item_counts"
@@ -91,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -103,19 +136,14 @@
 
                 <TextView
                     android:id="@+id/post_item_likes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_likes_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="likes •"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_likes" />
 
                 <TextView
                     android:id="@+id/post_item_views_count"
@@ -123,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/post_item_likes"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -135,19 +163,15 @@
 
                 <TextView
                     android:id="@+id/post_item_views"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_views_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="views •"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_views" />
+                    -->
 
                 <TextView
                     android:id="@+id/post_item_comments_count"
@@ -155,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/post_item_views"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
+                    android:minHeight="16dp"
                     android:paddingLeft="5dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -167,20 +191,14 @@
 
                 <TextView
                     android:id="@+id/post_item_comments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@id/post_item_comments_count"
                     android:gravity="center_vertical"
-                    android:minHeight="20dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="5dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:text="comments"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp" />
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_comments" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
