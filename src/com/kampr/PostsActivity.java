@@ -26,11 +26,13 @@ public class PostsActivity extends TabActivity {
     
     private static TextView _actionbarLogo;
     
+    private static LinearLayout _allTabLayout;
     private static LinearLayout _linkTabLayout;
     private static LinearLayout _snapTabLayout;
     private static LinearLayout _codeTabLayout;
     private static LinearLayout _questionTabLayout;
     
+    private static ImageView _allTab;
     private static ImageView _linkTab;
     private static ImageView _snapTab;
     private static ImageView _codeTab;
@@ -53,8 +55,13 @@ public class PostsActivity extends TabActivity {
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
 
+        _allTabLayout = new LinearLayout(this);
+        _allTabLayout.setBackgroundResource(R.drawable.tab_selected);
+        _allTabLayout.setLayoutParams(_params);
+        _allTabLayout.setPadding(30, 0, 30, 0);
+        
         _linkTabLayout = new LinearLayout(this);
-        _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
+        _linkTabLayout.setBackgroundResource(R.drawable.tab);
         _linkTabLayout.setLayoutParams(_params);
         _linkTabLayout.setPadding(30, 0, 30, 0);
         
@@ -72,9 +79,16 @@ public class PostsActivity extends TabActivity {
         _questionTabLayout.setBackgroundResource(R.drawable.tab);
         _questionTabLayout.setLayoutParams(_params);
         _questionTabLayout.setPadding(30, 0, 30, 0);
+        
+        _allTab = new ImageView(this);
+        _allTab.setImageResource(R.drawable.ic_tab_code_selected);
+        _allTabLayout.addView(_allTab);
+        _intent = new Intent(PostsActivity.this, AllActivity.class);
+        _spec = _tabHost.newTabSpec("all").setIndicator(_allTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
 
         _linkTab = new ImageView(this);
-        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
+        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
         _linkTabLayout.addView(_linkTab);
         _intent = new Intent(PostsActivity.this, LinksActivity.class);
         _spec = _tabHost.newTabSpec("links").setIndicator(_linkTabLayout).setContent(_intent);
@@ -106,7 +120,14 @@ public class PostsActivity extends TabActivity {
             @Override
             public void onTabChanged(String tag) {
                 clearTabStyles();
-                if (tag.equals("links")) {
+                if (tag.equals("all")) {
+                    _allTab.setImageResource(R.drawable.ic_tab_code_selected);
+                    _allTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _allTabLayout.setLayoutParams(_params);
+                    _allTabLayout.setPadding(30, 0, 30, 0);
+                    _actionbarLogo.setText("All Posts");
+                }
+                else if (tag.equals("links")) {
                     _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
                     _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _linkTabLayout.setLayoutParams(_params);
@@ -174,6 +195,10 @@ public class PostsActivity extends TabActivity {
     }
     
     private void clearTabStyles() {
+        _allTab.setImageResource(R.drawable.ic_tab_code);
+        _allTabLayout.setBackgroundResource(R.drawable.tab);
+        _allTabLayout.setLayoutParams(_params);
+        _allTabLayout.setPadding(30, 0, 30, 0);
         _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
         _linkTabLayout.setBackgroundResource(R.drawable.tab);
         _linkTabLayout.setLayoutParams(_params);
