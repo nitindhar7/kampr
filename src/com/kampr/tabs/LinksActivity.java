@@ -1,7 +1,5 @@
 package com.kampr.tabs;
 
-import java.io.ByteArrayOutputStream;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,6 +11,7 @@ import com.kampr.models.Link;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.LinkActivity;
 import com.kampr.runnables.tabs.LinksRunnable;
+import com.kampr.util.KamprImageUtils;
 
 public class LinksActivity extends PostsListActivity<Link> {
 
@@ -30,9 +29,7 @@ public class LinksActivity extends PostsListActivity<Link> {
         link.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        link.putExtra("post_user_icon", stream.toByteArray());
+        link.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
         
         startActivity(link);
     }

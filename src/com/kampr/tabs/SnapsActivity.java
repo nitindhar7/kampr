@@ -1,14 +1,17 @@
 package com.kampr.tabs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
+import com.kampr.models.PropertyContainer;
 import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
 import com.kampr.runnables.tabs.SnapsRunnable;
+import com.kampr.util.KamprImageUtils;
 
 public class SnapsActivity extends PostsListActivity<Snap> {
     
@@ -22,7 +25,12 @@ public class SnapsActivity extends PostsListActivity<Snap> {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent snap = new Intent(SnapsActivity.this, SnapActivity.class);
-        snap.putExtra("post", _handler.getAdapter().getViewObject(position));
+        PropertyContainer post = _handler.getAdapter().getViewObject(position);
+        snap.putExtra("post", post);
+        
+        Bitmap bmp = _userIcons.get(post.getProperty("id"));
+        snap.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
+
         startActivity(snap);
     }
 

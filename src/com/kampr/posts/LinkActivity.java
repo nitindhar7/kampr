@@ -1,6 +1,5 @@
 package com.kampr.posts;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.method.HideReturnsTransformationMethod;
@@ -22,7 +21,6 @@ public class LinkActivity extends PostActivity {
     private TextView _linkDescription;
     private ImageView _linkUserIcon;
     private ScrollView _linkDesciptionScrollView;
-    private Bitmap _postUserIcon;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,8 @@ public class LinkActivity extends PostActivity {
         _postLikesCount.setText(_post.getProperty("like_count"));
         _postViewsCount.setText(_post.getProperty("view_count"));
         _postCommentsCount.setText(_post.getProperty("comment_count"));
-        _postUserIcon = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
-        _linkUserIcon.setImageBitmap(_postUserIcon);
+        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _linkUserIcon.setImageBitmap(_userIconBitmap);
     }
 
 }
