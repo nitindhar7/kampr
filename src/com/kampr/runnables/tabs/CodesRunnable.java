@@ -39,7 +39,7 @@ public class CodesRunnable extends PostsRunnable<Code> {
                 properties.put("view_count", Integer.toString(json.getInt("view_count")));
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
-                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
                 
                 Code code = new Code(properties);
                 _listOfPosts.add(code);
