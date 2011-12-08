@@ -12,13 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,7 +48,6 @@ public class PostActivity extends Activity implements OnClickListener {
 
     protected ForrstAPI _forrst;
     protected JSONObject _postJSON;
-    protected ProgressDialog _dialog;
     protected Thread _fetchPostThread;
     protected Bitmap _userIconBitmap;
     
@@ -66,8 +63,6 @@ public class PostActivity extends Activity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _dialog = ProgressDialog.show(PostActivity.this, "", "Loading...", true);
-        
         _postComments = (TextView) findViewById(R.id.post_comments);
         _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
         _postViewsCount = (TextView) findViewById(R.id.post_views_count);
@@ -76,7 +71,6 @@ public class PostActivity extends Activity implements OnClickListener {
         _postComments.setOnClickListener(this);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
-        Log.i("POST", _post.getProperty("id"));
     }
     
     @Override

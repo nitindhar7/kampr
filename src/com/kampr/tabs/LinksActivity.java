@@ -1,12 +1,16 @@
 package com.kampr.tabs;
 
+import java.io.ByteArrayOutputStream;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
+import com.kampr.models.PropertyContainer;
 import com.kampr.posts.LinkActivity;
 import com.kampr.runnables.tabs.LinksRunnable;
 
@@ -22,7 +26,14 @@ public class LinksActivity extends PostsListActivity<Link> {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent link = new Intent(LinksActivity.this, LinkActivity.class);
-        link.putExtra("post", _handler.getAdapter().getViewObject(position));
+        PropertyContainer post = _handler.getAdapter().getViewObject(position);
+        link.putExtra("post", post);
+        
+        Bitmap bmp = _userIcons.get(post.getProperty("id"));
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        link.putExtra("post_user_icon", stream.toByteArray());
+        
         startActivity(link);
     }
     

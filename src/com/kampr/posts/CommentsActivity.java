@@ -10,7 +10,6 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +25,7 @@ import com.kampr.R;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
+import com.kampr.util.KamprImageUtils;
 import com.kampr.util.KamprUtils;
 
 public class CommentsActivity extends ListActivity {
@@ -67,7 +67,7 @@ public class CommentsActivity extends ListActivity {
         _postTitle = getIntent().getStringExtra("post_title");
         _postName = getIntent().getStringExtra("post_name");
         _postCreatedAt = getIntent().getStringExtra("post_created_at");
-        _postUserIcon = getBitmapFromByteArray();
+        _postUserIcon = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         
         _postTitleView = (TextView) findViewById(R.id.post_title);
         _postUsernameView = (TextView) findViewById(R.id.post_user_name);
@@ -89,11 +89,6 @@ public class CommentsActivity extends ListActivity {
         _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
         _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));
         _fetchCommentsThread.start();
-    }
-    
-    protected Bitmap getBitmapFromByteArray() {
-        byte[] bmpBytes = getIntent().getByteArrayExtra("post_user_icon");
-        return BitmapFactory.decodeByteArray(bmpBytes, 0, bmpBytes.length);
     }
     
     @Override
