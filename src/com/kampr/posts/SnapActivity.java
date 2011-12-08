@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.method.HideReturnsTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -57,6 +58,7 @@ public class SnapActivity extends PostActivity {
         public void handleMessage(Message msg) {
             switch(msg.getData().getInt(FETCH_STATUS)) {
                 case FETCH_COMPLETE:
+                    Log.i("SNAP ACTIVITY", _post.getProperty("snaps_original_url"));
                     _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
                     _snapUserIcon.setImageBitmap(_userIconBitmap);
                     _snapOriginalUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_original_url")));

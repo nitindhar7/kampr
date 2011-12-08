@@ -15,12 +15,9 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
 
 public class LinksRunnable extends PostsRunnable<Link> {
-    
-    private Map<String,String> _forrstParams;
 
     public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
-        super(context, handler, listOfPosts, userIcons);
-        _forrstParams = forrstParams;
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {

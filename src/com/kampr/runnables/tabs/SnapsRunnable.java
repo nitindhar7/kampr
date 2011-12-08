@@ -16,8 +16,8 @@ import com.kampr.models.Snap;
 
 public class SnapsRunnable extends PostsRunnable<Snap> {
     
-    public SnapsRunnable(Context context, PostsHandler<Snap> handler, List<Snap> listOfPosts, Map<String,Bitmap> userIcons) {
-        super(context, handler, listOfPosts, userIcons);
+    public SnapsRunnable(Context context, PostsHandler<Snap> handler, List<Snap> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {
@@ -39,7 +39,7 @@ public class SnapsRunnable extends PostsRunnable<Snap> {
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
                 properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
-                properties.put("large_small_url", json.getJSONObject("snaps").getString("large_url"));
+                properties.put("snaps_original_url", json.getJSONObject("snaps").getString("large_url"));
                 
                 Snap snap = new Snap(properties);
                 _listOfPosts.add(snap);

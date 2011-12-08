@@ -16,8 +16,8 @@ import com.kampr.models.Code;
 
 public class CodesRunnable extends PostsRunnable<Code> {
     
-    public CodesRunnable(Context context, PostsHandler<Code> handler, List<Code> listOfPosts, Map<String,Bitmap> userIcons) {
-        super(context, handler, listOfPosts, userIcons);
+    public CodesRunnable(Context context, PostsHandler<Code> handler, List<Code> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {

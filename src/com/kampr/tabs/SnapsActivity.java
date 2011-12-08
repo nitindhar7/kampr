@@ -15,14 +15,14 @@ public class SnapsActivity extends PostsListActivity<Snap> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _handler = new PostsHandler<Snap>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new SnapsRunnable(this, _handler, _listOfPosts, _userIcons));
+        _fetchPostsThread = new Thread(new SnapsRunnable(this, _handler, _listOfPosts, _userIcons, null));
         _fetchPostsThread.start();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent snap = new Intent(SnapsActivity.this, SnapActivity.class);
-        snap.putExtra("id", view.getId());
+        snap.putExtra("post", _handler.getAdapter().getViewObject(position));
         startActivity(snap);
     }
 

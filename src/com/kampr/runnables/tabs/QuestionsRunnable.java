@@ -16,8 +16,8 @@ import com.kampr.models.Question;
 
 public class QuestionsRunnable extends PostsRunnable<Question> {
 
-    public QuestionsRunnable(Context context, PostsHandler<Question> handler, List<Question> listOfPosts, Map<String,Bitmap> userIcons) {
-        super(context, handler, listOfPosts, userIcons);
+    public QuestionsRunnable(Context context, PostsHandler<Question> handler, List<Question> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {

@@ -74,7 +74,7 @@ public class PostActivity extends Activity implements OnClickListener {
         _postCommentsCount.setOnClickListener(this);
         _postComments.setOnClickListener(this);
 
-        _post = (PropertyContainer) getIntent().getSerializableExtra("link");
+        _post = (PropertyContainer) getIntent().getSerializableExtra("post");
     }
     
     @Override
