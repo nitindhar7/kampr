@@ -97,11 +97,12 @@
             </RelativeLayout>
             
             <View
-            	android:layout_width="fill_parent" 
-            	android:layout_height="1px" 
-            	android:background="@color/gray"
-            	android:layout_marginTop="4dp"
-            	android:layout_marginBottom="4dp" /> 
+                android:id="@+id/post_item_divider"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gray" />
             
             <TextView
                 android:id="@+id/post_item_content"
@@ -143,7 +144,7 @@
                     android:gravity="center_vertical"
                     android:minWidth="12dp"
                     android:minHeight="12dp"
-                    android:background="@drawable/ic_post_likes" />
+                    android:background="@drawable/ic_post_likes" android:layout_marginTop="3dp"/>
 
                 <TextView
                     android:id="@+id/post_item_views_count"
@@ -170,7 +171,7 @@
                     android:gravity="center_vertical"
                     android:minWidth="12dp"
                     android:minHeight="12dp"
-                    android:background="@drawable/ic_post_views" />
+                    android:background="@drawable/ic_post_views" android:layout_marginTop="3dp"/>
                     -->
 
                 <TextView
@@ -198,7 +199,7 @@
                     android:gravity="center_vertical"
                     android:minWidth="12dp"
                     android:minHeight="12dp"
-                    android:background="@drawable/ic_post_comments" />
+                    android:background="@drawable/ic_post_comments" android:layout_marginTop="3dp"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
