@@ -17,15 +17,17 @@ import com.kampr.runnables.AbstractRunnable;
 
 public abstract class PostsRunnable<T> extends AbstractRunnable {
 
+    protected Map<String,String> _forrstParams;
     protected Context _context;
     protected List<T> _listOfPosts;
     protected Map<String,Bitmap> _userIcons;
     
-    public PostsRunnable(Context context, PostsHandler<T> handler, List<T> listOfPosts, Map<String,Bitmap> userIcons) {
+    public PostsRunnable(Context context, PostsHandler<T> handler, List<T> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
         super(handler);
         _context = context;
         _listOfPosts = listOfPosts;
         _userIcons = userIcons;
+        _forrstParams = forrstParams;
     }
     
     protected void fetchUserIcon(T t) {

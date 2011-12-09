@@ -16,8 +16,8 @@ import com.kampr.models.Question;
 
 public class QuestionsRunnable extends PostsRunnable<Question> {
 
-    public QuestionsRunnable(Context context, PostsHandler<Question> handler, List<Question> listOfPosts, Map<String,Bitmap> userIcons) {
-        super(context, handler, listOfPosts, userIcons);
+    public QuestionsRunnable(Context context, PostsHandler<Question> handler, List<Question> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {
@@ -39,7 +39,7 @@ public class QuestionsRunnable extends PostsRunnable<Question> {
                 properties.put("view_count", Integer.toString(json.getInt("view_count")));
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
-                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
                 
                 Question question = new Question(properties);
                 _listOfPosts.add(question);

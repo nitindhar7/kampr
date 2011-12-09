@@ -1,15 +1,13 @@
 package com.kampr.posts;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.method.HideReturnsTransformationMethod;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.runnables.posts.CodeRunnable;
+import com.kampr.util.KamprImageUtils;
 import com.kampr.util.KamprUtils;
 
 public class CodeActivity extends PostActivity {
@@ -36,31 +34,18 @@ public class CodeActivity extends PostActivity {
         _codeScroll = (ScrollView) findViewById(R.id.code_scroll);
         _codeScroll.setVerticalScrollBarEnabled(false);
         
-        _fetchPostThread = new Thread(new CodeRunnable(_postId, _handler, _post));
-        _fetchPostThread.start();
+        _codeTitle.setText(_post.getProperty("title"));
+        _codeUsername.setText(_post.getProperty("name"));
+        _codeDate.setText(_post.getProperty("created_at"));
+        _codeContent.setText(_post.getProperty("content"));
+        _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postLikesCount.setText(_post.getProperty("like_count"));
+        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postCommentsCount.setText(_post.getProperty("comment_count"));
+        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _codeUserIcon.setImageBitmap(_userIconBitmap);
     }
-    
-    private Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _codeTitle.setText(_post.getProperty("title"));
-                    _codeUsername.setText(_post.getProperty("name"));
-                    _codeDate.setText(_post.getProperty("created_at"));
-                    _codeContent.setText(_post.getProperty("content"));
-                    _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _postLikesCount.setText(_post.getProperty("like_count"));
-                    _postViewsCount.setText(_post.getProperty("view_count"));
-                    _postCommentsCount.setText(_post.getProperty("comment_count"));
-                    _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
-                    _codeUserIcon.setImageBitmap(_userIconBitmap);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
 
 }

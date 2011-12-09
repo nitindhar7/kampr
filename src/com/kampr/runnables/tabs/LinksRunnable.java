@@ -15,12 +15,9 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Link;
 
 public class LinksRunnable extends PostsRunnable<Link> {
-    
-    private Map<String,String> _forrstParams;
 
     public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
-        super(context, handler, listOfPosts, userIcons);
-        _forrstParams = forrstParams;
+        super(context, handler, listOfPosts, userIcons, forrstParams);
     }
     
     public void run() {
@@ -42,7 +39,7 @@ public class LinksRunnable extends PostsRunnable<Link> {
                 properties.put("view_count", Integer.toString(json.getInt("view_count")));
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
-                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
+                properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
                 
                 Link link = (Link) new Link(properties);
                 _listOfPosts.add(link);

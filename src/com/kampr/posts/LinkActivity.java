@@ -1,8 +1,6 @@
 package com.kampr.posts;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Spannable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.widget.ImageView;
@@ -10,7 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.runnables.posts.LinkRunnable;
+import com.kampr.util.KamprImageUtils;
 import com.kampr.util.KamprUtils;
 import com.kampr.util.URLSpanUtils;
 
@@ -37,33 +35,19 @@ public class LinkActivity extends PostActivity {
         _linkUserIcon = (ImageView) findViewById(R.id.link_user_icon);
         _linkDesciptionScrollView = (ScrollView) findViewById(R.id.link_description_scroll);
         _linkDesciptionScrollView.setVerticalScrollBarEnabled(false);
-        
-        _fetchPostThread = new Thread(new LinkRunnable(_postId, _handler, _post));
-        _fetchPostThread.start();
+
+        _linkTitle.setText(_post.getProperty("title"));
+        _linkUrl.setText(_post.getProperty("url"));
+        URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
+        _linkUsername.setText(_post.getProperty("name"));
+        _linkDate.setText(_post.getProperty("created_at"));
+        _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postLikesCount.setText(_post.getProperty("like_count"));
+        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postCommentsCount.setText(_post.getProperty("comment_count"));
+        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _linkUserIcon.setImageBitmap(_userIconBitmap);
     }
-    
-    private Handler _handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch(msg.getData().getInt(FETCH_STATUS)) {
-                case FETCH_COMPLETE:
-                    _linkTitle.setText(_post.getProperty("title"));
-                    _linkUrl.setText(_post.getProperty("url"));
-                    URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
-                    _linkUsername.setText(_post.getProperty("name"));
-                    _linkDate.setText(_post.getProperty("created_at"));
-                    _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
-                    _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    _postLikesCount.setText(_post.getProperty("like_count"));
-                    _postViewsCount.setText(_post.getProperty("view_count"));
-                    _postCommentsCount.setText(_post.getProperty("comment_count"));
-                    _linkDescription.setVerticalScrollBarEnabled(false);
-                    _userIconBitmap = fetchUserIcon(_post.getProperty("user_photos_thumb_url"));
-                    _linkUserIcon.setImageBitmap(_userIconBitmap);
-                    _dialog.cancel();
-                    break;
-            }
-        }
-    };
 
 }
