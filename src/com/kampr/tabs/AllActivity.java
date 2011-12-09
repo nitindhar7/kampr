@@ -1,52 +1,53 @@
 package com.kampr.tabs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 
-import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Link;
+import com.kampr.models.PropertyContainer;
+import com.kampr.posts.CodeActivity;
 import com.kampr.posts.LinkActivity;
-import com.kampr.runnables.tabs.LinksRunnable;
+import com.kampr.posts.QuestionActivity;
+import com.kampr.posts.SnapActivity;
+import com.kampr.runnables.tabs.AllRunnable;
+import com.kampr.util.KamprImageUtils;
 
-public class AllActivity extends PostsListActivity<Link> implements OnScrollListener {
+public class AllActivity extends PostsListActivity<PropertyContainer> {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _posts.setOnScrollListener(this);
-        _handler = new PostsHandler<Link>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new LinksRunnable(this, _handler, _listOfPosts, _userIcons, null));
+        _handler = new PostsHandler<PropertyContainer>(this, _dialog, _posts, _listOfPosts, _userIcons);
+        _fetchPostsThread = new Thread(new AllRunnable(this, _handler, _listOfPosts, _userIcons, null));
         _fetchPostsThread.start();
-    }
-    
-    // http://stackoverflow.com/questions/1080811/android-endless-list
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
-        
-        if(loadMore) {
-//            adapter.count += visibleCount; // or any other amount
-//            adapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent link = new Intent(AllActivity.this, LinkActivity.class);
-        link.putExtra("id", view.getId());
-        startActivity(link);
+        Intent postIntent = null;
+        PropertyContainer post = _handler.getAdapter().getViewObject(position);
+        
+        if (post.getProperty("post_type").equals("link")) {
+            postIntent = new Intent(AllActivity.this, LinkActivity.class);
+        }
+        else if (post.getProperty("post_type").equals("snap")) {
+            postIntent = new Intent(AllActivity.this, SnapActivity.class);
+        }
+        else if (post.getProperty("post_type").equals("code")) {
+            postIntent = new Intent(AllActivity.this, CodeActivity.class);
+        }
+        else {
+            postIntent = new Intent(AllActivity.this, QuestionActivity.class);
+        }
+        
+        postIntent.putExtra("post", post);
+        
+        Bitmap bmp = _userIcons.get(post.getProperty("id"));
+        postIntent.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
+        
+        startActivity(postIntent);
     }
-    
-    public PostsAdapter<Link> getListAdapter() {
-        return _handler.getAdapter();
-    }
-    
+
 }

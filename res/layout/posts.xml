@@ -32,7 +32,7 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Links"
+                android:text="Posts > All"
                 android:textColor="#FFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
