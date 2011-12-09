@@ -94,6 +94,7 @@ public final class R {
         public static final int tab=0x7f020025;
         public static final int tab_selected=0x7f020026;
         public static final int tabs_bg=0x7f020027;
+        public static final int user_icon_bg=0x7f020028;
     }
     public static final class id {
         public static final int actionbar=0x7f070001;
@@ -141,22 +142,22 @@ public final class R {
         public static final int post_comments_count=0x7f07000e;
         public static final int post_date=0x7f070022;
         public static final int post_item=0x7f070035;
-        public static final int post_item_comments=0x7f070045;
-        public static final int post_item_comments_count=0x7f070044;
+        public static final int post_item_comments=0x7f070044;
+        public static final int post_item_comments_count=0x7f070045;
         public static final int post_item_content=0x7f07003e;
         public static final int post_item_counts=0x7f07003f;
         public static final int post_item_date=0x7f07003c;
         public static final int post_item_details=0x7f070039;
         public static final int post_item_divider=0x7f07003d;
         public static final int post_item_graphics=0x7f070037;
-        public static final int post_item_likes=0x7f070041;
-        public static final int post_item_likes_count=0x7f070040;
+        public static final int post_item_likes=0x7f070042;
+        public static final int post_item_likes_count=0x7f070043;
         public static final int post_item_sections=0x7f070036;
         public static final int post_item_title=0x7f07003a;
         public static final int post_item_user_icon=0x7f070038;
         public static final int post_item_username=0x7f07003b;
-        public static final int post_item_views=0x7f070043;
-        public static final int post_item_views_count=0x7f070042;
+        public static final int post_item_views=0x7f070040;
+        public static final int post_item_views_count=0x7f070041;
         public static final int post_likes=0x7f07000b;
         public static final int post_likes_count=0x7f07000a;
         public static final int post_title=0x7f07001e;

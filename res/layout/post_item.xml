@@ -30,7 +30,8 @@
                 android:maxWidth="60dp"
                 android:minHeight="60dp"
                 android:minWidth="60dp"
-                android:src="@drawable/icon" >
+                android:src="@drawable/icon"
+                android:background="@drawable/user_icon_bg" >
             </ImageView>
         </LinearLayout>
         
@@ -60,7 +61,7 @@
             android:background="@drawable/post_content_bg"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/post_item_graphics"
             android:padding="8dp"
             android:orientation="vertical" >
@@ -120,40 +121,53 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" >
 
+				<!-- views counter -->
+				<TextView
+                    android:id="@+id/post_item_views"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:gravity="center_vertical"
+                    android:minWidth="18dp"
+                    android:minHeight="18dp"
+                    android:background="@drawable/ic_post_views" />
+                    
+                <TextView
+                    android:id="@+id/post_item_views_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@id/post_item_views"
+                    android:minHeight="16dp"
+                    android:paddingLeft="3dp"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/post_item_counts"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                    
+                <!-- likes counter -->
+				<TextView
+                    android:id="@+id/post_item_likes"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@id/post_item_views_count"
+                    android:minWidth="12dp"
+                    android:minHeight="12dp"
+                    android:background="@drawable/ic_post_likes"
+					android:layout_marginTop="3dp"/>
+					
                 <TextView
                     android:id="@+id/post_item_likes_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:minHeight="16dp"
-                    android:paddingLeft="5dp"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:textColor="@color/post_item_counts"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/post_item_likes"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@id/post_item_likes_count"
-                    android:gravity="center_vertical"
-                    android:minWidth="12dp"
-                    android:minHeight="12dp"
-                    android:background="@drawable/ic_post_likes" android:layout_marginTop="3dp"/>
-
-                <TextView
-                    android:id="@+id/post_item_views_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/post_item_likes"
-                    android:gravity="center_vertical"
                     android:minHeight="16dp"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="3dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
                     android:shadowDy="1"
@@ -161,24 +175,25 @@
                     android:textColor="@color/post_item_counts"
                     android:textSize="12sp"
                     android:textStyle="bold" />
-
+                
+                <!-- comments counter -->
                 <TextView
-                    android:id="@+id/post_item_views"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@id/post_item_views_count"
+                    android:id="@+id/post_item_comments"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="8dp"
                     android:gravity="center_vertical"
-                    android:minWidth="12dp"
-                    android:minHeight="12dp"
-                    android:background="@drawable/ic_post_views" android:layout_marginTop="3dp"/>
-                    -->
-
+                    android:layout_toRightOf="@id/post_item_likes_count"
+                    android:minWidth="16dp"
+                    android:minHeight="16dp"
+                    android:background="@drawable/ic_post_comments" 
+                    android:layout_marginTop="1dp"/>
+                    
                 <TextView
                     android:id="@+id/post_item_comments_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/post_item_views"
+                    android:layout_toRightOf="@id/post_item_comments"
                     android:gravity="center_vertical"
                     android:minHeight="16dp"
                     android:paddingLeft="5dp"
@@ -190,16 +205,6 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/post_item_comments"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@id/post_item_comments_count"
-                    android:gravity="center_vertical"
-                    android:minWidth="12dp"
-                    android:minHeight="12dp"
-                    android:background="@drawable/ic_post_comments" android:layout_marginTop="3dp"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
