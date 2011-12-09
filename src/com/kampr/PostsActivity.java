@@ -13,6 +13,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kampr.tabs.AllActivity;
 import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
@@ -26,11 +27,13 @@ public class PostsActivity extends TabActivity {
     
     private static TextView _actionbarLogo;
     
+    private static LinearLayout _allTabLayout;
     private static LinearLayout _linkTabLayout;
     private static LinearLayout _snapTabLayout;
     private static LinearLayout _codeTabLayout;
     private static LinearLayout _questionTabLayout;
     
+    private static ImageView _allTab;
     private static ImageView _linkTab;
     private static ImageView _snapTab;
     private static ImageView _codeTab;
@@ -41,7 +44,7 @@ public class PostsActivity extends TabActivity {
     private static Intent _intent;
     
     public PostsActivity() {
-        _params.setMargins(5, 0, 5, 0);
+        _params.setMargins(4, 0, 4, 0);
     }
     
     @Override
@@ -53,28 +56,40 @@ public class PostsActivity extends TabActivity {
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
 
+        _allTabLayout = new LinearLayout(this);
+        _allTabLayout.setBackgroundResource(R.drawable.tab_selected);
+        _allTabLayout.setLayoutParams(_params);
+        _allTabLayout.setPadding(20, 0, 20, 0);
+        
         _linkTabLayout = new LinearLayout(this);
-        _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
+        _linkTabLayout.setBackgroundResource(R.drawable.tab);
         _linkTabLayout.setLayoutParams(_params);
-        _linkTabLayout.setPadding(30, 0, 30, 0);
+        _linkTabLayout.setPadding(20, 0, 20, 0);
         
         _snapTabLayout = new LinearLayout(this);
         _snapTabLayout.setBackgroundResource(R.drawable.tab);
         _snapTabLayout.setLayoutParams(_params);
-        _snapTabLayout.setPadding(30, 0, 30, 0);
+        _snapTabLayout.setPadding(20, 0, 20, 0);
         
         _codeTabLayout = new LinearLayout(this);
         _codeTabLayout.setBackgroundResource(R.drawable.tab);
         _codeTabLayout.setLayoutParams(_params);
-        _codeTabLayout.setPadding(30, 0, 30, 0);
+        _codeTabLayout.setPadding(20, 0, 20, 0);
         
         _questionTabLayout = new LinearLayout(this);
         _questionTabLayout.setBackgroundResource(R.drawable.tab);
         _questionTabLayout.setLayoutParams(_params);
-        _questionTabLayout.setPadding(30, 0, 30, 0);
+        _questionTabLayout.setPadding(20, 0, 20, 0);
+        
+        _allTab = new ImageView(this);
+        _allTab.setImageResource(R.drawable.ic_tab_code_selected);
+        _allTabLayout.addView(_allTab);
+        _intent = new Intent(PostsActivity.this, AllActivity.class);
+        _spec = _tabHost.newTabSpec("all").setIndicator(_allTabLayout).setContent(_intent);
+        _tabHost.addTab(_spec);
 
         _linkTab = new ImageView(this);
-        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
+        _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
         _linkTabLayout.addView(_linkTab);
         _intent = new Intent(PostsActivity.this, LinksActivity.class);
         _spec = _tabHost.newTabSpec("links").setIndicator(_linkTabLayout).setContent(_intent);
@@ -106,33 +121,40 @@ public class PostsActivity extends TabActivity {
             @Override
             public void onTabChanged(String tag) {
                 clearTabStyles();
-                if (tag.equals("links")) {
+                if (tag.equals("all")) {
+                    _allTab.setImageResource(R.drawable.ic_tab_code_selected);
+                    _allTabLayout.setBackgroundResource(R.drawable.tab_selected);
+                    _allTabLayout.setLayoutParams(_params);
+                    _allTabLayout.setPadding(20, 0, 20, 0);
+                    _actionbarLogo.setText("Posts > All");
+                }
+                else if (tag.equals("links")) {
                     _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
                     _linkTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _linkTabLayout.setLayoutParams(_params);
-                    _linkTabLayout.setPadding(30, 0, 30, 0);
-                    _actionbarLogo.setText("Links");
+                    _linkTabLayout.setPadding(20, 0, 20, 0);
+                    _actionbarLogo.setText("Posts > Links");
                 }
                 else if (tag.equals("snaps")) {
                     _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau_selected);
                     _snapTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _snapTabLayout.setLayoutParams(_params);
-                    _snapTabLayout.setPadding(30, 0, 30, 0);
-                    _actionbarLogo.setText("Snaps");
+                    _snapTabLayout.setPadding(20, 0, 20, 0);
+                    _actionbarLogo.setText("Posts > Snaps");
                 }
                 else if (tag.equals("codes")) {
                     _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau_selected);
                     _codeTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _codeTabLayout.setLayoutParams(_params);
-                    _codeTabLayout.setPadding(30, 0, 30, 0);
-                    _actionbarLogo.setText("Code");
+                    _codeTabLayout.setPadding(20, 0, 20, 0);
+                    _actionbarLogo.setText("Posts > Codes");
                 }
                 else if (tag.equals("questions")) {
                     _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau_selected);
                     _questionTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _questionTabLayout.setLayoutParams(_params);
-                    _questionTabLayout.setPadding(30, 0, 30, 0);
-                    _actionbarLogo.setText("Questions");
+                    _questionTabLayout.setPadding(20, 0, 20, 0);
+                    _actionbarLogo.setText("Posts > Questions");
                 }
             }       
         });
@@ -174,22 +196,26 @@ public class PostsActivity extends TabActivity {
     }
     
     private void clearTabStyles() {
+        _allTab.setImageResource(R.drawable.ic_tab_code);
+        _allTabLayout.setBackgroundResource(R.drawable.tab);
+        _allTabLayout.setLayoutParams(_params);
+        _allTabLayout.setPadding(20, 0, 20, 0);
         _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau);
         _linkTabLayout.setBackgroundResource(R.drawable.tab);
         _linkTabLayout.setLayoutParams(_params);
-        _linkTabLayout.setPadding(30, 0, 30, 0);
+        _linkTabLayout.setPadding(20, 0, 20, 0);
         _snapTab.setImageResource(R.drawable.ic_tab_snap_nouveau);
         _snapTabLayout.setBackgroundResource(R.drawable.tab);
         _snapTabLayout.setLayoutParams(_params);
-        _snapTabLayout.setPadding(30, 0, 30, 0);
+        _snapTabLayout.setPadding(20, 0, 20, 0);
         _codeTab.setImageResource(R.drawable.ic_tab_code_nouveau);
         _codeTabLayout.setBackgroundResource(R.drawable.tab);
         _codeTabLayout.setLayoutParams(_params);
-        _codeTabLayout.setPadding(30, 0, 30, 0);
+        _codeTabLayout.setPadding(20, 0, 20, 0);
         _questionTab.setImageResource(R.drawable.ic_tab_question_nouveau);
         _questionTabLayout.setBackgroundResource(R.drawable.tab);
         _questionTabLayout.setLayoutParams(_params);
-        _questionTabLayout.setPadding(30, 0, 30, 0);
+        _questionTabLayout.setPadding(20, 0, 20, 0);
     }
 
 }

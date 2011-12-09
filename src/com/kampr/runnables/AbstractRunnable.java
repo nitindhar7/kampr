@@ -1,15 +1,11 @@
 package com.kampr.runnables;
 
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -50,16 +46,6 @@ public abstract class AbstractRunnable implements Runnable {
             throw new RuntimeException("Error parsing post date", e);
         } catch (JSONException e) {
             throw new RuntimeException("Error retrieving date from json", e);
-        }
-    }
-    
-    protected Bitmap getBitmapFromStream(InputStream is, Context context, int drawableId) {
-        Bitmap bmp = BitmapFactory.decodeStream(is);
-        if(bmp == null) {
-            return BitmapFactory.decodeResource(context.getResources(), drawableId);
-        }
-        else {
-            return bmp;
         }
     }
 

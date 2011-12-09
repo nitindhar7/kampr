@@ -8,17 +8,18 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.models.Question;
 import com.kampr.posts.QuestionActivity;
-import com.kampr.runnables.tabs.QuestionsRunnable;
+import com.kampr.runnables.tabs.PostsRunnable;
 import com.kampr.util.KamprImageUtils;
 
-public class QuestionsActivity extends PostsListActivity<Question> {
+public class QuestionsActivity extends PostsListActivity<PropertyContainer> {
+    
+    private static final String POST_TYPE = "question";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _handler = new PostsHandler<Question>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new QuestionsRunnable(this, _handler, _listOfPosts, _userIcons, null));
+        _handler = new PostsHandler<PropertyContainer>(this, _dialog, _posts, _listOfPosts, _userIcons);
+        _fetchPostsThread = new Thread(new PostsRunnable(this, _handler, _listOfPosts, _userIcons, null, POST_TYPE));
         _fetchPostsThread.start();
     }
 

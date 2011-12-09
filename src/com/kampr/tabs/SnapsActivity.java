@@ -8,17 +8,18 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.models.Snap;
 import com.kampr.posts.SnapActivity;
-import com.kampr.runnables.tabs.SnapsRunnable;
+import com.kampr.runnables.tabs.PostsRunnable;
 import com.kampr.util.KamprImageUtils;
 
-public class SnapsActivity extends PostsListActivity<Snap> {
+public class SnapsActivity extends PostsListActivity<PropertyContainer> {
+    
+    private static final String POST_TYPE = "snap";
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _handler = new PostsHandler<Snap>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new SnapsRunnable(this, _handler, _listOfPosts, _userIcons, null));
+        _handler = new PostsHandler<PropertyContainer>(this, _dialog, _posts, _listOfPosts, _userIcons);
+        _fetchPostsThread = new Thread(new PostsRunnable(this, _handler, _listOfPosts, _userIcons, null, POST_TYPE));
         _fetchPostsThread.start();
     }
 

@@ -11,18 +11,21 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Link;
+import com.kampr.models.PropertyContainer;
+import com.kampr.util.KamprImageUtils;
 
-public class LinksRunnable extends PostsRunnable<Link> {
+public class AllRunnable extends PostsRunnable {
 
-    public LinksRunnable(Context context, PostsHandler<Link> handler, List<Link> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
-        super(context, handler, listOfPosts, userIcons, forrstParams);
+    public AllRunnable(Context context, PostsHandler<PropertyContainer> handler, List<PropertyContainer> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
+        super(context, handler, listOfPosts, userIcons, forrstParams, null);
     }
     
+    @Override
     public void run() {
         try {
-            JSONObject postsJSON = _forrst.postsList("link", _forrstParams);
+            JSONObject postsJSON = _forrst.postsAll();
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
@@ -30,6 +33,7 @@ public class LinksRunnable extends PostsRunnable<Link> {
 
                 Map<String, String> properties = new HashMap<String, String>();
                 properties.put("id", json.getString("id"));
+                properties.put("post_type", json.getString("post_type"));
                 properties.put("created_at", getPostDate(json));
                 properties.put("name", json.getJSONObject("user").getString("name"));
                 properties.put("title", json.getString("title"));
@@ -40,16 +44,19 @@ public class LinksRunnable extends PostsRunnable<Link> {
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
                 properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
+                if (json.getString("post_type").equals("snap")) {
+                    properties.put("snaps_original_url", json.getJSONObject("snaps").getString("original_url"));
+                }
                 
-                Link link = (Link) new Link(properties);
-                _listOfPosts.add(link);
-                
-                fetchUserIcon(link);
+                PropertyContainer post = (PropertyContainer) new PropertyContainer(properties);
+                _listOfPosts.add(post);
+
+                _userIcons.put(post.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, post.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
             }
 
             notifyHandler();
         } catch (JSONException e) {
-            throw new RuntimeException("Error fetching link from Forrst", e);
+            throw new RuntimeException("Error fetching post from Forrst", e);
         }
     }
 

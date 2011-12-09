@@ -7,18 +7,19 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Code;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.CodeActivity;
-import com.kampr.runnables.tabs.CodesRunnable;
+import com.kampr.runnables.tabs.PostsRunnable;
 import com.kampr.util.KamprImageUtils;
 
-public class CodesActivity extends PostsListActivity<Code> {
+public class CodesActivity extends PostsListActivity<PropertyContainer> {
+    
+    private static final String POST_TYPE = "code";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _handler = new PostsHandler<Code>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new CodesRunnable(this, _handler, _listOfPosts, _userIcons, null));
+        _handler = new PostsHandler<PropertyContainer>(this, _dialog, _posts, _listOfPosts, _userIcons);
+        _fetchPostsThread = new Thread(new PostsRunnable(this, _handler, _listOfPosts, _userIcons, null, POST_TYPE));
         _fetchPostsThread.start();
     }
 

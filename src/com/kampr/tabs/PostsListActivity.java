@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
+import com.kampr.models.PropertyContainer;
 import com.kampr.util.KamprUtils;
 
 public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
@@ -22,7 +23,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected ListView _posts;
     protected ProgressDialog _dialog;
     protected Map<String,Bitmap> _userIcons;
-    protected List<T> _listOfPosts;
+    protected List<PropertyContainer> _listOfPosts;
     protected Thread _fetchPostsThread;
     protected PostsHandler<T> _handler;
     protected PostsAdapter<T> _postsAdapter;
@@ -32,7 +33,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         KamprUtils.trustAllHosts();
 
         _userIcons = new HashMap<String,Bitmap>();
-        _listOfPosts = new ArrayList<T>();
+        _listOfPosts = new ArrayList<PropertyContainer>();
 
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);

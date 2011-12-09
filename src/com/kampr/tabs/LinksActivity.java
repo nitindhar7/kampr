@@ -7,18 +7,19 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Link;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.LinkActivity;
-import com.kampr.runnables.tabs.LinksRunnable;
+import com.kampr.runnables.tabs.PostsRunnable;
 import com.kampr.util.KamprImageUtils;
 
-public class LinksActivity extends PostsListActivity<Link> {
+public class LinksActivity extends PostsListActivity<PropertyContainer> {
+    
+    private static final String POST_TYPE = "link";
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _handler = new PostsHandler<Link>(this, _dialog, _posts, _listOfPosts, _userIcons);
-        _fetchPostsThread = new Thread(new LinksRunnable(this, _handler, _listOfPosts, _userIcons, null));
+        _handler = new PostsHandler<PropertyContainer>(this, _dialog, _posts, _listOfPosts, _userIcons);
+        _fetchPostsThread = new Thread(new PostsRunnable(this, _handler, _listOfPosts, _userIcons, null, POST_TYPE));
         _fetchPostsThread.start();
     }
 
