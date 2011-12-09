@@ -1,4 +1,4 @@
-package com.kampr.runnables.tabs;
+package com.kampr.runnables;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,16 +16,26 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
 import com.kampr.util.KamprImageUtils;
 
-public class AllRunnable extends PostsRunnable {
+public class PostsRunnable extends AbstractRunnable {
 
-    public AllRunnable(Context context, PostsHandler<PropertyContainer> handler, List<PropertyContainer> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
-        super(context, handler, listOfPosts, userIcons, forrstParams, null);
+    protected String _postType;
+    protected Map<String,String> _forrstParams;
+    protected Context _context;
+    protected List<PropertyContainer> _listOfPosts;
+    protected Map<String,Bitmap> _userIcons;
+    
+    public PostsRunnable(Context context, PostsHandler<PropertyContainer> handler, List<PropertyContainer> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams, String postType) {
+        super(handler);
+        _context = context;
+        _listOfPosts = listOfPosts;
+        _userIcons = userIcons;
+        _forrstParams = forrstParams;
+        _postType = postType;
     }
     
-    @Override
     public void run() {
         try {
-            JSONObject postsJSON = _forrst.postsAll();
+            JSONObject postsJSON = _forrst.postsList(_postType, _forrstParams);
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
@@ -33,7 +43,6 @@ public class AllRunnable extends PostsRunnable {
 
                 Map<String, String> properties = new HashMap<String, String>();
                 properties.put("id", json.getString("id"));
-                properties.put("post_type", json.getString("post_type"));
                 properties.put("created_at", getPostDate(json));
                 properties.put("name", json.getJSONObject("user").getString("name"));
                 properties.put("title", json.getString("title"));
@@ -44,11 +53,11 @@ public class AllRunnable extends PostsRunnable {
                 properties.put("like_count", json.getString("like_count"));
                 properties.put("comment_count", json.getString("comment_count"));
                 properties.put("user_photos_thumb_url", json.getJSONObject("user").getJSONObject("photos").getString("medium_url"));
-                if (json.getString("post_type").equals("snap")) {
+                if (json.has("snaps")) {
                     properties.put("snaps_original_url", json.getJSONObject("snaps").getString("original_url"));
                 }
                 
-                PropertyContainer post = (PropertyContainer) new PropertyContainer(properties);
+                PropertyContainer post = new PropertyContainer(properties);
                 _listOfPosts.add(post);
 
                 _userIcons.put(post.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, post.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));

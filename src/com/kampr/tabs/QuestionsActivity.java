@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.QuestionActivity;
-import com.kampr.runnables.tabs.PostsRunnable;
+import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.KamprImageUtils;
 
 public class QuestionsActivity extends PostsListActivity<PropertyContainer> {

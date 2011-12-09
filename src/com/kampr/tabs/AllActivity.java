@@ -12,7 +12,7 @@ import com.kampr.posts.CodeActivity;
 import com.kampr.posts.LinkActivity;
 import com.kampr.posts.QuestionActivity;
 import com.kampr.posts.SnapActivity;
-import com.kampr.runnables.tabs.AllRunnable;
+import com.kampr.runnables.AllRunnable;
 import com.kampr.util.KamprImageUtils;
 
 public class AllActivity extends PostsListActivity<PropertyContainer> {
