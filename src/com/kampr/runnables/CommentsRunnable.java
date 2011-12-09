@@ -1,9 +1,5 @@
 package com.kampr.runnables;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +16,7 @@ import android.os.Handler;
 import com.kampr.KamprActivity;
 import com.kampr.R;
 import com.kampr.models.Comment;
+import com.kampr.util.KamprImageUtils;
 import com.kampr.util.KamprUtils;
 
 public class CommentsRunnable extends AbstractRunnable {
@@ -58,7 +55,7 @@ public class CommentsRunnable extends AbstractRunnable {
                 Comment comment = new Comment(commentProperties);
                 _listOfComments.add(comment);
 
-                fetchUserIcon(comment);
+                _userIcons.put(comment.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, comment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
                 
                 if (commentJSON.has("replies")) {
                     JSONArray repliesJSONArray = (JSONArray) commentJSON.get("replies");
@@ -77,8 +74,8 @@ public class CommentsRunnable extends AbstractRunnable {
     
                         Comment replyComment = new Comment(replyProperties);
                         _listOfComments.add(replyComment);
-    
-                        fetchUserIcon(replyComment);
+
+                        _userIcons.put(replyComment.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, replyComment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
                     }
                 }
             }
@@ -87,17 +84,6 @@ public class CommentsRunnable extends AbstractRunnable {
         }
         
         notifyHandler();
-    }
-    
-    protected void fetchUserIcon(Comment comment) {
-        try {
-            InputStream is = (InputStream) new URL(comment.getProperty("user_photos_thumb_url")).getContent();
-            _userIcons.put(comment.getProperty("id"), getBitmapFromStream(is, _context, R.drawable.forrst_default_25));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error: malformed URI", e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error: could not read from stream", e);
-        }
     }
     
 }

@@ -11,15 +11,18 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
+import com.kampr.util.KamprImageUtils;
 
-public class AllRunnable extends PostsRunnable<PropertyContainer> {
+public class AllRunnable extends PostsRunnable {
 
     public AllRunnable(Context context, PostsHandler<PropertyContainer> handler, List<PropertyContainer> listOfPosts, Map<String,Bitmap> userIcons, Map<String,String> forrstParams) {
-        super(context, handler, listOfPosts, userIcons, forrstParams);
+        super(context, handler, listOfPosts, userIcons, forrstParams, null);
     }
     
+    @Override
     public void run() {
         try {
             JSONObject postsJSON = _forrst.postsAll();
@@ -47,8 +50,8 @@ public class AllRunnable extends PostsRunnable<PropertyContainer> {
                 
                 PropertyContainer post = (PropertyContainer) new PropertyContainer(properties);
                 _listOfPosts.add(post);
-                
-                fetchUserIcon(post);
+
+                _userIcons.put(post.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, post.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
             }
 
             notifyHandler();
