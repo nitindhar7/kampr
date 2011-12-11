@@ -7,12 +7,10 @@ import android.os.Message;
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
 import com.kampr.handlers.PostsHandler;
-import com.petebevin.markdown.MarkdownProcessor;
 
 public abstract class AbstractRunnable implements Runnable {
 
-    protected static final ForrstAPI _forrst = new ForrstAPIClient();
-    protected static final MarkdownProcessor _processor = new MarkdownProcessor(); 
+    protected static final ForrstAPI _forrst = new ForrstAPIClient(); 
     
     protected Handler _handler;
     

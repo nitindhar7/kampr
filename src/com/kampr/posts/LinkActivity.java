@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.util.ImageUtils;
-import com.kampr.util.TextUtils;
 import com.kampr.util.LayoutUtils;
+import com.kampr.util.TextUtils;
 
 public class LinkActivity extends PostActivity {
     
