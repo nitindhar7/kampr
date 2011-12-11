@@ -49,7 +49,7 @@ public class CommentsRunnable extends AbstractRunnable {
                 Map<String, String> commentProperties = new HashMap<String, String>();
                 commentProperties.put("id", commentJSON.getString("id"));
                 commentProperties.put("name", commentJSON.getJSONObject("user").getString("name"));
-                commentProperties.put("body", commentJSON.getString("body"));
+                commentProperties.put("body", TextUtils.convertHtmlToText(commentJSON.getString("body")));
                 commentProperties.put("created_at", TimeUtils.getPostDate(commentJSON.getString("created_at")));
                 commentProperties.put("user_photos_thumb_url", commentJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
 
@@ -66,10 +66,7 @@ public class CommentsRunnable extends AbstractRunnable {
                         Map<String, String> replyProperties = new HashMap<String, String>();
                         replyProperties.put("id", replyJSON.getString("id"));
                         replyProperties.put("name", replyJSON.getJSONObject("user").getString("name"));
-                        String body = TextUtils.cleanseText(replyJSON.getString("body"));
-                        body = TextUtils.stripHtmlTag(body, "<p>");
-                        body = TextUtils.stripHtmlTag(body, "</p>");
-                        replyProperties.put("body", body);
+                        replyProperties.put("body", TextUtils.convertHtmlToText(replyJSON.getString("body")));
                         replyProperties.put("created_at", TimeUtils.getPostDate(replyJSON.getString("created_at")));
                         replyProperties.put("user_photos_thumb_url", replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
     
