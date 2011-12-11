@@ -75,15 +75,20 @@ public class PostActivity extends Activity implements OnClickListener {
     
     @Override
     public void onClick(View v) {
-        Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
-        comments.putExtra("post_id", _post.getProperty("id"));
-        comments.putExtra("post_title", _post.getProperty("title"));
-        comments.putExtra("post_name", _post.getProperty("name"));
-        comments.putExtra("post_created_at", _post.getProperty("created_at"));
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        _userIconBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        comments.putExtra("post_user_icon", stream.toByteArray());
-        startActivity(comments);
+        if (Integer.parseInt(_post.getProperty("comment_count")) > 0) {
+            Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
+            comments.putExtra("post_id", _post.getProperty("id"));
+            comments.putExtra("post_title", _post.getProperty("title"));
+            comments.putExtra("post_name", _post.getProperty("name"));
+            comments.putExtra("post_created_at", _post.getProperty("created_at"));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            _userIconBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            comments.putExtra("post_user_icon", stream.toByteArray());
+            startActivity(comments);
+        }
+        else {
+            Toast.makeText(getApplicationContext() , "Post has no comments", Toast.LENGTH_SHORT).show();
+        }
     }
     
     @Override
