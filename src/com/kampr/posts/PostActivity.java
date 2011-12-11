@@ -1,22 +1,14 @@
 package com.kampr.posts;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -115,38 +107,6 @@ public class PostActivity extends Activity implements OnClickListener {
                 else
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
                 break;
-        }
-    }
-    
-    protected String getPostDate() {
-        try {
-            long inMillis = _dateFormat.parse(_postJSON.getString("created_at")).getTime();
-            return DateUtils.formatDateTime(null, inMillis, DateUtils.FORMAT_ABBREV_ALL);
-        } catch (ParseException e) {
-            throw new RuntimeException("Error parsing post date", e);
-        } catch (JSONException e) {
-            throw new RuntimeException("Error retrieving date from json", e);
-        }
-    }
-    
-    protected Bitmap fetchUserIcon(String uri) {
-        try {
-            InputStream is = (InputStream) new URL(uri).getContent();
-            return getBitmapFromStream(is);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error: malformed URI", e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error: could not read from stream", e);
-        }
-    }
-    
-    private Bitmap getBitmapFromStream(InputStream is) {
-        Bitmap bmp = BitmapFactory.decodeStream(is);
-        if(bmp == null) {
-            return BitmapFactory.decodeResource(getResources(), R.drawable.forrst_default_25);
-        }
-        else {
-            return bmp;
         }
     }
 

@@ -15,6 +15,7 @@ import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.TimeUtils;
 
 public class PostsRunnable extends AbstractRunnable {
 
@@ -43,7 +44,7 @@ public class PostsRunnable extends AbstractRunnable {
 
                 Map<String, String> properties = new HashMap<String, String>();
                 properties.put("id", json.getString("id"));
-                properties.put("created_at", getPostDate(json));
+                properties.put("created_at", TimeUtils.getPostDate(json.getString("created_at")));
                 properties.put("name", json.getJSONObject("user").getString("name"));
                 properties.put("title", json.getString("title"));
                 properties.put("url", json.getString("url"));

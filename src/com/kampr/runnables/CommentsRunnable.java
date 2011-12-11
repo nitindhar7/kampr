@@ -18,6 +18,7 @@ import com.kampr.R;
 import com.kampr.models.Comment;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.TextUtils;
+import com.kampr.util.TimeUtils;
 
 public class CommentsRunnable extends AbstractRunnable {
 
@@ -49,7 +50,7 @@ public class CommentsRunnable extends AbstractRunnable {
                 commentProperties.put("id", commentJSON.getString("id"));
                 commentProperties.put("name", commentJSON.getJSONObject("user").getString("name"));
                 commentProperties.put("body", commentJSON.getString("body"));
-                commentProperties.put("created_at", getPostDate(commentJSON));
+                commentProperties.put("created_at", TimeUtils.getPostDate(commentJSON.getString("created_at")));
                 commentProperties.put("user_photos_thumb_url", commentJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
 
                 Comment comment = new Comment(commentProperties);
@@ -69,7 +70,7 @@ public class CommentsRunnable extends AbstractRunnable {
                         body = TextUtils.stripHtmlTag(body, "<p>");
                         body = TextUtils.stripHtmlTag(body, "</p>");
                         replyProperties.put("body", body);
-                        replyProperties.put("created_at", getPostDate(replyJSON));
+                        replyProperties.put("created_at", TimeUtils.getPostDate(replyJSON.getString("created_at")));
                         replyProperties.put("user_photos_thumb_url", replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
     
                         Comment replyComment = new Comment(replyProperties);
