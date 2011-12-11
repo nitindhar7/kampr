@@ -43,4 +43,17 @@ public class ImageUtils {
         }
     }
 
+    public static Bitmap fetchImageBitmap(String uri) {
+        Bitmap imageData = null;
+        try {
+            InputStream is = (InputStream) new URL(uri).getContent();
+            imageData = BitmapFactory.decodeStream(is);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error processing url", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error fetching data from stream", e);
+        }
+        return imageData;
+    }
+
 }

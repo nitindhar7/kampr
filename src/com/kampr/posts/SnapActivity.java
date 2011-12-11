@@ -47,7 +47,7 @@ public class SnapActivity extends PostActivity {
         _postCommentsCount.setText(_post.getProperty("comment_count"));
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _snapUserIcon.setImageBitmap(_userIconBitmap);
-        _snapOriginalUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_original_url")));
+        _snapOriginalUrl.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getProperty("snaps_original_url")));
         _snapOriginalUrl.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

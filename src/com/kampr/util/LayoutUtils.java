@@ -4,9 +4,9 @@ import android.text.Spannable;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 
-public class URLSpanUtils extends URLSpan {
+public class LayoutUtils extends URLSpan {
 
-    public URLSpanUtils(String url) {
+    public LayoutUtils(String url) {
         super(url);
     }
  
@@ -28,7 +28,7 @@ public class URLSpanUtils extends URLSpan {
             int start = text.getSpanStart(span);
             int end = text.getSpanEnd(span);
             text.removeSpan(span);
-            span = new URLSpanUtils(span.getURL());
+            span = new LayoutUtils(span.getURL());
             text.setSpan(span, start, end, 0);
         }
      }

@@ -34,31 +34,23 @@ import com.kampr.models.PropertyContainer;
 
 public class PostActivity extends Activity implements OnClickListener {
 
-    private final int LOGOUT_RESULT_CODE = 1;
-
-    protected static final String FETCH_STATUS = "fetch_status";
-    protected static final int FETCH_COMPLETE = 1;
+    protected static final int LOGOUT_RESULT_CODE = 1;
+    protected static final int TRUNCATED_URL_LENGTH = 35;
     protected static final int DEFAULT_POST_ID = -1;
-
-    protected final int TRUNCATED_URL_LENGTH = 35;
-    
-    protected final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    protected static final int FETCH_COMPLETE = 1;
+    protected static final String FETCH_STATUS = "fetch_status";
+    protected static final ForrstAPI _forrst = new ForrstAPIClient();
+    protected static final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     protected static PropertyContainer _post;
-
-    protected ForrstAPI _forrst;
+    
     protected JSONObject _postJSON;
     protected Thread _fetchPostThread;
     protected Bitmap _userIconBitmap;
-    
     protected TextView _postLikesCount;
     protected TextView _postViewsCount;
     protected TextView _postCommentsCount;
     protected TextView _postComments;
-    
-    public PostActivity() {
-        _forrst = new ForrstAPIClient();
-    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,31 +115,6 @@ public class PostActivity extends Activity implements OnClickListener {
                 else
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
                 break;
-        }
-    }
-    
-    protected Bitmap fetchImageBitmap(String uri) {
-        Bitmap imageData = null;
-        try {
-            InputStream is = (InputStream) new URL(uri).getContent();
-            imageData = BitmapFactory.decodeStream(is);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error processing url", e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error fetching data from stream", e);
-        }
-        return imageData;
-    }
-    
-    protected String getTruncatedText(String text, int maxLength) {
-        if(text == null) {
-            return null;
-        }
-        else if(text.length() >= maxLength) {
-            return text.substring(0, maxLength) + "...";
-        }
-        else {
-            return text;
         }
     }
     

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.kampr.R;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.TextUtils;
-import com.kampr.util.URLSpanUtils;
+import com.kampr.util.LayoutUtils;
 
 public class LinkActivity extends PostActivity {
     
@@ -38,7 +38,7 @@ public class LinkActivity extends PostActivity {
 
         _linkTitle.setText(_post.getProperty("title"));
         _linkUrl.setText(_post.getProperty("url"));
-        URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
+        LayoutUtils.removeUnderlines((Spannable) _linkUrl.getText());
         _linkUsername.setText(_post.getProperty("name"));
         _linkDate.setText(_post.getProperty("created_at"));
         _linkDescription.setText(TextUtils.cleanseText(_post.getProperty("description")));
