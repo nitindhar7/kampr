@@ -16,8 +16,8 @@ import android.os.Handler;
 import com.kampr.KamprActivity;
 import com.kampr.R;
 import com.kampr.models.Comment;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 
 public class CommentsRunnable extends AbstractRunnable {
 
@@ -55,7 +55,7 @@ public class CommentsRunnable extends AbstractRunnable {
                 Comment comment = new Comment(commentProperties);
                 _listOfComments.add(comment);
 
-                _userIcons.put(comment.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, comment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
+                _userIcons.put(comment.getProperty("id"), ImageUtils.fetchUserIcon(_context, comment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
                 
                 if (commentJSON.has("replies")) {
                     JSONArray repliesJSONArray = (JSONArray) commentJSON.get("replies");
@@ -65,9 +65,9 @@ public class CommentsRunnable extends AbstractRunnable {
                         Map<String, String> replyProperties = new HashMap<String, String>();
                         replyProperties.put("id", replyJSON.getString("id"));
                         replyProperties.put("name", replyJSON.getJSONObject("user").getString("name"));
-                        String body = KamprUtils.cleanseText(replyJSON.getString("body"));
-                        body = KamprUtils.stripHtmlTag(body, "<p>");
-                        body = KamprUtils.stripHtmlTag(body, "</p>");
+                        String body = TextUtils.cleanseText(replyJSON.getString("body"));
+                        body = TextUtils.stripHtmlTag(body, "<p>");
+                        body = TextUtils.stripHtmlTag(body, "</p>");
                         replyProperties.put("body", body);
                         replyProperties.put("created_at", getPostDate(replyJSON));
                         replyProperties.put("user_photos_thumb_url", replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"));
@@ -75,7 +75,7 @@ public class CommentsRunnable extends AbstractRunnable {
                         Comment replyComment = new Comment(replyProperties);
                         _listOfComments.add(replyComment);
 
-                        _userIcons.put(replyComment.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, replyComment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
+                        _userIcons.put(replyComment.getProperty("id"), ImageUtils.fetchUserIcon(_context, replyComment.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
                     }
                 }
             }

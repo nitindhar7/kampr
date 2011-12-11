@@ -14,7 +14,7 @@ import android.graphics.Bitmap;
 import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.util.KamprImageUtils;
+import com.kampr.util.ImageUtils;
 
 public class AllRunnable extends PostsRunnable {
 
@@ -51,7 +51,7 @@ public class AllRunnable extends PostsRunnable {
                 PropertyContainer post = (PropertyContainer) new PropertyContainer(properties);
                 _listOfPosts.add(post);
 
-                _userIcons.put(post.getProperty("id"), KamprImageUtils.fetchUserIcon(_context, post.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
+                _userIcons.put(post.getProperty("id"), ImageUtils.fetchUserIcon(_context, post.getProperty("user_photos_thumb_url"), R.drawable.forrst_default_25));
             }
 
             notifyHandler();

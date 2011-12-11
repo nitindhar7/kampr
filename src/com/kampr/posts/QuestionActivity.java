@@ -7,8 +7,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 
 public class QuestionActivity extends PostActivity {
 
@@ -35,12 +35,12 @@ public class QuestionActivity extends PostActivity {
         _questionTitle.setText(_post.getProperty("title"));
         _questionUsername.setText(_post.getProperty("name"));
         _questionDate.setText(_post.getProperty("created_at"));
-        _questionContent.setText(KamprUtils.cleanseText(_post.getProperty("content")));
+        _questionContent.setText(TextUtils.cleanseText(_post.getProperty("content")));
         _questionContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikesCount.setText(_post.getProperty("like_count"));
         _postViewsCount.setText(_post.getProperty("view_count"));
         _postCommentsCount.setText(_post.getProperty("comment_count"));
-        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _questionUserIcon.setImageBitmap(_userIconBitmap);
     }
 

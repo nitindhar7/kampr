@@ -10,7 +10,7 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.LinkActivity;
 import com.kampr.runnables.PostsRunnable;
-import com.kampr.util.KamprImageUtils;
+import com.kampr.util.ImageUtils;
 
 public class LinksActivity extends PostsListActivity<PropertyContainer> {
     
@@ -30,7 +30,7 @@ public class LinksActivity extends PostsListActivity<PropertyContainer> {
         link.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
-        link.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
+        link.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(bmp));
         
         startActivity(link);
     }

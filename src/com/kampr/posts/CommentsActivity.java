@@ -25,8 +25,8 @@ import com.kampr.R;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.NetworkUtils;
 
 public class CommentsActivity extends ListActivity {
 
@@ -61,13 +61,13 @@ public class CommentsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments);
-        KamprUtils.trustAllHosts();
+        NetworkUtils.trustAllHosts();
 
         _postId = Integer.parseInt(getIntent().getStringExtra("post_id"));
         _postTitle = getIntent().getStringExtra("post_title");
         _postName = getIntent().getStringExtra("post_name");
         _postCreatedAt = getIntent().getStringExtra("post_created_at");
-        _postUserIcon = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _postUserIcon = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         
         _postTitleView = (TextView) findViewById(R.id.post_title);
         _postUsernameView = (TextView) findViewById(R.id.post_user_name);

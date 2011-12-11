@@ -10,7 +10,7 @@ import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
 import com.kampr.posts.SnapActivity;
 import com.kampr.runnables.PostsRunnable;
-import com.kampr.util.KamprImageUtils;
+import com.kampr.util.ImageUtils;
 
 public class SnapsActivity extends PostsListActivity<PropertyContainer> {
     
@@ -30,7 +30,7 @@ public class SnapsActivity extends PostsListActivity<PropertyContainer> {
         snap.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
-        snap.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
+        snap.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(bmp));
 
         startActivity(snap);
     }

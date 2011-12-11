@@ -13,7 +13,7 @@ import com.kampr.posts.LinkActivity;
 import com.kampr.posts.QuestionActivity;
 import com.kampr.posts.SnapActivity;
 import com.kampr.runnables.AllRunnable;
-import com.kampr.util.KamprImageUtils;
+import com.kampr.util.ImageUtils;
 
 public class AllActivity extends PostsListActivity<PropertyContainer> {
 
@@ -45,7 +45,7 @@ public class AllActivity extends PostsListActivity<PropertyContainer> {
         postIntent.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
-        postIntent.putExtra("post_user_icon", KamprImageUtils.getByteArrayFromBitmap(bmp));
+        postIntent.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(bmp));
         
         startActivity(postIntent);
     }

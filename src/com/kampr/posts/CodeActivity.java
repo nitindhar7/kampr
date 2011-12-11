@@ -7,8 +7,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 
 public class CodeActivity extends PostActivity {
 
@@ -39,12 +39,12 @@ public class CodeActivity extends PostActivity {
         _codeDate.setText(_post.getProperty("created_at"));
         _codeContent.setText(_post.getProperty("content"));
         _codeContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        _codeDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _codeDescription.setText(TextUtils.cleanseText(_post.getProperty("description")));
         _codeDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikesCount.setText(_post.getProperty("like_count"));
         _postViewsCount.setText(_post.getProperty("view_count"));
         _postCommentsCount.setText(_post.getProperty("comment_count"));
-        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _codeUserIcon.setImageBitmap(_userIconBitmap);
     }
 

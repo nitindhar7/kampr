@@ -1,6 +1,6 @@
 package com.kampr;
 
-import com.kampr.util.KamprUtils;
+import com.kampr.util.NetworkUtils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -36,7 +36,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         
         _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
 
-        if(sessionExists() && KamprUtils.isOnline(getApplicationContext())) {
+        if(sessionExists() && NetworkUtils.isOnline(getApplicationContext())) {
             startPostsActivity();
         }
         else {

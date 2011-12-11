@@ -10,8 +10,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 
 public class SnapActivity extends PostActivity {
 
@@ -40,12 +40,12 @@ public class SnapActivity extends PostActivity {
         _snapTitle.setText(_post.getProperty("title"));
         _snapUsername.setText(_post.getProperty("name"));
         _snapDate.setText(_post.getProperty("created_at"));
-        _snapDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _snapDescription.setText(TextUtils.cleanseText(_post.getProperty("description")));
         _snapDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikesCount.setText(_post.getProperty("like_count"));
         _postViewsCount.setText(_post.getProperty("view_count"));
         _postCommentsCount.setText(_post.getProperty("comment_count"));
-        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _snapUserIcon.setImageBitmap(_userIconBitmap);
         _snapOriginalUrl.setImageBitmap(fetchImageBitmap(_post.getProperty("snaps_original_url")));
         _snapOriginalUrl.setOnClickListener(new OnClickListener() {

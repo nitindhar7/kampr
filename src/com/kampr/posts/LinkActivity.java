@@ -8,8 +8,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.util.KamprImageUtils;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 import com.kampr.util.URLSpanUtils;
 
 public class LinkActivity extends PostActivity {
@@ -41,12 +41,12 @@ public class LinkActivity extends PostActivity {
         URLSpanUtils.removeUnderlines((Spannable) _linkUrl.getText());
         _linkUsername.setText(_post.getProperty("name"));
         _linkDate.setText(_post.getProperty("created_at"));
-        _linkDescription.setText(KamprUtils.cleanseText(_post.getProperty("description")));
+        _linkDescription.setText(TextUtils.cleanseText(_post.getProperty("description")));
         _linkDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikesCount.setText(_post.getProperty("like_count"));
         _postViewsCount.setText(_post.getProperty("view_count"));
         _postCommentsCount.setText(_post.getProperty("comment_count"));
-        _userIconBitmap = KamprImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _linkUserIcon.setImageBitmap(_userIconBitmap);
     }
 

@@ -16,7 +16,7 @@ import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.util.KamprUtils;
+import com.kampr.util.NetworkUtils;
 
 public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
 
@@ -30,7 +30,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        KamprUtils.trustAllHosts();
+        NetworkUtils.trustAllHosts();
 
         _userIcons = new HashMap<String,Bitmap>();
         _listOfPosts = new ArrayList<PropertyContainer>();
