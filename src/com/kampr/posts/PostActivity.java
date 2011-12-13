@@ -23,6 +23,7 @@ import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.models.PropertyContainer;
+import com.kampr.util.LayoutUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
 
@@ -43,16 +44,20 @@ public class PostActivity extends Activity implements OnClickListener {
     protected TextView _postViewsCount;
     protected TextView _postCommentsCount;
     protected TextView _postComments;
+    protected TextView _actionbarLogo;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _postComments = (TextView) findViewById(R.id.post_comments);
         _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
         _postViewsCount = (TextView) findViewById(R.id.post_views_count);
         _postCommentsCount = (TextView) findViewById(R.id.post_comments_count);
         _postCommentsCount.setOnClickListener(this);
         _postComments.setOnClickListener(this);
+        
+        LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
     }

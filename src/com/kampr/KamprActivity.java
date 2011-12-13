@@ -1,7 +1,5 @@
 package com.kampr;
 
-import com.kampr.util.NetworkUtils;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,7 +13,11 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.kampr.util.LayoutUtils;
+import com.kampr.util.NetworkUtils;
 
 public class KamprActivity extends Activity implements OnClickListener, OnKeyListener {
 
@@ -24,6 +26,10 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private final int LOGIN_RESULT_CODE = 1;
     private final int ENTER_KEY_CODE = 66;
     
+    private TextView _actionbarLogo;
+    private TextView _actionbarByline;
+    private TextView _loginLabelUsername;
+    private TextView _loginLabelPassword;
     private EditText _loginUsername;
     private EditText _loginPassword;
     private Button _loginSubmit;
@@ -42,6 +48,10 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         else {
             setContentView(R.layout.main);
             
+            _actionbarLogo = (TextView)findViewById(R.id.actionbar_logo);
+            _actionbarByline = (TextView)findViewById(R.id.actionbar_byline);
+            _loginLabelUsername = (TextView)findViewById(R.id.login_label_username);
+            _loginLabelPassword = (TextView)findViewById(R.id.login_label_password);
             _loginUsername = (EditText)findViewById(R.id.login_username);
             _loginPassword = (EditText)findViewById(R.id.login_password);
             _loginSubmit = (Button)findViewById(R.id.login_submit);
@@ -49,6 +59,14 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             _loginSubmit.setOnClickListener(this);
             _loginUsername.setOnKeyListener(this);
             _loginPassword.setOnKeyListener(this);
+            
+            LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
+            LayoutUtils.setFont(this, _actionbarByline);
+            LayoutUtils.setFont(this, _loginSubmit);
+            LayoutUtils.setFont(this, _loginLabelUsername);
+            LayoutUtils.setFont(this, _loginLabelPassword);
+            LayoutUtils.setFont(this, _loginUsername);
+            LayoutUtils.setFont(this, _loginPassword);
         }
     }
 

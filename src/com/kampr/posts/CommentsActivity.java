@@ -26,6 +26,7 @@ import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.LayoutUtils;
 import com.kampr.util.NetworkUtils;
 
 public class CommentsActivity extends ListActivity {
@@ -34,6 +35,7 @@ public class CommentsActivity extends ListActivity {
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
+    private TextView _actionbarLogo;
     private TextView _postTitleView;
     private TextView _postUsernameView;
     private TextView _postDateView;
@@ -69,6 +71,7 @@ public class CommentsActivity extends ListActivity {
         _postCreatedAt = getIntent().getStringExtra("post_created_at");
         _postUserIcon = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         
+        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _postTitleView = (TextView) findViewById(R.id.post_title);
         _postUsernameView = (TextView) findViewById(R.id.post_user_name);
         _postDateView = (TextView) findViewById(R.id.post_date);
@@ -85,6 +88,8 @@ public class CommentsActivity extends ListActivity {
         _comments.setDividerHeight(1);
 
         _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
+        
+        LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
         
         _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
         _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));

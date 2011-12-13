@@ -1,10 +1,17 @@
 package com.kampr.util;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class LayoutUtils extends URLSpan {
+    
+    public static final String FONT_REGULAR = "qlassik_regular.ttf";
+    public static final String FONT_BOLD = "qlassik_bold.ttf";
 
     public LayoutUtils(String url) {
         super(url);
@@ -32,5 +39,47 @@ public class LayoutUtils extends URLSpan {
             text.setSpan(span, start, end, 0);
         }
      }
+    
+    /**
+     * Set the font on a textview using the regular font as default 
+     * @param context
+     * @param textview
+     */
+    public static void setFont(Context context, TextView textview) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
+        textview.setTypeface(font);
+    }
+    
+    /**
+     * Set the font on a textview
+     * @param context
+     * @param button
+     * @param asset name of the font to use
+     */
+    public static void setFont(Context context, TextView textview, String asset) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
+        textview.setTypeface(font);
+    }
+    
+    /**
+     * Set the font on a textview using the regular font as default 
+     * @param context
+     * @param button
+     */
+    public static void setFont(Context context, Button button) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
+        button.setTypeface(font);
+    }
+    
+    /**
+     * Set the font on a button
+     * @param context
+     * @param button
+     * @param asset name of the font to use
+     */
+    public static void setFont(Context context, Button button, String asset) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
+        button.setTypeface(font);
+    }
 
 }

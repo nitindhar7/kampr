@@ -18,6 +18,7 @@ import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
+import com.kampr.util.LayoutUtils;
 
 public class PostsActivity extends TabActivity {
 
@@ -55,6 +56,7 @@ public class PostsActivity extends TabActivity {
         _tabHost = getTabHost();
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
+        LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
 
         _allTabLayout = new LinearLayout(this);
         _allTabLayout.setBackgroundResource(R.drawable.tab_selected);

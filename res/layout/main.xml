@@ -29,25 +29,26 @@
             android:shadowRadius="1"
             android:text="Kampr"
             android:textColor="#FFF"
-            android:textSize="55sp"
-            android:textStyle="bold" />
+            android:textSize="65sp"
+            android:textStyle="bold" android:typeface="normal"/>
             
         <TextView
+            android:id="@+id/actionbar_byline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:minHeight="125dp"
             android:paddingLeft="18dp"
-            android:paddingTop="80dp"
             android:paddingRight="10dp"
+            android:paddingTop="80dp"
             android:shadowColor="#333"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"
             android:text="Forrst Client for Android"
             android:textColor="#FFF"
-            android:textSize="15sp" />
+            android:textSize="20sp" android:typeface="normal"/>
 
         <!-- <TextView
             android:id="@+id/actionbar_settings"
