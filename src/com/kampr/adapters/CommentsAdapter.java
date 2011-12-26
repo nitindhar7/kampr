@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.models.Comment;
+import com.kampr.util.LayoutUtils;
 
 public class CommentsAdapter extends AbstractListAdapter<Comment> {
     
@@ -39,6 +40,10 @@ public class CommentsAdapter extends AbstractListAdapter<Comment> {
 
         TextView commentTitle = (TextView) getViewHandle(convertView, R.id.comment_item_content);
         commentTitle.setText(comment.getProperty("body"));
+        
+        LayoutUtils.setFont(this._context, commentUsername);
+        LayoutUtils.setFont(this._context, commentDate);
+        LayoutUtils.setFont(this._context, commentTitle);
 
         convertView.setId(Integer.parseInt(comment.getProperty("id")));
 

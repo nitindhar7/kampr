@@ -58,6 +58,9 @@ public class PostActivity extends Activity implements OnClickListener {
         _postComments.setOnClickListener(this);
         
         LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
+        LayoutUtils.setFont(this, _postLikesCount);
+        LayoutUtils.setFont(this, _postViewsCount);
+        LayoutUtils.setFont(this, _postCommentsCount);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
     }

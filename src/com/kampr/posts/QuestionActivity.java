@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
 
 public class QuestionActivity extends PostActivity {
@@ -42,6 +43,11 @@ public class QuestionActivity extends PostActivity {
         _postCommentsCount.setText(_post.getProperty("comment_count"));
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _questionUserIcon.setImageBitmap(_userIconBitmap);
+        
+        LayoutUtils.setFont(this, _questionTitle);
+        LayoutUtils.setFont(this, _questionUsername);
+        LayoutUtils.setFont(this, _questionDate);
+        LayoutUtils.setFont(this, _questionContent);
     }
 
 }

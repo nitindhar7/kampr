@@ -48,6 +48,12 @@ public class LinkActivity extends PostActivity {
         _postCommentsCount.setText(_post.getProperty("comment_count"));
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _linkUserIcon.setImageBitmap(_userIconBitmap);
+        
+        LayoutUtils.setFont(this, _linkTitle);
+        LayoutUtils.setFont(this, _linkUrl);
+        LayoutUtils.setFont(this, _linkUsername);
+        LayoutUtils.setFont(this, _linkDate);
+        LayoutUtils.setFont(this, _linkDescription);
     }
 
 }

@@ -82,6 +82,10 @@ public class CommentsActivity extends ListActivity {
         _postDateView.setText(_postCreatedAt);
         _postUserIconView.setImageBitmap(_postUserIcon);
         
+        LayoutUtils.setFont(this, _postTitleView);
+        LayoutUtils.setFont(this, _postUsernameView);
+        LayoutUtils.setFont(this, _postDateView);
+        
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);
         _comments.setDivider(getResources().getDrawable(R.color.comment_item_divider));

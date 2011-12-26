@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
 
 public class SnapActivity extends PostActivity {
@@ -56,6 +57,11 @@ public class SnapActivity extends PostActivity {
                 startActivity(fullScreen);
             }
          });
+        
+        LayoutUtils.setFont(this, _snapTitle);
+        LayoutUtils.setFont(this, _snapUsername);
+        LayoutUtils.setFont(this, _snapDate);
+        LayoutUtils.setFont(this, _snapDescription);
     }
 
 }
