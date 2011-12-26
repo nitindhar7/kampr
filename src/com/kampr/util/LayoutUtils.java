@@ -46,8 +46,10 @@ public class LayoutUtils extends URLSpan {
      * @param textview
      */
     public static void setFont(Context context, TextView textview) {
-        Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
-        textview.setTypeface(font);
+        if (textview != null) {
+            Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
+            textview.setTypeface(font);
+        }
     }
     
     /**
@@ -57,8 +59,10 @@ public class LayoutUtils extends URLSpan {
      * @param asset name of the font to use
      */
     public static void setFont(Context context, TextView textview, String asset) {
-        Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
-        textview.setTypeface(font);
+        if (textview != null) {
+            Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
+            textview.setTypeface(font);
+        }
     }
     
     /**
@@ -67,8 +71,10 @@ public class LayoutUtils extends URLSpan {
      * @param button
      */
     public static void setFont(Context context, Button button) {
-        Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
-        button.setTypeface(font);
+        if (button != null) {
+            Typeface font = Typeface.createFromAsset(context.getAssets(), FONT_REGULAR);
+            button.setTypeface(font);
+        }
     }
     
     /**
@@ -78,8 +84,10 @@ public class LayoutUtils extends URLSpan {
      * @param asset name of the font to use
      */
     public static void setFont(Context context, Button button, String asset) {
-        Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
-        button.setTypeface(font);
+        if (button != null) {
+            Typeface font = Typeface.createFromAsset(context.getAssets(), asset);
+            button.setTypeface(font);
+        }
     }
 
 }

@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,12 +40,20 @@ public class PostActivity extends Activity implements OnClickListener {
     
     protected JSONObject _postJSON;
     protected Thread _fetchPostThread;
+    protected TextView _actionbarLogo;
     protected Bitmap _userIconBitmap;
     protected TextView _postLikesCount;
     protected TextView _postViewsCount;
     protected TextView _postCommentsCount;
     protected TextView _postComments;
-    protected TextView _actionbarLogo;
+    protected TextView _postTitle;
+    protected TextView _postUrl;
+    protected TextView _postUsername;
+    protected TextView _postDate;
+    protected TextView _postDescription;
+    protected TextView _postContent;
+    protected ImageView _postUserIcon;
+    protected ImageView _postOriginal;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,12 @@ public class PostActivity extends Activity implements OnClickListener {
         LayoutUtils.setFont(this, _postLikesCount);
         LayoutUtils.setFont(this, _postViewsCount);
         LayoutUtils.setFont(this, _postCommentsCount);
+        LayoutUtils.setFont(this, _postTitle);
+        LayoutUtils.setFont(this, _postUrl);
+        LayoutUtils.setFont(this, _postUsername);
+        LayoutUtils.setFont(this, _postDate);
+        LayoutUtils.setFont(this, _postDescription);
+        LayoutUtils.setFont(this, _postContent);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/link"
+    android:id="@+id/post"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#FFFFFF" >
@@ -30,21 +30,10 @@
             android:textColor="#FFF"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <!--
-             <TextView
-            android:id="@+id/actionbar_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_actionbar_settings_nouveau"
-            android:minHeight="40dp"
-            android:minWidth="40dp" />
-        -->
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/link_title"
+        android:id="@+id/post_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/actionbar"
@@ -60,13 +49,13 @@
         android:id="@+id/link_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/link_title"
+        android:layout_below="@id/post_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
 
         <ImageView
-            android:id="@+id/link_user_icon"
+            android:id="@+id/post_user_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -80,11 +69,11 @@
             android:id="@+id/link_user_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/link_user_icon"
+            android:layout_toRightOf="@id/post_user_icon"
             android:minHeight="25dp" >
 
             <TextView
-                android:id="@+id/link_user_name"
+                android:id="@+id/post_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -95,7 +84,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/link_date"
+                android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -111,7 +100,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/link_user_top"
-            android:layout_toRightOf="@id/link_user_icon" >
+            android:layout_toRightOf="@id/post_user_icon" >
 
             <TextView
                 android:id="@+id/post_likes_count"
@@ -212,16 +201,18 @@
     </RelativeLayout>
 
     <ScrollView
-        android:id="@+id/link_description_scroll"
+        android:id="@+id/post_description_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/link_url"
+        android:layout_above="@+id/post_url"
         android:layout_below="@id/link_user"
         android:isScrollContainer="true"
-        android:padding="10dp" >
+        android:padding="10dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="@null" >
 
         <TextView
-            android:id="@+id/link_description"
+            android:id="@+id/post_description"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:scrollbarAlwaysDrawVerticalTrack="false"
@@ -230,7 +221,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/link_url"
+        android:id="@+id/post_url"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

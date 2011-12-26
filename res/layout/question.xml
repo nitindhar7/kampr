@@ -31,17 +31,6 @@
             android:textColor="#FFF"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <!--
-             <TextView
-            android:id="@+id/actionbar_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_actionbar_settings_nouveau"
-            android:minHeight="40dp"
-            android:minWidth="40dp" />
-        -->
     </RelativeLayout>
 
     <TextView
@@ -180,6 +169,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:isScrollContainer="true"
+        android:scrollbars="@null"
         android:padding="10dp" >
 
         <TextView

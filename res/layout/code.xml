@@ -181,7 +181,7 @@
         android:layout_height="fill_parent"
         android:isScrollContainer="true"
         android:padding="10dp"
-        android:scrollbarAlwaysDrawVerticalTrack="false" >
+        android:scrollbars="@null" >
 
         <LinearLayout
             android:id="@+id/code_scroll_linear"

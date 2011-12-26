@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
@@ -28,20 +27,19 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected PostsHandler<T> _handler;
     protected PostsAdapter<T> _postsAdapter;
     
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public PostsListActivity() {
         NetworkUtils.trustAllHosts();
-
         _userIcons = new HashMap<String,Bitmap>();
         _listOfPosts = new ArrayList<PropertyContainer>();
-
+    }
+    
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         _posts = getListView();
+        _posts.setDividerHeight(0);
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setDivider(getResources().getDrawable(R.color.post_item_divider));
-        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
-
         _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
     }
 
