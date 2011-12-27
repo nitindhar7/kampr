@@ -46,7 +46,7 @@
     </TextView>
 
     <RelativeLayout
-        android:id="@+id/link_user"
+        android:id="@+id/post_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/post_title"
@@ -66,7 +66,7 @@
         </ImageView>
 
         <RelativeLayout
-            android:id="@+id/link_user_top"
+            android:id="@+id/post_user_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/post_user_icon"
@@ -96,10 +96,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/link_nav"
+            android:id="@+id/post_nav"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/link_user_top"
+            android:layout_below="@id/post_user_top"
             android:layout_toRightOf="@id/post_user_icon" >
 
             <TextView
@@ -205,19 +205,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/post_url"
-        android:layout_below="@id/link_user"
+        android:layout_below="@id/post_user"
         android:isScrollContainer="true"
         android:padding="10dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbars="@null" >
 
-        <TextView
-            android:id="@+id/post_description"
+        <LinearLayout
+            android:id="@+id/post_body"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarAlwaysDrawVerticalTrack="false"
-            android:textColor="#333" >
-        </TextView>
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/snap_large_url"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/snap_image_bg" />
+
+            <TextView
+                android:id="@+id/post_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#EEE"
+                android:padding="5dp"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                android:textColor="#333"
+                android:textSize="12sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/post_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                android:textColor="#333" >
+            </TextView>
+        </LinearLayout>
     </ScrollView>
 
     <TextView

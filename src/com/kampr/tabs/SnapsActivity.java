@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.posts.SnapActivity;
+import com.kampr.posts.PostActivity;
 import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.ImageUtils;
 
@@ -25,12 +25,14 @@ public class SnapsActivity extends PostsListActivity<PropertyContainer> {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent snap = new Intent(SnapsActivity.this, SnapActivity.class);
+        Intent snap = new Intent(SnapsActivity.this, PostActivity.class);
         PropertyContainer post = _handler.getAdapter().getViewObject(position);
         snap.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
         snap.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(bmp));
+        
+        snap.putExtra("post_type", PostActivity.POST_SNAP);
 
         startActivity(snap);
     }

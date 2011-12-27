@@ -8,10 +8,7 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.posts.CodeActivity;
-import com.kampr.posts.LinkActivity;
-import com.kampr.posts.QuestionActivity;
-import com.kampr.posts.SnapActivity;
+import com.kampr.posts.PostActivity;
 import com.kampr.runnables.AllRunnable;
 import com.kampr.util.ImageUtils;
 
@@ -26,20 +23,20 @@ public class AllActivity extends PostsListActivity<PropertyContainer> {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent postIntent = null;
+        Intent postIntent = new Intent(AllActivity.this, PostActivity.class);
         PropertyContainer post = _handler.getAdapter().getViewObject(position);
         
         if (post.getProperty("post_type").equals("link")) {
-            postIntent = new Intent(AllActivity.this, LinkActivity.class);
+            postIntent.putExtra("post_type", PostActivity.POST_LINK);
         }
         else if (post.getProperty("post_type").equals("snap")) {
-            postIntent = new Intent(AllActivity.this, SnapActivity.class);
+            postIntent.putExtra("post_type", PostActivity.POST_SNAP);
         }
         else if (post.getProperty("post_type").equals("code")) {
-            postIntent = new Intent(AllActivity.this, CodeActivity.class);
+            postIntent.putExtra("post_type", PostActivity.POST_CODE);
         }
         else {
-            postIntent = new Intent(AllActivity.this, QuestionActivity.class);
+            postIntent.putExtra("post_type", PostActivity.POST_QUESTION);
         }
         
         postIntent.putExtra("post", post);

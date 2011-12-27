@@ -34,7 +34,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/question_title"
+        android:id="@+id/post_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/actionbar"
@@ -50,13 +50,13 @@
         android:id="@+id/question_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/question_title"
+        android:layout_below="@id/post_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
 
         <ImageView
-            android:id="@+id/question_user_icon"
+            android:id="@+id/post_user_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -70,11 +70,11 @@
             android:id="@+id/question_user_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/question_user_icon"
+            android:layout_toRightOf="@id/post_user_icon"
             android:minHeight="25dp">
 
             <TextView
-                android:id="@+id/question_user_name"
+                android:id="@+id/post_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -85,7 +85,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/question_date"
+                android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -101,7 +101,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/question_user_top"
-            android:layout_toRightOf="@id/question_user_icon">
+            android:layout_toRightOf="@id/post_user_icon">
 
             <TextView
                 android:id="@+id/post_likes_count"

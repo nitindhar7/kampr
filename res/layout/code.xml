@@ -45,7 +45,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/code_title"
+        android:id="@+id/post_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/actionbar"
@@ -61,13 +61,13 @@
         android:id="@+id/code_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/code_title"
+        android:layout_below="@id/post_title"
         android:background="#EEE"
         android:minHeight="30dp"
         android:padding="10dp" >
 
         <ImageView
-            android:id="@+id/code_user_icon"
+            android:id="@+id/post_user_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -81,11 +81,11 @@
             android:id="@+id/code_user_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/code_user_icon"
+            android:layout_toRightOf="@id/post_user_icon"
             android:minHeight="25dp">
 
             <TextView
-                android:id="@+id/code_user_name"
+                android:id="@+id/post_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -96,7 +96,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/code_date"
+                android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -112,7 +112,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/code_user_top"
-            android:layout_toRightOf="@id/code_user_icon">
+            android:layout_toRightOf="@id/post_user_icon">
 
             <TextView
                 android:id="@+id/post_likes_count"
@@ -199,7 +199,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/code_description"
+                android:id="@+id/post_description"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:textColor="#333" >

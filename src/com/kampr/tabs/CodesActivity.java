@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
-import com.kampr.posts.CodeActivity;
+import com.kampr.posts.PostActivity;
 import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.ImageUtils;
 
@@ -25,12 +25,14 @@ public class CodesActivity extends PostsListActivity<PropertyContainer> {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent code = new Intent(CodesActivity.this, CodeActivity.class);
+        Intent code = new Intent(CodesActivity.this, PostActivity.class);
         PropertyContainer post = _handler.getAdapter().getViewObject(position);
         code.putExtra("post", post);
         
         Bitmap bmp = _userIcons.get(post.getProperty("id"));
         code.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(bmp));
+        
+        code.putExtra("post_type", PostActivity.POST_CODE);
 
         startActivity(code);
     }
