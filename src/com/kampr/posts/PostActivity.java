@@ -52,7 +52,9 @@ public class PostActivity extends Activity implements OnClickListener {
     protected TextView _actionbarLogo;
     protected Bitmap _userIconBitmap;
     protected TextView _postLikesCount;
+    protected TextView _postLikes;
     protected TextView _postViewsCount;
+    protected TextView _postViews;
     protected TextView _postCommentsCount;
     protected TextView _postComments;
     protected TextView _postTitle;
@@ -75,6 +77,8 @@ public class PostActivity extends Activity implements OnClickListener {
         _postDate = (TextView) findViewById(R.id.post_date);
         _postDescription = (TextView) findViewById(R.id.post_description);
         _postUserIcon = (ImageView) findViewById(R.id.post_user_icon);
+        _postLikes = (TextView) findViewById(R.id.post_likes);
+        _postViews = (TextView) findViewById(R.id.post_views);
         _postComments = (TextView) findViewById(R.id.post_comments);
         _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
         _postViewsCount = (TextView) findViewById(R.id.post_views_count);
@@ -96,6 +100,9 @@ public class PostActivity extends Activity implements OnClickListener {
         LayoutUtils.setFont(this, _postDate);
         LayoutUtils.setFont(this, _postDescription);
         LayoutUtils.setFont(this, _postContent);
+        LayoutUtils.setFont(this, _postLikes);
+        LayoutUtils.setFont(this, _postViews);
+        LayoutUtils.setFont(this, _postComments);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
         

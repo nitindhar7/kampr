@@ -11,43 +11,44 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int actionbar_background_end=0x7f040008;
-        public static final int actionbar_background_start=0x7f040007;
+        public static final int actionbar_background_end=0x7f040009;
+        public static final int actionbar_background_start=0x7f040008;
         /**  ActionBar 
          */
-        public static final int actionbar_separator=0x7f040006;
+        public static final int actionbar_separator_dark=0x7f040006;
+        public static final int actionbar_separator_light=0x7f040007;
         public static final int black=0x7f040003;
         /**  Comment Item 
          */
-        public static final int comment_item_divider=0x7f040009;
+        public static final int comment_item_divider=0x7f04000a;
         public static final int dark_blue=0x7f040005;
         public static final int gray=0x7f040002;
         /**  Hyperlinks 
          */
-        public static final int hyperlink=0x7f04001a;
+        public static final int hyperlink=0x7f04001b;
         public static final int light_blue=0x7f040004;
         /**  Buttons 
          */
-        public static final int login_button_selected=0x7f04000a;
-        public static final int post_background_end=0x7f040013;
-        public static final int post_background_start=0x7f040012;
-        public static final int post_content_background=0x7f040011;
-        public static final int post_hyperlink_end=0x7f040017;
-        public static final int post_hyperlink_start=0x7f040016;
-        public static final int post_item_background=0x7f040010;
-        public static final int post_item_counts=0x7f040019;
-        public static final int post_item_date=0x7f040018;
-        public static final int post_item_divider=0x7f040015;
+        public static final int login_button_selected=0x7f04000b;
+        public static final int post_background_end=0x7f040014;
+        public static final int post_background_start=0x7f040013;
+        public static final int post_content_background=0x7f040012;
+        public static final int post_hyperlink_end=0x7f040018;
+        public static final int post_hyperlink_start=0x7f040017;
+        public static final int post_item_background=0x7f040011;
+        public static final int post_item_counts=0x7f04001a;
+        public static final int post_item_date=0x7f040019;
+        public static final int post_item_divider=0x7f040016;
         /**  Post Items 
          */
-        public static final int post_item_selected=0x7f04000f;
-        public static final int post_title=0x7f040014;
-        public static final int tab_background_end=0x7f04000c;
+        public static final int post_item_selected=0x7f040010;
+        public static final int post_title=0x7f040015;
+        public static final int tab_background_end=0x7f04000d;
         /**  tabs 
          */
-        public static final int tab_background_start=0x7f04000b;
-        public static final int tab_selected_end=0x7f04000e;
-        public static final int tab_selected_start=0x7f04000d;
+        public static final int tab_background_start=0x7f04000c;
+        public static final int tab_selected_end=0x7f04000f;
+        public static final int tab_selected_start=0x7f04000e;
         /**  General 
          */
         public static final int transparent=0x7f040000;
@@ -97,10 +98,12 @@ public final class R {
         public static final int user_icon_bg=0x7f020028;
     }
     public static final class id {
+        public static final int actiobar_divider=0x7f07000c;
+        public static final int actiobar_divider_dark=0x7f07003a;
         public static final int actionbar=0x7f07000a;
-        public static final int actionbar_byline=0x7f070012;
+        public static final int actionbar_byline=0x7f070013;
         public static final int actionbar_logo=0x7f07000b;
-        public static final int body=0x7f070013;
+        public static final int body=0x7f070014;
         public static final int comment_item=0x7f070000;
         public static final int comment_item_content=0x7f070008;
         public static final int comment_item_date=0x7f070007;
@@ -111,51 +114,51 @@ public final class R {
         public static final int comment_item_user_icon=0x7f070003;
         public static final int comment_item_username=0x7f070006;
         public static final int comments=0x7f070009;
-        public static final int content=0x7f070011;
-        public static final int login_label_password=0x7f070016;
-        public static final int login_label_username=0x7f070014;
-        public static final int login_password=0x7f070017;
-        public static final int login_submit=0x7f070018;
-        public static final int login_username=0x7f070015;
-        public static final int post=0x7f070019;
-        public static final int post_body=0x7f070024;
-        public static final int post_comments=0x7f070021;
-        public static final int post_comments_count=0x7f070020;
-        public static final int post_content=0x7f070026;
-        public static final int post_date=0x7f070010;
-        public static final int post_description=0x7f070027;
-        public static final int post_description_scroll=0x7f070022;
-        public static final int post_item=0x7f070028;
-        public static final int post_item_comments=0x7f070037;
-        public static final int post_item_comments_count=0x7f070038;
-        public static final int post_item_content=0x7f070031;
-        public static final int post_item_counts=0x7f070032;
-        public static final int post_item_date=0x7f07002f;
-        public static final int post_item_details=0x7f07002c;
-        public static final int post_item_divider=0x7f070030;
-        public static final int post_item_graphics=0x7f07002a;
-        public static final int post_item_likes=0x7f070035;
-        public static final int post_item_likes_count=0x7f070036;
-        public static final int post_item_sections=0x7f070029;
-        public static final int post_item_title=0x7f07002d;
-        public static final int post_item_user_icon=0x7f07002b;
-        public static final int post_item_username=0x7f07002e;
-        public static final int post_item_views=0x7f070033;
-        public static final int post_item_views_count=0x7f070034;
-        public static final int post_likes=0x7f07001d;
-        public static final int post_likes_count=0x7f07001c;
-        public static final int post_nav=0x7f07001b;
-        public static final int post_title=0x7f07000c;
-        public static final int post_url=0x7f070023;
-        public static final int post_user=0x7f07000d;
-        public static final int post_user_icon=0x7f07000e;
-        public static final int post_user_name=0x7f07000f;
-        public static final int post_user_top=0x7f07001a;
-        public static final int post_views=0x7f07001f;
-        public static final int post_views_count=0x7f07001e;
-        public static final int posts_menu_logout=0x7f07003a;
-        public static final int snap_large_url=0x7f070025;
-        public static final int webview=0x7f070039;
+        public static final int content=0x7f070012;
+        public static final int login_label_password=0x7f070017;
+        public static final int login_label_username=0x7f070015;
+        public static final int login_password=0x7f070018;
+        public static final int login_submit=0x7f070019;
+        public static final int login_username=0x7f070016;
+        public static final int post=0x7f07001a;
+        public static final int post_body=0x7f070025;
+        public static final int post_comments=0x7f070022;
+        public static final int post_comments_count=0x7f070021;
+        public static final int post_content=0x7f070027;
+        public static final int post_date=0x7f070011;
+        public static final int post_description=0x7f070028;
+        public static final int post_description_scroll=0x7f070023;
+        public static final int post_item=0x7f070029;
+        public static final int post_item_comments=0x7f070038;
+        public static final int post_item_comments_count=0x7f070039;
+        public static final int post_item_content=0x7f070032;
+        public static final int post_item_counts=0x7f070033;
+        public static final int post_item_date=0x7f070030;
+        public static final int post_item_details=0x7f07002d;
+        public static final int post_item_divider=0x7f070031;
+        public static final int post_item_graphics=0x7f07002b;
+        public static final int post_item_likes=0x7f070036;
+        public static final int post_item_likes_count=0x7f070037;
+        public static final int post_item_sections=0x7f07002a;
+        public static final int post_item_title=0x7f07002e;
+        public static final int post_item_user_icon=0x7f07002c;
+        public static final int post_item_username=0x7f07002f;
+        public static final int post_item_views=0x7f070034;
+        public static final int post_item_views_count=0x7f070035;
+        public static final int post_likes=0x7f07001e;
+        public static final int post_likes_count=0x7f07001d;
+        public static final int post_nav=0x7f07001c;
+        public static final int post_title=0x7f07000d;
+        public static final int post_url=0x7f070024;
+        public static final int post_user=0x7f07000e;
+        public static final int post_user_icon=0x7f07000f;
+        public static final int post_user_name=0x7f070010;
+        public static final int post_user_top=0x7f07001b;
+        public static final int post_views=0x7f070020;
+        public static final int post_views_count=0x7f07001f;
+        public static final int posts_menu_logout=0x7f07003c;
+        public static final int snap_large_url=0x7f070026;
+        public static final int webview=0x7f07003b;
     }
     public static final class layout {
         public static final int comment_item=0x7f030000;

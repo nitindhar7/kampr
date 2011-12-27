@@ -79,7 +79,7 @@
                     android:gravity="top"
                     android:text="username"
                     android:textStyle="bold"
-                    android:textColor="#333" >
+                    android:textColor="#333" android:textSize="18sp">
                 </TextView>
 
                 <TextView
@@ -93,7 +93,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:text="date"
-                    android:textColor="@color/post_item_date" >
+                    android:textColor="@color/post_item_date" android:textSize="18sp">
                 </TextView>
             </RelativeLayout>
             
@@ -112,7 +112,7 @@
                 android:text="content"
                 android:textColor="@color/post_title"
                 android:textStyle="bold"
-                android:textSize="18sp" >
+                android:textSize="20sp" >
             </TextView>   
 
             <RelativeLayout
@@ -144,7 +144,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/post_item_counts"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
                     
                 <!-- likes counter -->
@@ -173,7 +173,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/post_item_counts"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
                 
                 <!-- comments counter -->
@@ -196,13 +196,13 @@
                     android:layout_toRightOf="@id/post_item_comments"
                     android:gravity="center_vertical"
                     android:minHeight="16dp"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="3dp"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/post_item_counts"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>

@@ -29,19 +29,17 @@
             android:shadowRadius="1"
             android:text="Comments"
             android:textColor="#FFF"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!--
-             <TextView
-            android:id="@+id/actionbar_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_actionbar_settings_nouveau"
-            android:minHeight="40dp"
-            android:minWidth="40dp" />
-        -->
+        <LinearLayout
+            android:id="@+id/actiobar_divider"
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_below="@+id/actionbar_logo"
+            android:background="@color/actionbar_separator_dark"
+            android:orientation="vertical" >
+        </LinearLayout>
     </RelativeLayout>
 
     <TextView
@@ -53,7 +51,7 @@
         android:minHeight="30dp"
         android:padding="10dp"
         android:textColor="@color/post_title"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" >
     </TextView>
 
@@ -88,6 +86,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#333333"
+            android:textSize="16sp"
             android:textStyle="bold" >
         </TextView>
 
@@ -100,7 +99,8 @@
             android:minHeight="40dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:textColor="#555" >
+            android:textColor="#555"
+            android:textSize="16sp" >
         </TextView>
     </RelativeLayout>
 

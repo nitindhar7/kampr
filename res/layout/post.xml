@@ -28,8 +28,17 @@
             android:shadowRadius="1"
             android:text="Link"
             android:textColor="#FFF"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/actiobar_divider"
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_below="@+id/actionbar_logo"
+            android:background="@color/actionbar_separator_dark"
+            android:orientation="vertical" >
+        </LinearLayout>
     </RelativeLayout>
 
     <TextView
@@ -41,7 +50,7 @@
         android:minHeight="30dp"
         android:padding="10dp"
         android:textColor="@color/post_title"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" >
     </TextView>
 
@@ -81,6 +90,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:textColor="#333333"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -92,14 +102,15 @@
                 android:minHeight="25dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textColor="#555" />
+                android:textColor="#555"
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/post_nav"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/post_user_top"
+            android:layout_below="@+id/post_user_top"
             android:layout_toRightOf="@id/post_user_icon" >
 
             <TextView
@@ -114,7 +125,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -131,7 +142,7 @@
                 android:shadowRadius="1"
                 android:text="likes •"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/post_views_count"
@@ -146,7 +157,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -163,7 +174,7 @@
                 android:shadowRadius="1"
                 android:text="views •"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/post_comments_count"
@@ -178,7 +189,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -196,7 +207,7 @@
                 android:shadowRadius="1"
                 android:text="comments"
                 android:textColor="@color/post_item_counts"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -231,7 +242,7 @@
                 android:padding="5dp"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:textColor="#333"
-                android:textSize="12sp" >
+                android:textSize="16sp" >
             </TextView>
 
             <TextView
@@ -239,7 +250,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
-                android:textColor="#333" >
+                android:textColor="#333"
+                android:textSize="16sp" >
             </TextView>
         </LinearLayout>
     </ScrollView>

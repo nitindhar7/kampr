@@ -10,7 +10,8 @@
     <color name="dark_blue">#2961a7</color>
 
     <!-- ActionBar -->
-    <color name="actionbar_separator">#CC7A00</color>
+    <color name="actionbar_separator_dark">#102743</color>
+    <color name="actionbar_separator_light">#C3D3E6</color>
     <color name="actionbar_background_start">#4f85c9</color>
     <color name="actionbar_background_end">#2961a7</color>
 
@@ -21,7 +22,7 @@
     <color name="login_button_selected">#326db6</color>
 
     <!-- tabs -->
-    <color name="tab_background_start">#f5f5f5</color>
+    <color name="tab_background_start">#F5F5F5</color>
     <color name="tab_background_end">#c5c5c5</color>
     <color name="tab_selected_start">#999</color>
     <color name="tab_selected_end">#666</color>
