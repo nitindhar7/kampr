@@ -46,7 +46,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             startPostsActivity();
         }
         else {
-            setContentView(R.layout.main);
+            setContentView(R.layout.login);
             
             _actionbarLogo = (TextView)findViewById(R.id.actionbar_logo);
             _actionbarByline = (TextView)findViewById(R.id.actionbar_byline);
