@@ -8,7 +8,7 @@
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#f5f5f5"
+        android:background="@color/gray"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -38,6 +38,14 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/actiobar_divider_light"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/actionbar_logo"
+                android:background="@color/actionbar_separator_dark"
+                android:orientation="vertical" >
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/actiobar_divider_dark"
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
@@ -45,7 +53,6 @@
                 android:background="@color/actionbar_separator_dark"
                 android:orientation="vertical" >
             </LinearLayout>
-            
         </RelativeLayout>
 
         <TabWidget
@@ -53,21 +60,26 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/tabs_bg"
-            android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp" />
+            android:gravity="center_horizontal" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="@null" >
 
             <ListView
                 android:id="@android:id/list"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:cacheColorHint="#00000000"
-                android:dividerHeight="0px"
+                android:divider="@color/post_item_divider"
+                android:dividerHeight="1px"
                 android:scrollingCache="false" >
             </ListView>
         </FrameLayout>

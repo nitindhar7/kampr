@@ -50,12 +50,12 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
         TextView postTitle = (TextView) getViewHandle(convertView, R.id.post_item_content);
         postTitle.setText(post.getProperty("title"));
         
-        LayoutUtils.setFont(this._context, postUsername);
+        LayoutUtils.setFont(this._context, postUsername, LayoutUtils.FONT_BOLD);
         LayoutUtils.setFont(this._context, postDate);
         LayoutUtils.setFont(this._context, postLikes);
         LayoutUtils.setFont(this._context, postViews);
+        LayoutUtils.setFont(this._context, postComments);
         LayoutUtils.setFont(this._context, postTitle);
-        
 
         convertView.setId(Integer.parseInt(post.getProperty("id")));
 

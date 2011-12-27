@@ -4,14 +4,15 @@
     <!-- General -->
     <color name="transparent">#00000000</color>
     <color name="white">#FFF</color>
+    <color name="light_gray">#EDEDED</color>
     <color name="gray">#CCC</color>
     <color name="black">#000</color>
     <color name="light_blue">#4f85c9</color>
     <color name="dark_blue">#2961a7</color>
 
     <!-- ActionBar -->
-    <color name="actionbar_separator_dark">#102743</color>
-    <color name="actionbar_separator_light">#C3D3E6</color>
+    <color name="actionbar_separator_dark">#111</color>
+    <color name="actionbar_separator_light">#102743</color>
     <color name="actionbar_background_start">#4f85c9</color>
     <color name="actionbar_background_end">#2961a7</color>
 
@@ -22,10 +23,10 @@
     <color name="login_button_selected">#326db6</color>
 
     <!-- tabs -->
-    <color name="tab_background_start">#F5F5F5</color>
-    <color name="tab_background_end">#c5c5c5</color>
-    <color name="tab_selected_start">#999</color>
-    <color name="tab_selected_end">#666</color>
+    <color name="tab_background_start">#46454A</color>
+    <color name="tab_background_end">#1E1E1E</color>
+    <color name="tab_selected_start">#333</color>
+    <color name="tab_selected_end">#1E1E1E</color>
 
     <!-- Post Items -->
     <color name="post_item_selected">#7BA2D3</color>

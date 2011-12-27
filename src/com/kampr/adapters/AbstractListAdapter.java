@@ -43,9 +43,9 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
         return view;
     }
     
-    protected View getConvertView(View view, int layoutId) {
+    protected View getConvertView(View view, int viewId) {
         if(view == null) {
-            return _inflater.inflate(layoutId, null);
+            return _inflater.inflate(viewId, null);
         }
         else {
             return view;

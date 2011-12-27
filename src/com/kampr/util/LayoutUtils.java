@@ -12,7 +12,7 @@ public class LayoutUtils extends URLSpan {
     
     public static final String FONT_REGULAR = "qlassik_regular.ttf";
     public static final String FONT_BOLD = "qlassik_bold.ttf";
-
+    
     public LayoutUtils(String url) {
         super(url);
     }

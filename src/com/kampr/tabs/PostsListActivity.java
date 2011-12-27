@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.PropertyContainer;
@@ -36,9 +37,10 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _posts = getListView();
-        _posts.setDividerHeight(0);
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
+        _posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
         _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
     }
