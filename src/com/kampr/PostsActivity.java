@@ -128,7 +128,7 @@ public class PostsActivity extends TabActivity {
                     _allTabLayout.setBackgroundResource(R.drawable.tab_selected);
                     _allTabLayout.setLayoutParams(_params);
                     _allTabLayout.setPadding(20, 0, 20, 0);
-                    _actionbarLogo.setText("Posts > All");
+                    _actionbarLogo.setText("Activity");
                 }
                 else if (tag.equals("links")) {
                     _linkTab.setImageResource(R.drawable.ic_tab_link_nouveau_selected);
