@@ -53,6 +53,7 @@ public class PostsActivity extends TabActivity {
         _tabHost = getTabHost();
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
+        _actionbarLogo.setText("Activity");
         SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
         
         _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);

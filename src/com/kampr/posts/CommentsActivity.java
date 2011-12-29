@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,27 +24,20 @@ import com.kampr.R;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
-import com.kampr.util.ImageUtils;
-import com.kampr.util.SpanUtils;
 import com.kampr.util.NetworkUtils;
+import com.kampr.util.SpanUtils;
 
 public class CommentsActivity extends ListActivity {
-
-    private final int LOGOUT_RESULT_CODE = 1;
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private static final int LOGOUT_RESULT_CODE = 1;
+    private static final String ACTIVITY_TAG = "Comments";
     
     private TextView _actionbarLogo;
     private TextView _postTitleView;
-    private TextView _postUsernameView;
-    private TextView _postDateView;
-    private ImageView _postUserIconView;
     
     private int _postId;
-    private String _postTitle;
-    private String _postName;
-    private String _postCreatedAt;
-    private Bitmap _postUserIcon;
 
     private ListView _comments;
     private ProgressDialog _dialog;
@@ -66,25 +58,13 @@ public class CommentsActivity extends ListActivity {
         NetworkUtils.trustAllHosts();
 
         _postId = Integer.parseInt(getIntent().getStringExtra("post_id"));
-        _postTitle = getIntent().getStringExtra("post_title");
-        _postName = getIntent().getStringExtra("post_name");
-        _postCreatedAt = getIntent().getStringExtra("post_created_at");
-        _postUserIcon = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _postTitleView = (TextView) findViewById(R.id.post_title);
-        _postUsernameView = (TextView) findViewById(R.id.post_user_name);
-        _postDateView = (TextView) findViewById(R.id.post_date);
-        _postUserIconView = (ImageView) findViewById(R.id.post_user_icon);
-        
-        _postTitleView.setText(_postTitle);
-        _postUsernameView.setText(_postName);
-        _postDateView.setText(_postCreatedAt);
-        _postUserIconView.setImageBitmap(_postUserIcon);
-        
+
+        _actionbarLogo.setText(ACTIVITY_TAG);
+
         SpanUtils.setFont(this, _postTitleView);
-        SpanUtils.setFont(this, _postUsernameView, SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(this, _postDateView);
         
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);

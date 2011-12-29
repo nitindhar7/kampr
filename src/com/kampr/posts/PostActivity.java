@@ -1,6 +1,5 @@
 package com.kampr.posts;
 
-import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 
 import org.json.JSONObject;
@@ -105,7 +104,7 @@ public class PostActivity extends Activity implements OnClickListener {
         SpanUtils.setFont(this, _postComments);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
-        
+
         _postTitle.setText(_post.getProperty("title"));
         _postUsername.setText(_post.getProperty("name"));
         _postDate.setText(_post.getProperty("created_at"));
@@ -119,23 +118,27 @@ public class PostActivity extends Activity implements OnClickListener {
         
         switch(this.getIntent().getIntExtra("post_type", POST_LINK)) {
             case POST_LINK:
+                _actionbarLogo.setText("Link");
                 _postOriginal.setVisibility(View.GONE);
                 _postContent.setVisibility(View.GONE);
                 _postUrl.setText(_post.getProperty("url"));
                 SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
                 break;
             case POST_SNAP:
+                _actionbarLogo.setText("Snap");
                 _postUrl.setVisibility(View.GONE);
                 _postContent.setVisibility(View.GONE);
                 _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getProperty("snaps_original_url")));
                 break;
             case POST_CODE:
+                _actionbarLogo.setText("Code");
                 _postOriginal.setVisibility(View.GONE);
                 _postUrl.setVisibility(View.GONE);
                 _postContent.setText(_post.getProperty("content"));
                 _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 break;
             case POST_QUESTION:
+                _actionbarLogo.setText("Question");
                 _postOriginal.setVisibility(View.GONE);
                 _postUrl.setVisibility(View.GONE);
                 _postContent.setVisibility(View.GONE);
@@ -152,12 +155,6 @@ public class PostActivity extends Activity implements OnClickListener {
                 if (Integer.parseInt(_post.getProperty("comment_count")) > 0) {
                     Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
                     comments.putExtra("post_id", _post.getProperty("id"));
-                    comments.putExtra("post_title", _post.getProperty("title"));
-                    comments.putExtra("post_name", _post.getProperty("name"));
-                    comments.putExtra("post_created_at", _post.getProperty("created_at"));
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    _userIconBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    comments.putExtra("post_user_icon", stream.toByteArray());
                     startActivity(comments);
                 }
                 else {
