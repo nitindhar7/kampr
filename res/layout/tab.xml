@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tab"
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_gravity="left"
+    android:orientation="vertical"
+    android:layout_weight="0.2" >
 
     <ImageView
         android:id="@+id/tabImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/forrst_default_25" android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/tabLabel"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal"/>
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="14sp" android:textColor="@color/white" android:paddingBottom="3dp"/>
 
 </LinearLayout>

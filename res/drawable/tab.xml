@@ -4,8 +4,4 @@
 
     <solid android:color="@color/transparent" />
 
-    <padding
-        android:bottom="3dp"
-        android:top="3dp" />
-
 </shape>

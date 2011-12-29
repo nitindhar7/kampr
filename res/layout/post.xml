@@ -239,19 +239,21 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#EEE"
+                android:lineSpacingMultiplier="1.2"
                 android:padding="5dp"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:textColor="#333"
-                android:textSize="16sp" >
+                android:textSize="18sp" >
             </TextView>
 
             <TextView
                 android:id="@+id/post_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:textColor="#333"
-                android:textSize="16sp" >
+                android:textSize="18sp" >
             </TextView>
         </LinearLayout>
     </ScrollView>

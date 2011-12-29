@@ -26,7 +26,7 @@ import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.ImageUtils;
-import com.kampr.util.LayoutUtils;
+import com.kampr.util.SpanUtils;
 import com.kampr.util.NetworkUtils;
 
 public class CommentsActivity extends ListActivity {
@@ -82,18 +82,18 @@ public class CommentsActivity extends ListActivity {
         _postDateView.setText(_postCreatedAt);
         _postUserIconView.setImageBitmap(_postUserIcon);
         
-        LayoutUtils.setFont(this, _postTitleView);
-        LayoutUtils.setFont(this, _postUsernameView);
-        LayoutUtils.setFont(this, _postDateView);
+        SpanUtils.setFont(this, _postTitleView);
+        SpanUtils.setFont(this, _postUsernameView, SpanUtils.FONT_BOLD);
+        SpanUtils.setFont(this, _postDateView);
         
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);
-        _comments.setDivider(getResources().getDrawable(R.color.comment_item_divider));
+        _comments.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _comments.setDividerHeight(1);
 
         _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
         
-        LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
+        SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
         
         _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
         _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));

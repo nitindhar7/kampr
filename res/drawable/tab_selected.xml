@@ -3,8 +3,7 @@
 	android:shape="rectangle">
 
 	<gradient android:angle="270" android:startColor="@color/tab_selected_start"
-		android:endColor="@color/tab_selected_end" android:type="radial" android:gradientRadius="50" />
-
-	<padding android:bottom="3dp" android:top="3dp" />
+		android:endColor="@color/tab_selected_end" android:type="radial"
+		android:gradientRadius="50" />
 
 </shape>

@@ -34,15 +34,13 @@
             </ImageView>
         </LinearLayout>
 
-        <!-- post content -->
-
         <LinearLayout
             android:id="@+id/post_item_details"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/post_item_graphics"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/post_item_title"

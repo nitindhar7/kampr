@@ -27,7 +27,7 @@ import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.models.PropertyContainer;
 import com.kampr.util.ImageUtils;
-import com.kampr.util.LayoutUtils;
+import com.kampr.util.SpanUtils;
 import com.kampr.util.TextUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
@@ -90,19 +90,19 @@ public class PostActivity extends Activity implements OnClickListener {
         _postComments.setOnClickListener(this);
         _postOriginal.setOnClickListener(this);
         
-        LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
-        LayoutUtils.setFont(this, _postLikesCount);
-        LayoutUtils.setFont(this, _postViewsCount);
-        LayoutUtils.setFont(this, _postCommentsCount);
-        LayoutUtils.setFont(this, _postTitle);
-        LayoutUtils.setFont(this, _postUrl);
-        LayoutUtils.setFont(this, _postUsername);
-        LayoutUtils.setFont(this, _postDate);
-        LayoutUtils.setFont(this, _postDescription);
-        LayoutUtils.setFont(this, _postContent);
-        LayoutUtils.setFont(this, _postLikes);
-        LayoutUtils.setFont(this, _postViews);
-        LayoutUtils.setFont(this, _postComments);
+        SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
+        SpanUtils.setFont(this, _postLikesCount);
+        SpanUtils.setFont(this, _postViewsCount);
+        SpanUtils.setFont(this, _postCommentsCount);
+        SpanUtils.setFont(this, _postTitle);
+        SpanUtils.setFont(this, _postUrl);
+        SpanUtils.setFont(this, _postUsername, SpanUtils.FONT_BOLD);
+        SpanUtils.setFont(this, _postDate);
+        SpanUtils.setFont(this, _postDescription);
+        SpanUtils.setFont(this, _postContent);
+        SpanUtils.setFont(this, _postLikes);
+        SpanUtils.setFont(this, _postViews);
+        SpanUtils.setFont(this, _postComments);
 
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
         
@@ -122,7 +122,7 @@ public class PostActivity extends Activity implements OnClickListener {
                 _postOriginal.setVisibility(View.GONE);
                 _postContent.setVisibility(View.GONE);
                 _postUrl.setText(_post.getProperty("url"));
-                LayoutUtils.removeUnderlines((Spannable) _postUrl.getText());
+                SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
                 break;
             case POST_SNAP:
                 _postUrl.setVisibility(View.GONE);

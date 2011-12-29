@@ -23,10 +23,10 @@
     <color name="login_button_selected">#326db6</color>
 
     <!-- tabs -->
-    <color name="tab_background_start">#46454A</color>
-    <color name="tab_background_end">#1E1E1E</color>
-    <color name="tab_selected_start">#333</color>
-    <color name="tab_selected_end">#1E1E1E</color>
+    <color name="tab_background_start">#444</color>
+    <color name="tab_background_end">#222</color>
+    <color name="tab_selected_start">#555</color>
+    <color name="tab_selected_end">#111</color>
 
     <!-- Post Items -->
     <color name="post_item_selected">#7BA2D3</color>

@@ -87,7 +87,7 @@
             android:paddingRight="5dp"
             android:textColor="#333333"
             android:textSize="16sp"
-            android:textStyle="bold" >
+            android:textStyle="bold">
         </TextView>
 
         <TextView
@@ -109,7 +109,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:cacheColorHint="#00000000"
-        android:scrollingCache="false" >
+        android:scrollingCache="false" android:dividerHeight="1px" android:divider="@color/post_item_divider">
     </ListView>
 
 </LinearLayout>

@@ -94,9 +94,19 @@ public final class R {
         public static final int posts_menu_settings=0x7f020023;
         public static final int snap_image_bg=0x7f020024;
         public static final int tab=0x7f020025;
-        public static final int tab_selected=0x7f020026;
-        public static final int tabs_bg=0x7f020027;
-        public static final int user_icon_bg=0x7f020028;
+        public static final int tab_activity_selected=0x7f020026;
+        public static final int tab_activity_unselected=0x7f020027;
+        public static final int tab_code_selected=0x7f020028;
+        public static final int tab_code_unselected=0x7f020029;
+        public static final int tab_links_selected=0x7f02002a;
+        public static final int tab_links_unselected=0x7f02002b;
+        public static final int tab_question_selected=0x7f02002c;
+        public static final int tab_question_unselected=0x7f02002d;
+        public static final int tab_selected=0x7f02002e;
+        public static final int tab_snaps_selected=0x7f02002f;
+        public static final int tab_snaps_unselected=0x7f020030;
+        public static final int tabs_bg=0x7f020031;
+        public static final int user_icon_bg=0x7f020032;
     }
     public static final class id {
         public static final int actiobar_divider=0x7f07000c;

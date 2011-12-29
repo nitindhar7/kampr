@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kampr.util.LayoutUtils;
 import com.kampr.util.NetworkUtils;
+import com.kampr.util.SpanUtils;
 
 public class KamprActivity extends Activity implements OnClickListener, OnKeyListener {
 
@@ -60,13 +60,13 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             _loginUsername.setOnKeyListener(this);
             _loginPassword.setOnKeyListener(this);
             
-            LayoutUtils.setFont(this, _actionbarLogo, LayoutUtils.FONT_BOLD);
-            LayoutUtils.setFont(this, _actionbarByline);
-            LayoutUtils.setFont(this, _loginSubmit);
-            LayoutUtils.setFont(this, _loginLabelUsername);
-            LayoutUtils.setFont(this, _loginLabelPassword);
-            LayoutUtils.setFont(this, _loginUsername);
-            LayoutUtils.setFont(this, _loginPassword);
+            SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
+            SpanUtils.setFont(this, _actionbarByline);
+            SpanUtils.setFont(this, _loginSubmit);
+            SpanUtils.setFont(this, _loginLabelUsername);
+            SpanUtils.setFont(this, _loginLabelPassword);
+            SpanUtils.setFont(this, _loginUsername);
+            SpanUtils.setFont(this, _loginPassword);
         }
     }
 
