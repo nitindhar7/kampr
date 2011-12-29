@@ -2,78 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/comment_item"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/post_item_states"
+    android:orientation="vertical"
+    android:padding="5dp" >
 
-    <RelativeLayout
-        android:id="@+id/comment_item_sections"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/post_item_states"
-        android:padding="5dp" >
+    <LinearLayout
+        android:id="@+id/comment_item_graphics"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:minHeight="60dp"
+        android:minWidth="60dp"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/comment_item_graphics"
+        <ImageView
+            android:id="@+id/comment_item_user_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:background="@drawable/user_icon_bg"
+            android:maxHeight="60dp"
+            android:maxWidth="60dp"
             android:minHeight="60dp"
             android:minWidth="60dp"
-            android:orientation="vertical" >
+            android:src="@drawable/icon" >
+        </ImageView>
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/comment_item_user_icon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/user_icon_bg"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:src="@drawable/icon" >
-            </ImageView>
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/comment_item_details"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/comment_item_graphics"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/comment_item_details"
+        <RelativeLayout
+            android:id="@+id/comment_item_title"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/comment_item_graphics"
-            android:orientation="vertical" >
-
-            <RelativeLayout
-                android:id="@+id/comment_item_title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/comment_item_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="username"
-                    android:textColor="#333" android:textSize="18sp">
-                </TextView>
-
-                <TextView
-                    android:id="@+id/comment_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="date"
-                    android:textColor="#999" android:textSize="18sp">
-                </TextView>
-            </RelativeLayout>
+            android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/comment_item_content"
-                android:layout_width="fill_parent"
+                android:id="@+id/comment_item_username"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.2"
-                android:text="content"
-                android:textColor="#333" android:textSize="18sp">
+                android:text="username"
+                android:textColor="#333"
+                android:textSize="18sp" >
             </TextView>
-        </LinearLayout>
-    </RelativeLayout>
+
+            <TextView
+                android:id="@+id/comment_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="date"
+                android:textColor="#999"
+                android:textSize="18sp" >
+            </TextView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/comment_item_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.2"
+            android:text="content"
+            android:textColor="#333"
+            android:textSize="18sp" >
+        </TextView>
+    </LinearLayout>
 
 </RelativeLayout>
