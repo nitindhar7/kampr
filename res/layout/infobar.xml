@@ -5,16 +5,16 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/post_title"
     android:background="#EEE"
-    android:padding="10dp" >
+    android:padding="5dp" >
 
     <include layout="@layout/user_icon" />
 
     <RelativeLayout
         android:id="@+id/post_user_top"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_toRightOf="@+id/user_icon_thumbnail"
-        android:minHeight="25dp" >
+        android:minHeight="20dp" >
 
         <TextView
             android:id="@+id/post_user_name"
