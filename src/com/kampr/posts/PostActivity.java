@@ -75,7 +75,7 @@ public class PostActivity extends Activity implements OnClickListener {
         _postUsername = (TextView) findViewById(R.id.post_user_name);
         _postDate = (TextView) findViewById(R.id.post_date);
         _postDescription = (TextView) findViewById(R.id.post_description);
-        _postUserIcon = (ImageView) findViewById(R.id.post_user_icon);
+        _postUserIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
         _postLikes = (TextView) findViewById(R.id.post_likes);
         _postViews = (TextView) findViewById(R.id.post_views);
         _postComments = (TextView) findViewById(R.id.post_comments);

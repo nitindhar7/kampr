@@ -29,7 +29,7 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         PropertyContainer post = (PropertyContainer) _objects.get(position);
 
-        ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.post_item_user_icon);
+        ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
         postUserIcon.setImageBitmap(_userIcons.get(post.getProperty("id")));
 
         TextView postUsername = (TextView) getViewHandle(convertView, R.id.post_item_username);

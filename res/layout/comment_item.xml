@@ -9,23 +9,13 @@
 
     <LinearLayout
         android:id="@+id/comment_item_graphics"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:minHeight="60dp"
-        android:minWidth="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:minHeight="40dp"
+        android:minWidth="40dp"
         android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/comment_item_user_icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/user_icon_bg"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"
-            android:minHeight="60dp"
-            android:minWidth="60dp"
-            android:src="@drawable/icon" >
-        </ImageView>
+        <include layout="@layout/user_icon" />
     </LinearLayout>
 
     <LinearLayout

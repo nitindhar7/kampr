@@ -29,7 +29,7 @@ public class CommentsAdapter extends AbstractListAdapter<Comment> {
         
         Comment comment = (Comment) _objects.get(position);
         
-        ImageView commentUserIcon = (ImageView) getViewHandle(convertView, R.id.comment_item_user_icon);
+        ImageView commentUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
         commentUserIcon.setImageBitmap(_userIcons.get(comment.getProperty("id")));
 
         TextView commentUsername = (TextView) getViewHandle(convertView, R.id.comment_item_username);

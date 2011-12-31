@@ -5,26 +5,15 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/post_title"
     android:background="#EEE"
-    android:minHeight="30dp"
     android:padding="10dp" >
 
-    <ImageView
-        android:id="@+id/post_user_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/user_icon_bg"
-        android:maxHeight="60dp"
-        android:maxWidth="60dp"
-        android:minHeight="60dp"
-        android:minWidth="60dp" >
-    </ImageView>
+    <include layout="@layout/user_icon" />
 
     <RelativeLayout
         android:id="@+id/post_user_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/post_user_icon"
+        android:layout_toRightOf="@+id/user_icon_thumbnail"
         android:minHeight="25dp" >
 
         <TextView
@@ -58,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/post_user_top"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/post_user_icon"
+        android:layout_toRightOf="@+id/user_icon_thumbnail"
         layout="@layout/counts" />
 
 </RelativeLayout>
