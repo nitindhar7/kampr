@@ -23,8 +23,9 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
 
     public static final String KAMPR_APP_PREFS = "KamprAppPrefs";
 
-    private final int LOGIN_RESULT_CODE = 1;
-    private final int ENTER_KEY_CODE = 66;
+    private static final int LOGIN_RESULT_CODE = 1;
+    private static final int POST_QUIT_CODE = 2;
+    private static final int ENTER_KEY_CODE = 66;
     
     private TextView _actionbarLogo;
     private TextView _actionbarByline;
@@ -99,6 +100,9 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
                 _dialog.cancel();
                 break;
+            case POST_QUIT_CODE:
+                finish();
+                break;
         }
     }
     
@@ -116,7 +120,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     
     protected void startPostsActivity() {
         Intent posts = new Intent(KamprActivity.this, PostsActivity.class);
-        startActivity(posts);
+        startActivityForResult(posts, 2);
     }
     
     protected void attemptLogin() {

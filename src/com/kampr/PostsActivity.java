@@ -172,6 +172,11 @@ public class PostsActivity extends TabActivity {
         }
     }
     
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+    
     private void clearTabStyles() {
         _allTabIcon.setImageResource(R.drawable.tab_activity_unselected);
         _linkTabIcon.setImageResource(R.drawable.tab_links_unselected);
