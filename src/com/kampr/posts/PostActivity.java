@@ -27,7 +27,6 @@ import com.kampr.R;
 import com.kampr.models.PropertyContainer;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
-import com.kampr.util.SpanUtils;
 import com.kampr.util.TextUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
@@ -92,18 +91,6 @@ public class PostActivity extends Activity implements OnClickListener {
 
         _postOriginal.setOnClickListener(this);
 
-        SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(this, _postLikesCount);
-        SpanUtils.setFont(this, _postViewsCount);
-        SpanUtils.setFont(this, _postTitle);
-        SpanUtils.setFont(this, _postUrl);
-        SpanUtils.setFont(this, _postUsername, SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(this, _postDate);
-        SpanUtils.setFont(this, _postDescription);
-        SpanUtils.setFont(this, _postContent);
-        SpanUtils.setFont(this, _postLikes);
-        SpanUtils.setFont(this, _postViews);
-
         _post = (PropertyContainer) getIntent().getSerializableExtra("post");
 
         if (_post.getProperty("comment_count").equals("0")) {
@@ -112,7 +99,6 @@ public class PostActivity extends Activity implements OnClickListener {
             _postComments = (TextView) findViewById(R.id.post_view_comments_arrow);
             _postCommentsCount = (TextView) findViewById(R.id.post_view_comments_count);
             _postCommentsCount.setText(_post.getProperty("comment_count"));
-            SpanUtils.setFont(this, _postCommentsCount);
             _postViewComments.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

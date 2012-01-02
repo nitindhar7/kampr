@@ -29,8 +29,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     
     private TextView _actionbarLogo;
     private TextView _actionbarByline;
-    private TextView _loginLabelUsername;
-    private TextView _loginLabelPassword;
     private EditText _loginUsername;
     private EditText _loginPassword;
     private Button _loginSubmit;
@@ -51,8 +49,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             
             _actionbarLogo = (TextView)findViewById(R.id.actionbar_logo);
             _actionbarByline = (TextView)findViewById(R.id.actionbar_byline);
-            _loginLabelUsername = (TextView)findViewById(R.id.login_label_username);
-            _loginLabelPassword = (TextView)findViewById(R.id.login_label_password);
             _loginUsername = (EditText)findViewById(R.id.login_username);
             _loginPassword = (EditText)findViewById(R.id.login_password);
             _loginSubmit = (Button)findViewById(R.id.login_submit);
@@ -63,11 +59,6 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             
             SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
             SpanUtils.setFont(this, _actionbarByline);
-            SpanUtils.setFont(this, _loginSubmit);
-            SpanUtils.setFont(this, _loginLabelUsername);
-            SpanUtils.setFont(this, _loginLabelPassword);
-            SpanUtils.setFont(this, _loginUsername);
-            SpanUtils.setFont(this, _loginPassword);
         }
     }
 

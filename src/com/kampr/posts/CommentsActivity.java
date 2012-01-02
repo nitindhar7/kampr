@@ -25,7 +25,6 @@ import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.Comment;
 import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.NetworkUtils;
-import com.kampr.util.SpanUtils;
 
 public class CommentsActivity extends ListActivity {
     
@@ -35,7 +34,6 @@ public class CommentsActivity extends ListActivity {
     private static final String ACTIVITY_TAG = "Comments";
     
     private TextView _actionbarLogo;
-    private TextView _postTitleView;
     
     private int _postId;
 
@@ -60,11 +58,8 @@ public class CommentsActivity extends ListActivity {
         _postId = Integer.parseInt(getIntent().getStringExtra("post_id"));
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
-        _postTitleView = (TextView) findViewById(R.id.post_title);
 
         _actionbarLogo.setText(ACTIVITY_TAG);
-
-        SpanUtils.setFont(this, _postTitleView);
         
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);
@@ -73,8 +68,6 @@ public class CommentsActivity extends ListActivity {
         _comments.setDividerHeight(1);
 
         _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
-        
-        SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
         
         _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
         _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));

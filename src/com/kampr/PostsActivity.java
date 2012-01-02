@@ -20,7 +20,6 @@ import com.kampr.tabs.CodesActivity;
 import com.kampr.tabs.LinksActivity;
 import com.kampr.tabs.QuestionsActivity;
 import com.kampr.tabs.SnapsActivity;
-import com.kampr.util.SpanUtils;
 
 public class PostsActivity extends TabActivity {
     
@@ -54,7 +53,6 @@ public class PostsActivity extends TabActivity {
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _actionbarLogo.setText("Activity");
-        SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
         
         _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
         _view.setBackgroundResource(R.drawable.tab_selected);
@@ -62,7 +60,6 @@ public class PostsActivity extends TabActivity {
         _allTabIcon.setImageResource(R.drawable.tab_activity_selected);
         _allTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _allTabLabel.setText("Activity");
-        SpanUtils.setFont(this, _allTabLabel);
         _intent = new Intent(PostsActivity.this, AllActivity.class);
         _spec = _tabHost.newTabSpec("all").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
@@ -72,7 +69,6 @@ public class PostsActivity extends TabActivity {
         _linkTabIcon.setImageResource(R.drawable.tab_links_unselected);
         _linkTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _linkTabLabel.setText("Links");
-        SpanUtils.setFont(this, _linkTabLabel);
         _intent = new Intent(PostsActivity.this, LinksActivity.class);
         _spec = _tabHost.newTabSpec("links").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
@@ -82,7 +78,6 @@ public class PostsActivity extends TabActivity {
         _snapTabIcon.setImageResource(R.drawable.tab_snaps_unselected);
         _snapTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _snapTabLabel.setText("Snaps");
-        SpanUtils.setFont(this, _snapTabLabel);
         _intent = new Intent(PostsActivity.this, SnapsActivity.class);
         _spec = _tabHost.newTabSpec("snaps").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
@@ -92,7 +87,6 @@ public class PostsActivity extends TabActivity {
         _codeTabIcon.setImageResource(R.drawable.tab_code_unselected);
         _codeTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _codeTabLabel.setText("Code");
-        SpanUtils.setFont(this, _codeTabLabel);
         _intent = new Intent(PostsActivity.this, CodesActivity.class);
         _spec = _tabHost.newTabSpec("codes").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
@@ -102,7 +96,6 @@ public class PostsActivity extends TabActivity {
         _questionTabIcon.setImageResource(R.drawable.tab_question_unselected);
         _questionTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _questionTabLabel.setText("Questions");
-        SpanUtils.setFont(this, _questionTabLabel);
         _intent = new Intent(PostsActivity.this, QuestionsActivity.class);
         _spec = _tabHost.newTabSpec("questions").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.kampr.R;
 import com.kampr.models.PropertyContainer;
-import com.kampr.util.SpanUtils;
 
 public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
@@ -49,13 +48,6 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         TextView postTitle = (TextView) getViewHandle(convertView, R.id.post_item_content);
         postTitle.setText(post.getProperty("title"));
-        
-        SpanUtils.setFont(this._context, postUsername, SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(this._context, postDate);
-        SpanUtils.setFont(this._context, postLikes);
-        SpanUtils.setFont(this._context, postViews);
-        SpanUtils.setFont(this._context, postComments);
-        SpanUtils.setFont(this._context, postTitle);
 
         convertView.setId(Integer.parseInt(post.getProperty("id")));
 
