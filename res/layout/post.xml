@@ -22,12 +22,76 @@
 
     <include layout="@layout/infobar" />
 
+    <RelativeLayout
+        android:id="@+id/post_view_comments"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/post_user"
+        android:background="@drawable/post_view_comments_states" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:maxHeight="28dp"
+            android:minHeight="28dp"
+            android:padding="5dp"
+            android:shadowColor="@color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="Comments"
+            android:textColor="@color/post_item_counts"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_view_comments_arrow"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/post_view_comments_count"
+            android:background="@drawable/ic_post_comments"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/post_view_comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical"
+            android:maxHeight="28dp"
+            android:minHeight="28dp"
+            android:padding="5dp"
+            android:shadowColor="@color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:textColor="@color/post_item_counts"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray" />
+    </RelativeLayout>
+
     <ScrollView
         android:id="@+id/post_description_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/post_url"
-        android:layout_below="@+id/post_user"
+        android:layout_below="@+id/post_view_comments"
         android:isScrollContainer="true"
         android:padding="10dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
@@ -83,6 +147,7 @@
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1"
-        android:textColor="@color/hyperlink" android:textSize="16sp"/>
+        android:textColor="@color/hyperlink"
+        android:textSize="16sp" />
 
 </RelativeLayout>

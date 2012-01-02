@@ -43,5 +43,8 @@
 
     <!-- Hyperlinks -->
     <color name="hyperlink">#2961a7</color>
+    <color name="post_view_comments_start">#EEE</color>
+    <color name="post_view_comments_end">#DDD</color>
+    <color name="lighter_gray">#F5F5F5</color>
 
 </resources>
