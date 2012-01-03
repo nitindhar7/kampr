@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Spannable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import com.kampr.R;
 import com.kampr.models.PropertyContainer;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
+import com.kampr.util.SpanUtils;
 import com.kampr.util.TextUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
@@ -125,6 +127,7 @@ public class PostActivity extends Activity implements OnClickListener {
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postUrl.setText(_post.getProperty("url"));
+            SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
             break;
         case POST_SNAP:
             _actionbarLogo.setText("Snap");

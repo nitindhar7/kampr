@@ -61,6 +61,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        @SuppressWarnings("unused")
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 
         switch(item.getItemId()) {
