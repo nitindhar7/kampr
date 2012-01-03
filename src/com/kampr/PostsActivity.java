@@ -15,11 +15,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kampr.tabs.AllActivity;
-import com.kampr.tabs.CodesActivity;
-import com.kampr.tabs.LinksActivity;
-import com.kampr.tabs.QuestionsActivity;
-import com.kampr.tabs.SnapsActivity;
+import com.kampr.posts.PostsListActivity;
 
 public class PostsActivity extends TabActivity {
     
@@ -60,7 +56,8 @@ public class PostsActivity extends TabActivity {
         _allTabIcon.setImageResource(R.drawable.tab_activity_selected);
         _allTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _allTabLabel.setText("Activity");
-        _intent = new Intent(PostsActivity.this, AllActivity.class);
+        _intent = new Intent(PostsActivity.this, PostsListActivity.class);
+        _intent.putExtra("post_type", "all");
         _spec = _tabHost.newTabSpec("all").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
 
@@ -69,7 +66,8 @@ public class PostsActivity extends TabActivity {
         _linkTabIcon.setImageResource(R.drawable.tab_links_unselected);
         _linkTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _linkTabLabel.setText("Links");
-        _intent = new Intent(PostsActivity.this, LinksActivity.class);
+        _intent = new Intent(PostsActivity.this, PostsListActivity.class);
+        _intent.putExtra("post_type", "link");
         _spec = _tabHost.newTabSpec("links").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
         
@@ -78,7 +76,8 @@ public class PostsActivity extends TabActivity {
         _snapTabIcon.setImageResource(R.drawable.tab_snaps_unselected);
         _snapTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _snapTabLabel.setText("Snaps");
-        _intent = new Intent(PostsActivity.this, SnapsActivity.class);
+        _intent = new Intent(PostsActivity.this, PostsListActivity.class);
+        _intent.putExtra("post_type", "snap");
         _spec = _tabHost.newTabSpec("snaps").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
 
@@ -87,7 +86,8 @@ public class PostsActivity extends TabActivity {
         _codeTabIcon.setImageResource(R.drawable.tab_code_unselected);
         _codeTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _codeTabLabel.setText("Code");
-        _intent = new Intent(PostsActivity.this, CodesActivity.class);
+        _intent = new Intent(PostsActivity.this, PostsListActivity.class);
+        _intent.putExtra("post_type", "code");
         _spec = _tabHost.newTabSpec("codes").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
 
@@ -96,7 +96,8 @@ public class PostsActivity extends TabActivity {
         _questionTabIcon.setImageResource(R.drawable.tab_question_unselected);
         _questionTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
         _questionTabLabel.setText("Questions");
-        _intent = new Intent(PostsActivity.this, QuestionsActivity.class);
+        _intent = new Intent(PostsActivity.this, PostsListActivity.class);
+        _intent.putExtra("post_type", "question");
         _spec = _tabHost.newTabSpec("questions").setIndicator(_view).setContent(_intent);
         _tabHost.addTab(_spec);
         

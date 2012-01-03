@@ -25,40 +25,49 @@
         <activity android:name=".LoginActivity" >
         </activity>
         <activity
-            android:name=".PostsActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:name=".PostsActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity android:name=".LogoutActivity" >
         </activity>
-        <activity android:name=".tabs.AllActivity"
-            android:configChanges="keyboardHidden|orientation" >
-        </activity>
-        <activity android:name=".tabs.LinksActivity"
-            android:configChanges="keyboardHidden|orientation" >
-        </activity>
-        <activity android:name=".tabs.SnapsActivity"
-            android:configChanges="keyboardHidden|orientation" >
-        </activity>
-        <activity android:name=".tabs.CodesActivity"
-            android:configChanges="keyboardHidden|orientation" >
-        </activity>
-        <activity android:name=".tabs.QuestionsActivity"
-            android:configChanges="keyboardHidden|orientation" >
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".posts.PostsListActivity" >
         </activity>
         <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".tabs.AllActivity" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".tabs.LinksActivity" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".tabs.SnapsActivity" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".tabs.CodesActivity" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:name=".tabs.QuestionsActivity" >
+        </activity>
+        <activity
+            android:configChanges="keyboardHidden|orientation"
             android:name=".posts.PostActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:configChanges="keyboardHidden|orientation"
             android:name=".posts.SnapFullscreenActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name=".posts.CommentsActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:name=".posts.CommentsActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
     </application>
