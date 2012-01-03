@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.kampr.adapters.CommentsAdapter;
 import com.kampr.models.Comment;
 
-public class CommentsHandler extends ListsHandler<Comment> {
+public class CommentsHandler extends AbstractHandler<Comment> {
 
     private CommentsAdapter _commentsAdapter;
     
