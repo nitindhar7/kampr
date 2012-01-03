@@ -21,7 +21,7 @@ import android.widget.ListView;
 import com.kampr.R;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.PropertyContainer;
+import com.kampr.models.Post;
 import com.kampr.util.NetworkUtils;
 
 public abstract class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
@@ -29,15 +29,15 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
     protected ListView _posts;
     protected ProgressDialog _dialog;
     protected Map<String,Bitmap> _userIcons;
-    protected List<PropertyContainer> _listOfPosts;
+    protected List<Post> _listOfPosts;
     protected Thread _fetchPostsThread;
-    protected PostsHandler<T> _handler;
+    protected PostsHandler<Post> _handler;
     protected PostsAdapter<T> _postsAdapter;
     
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
         _userIcons = new HashMap<String,Bitmap>();
-        _listOfPosts = new ArrayList<PropertyContainer>();
+        _listOfPosts = new ArrayList<Post>();
     }
     
     @Override

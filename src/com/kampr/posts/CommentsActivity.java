@@ -2,14 +2,11 @@ package com.kampr.posts;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,13 +37,11 @@ public class CommentsActivity extends ListActivity {
     private ListView _comments;
     private ProgressDialog _dialog;
     private List<Comment> _listOfComments;
-    private Map<String,Bitmap> _userIcons;
     private CommentsHandler _handler;
     private Thread _fetchCommentsThread;
     
     public CommentsActivity() {
         _listOfComments = new ArrayList<Comment>();
-        _userIcons = new HashMap<String,Bitmap>();
     }
     
     @Override
@@ -69,8 +64,8 @@ public class CommentsActivity extends ListActivity {
 
         _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
         
-        _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments, _userIcons);
-        _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _userIcons, _postId));
+        _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments);
+        _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _postId));
         _fetchCommentsThread.start();
     }
     

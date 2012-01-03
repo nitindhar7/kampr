@@ -1,10 +1,8 @@
 package com.kampr.adapters;
 
 import java.util.List;
-import java.util.Map;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,12 +12,9 @@ import com.kampr.R;
 import com.kampr.models.Comment;
 
 public class CommentsAdapter extends AbstractListAdapter<Comment> {
-    
-    private Map<String,Bitmap> _userIcons;
 
-    public CommentsAdapter(Context context, List<Comment> comments, Map<String,Bitmap> userIcons) {
+    public CommentsAdapter(Context context, List<Comment> comments) {
         super(context, comments);
-        _userIcons = userIcons;
     }
 
     @Override
@@ -29,18 +24,18 @@ public class CommentsAdapter extends AbstractListAdapter<Comment> {
         Comment comment = (Comment) _objects.get(position);
         
         ImageView commentUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
-        commentUserIcon.setImageBitmap(_userIcons.get(comment.getProperty("id")));
+        commentUserIcon.setImageBitmap(comment.getUserIcon());
 
         TextView commentUsername = (TextView) getViewHandle(convertView, R.id.comment_item_username);
-        commentUsername.setText(comment.getProperty("name"));
+        commentUsername.setText(comment.getUserName());
 
         TextView commentDate = (TextView) getViewHandle(convertView, R.id.comment_item_date);
-        commentDate.setText(comment.getProperty("created_at"));
+        commentDate.setText(comment.getCreatedAt());
 
         TextView commentTitle = (TextView) getViewHandle(convertView, R.id.comment_item_content);
-        commentTitle.setText(comment.getProperty("body"));
+        commentTitle.setText(comment.getBody());
 
-        convertView.setId(Integer.parseInt(comment.getProperty("id")));
+        convertView.setId(comment.getId());
 
         return convertView;
     }

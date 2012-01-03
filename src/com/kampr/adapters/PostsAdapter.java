@@ -1,61 +1,56 @@
 package com.kampr.adapters;
 
 import java.util.List;
-import java.util.Map;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kampr.R;
-import com.kampr.models.PropertyContainer;
+import com.kampr.models.Post;
 
 public class PostsAdapter<T> extends AbstractListAdapter<T> {
     
-    private Map<String,Bitmap> _userIcons;
-    
-    public PostsAdapter(Context context, List<T> posts, Map<String,Bitmap> userIcons) {
+    public PostsAdapter(Context context, List<T> posts) {
         super(context, posts);
-        _userIcons = userIcons;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = getConvertView(convertView, R.layout.post_item);
 
-        PropertyContainer post = (PropertyContainer) _objects.get(position);
+        Post post = (Post) _objects.get(position);
 
         ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
-        postUserIcon.setImageBitmap(_userIcons.get(post.getProperty("id")));
+        postUserIcon.setImageBitmap(post.getUserIcon());
 
         TextView postUsername = (TextView) getViewHandle(convertView, R.id.post_item_username);
-        postUsername.setText(post.getProperty("name"));
+        postUsername.setText(post.getUserName());
 
         TextView postDate = (TextView) getViewHandle(convertView, R.id.post_item_date);
-        postDate.setText(post.getProperty("created_at"));
+        postDate.setText(post.getCreatedAt());
         
         TextView postLikes = (TextView) getViewHandle(convertView, R.id.post_likes_count);
-        postLikes.setText(post.getProperty("like_count"));
+        postLikes.setText(Integer.toString(post.getLikeCount()));
         
         TextView postViews = (TextView) getViewHandle(convertView, R.id.post_views_count);
-        postViews.setText(post.getProperty("view_count"));
+        postViews.setText(Integer.toString(post.getViewCount()));
         
         TextView postComments = (TextView) getViewHandle(convertView, R.id.post_comments_count);
-        postComments.setText(post.getProperty("comment_count"));
+        postComments.setText(Integer.toString(post.getCommentCount()));
 
         TextView postTitle = (TextView) getViewHandle(convertView, R.id.post_item_content);
-        postTitle.setText(post.getProperty("title"));
+        postTitle.setText(post.getTitle());
 
-        convertView.setId(Integer.parseInt(post.getProperty("id")));
+        convertView.setId(post.getId());
 
         return convertView;
     }
     
-    public PropertyContainer getViewObject(int position) {
-        return (PropertyContainer) _objects.get(position);
+    public Post getViewObject(int position) {
+        return (Post) _objects.get(position);
     }
 
 }

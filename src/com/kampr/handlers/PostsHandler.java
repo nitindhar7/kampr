@@ -1,11 +1,9 @@
 package com.kampr.handlers;
 
 import java.util.List;
-import java.util.Map;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Message;
 import android.widget.ListView;
 
@@ -15,11 +13,10 @@ public class PostsHandler<T> extends ListsHandler<T> {
 
     private PostsAdapter<T> _postsAdapter;
     
-    public PostsHandler(Context context, ProgressDialog dialog, ListView posts, List<T> listOfPosts, Map<String,Bitmap> userIcons) {
+    public PostsHandler(Context context, ProgressDialog dialog, ListView posts, List<T> listOfPosts) {
         _context = context;
         _dialog = dialog;
-        _list = posts;
-        _userIcons = userIcons; 
+        _list = posts; 
         _listOfItems = listOfPosts;
     }
     
@@ -27,7 +24,7 @@ public class PostsHandler<T> extends ListsHandler<T> {
     public void handleMessage(Message msg) {
         switch(msg.getData().getInt(FETCH_STATUS)) {
             case FETCH_COMPLETE:
-                _postsAdapter = new PostsAdapter<T>(_context, _listOfItems, _userIcons);
+                _postsAdapter = new PostsAdapter<T>(_context, _listOfItems);
                 _list.setAdapter(_postsAdapter);
                 _dialog.cancel();
                 break;

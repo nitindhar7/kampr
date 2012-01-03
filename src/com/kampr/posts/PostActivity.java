@@ -25,7 +25,7 @@ import com.forrst.api.ForrstAPIClient;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
-import com.kampr.models.PropertyContainer;
+import com.kampr.models.Post;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
 import com.kampr.util.SpanUtils;
@@ -46,7 +46,7 @@ public class PostActivity extends Activity implements OnClickListener {
     protected static final ForrstAPI _forrst = new ForrstAPIClient();
     protected static final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    protected static PropertyContainer _post;
+    protected static Post _post;
 
     protected JSONObject _postJSON;
     protected Thread _fetchPostThread;
@@ -93,63 +93,63 @@ public class PostActivity extends Activity implements OnClickListener {
 
         _postOriginal.setOnClickListener(this);
 
-        _post = (PropertyContainer) getIntent().getSerializableExtra("post");
+        _post = (Post) getIntent().getSerializableExtra("post");
 
-        if (_post.getProperty("comment_count").equals("0")) {
+        if (_post.getCommentCount() == 0) {
             LayoutUtils.layoutOverride(_postViewComments, View.GONE);
         } else {
             _postComments = (TextView) findViewById(R.id.post_view_comments_arrow);
             _postCommentsCount = (TextView) findViewById(R.id.post_view_comments_count);
-            _postCommentsCount.setText(_post.getProperty("comment_count"));
+            _postCommentsCount.setText(Integer.toString(_post.getCommentCount()));
             _postViewComments.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
-                    comments.putExtra("post_id", _post.getProperty("id"));
+                    comments.putExtra("post_id", _post.getId());
                     startActivity(comments);
                 }
             });
         }
 
-        _postTitle.setText(_post.getProperty("title"));
-        _postUsername.setText(_post.getProperty("name"));
-        _postDate.setText(_post.getProperty("created_at"));
-        _postDescription.setText(TextUtils.cleanseText(_post.getProperty("description")));
+        _postTitle.setText(_post.getTitle());
+        _postUsername.setText(_post.getUserName());
+        _postDate.setText(_post.getCreatedAt());
+        _postDescription.setText(TextUtils.cleanseText(_post.getDescription()));
         _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        _postLikesCount.setText(_post.getProperty("like_count"));
-        _postViewsCount.setText(_post.getProperty("view_count"));
+        _postLikesCount.setText(Integer.toString(_post.getLikeCount()));
+        _postViewsCount.setText(Integer.toString(_post.getViewCount()));
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _postUserIcon.setImageBitmap(_userIconBitmap);
 
         switch (getIntent().getIntExtra("post_type", POST_LINK)) {
-        case POST_LINK:
-            _actionbarLogo.setText("Link");
-            _postOriginal.setVisibility(View.GONE);
-            _postContent.setVisibility(View.GONE);
-            _postUrl.setText(_post.getProperty("url"));
-            SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
-            break;
-        case POST_SNAP:
-            _actionbarLogo.setText("Snap");
-            _postUrl.setVisibility(View.GONE);
-            _postContent.setVisibility(View.GONE);
-            _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getProperty("snaps_original_url")));
-            break;
-        case POST_CODE:
-            _actionbarLogo.setText("Code");
-            _postOriginal.setVisibility(View.GONE);
-            _postUrl.setVisibility(View.GONE);
-            _postContent.setText(_post.getProperty("content"));
-            _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            break;
-        case POST_QUESTION:
-            _actionbarLogo.setText("Question");
-            _postOriginal.setVisibility(View.GONE);
-            _postUrl.setVisibility(View.GONE);
-            _postContent.setVisibility(View.GONE);
-            _postDescription.setText(TextUtils.cleanseText(_post.getProperty("content")));
-            _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            break;
+            case POST_LINK:
+                _actionbarLogo.setText("Link");
+                _postOriginal.setVisibility(View.GONE);
+                _postContent.setVisibility(View.GONE);
+                _postUrl.setText(_post.getUrl());
+                SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
+                break;
+            case POST_SNAP:
+                _actionbarLogo.setText("Snap");
+                _postUrl.setVisibility(View.GONE);
+                _postContent.setVisibility(View.GONE);
+                _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getSnap()));
+                break;
+            case POST_CODE:
+                _actionbarLogo.setText("Code");
+                _postOriginal.setVisibility(View.GONE);
+                _postUrl.setVisibility(View.GONE);
+                _postContent.setText(_post.getContent());
+                _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                break;
+            case POST_QUESTION:
+                _actionbarLogo.setText("Question");
+                _postOriginal.setVisibility(View.GONE);
+                _postUrl.setVisibility(View.GONE);
+                _postContent.setVisibility(View.GONE);
+                _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
+                _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                break;
         }
     }
 
@@ -158,7 +158,7 @@ public class PostActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.snap_large_url:
                 Intent fullScreen = new Intent(PostActivity.this, SnapFullscreenActivity.class);
-                fullScreen.putExtra("snaps_original_url", _post.getProperty("snaps_original_url"));
+                fullScreen.putExtra("snaps_original_url", _post.getSnap());
                 startActivity(fullScreen);
                 break;
         }
