@@ -7,12 +7,11 @@ import android.widget.AdapterView;
 
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Post;
-import com.kampr.models.PropertyContainer;
 import com.kampr.posts.PostActivity;
 import com.kampr.runnables.AllRunnable;
 import com.kampr.util.ImageUtils;
 
-public class AllActivity extends PostsListActivity<PropertyContainer> {
+public class AllActivity extends PostsListActivity<Post> {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
