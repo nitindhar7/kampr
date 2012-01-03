@@ -14,7 +14,7 @@ import com.kampr.R;
 import com.kampr.models.PropertyContainer;
 
 public class PostsAdapter<T> extends AbstractListAdapter<T> {
-
+    
     private Map<String,Bitmap> _userIcons;
     
     public PostsAdapter(Context context, List<T> posts, Map<String,Bitmap> userIcons) {
@@ -23,7 +23,7 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {        
+    public View getView(int position, View convertView, ViewGroup parent) {
         convertView = getConvertView(convertView, R.layout.post_item);
 
         PropertyContainer post = (PropertyContainer) _objects.get(position);

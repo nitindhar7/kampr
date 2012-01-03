@@ -9,6 +9,12 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -34,6 +40,7 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _listOfPosts = new ArrayList<PropertyContainer>();
     }
     
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _posts = getListView();
@@ -42,7 +49,26 @@ public abstract class PostsListActivity<T> extends ListActivity implements OnIte
         _posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
+        registerForContextMenu(_posts);
         _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
+    }
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+        menu.add(0, Menu.FIRST, 0, "View Profile");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch(item.getItemId()) {
+            case Menu.FIRST:
+                break;
+        }
+        
+        return super.onContextItemSelected(item);
     }
 
 }

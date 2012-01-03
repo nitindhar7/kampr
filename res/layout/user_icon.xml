@@ -5,8 +5,10 @@
     android:layout_height="40dp"
     android:layout_alignParentLeft="true"
     android:background="@drawable/user_icon_bg"
+    android:clickable="true"
     android:maxHeight="40dp"
     android:maxWidth="40dp"
     android:minHeight="40dp"
     android:minWidth="40dp" >
+
 </ImageView>

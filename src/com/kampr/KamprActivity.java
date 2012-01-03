@@ -86,9 +86,9 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
                 if(resultCode == LoginActivity.RESULT_SUCCESS)
                     startPostsActivity();
                 else if(resultCode == LoginActivity.RESULT_FAILURE)
-                    Toast.makeText(getApplicationContext() , "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
                 _dialog.cancel();
                 break;
             case POST_QUIT_CODE:

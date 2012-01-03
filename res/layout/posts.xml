@@ -32,6 +32,7 @@
                 android:id="@android:id/list"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:addStatesFromChildren="true"
                 android:cacheColorHint="#00000000"
                 android:divider="@color/post_item_divider"
                 android:dividerHeight="1px"
