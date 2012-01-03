@@ -27,6 +27,7 @@ public class CommentsActivity extends ListActivity {
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    private static final int DEFAULT_POST_ID = -1;
     private static final int LOGOUT_RESULT_CODE = 1;
     private static final String ACTIVITY_TAG = "Comments";
     
@@ -50,10 +51,9 @@ public class CommentsActivity extends ListActivity {
         setContentView(R.layout.comments);
         NetworkUtils.trustAllHosts();
 
-        _postId = Integer.parseInt(getIntent().getStringExtra("post_id"));
+        _postId = getIntent().getIntExtra("post_id", DEFAULT_POST_ID);
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
-
         _actionbarLogo.setText(ACTIVITY_TAG);
         
         _comments = getListView();

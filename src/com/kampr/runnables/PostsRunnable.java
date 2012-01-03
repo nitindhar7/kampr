@@ -40,6 +40,7 @@ public class PostsRunnable extends AbstractRunnable {
 
                 Post post = new Post();
                 post.setId(json.getInt("id"));
+                post.setType(json.getString("post_type"));
                 post.setCreatedAt(TimeUtils.getPostDate(json.getString("created_at")));
                 post.setUserName(json.getJSONObject("user").getString("name"));
                 post.setTitle(json.getString("title"));

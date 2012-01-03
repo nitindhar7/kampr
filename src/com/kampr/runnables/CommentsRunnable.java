@@ -56,11 +56,11 @@ public class CommentsRunnable extends AbstractRunnable {
                         JSONObject replyJSON = repliesJSONArray.getJSONObject(replyCount);
 
                         Comment replyComment = new Comment();
-                        comment.setId(replyJSON.getInt("id"));
-                        comment.setUserName(replyJSON.getJSONObject("user").getString("name"));
-                        comment.setBody(TextUtils.convertHtmlToText(replyJSON.getString("body")));
-                        comment.setCreatedAt(TimeUtils.getPostDate(replyJSON.getString("created_at")));
-                        comment.setUserIcon(ImageUtils.fetchUserIcon(_context, replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"), R.drawable.forrst_default_25));
+                        replyComment.setId(replyJSON.getInt("id"));
+                        replyComment.setUserName(replyJSON.getJSONObject("user").getString("name"));
+                        replyComment.setBody(TextUtils.convertHtmlToText(replyJSON.getString("body")));
+                        replyComment.setCreatedAt(TimeUtils.getPostDate(replyJSON.getString("created_at")));
+                        replyComment.setUserIcon(ImageUtils.fetchUserIcon(_context, replyJSON.getJSONObject("user").getJSONObject("photos").getString("thumb_url"), R.drawable.forrst_default_25));
 
                         _listOfComments.add(replyComment);
                     }

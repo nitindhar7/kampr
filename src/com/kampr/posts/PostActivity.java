@@ -33,14 +33,8 @@ import com.kampr.util.TextUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
 
-    public static final int POST_LINK = 100;
-    public static final int POST_SNAP = 101;
-    public static final int POST_CODE = 102;
-    public static final int POST_QUESTION = 103;
-
     protected static final int LOGOUT_RESULT_CODE = 1;
     protected static final int TRUNCATED_URL_LENGTH = 35;
-    protected static final int DEFAULT_POST_ID = -1;
     protected static final int FETCH_COMPLETE = 1;
     protected static final String FETCH_STATUS = "fetch_status";
     protected static final ForrstAPI _forrst = new ForrstAPIClient();
@@ -121,35 +115,33 @@ public class PostActivity extends Activity implements OnClickListener {
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
         _postUserIcon.setImageBitmap(_userIconBitmap);
 
-        switch (getIntent().getIntExtra("post_type", POST_LINK)) {
-            case POST_LINK:
-                _actionbarLogo.setText("Link");
-                _postOriginal.setVisibility(View.GONE);
-                _postContent.setVisibility(View.GONE);
-                _postUrl.setText(_post.getUrl());
-                SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
-                break;
-            case POST_SNAP:
-                _actionbarLogo.setText("Snap");
-                _postUrl.setVisibility(View.GONE);
-                _postContent.setVisibility(View.GONE);
-                _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getSnap()));
-                break;
-            case POST_CODE:
-                _actionbarLogo.setText("Code");
-                _postOriginal.setVisibility(View.GONE);
-                _postUrl.setVisibility(View.GONE);
-                _postContent.setText(_post.getContent());
-                _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                break;
-            case POST_QUESTION:
-                _actionbarLogo.setText("Question");
-                _postOriginal.setVisibility(View.GONE);
-                _postUrl.setVisibility(View.GONE);
-                _postContent.setVisibility(View.GONE);
-                _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
-                _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                break;
+        if (_post.getType().equals("link")) {
+            _actionbarLogo.setText("Link");
+            _postOriginal.setVisibility(View.GONE);
+            _postContent.setVisibility(View.GONE);
+            _postUrl.setText(_post.getUrl());
+            SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
+        }
+        else if (_post.getType().equals("snap")) {
+            _actionbarLogo.setText("Snap");
+            _postUrl.setVisibility(View.GONE);
+            _postContent.setVisibility(View.GONE);
+            _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getSnap()));
+        }
+        else if (_post.getType().equals("code")) {
+            _actionbarLogo.setText("Code");
+            _postOriginal.setVisibility(View.GONE);
+            _postUrl.setVisibility(View.GONE);
+            _postContent.setText(_post.getContent());
+            _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+        else {
+            _actionbarLogo.setText("Question");
+            _postOriginal.setVisibility(View.GONE);
+            _postUrl.setVisibility(View.GONE);
+            _postContent.setVisibility(View.GONE);
+            _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
+            _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         }
     }
 
