@@ -24,7 +24,9 @@ import com.forrst.api.ForrstAPIClient;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
+import com.kampr.UserActivity;
 import com.kampr.models.Post;
+import com.kampr.models.User;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
@@ -84,6 +86,7 @@ public class PostActivity extends Activity implements OnClickListener {
         _postViewComments = (RelativeLayout) findViewById(R.id.post_view_comments);
 
         _postOriginal.setOnClickListener(this);
+        _postUserIcon.setOnClickListener(this);
 
         _post = (Post) getIntent().getSerializableExtra("post");
 
@@ -150,6 +153,13 @@ public class PostActivity extends Activity implements OnClickListener {
                 Intent fullScreen = new Intent(PostActivity.this, SnapFullscreenActivity.class);
                 fullScreen.putExtra("snaps_original_url", _post.getSnap());
                 startActivity(fullScreen);
+                break;
+            case R.id.user_icon_thumbnail:
+                User user = _post.getUser();
+                Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
+                userIntent.putExtra("user", user);
+                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
+                startActivity(userIntent);
                 break;
         }
     }
