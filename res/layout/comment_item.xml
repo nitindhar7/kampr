@@ -56,7 +56,6 @@
             android:id="@+id/comment_item_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
             android:text="content"
             android:textColor="#333"
             android:textSize="18sp" >

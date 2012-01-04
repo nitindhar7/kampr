@@ -10,7 +10,7 @@ public class TextUtils {
      * @return
      */
     public static String convertHtmlToText(String text) {
-        return Html.fromHtml(text).toString();
+        return Html.fromHtml(text).toString().trim();
     }
     
     public static String stripHtmlTag(String text, String htmlTag) {
