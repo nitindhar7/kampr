@@ -20,6 +20,7 @@ public class Post implements Serializable {
     private int _likeCount;
     private int _commentCount;
     private transient Bitmap _userIcon;
+    private User _user;
 
     public int getId() {
         return _id;
@@ -123,6 +124,14 @@ public class Post implements Serializable {
     
     public void setSnap(String snap) {
         _snap = snap;
+    }
+
+    public User getUser() {
+        return _user;
+    }
+
+    public void setUser(User user) {
+        _user = user;
     }
 
 }

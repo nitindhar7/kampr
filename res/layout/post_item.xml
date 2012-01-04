@@ -9,10 +9,10 @@
 
     <LinearLayout
         android:id="@+id/post_item_graphics"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:minHeight="40dp"
-        android:minWidth="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
         android:orientation="vertical" >
 
         <include layout="@layout/user_icon" />
@@ -36,10 +36,10 @@
                 android:id="@+id/post_item_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
+                android:gravity="center_vertical"
                 android:text="username"
-                android:textColor="#333"
-                android:textSize="18sp"
+                android:textColor="@color/post_title"
+                android:textSize="14sp"
                 android:textStyle="bold" >
             </TextView>
 
@@ -48,14 +48,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="top"
-                android:shadowColor="@color/white"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
+                android:gravity="center_vertical"
                 android:text="date"
                 android:textColor="@color/post_item_date"
-                android:textSize="18sp" >
+                android:textSize="14sp" >
             </TextView>
         </RelativeLayout>
 
@@ -63,10 +59,10 @@
             android:id="@+id/post_item_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="content"
-            android:textColor="@color/post_title"
-            android:textSize="20sp"
-            android:textStyle="bold" >
+            android:textColor="@color/dark_gray"
+            android:textSize="14sp" >
         </TextView>
 
         <include layout="@layout/counts" />

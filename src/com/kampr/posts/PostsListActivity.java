@@ -21,9 +21,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.kampr.R;
+import com.kampr.UserActivity;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Post;
+import com.kampr.models.User;
 import com.kampr.runnables.AllRunnable;
 import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.ImageUtils;
@@ -85,11 +87,16 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        @SuppressWarnings("unused")
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 
         switch(item.getItemId()) {
             case Menu.FIRST:
+                Post post = _handler.getAdapter().getViewObject(info.position);
+                User user = post.getUser();
+                Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
+                userIntent.putExtra("user", user);
+                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(user.getUserIcon()));
+                startActivity(userIntent);
                 break;
         }
         

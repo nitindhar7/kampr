@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "username": "kyle",
+    "name": "Kyle Bragger",
+    "url": "http://forrst.com/people/kyle",
+    "posts": "390",
+    "comments": "3613",
+    "likes": "3500",
+    "followers": "13628",
+    "following": "13327",
+    "photos": {
+      "xl_url": "http://forrst-production.s3.amazonaws.com/users/photos/1/xl.png?1303409882",
+      "large_url": "http://forrst-production.s3.amazonaws.com/users/photos/1/large.png?1303409882",
+      "medium_url": "http://forrst-production.s3.amazonaws.com/users/photos/1/medium.png?1303409882",
+      "small_url": "http://forrst-production.s3.amazonaws.com/users/photos/1/small.png?1303409882",
+      "thumb_url": "http://forrst-production.s3.amazonaws.com/users/photos/1/thumb.png?1303409882"
+    },
+    "bio": "<p>my bio</p>\n",
+    "is_a": "developer & designer",
+    "homepage_url": "http://www.foo.com/",
+    "twitter": "kylebragger",
+    "in_directory": false,
+    "tag_string": "php,scaling,startups,forrst"
+  }

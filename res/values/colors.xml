@@ -46,5 +46,7 @@
     <color name="post_view_comments_start">#EEE</color>
     <color name="post_view_comments_end">#DDD</color>
     <color name="lighter_gray">#F5F5F5</color>
+    <color name="dark_gray">#333</color>
+    <color name="medium_gray">#666</color>
 
 </resources>

@@ -8,11 +8,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Post;
+import com.kampr.models.User;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.TextUtils;
 import com.kampr.util.TimeUtils;
 
 public class AllRunnable extends PostsRunnable {
@@ -29,12 +32,35 @@ public class AllRunnable extends PostsRunnable {
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
                 JSONObject json = postsJSONArray.getJSONObject(count);
+                JSONObject userJson = json.getJSONObject("user");
+                
+                Bitmap userIcon = ImageUtils.fetchUserIcon(_context, userJson.getJSONObject("photos").getString("medium_url"), R.drawable.forrst_default_25);
+                
+                User user = new User();
+                user.setId(userJson.getInt("id"));
+                user.setUsername(userJson.getString("username"));
+                user.setName(userJson.getString("name"));
+                user.setUrl(userJson.getString("url"));
+                user.setPostsCount(userJson.getInt("posts"));
+                user.setCommentsCount(userJson.getInt("comments"));
+                user.setLikesCount(userJson.getInt("likes"));
+                user.setFollowersCount(userJson.getInt("followers"));
+                user.setFollowingCount(userJson.getInt("following"));
+                user.setBio(TextUtils.convertHtmlToText(userJson.getString("bio")));
+                user.setRole(userJson.getString("is_a"));
+                user.setHomepageUrl(userJson.getString("homepage_url"));
+                if (userJson.has("twitter")) {
+                    user.setTwitter(userJson.getString("twitter"));
+                }
+                user.setTagString(userJson.getString("tag_string"));
+                user.setUserIcon(userIcon);
 
                 Post post = new Post();
                 post.setId(json.getInt("id"));
+                post.setUser(user);
                 post.setType(json.getString("post_type"));
                 post.setCreatedAt(TimeUtils.getPostDate(json.getString("created_at")));
-                post.setUserName(json.getJSONObject("user").getString("name"));
+                post.setUserName(user.getName());
                 post.setTitle(json.getString("title"));
                 post.setUrl(json.getString("url"));
                 post.setContent(json.getString("content"));
@@ -42,7 +68,7 @@ public class AllRunnable extends PostsRunnable {
                 post.setViewCount(json.getInt("view_count"));
                 post.setLikeCount(json.getInt("like_count"));
                 post.setCommentCount(json.getInt("comment_count"));
-                post.setUserIcon(ImageUtils.fetchUserIcon(_context, json.getJSONObject("user").getJSONObject("photos").getString("medium_url"), R.drawable.forrst_default_25));
+                post.setUserIcon(userIcon);
                 if (json.getString("post_type").equals("snap")) {
                     post.setSnap(json.getJSONObject("snaps").getString("original_url"));
                 }

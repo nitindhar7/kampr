@@ -22,6 +22,7 @@ public final class R {
          */
         public static final int comment_item_divider=0x7f04000b;
         public static final int dark_blue=0x7f040006;
+        public static final int dark_gray=0x7f040020;
         public static final int gray=0x7f040003;
         /**  Hyperlinks 
          */
@@ -32,6 +33,7 @@ public final class R {
         /**  Buttons 
          */
         public static final int login_button_selected=0x7f04000c;
+        public static final int medium_gray=0x7f040021;
         public static final int post_background_end=0x7f040015;
         public static final int post_background_start=0x7f040014;
         public static final int post_content_background=0x7f040013;
@@ -93,7 +95,8 @@ public final class R {
         public static final int tab_snaps_selected=0x7f02001f;
         public static final int tab_snaps_unselected=0x7f020020;
         public static final int tabs_bg=0x7f020021;
-        public static final int user_icon_bg=0x7f020022;
+        public static final int user_bio_bg=0x7f020022;
+        public static final int user_icon_bg=0x7f020023;
     }
     public static final class id {
         public static final int actiobar_divider=0x7f070002;
@@ -144,12 +147,38 @@ public final class R {
         public static final int post_view_comments_count=0x7f070024;
         public static final int post_views=0x7f07000d;
         public static final int post_views_count=0x7f07000e;
-        public static final int posts_menu_logout=0x7f070036;
+        public static final int posts_menu_logout=0x7f070050;
         public static final int snap_large_url=0x7f070028;
         public static final int tab=0x7f070033;
         public static final int tabImage=0x7f070034;
         public static final int tabLabel=0x7f070035;
+        public static final int user_bio=0x7f07004e;
+        public static final int user_comment_count_label=0x7f070044;
+        public static final int user_comment_count_value=0x7f070043;
+        public static final int user_comment_counts=0x7f070042;
+        public static final int user_counts=0x7f070039;
+        public static final int user_counts_container=0x7f07003b;
+        public static final int user_counts_topbar=0x7f07003a;
+        public static final int user_details=0x7f07004b;
+        public static final int user_details_container=0x7f07004c;
+        public static final int user_follower_count_label=0x7f07004a;
+        public static final int user_follower_count_value=0x7f070049;
+        public static final int user_follower_counts=0x7f070048;
+        public static final int user_following_count_label=0x7f070047;
+        public static final int user_following_count_value=0x7f070046;
+        public static final int user_following_counts=0x7f070045;
         public static final int user_icon_thumbnail=0x7f07000c;
+        public static final int user_infobar=0x7f070036;
+        public static final int user_infobar_name=0x7f070037;
+        public static final int user_infobar_username=0x7f070038;
+        public static final int user_like_count_label=0x7f070041;
+        public static final int user_like_count_value=0x7f070040;
+        public static final int user_like_counts=0x7f07003f;
+        public static final int user_post_count_label=0x7f07003e;
+        public static final int user_post_count_value=0x7f07003d;
+        public static final int user_post_counts=0x7f07003c;
+        public static final int user_role=0x7f07004d;
+        public static final int user_url=0x7f07004f;
         public static final int webview=0x7f070032;
     }
     public static final class layout {
@@ -164,7 +193,8 @@ public final class R {
         public static final int posts=0x7f030008;
         public static final int snap_fullscreen=0x7f030009;
         public static final int tab=0x7f03000a;
-        public static final int user_icon=0x7f03000b;
+        public static final int user=0x7f03000b;
+        public static final int user_icon=0x7f03000c;
     }
     public static final class menu {
         public static final int posts_menu=0x7f060000;

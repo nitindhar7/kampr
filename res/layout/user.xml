@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/post"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <include layout="@layout/actionbar" />
+
+    <RelativeLayout
+        android:id="@+id/user_infobar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actionbar"
+        android:padding="5dp" >
+
+        <include
+            android:layout_alignParentLeft="true"
+            layout="@layout/user_icon" />
+
+        <TextView
+            android:id="@+id/user_infobar_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/user_icon_thumbnail"
+            android:gravity="center_vertical"
+            android:maxHeight="25dp"
+            android:minHeight="25dp"
+            android:textColor="@color/post_title"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_infobar_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_infobar_name"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/user_icon_thumbnail"
+            android:gravity="center_vertical"
+            android:maxHeight="25dp"
+            android:minHeight="25dp"
+            android:textColor="@color/medium_gray"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/user_counts"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_infobar"
+        android:background="@color/light_gray"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/user_counts_topbar"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:maxHeight="1dp"
+            android:minHeight="1dp" />
+
+        <LinearLayout
+            android:id="@+id/user_counts_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/user_post_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                android:padding="3dp" >
+
+                <TextView
+                    android:id="@+id/user_post_count_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+
+                <TextView
+                    android:id="@+id/user_post_count_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center_horizontal"
+                    android:text="posts"
+                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_like_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                android:padding="3dp" >
+
+                <TextView
+                    android:id="@+id/user_like_count_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+
+                <TextView
+                    android:id="@+id/user_like_count_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center_horizontal"
+                    android:text="likes"
+                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_comment_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                android:padding="3dp" >
+
+                <TextView
+                    android:id="@+id/user_comment_count_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+
+                <TextView
+                    android:id="@+id/user_comment_count_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center_horizontal"
+                    android:text="comments"
+                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_following_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                android:padding="3dp" >
+
+                <TextView
+                    android:id="@+id/user_following_count_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+
+                <TextView
+                    android:id="@+id/user_following_count_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center_horizontal"
+                    android:text="following"
+                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_follower_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                android:padding="3dp" >
+
+                <TextView
+                    android:id="@+id/user_follower_count_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+
+                <TextView
+                    android:id="@+id/user_follower_count_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center_horizontal"
+                    android:text="followers"
+                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/user_details"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/user_counts"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/user_details_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/user_role"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/user_bio_bg"
+                android:isScrollContainer="true"
+                android:padding="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/medium_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/user_bio"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/user_bio_bg"
+                android:padding="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/medium_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/user_url"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/user_bio_bg"
+                android:padding="5dp"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:textColor="@color/medium_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

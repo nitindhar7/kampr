@@ -33,27 +33,13 @@
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".posts.PostsListActivity" >
+            android:name=".UserActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".tabs.AllActivity" >
-        </activity>
-        <activity
-            android:configChanges="keyboardHidden|orientation"
-            android:name=".tabs.LinksActivity" >
-        </activity>
-        <activity
-            android:configChanges="keyboardHidden|orientation"
-            android:name=".tabs.SnapsActivity" >
-        </activity>
-        <activity
-            android:configChanges="keyboardHidden|orientation"
-            android:name=".tabs.CodesActivity" >
-        </activity>
-        <activity
-            android:configChanges="keyboardHidden|orientation"
-            android:name=".tabs.QuestionsActivity" >
+            android:name=".posts.PostsListActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"

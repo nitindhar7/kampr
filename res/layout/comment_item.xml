@@ -9,10 +9,10 @@
 
     <LinearLayout
         android:id="@+id/comment_item_graphics"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:minHeight="40dp"
-        android:minWidth="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
         android:orientation="vertical" >
 
         <include layout="@layout/user_icon" />
