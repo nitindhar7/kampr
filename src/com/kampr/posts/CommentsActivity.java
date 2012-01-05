@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,20 +36,21 @@ public class CommentsActivity extends ListActivity {
     private int _postId;
 
     private ListView _comments;
-    private ProgressDialog _dialog;
+    private ProgressBar _spinner;
     private List<Comment> _listOfComments;
     private CommentsHandler _handler;
     private Thread _fetchCommentsThread;
     
     public CommentsActivity() {
         _listOfComments = new ArrayList<Comment>();
+        NetworkUtils.trustAllHosts();
     }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments);
-        NetworkUtils.trustAllHosts();
+        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         _postId = getIntent().getIntExtra("post_id", DEFAULT_POST_ID);
         
@@ -61,10 +62,8 @@ public class CommentsActivity extends ListActivity {
         _comments.setVerticalFadingEdgeEnabled(true);
         _comments.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _comments.setDividerHeight(1);
-
-        _dialog = ProgressDialog.show(CommentsActivity.this, "", "Loading...", true);
         
-        _handler = new CommentsHandler(this, _dialog, _comments, _listOfComments);
+        _handler = new CommentsHandler(this, _spinner, _comments, _listOfComments);
         _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _postId));
         _fetchCommentsThread.start();
     }

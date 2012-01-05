@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.kampr.posts.PostsListActivity;
 
 public class PostsActivity extends TabActivity {
+    
+    protected static ProgressBar _spinner;
     
     private final int LOGOUT_RESULT_CODE = 1;
     
@@ -43,13 +46,15 @@ public class PostsActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.posts);
+        
+        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         _inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _tabHost = getTabHost();
         
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _actionbarLogo.setText("Activity");
-        
+
         _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
         _view.setBackgroundResource(R.drawable.tab_selected);
         _allTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
@@ -181,6 +186,10 @@ public class PostsActivity extends TabActivity {
             _view = getTabWidget().getChildAt(i);
             _view.setBackgroundResource(R.drawable.tab);
         }
+    }
+    
+    public static ProgressBar getSpinner() {
+        return _spinner;
     }
 
 }

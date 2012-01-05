@@ -2,10 +2,11 @@ package com.kampr.handlers;
 
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Message;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.kampr.adapters.CommentsAdapter;
 import com.kampr.models.Comment;
@@ -14,9 +15,9 @@ public class CommentsHandler extends AbstractHandler<Comment> {
 
     private CommentsAdapter _commentsAdapter;
     
-    public CommentsHandler(Context context, ProgressDialog dialog, ListView comments, List<Comment> listOfComments) {
+    public CommentsHandler(Context context, ProgressBar spinner, ListView comments, List<Comment> listOfComments) {
         _context = context;
-        _dialog = dialog;
+        _spinner = spinner;
         _list = comments;
         _listOfItems = listOfComments;
     }
@@ -27,7 +28,7 @@ public class CommentsHandler extends AbstractHandler<Comment> {
             case FETCH_COMPLETE:
                 _commentsAdapter = new CommentsAdapter(_context, _listOfItems);
                 _list.setAdapter(_commentsAdapter);
-                _dialog.cancel();
+                _spinner.setVisibility(View.GONE);
                 break;
         }
     }

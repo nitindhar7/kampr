@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -20,6 +19,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.kampr.PostsActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
 import com.kampr.adapters.PostsAdapter;
@@ -34,13 +34,13 @@ import com.kampr.util.NetworkUtils;
 public class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
 
     protected ListView _posts;
-    protected ProgressDialog _dialog;
     protected Map<String,Bitmap> _userIcons;
     protected List<Post> _listOfPosts;
     protected Thread _fetchPostsThread;
     protected PostsHandler<Post> _handler;
     protected PostsAdapter<T> _postsAdapter;
     protected String _postsType;
+    protected boolean _trueResume;
     
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
@@ -51,6 +51,9 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        PostsActivity.getSpinner().setVisibility(View.VISIBLE);
+        
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);
         _posts.setVerticalFadingEdgeEnabled(false);
@@ -58,9 +61,8 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
         registerForContextMenu(_posts);
-        _dialog = ProgressDialog.show(PostsListActivity.this, "", "Loading...", true);
         
-        _handler = new PostsHandler<Post>(this, _dialog, _posts, _listOfPosts);
+        _handler = new PostsHandler<Post>(this, PostsActivity.getSpinner(), _posts, _listOfPosts);
         
         _postsType = getIntent().getStringExtra("post_type");
         if (_postsType.equals("all"))

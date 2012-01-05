@@ -2,10 +2,11 @@ package com.kampr.handlers;
 
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Message;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.kampr.adapters.PostsAdapter;
 
@@ -13,9 +14,9 @@ public class PostsHandler<T> extends AbstractHandler<T> {
 
     private PostsAdapter<T> _postsAdapter;
     
-    public PostsHandler(Context context, ProgressDialog dialog, ListView posts, List<T> listOfPosts) {
+    public PostsHandler(Context context, ProgressBar spinner, ListView posts, List<T> listOfPosts) {
         _context = context;
-        _dialog = dialog;
+        _spinner = spinner;
         _list = posts; 
         _listOfItems = listOfPosts;
     }
@@ -26,7 +27,7 @@ public class PostsHandler<T> extends AbstractHandler<T> {
             case FETCH_COMPLETE:
                 _postsAdapter = new PostsAdapter<T>(_context, _listOfItems);
                 _list.setAdapter(_postsAdapter);
-                _dialog.cancel();
+                _spinner.setVisibility(View.GONE);
                 break;
         }
     }
