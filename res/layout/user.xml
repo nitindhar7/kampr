@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/user_infobar_name"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/user_icon_thumbnail"
@@ -28,21 +28,33 @@
             android:maxHeight="25dp"
             android:minHeight="25dp"
             android:textColor="@color/post_title"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/user_infobar_username"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/user_infobar_name"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/user_icon_thumbnail"
+            android:layout_toRightOf="@+id/user_infobar_name"
             android:gravity="center_vertical"
             android:maxHeight="25dp"
             android:minHeight="25dp"
             android:textColor="@color/medium_gray"
-            android:textSize="14sp" />
+            android:textSize="14sp" android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/user_infobar_role"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/user_icon_thumbnail"
+            android:gravity="center_vertical"
+            android:maxHeight="20dp"
+            android:minHeight="20dp"
+            android:textColor="@color/medium_gray"
+            android:textSize="14sp" android:layout_below="@+id/user_infobar_username"/>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -50,7 +62,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_infobar"
-        android:background="@color/light_gray"
+        android:background="@color/lighter_gray"
         android:orientation="vertical" >
 
         <TextView
@@ -84,7 +96,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" android:layout_marginTop="-5dp"/>
 
                 <TextView
@@ -93,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|center_horizontal"
                     android:text="posts"
-                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
             </LinearLayout>
 
             <LinearLayout
@@ -114,7 +126,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" android:layout_marginTop="-5dp"/>
 
                 <TextView
@@ -123,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|center_horizontal"
                     android:text="likes"
-                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
             </LinearLayout>
 
             <LinearLayout
@@ -144,7 +156,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" android:layout_marginTop="-5dp"/>
 
                 <TextView
@@ -153,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|center_horizontal"
                     android:text="comments"
-                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
             </LinearLayout>
 
             <LinearLayout
@@ -174,7 +186,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" android:layout_marginTop="-5dp"/>
 
                 <TextView
@@ -183,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|center_horizontal"
                     android:text="following"
-                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
             </LinearLayout>
 
             <LinearLayout
@@ -204,7 +216,7 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" android:layout_marginTop="-5dp"/>
 
                 <TextView
@@ -213,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|center_horizontal"
                     android:text="followers"
-                    android:textSize="12sp" android:layout_marginTop="-5dp"/>
+                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -231,21 +243,6 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:padding="5dp" >
-
-            <TextView
-                android:id="@+id/user_role"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/user_bio_bg"
-                android:isScrollContainer="true"
-                android:padding="5dp"
-                android:shadowColor="@color/white"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                android:textColor="@color/medium_gray"
-                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/user_bio"

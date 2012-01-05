@@ -48,7 +48,7 @@ public class UserActivity extends Activity {
         _userFollowingCount = (TextView) findViewById(R.id.user_following_count_value);
         _userBio = (TextView) findViewById(R.id.user_bio);
         _userUrl = (TextView) findViewById(R.id.user_url);
-        _userRole = (TextView) findViewById(R.id.user_role);
+        _userRole = (TextView) findViewById(R.id.user_infobar_role);
         _name.setText(_user.getName());
         _username.setText("@" + _user.getUsername());
         _userPostsCount.setText(_usFormat.format(_user.getPostsCount()));
@@ -58,7 +58,7 @@ public class UserActivity extends Activity {
         _userFollowingCount.setText(_usFormat.format(_user.getFollowingCount()));
         _userBio.setText(_user.getBio());
         _userUrl.setText(_user.getHomepageUrl());
-        _userRole.setText(_user.getName() + " is a " + _user.getRole());
+        _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
         _actionbarLogo.setText(_user.getName());
     }

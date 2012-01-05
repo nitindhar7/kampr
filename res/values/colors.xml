@@ -48,5 +48,6 @@
     <color name="lighter_gray">#F5F5F5</color>
     <color name="dark_gray">#333</color>
     <color name="medium_gray">#666</color>
+    <color name="deep_blue">#143054</color>
 
 </resources>
