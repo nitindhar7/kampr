@@ -144,7 +144,6 @@ public class PostActivity extends Activity implements OnClickListener {
             _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
             _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         }
-        
         LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
     }
 

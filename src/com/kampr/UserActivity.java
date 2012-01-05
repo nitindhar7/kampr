@@ -5,11 +5,13 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kampr.models.User;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.LayoutUtils;
 
 public class UserActivity extends Activity {
     
@@ -61,6 +63,8 @@ public class UserActivity extends Activity {
         _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
         _actionbarLogo.setText(_user.getName());
+        
+        LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
     }
 
 }
