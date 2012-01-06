@@ -1,13 +1,27 @@
-package com.kampr.dao;
+package com.kampr.data.schema;
 
-import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-public class PostDao {
+public class PostSchemaHelper {
+    
+    public static final String TABLE_NAME = "posts";
+    public static final String KEY_ROWID = "_id";
+    public static final String KEY_POST_ID = "post_id";
+    public static final String KEY_CREATED_AT = "created_at";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_URL = "url";
+    public static final String KEY_TYPE = "type";
+    public static final String KEY_CONTENT = "content";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_SNAP = "snap";
+    public static final String KEY_USER_ICON_FILENAME = "user_icon_filename";
+    public static final String KEY_VIEW_COUNT = "view_count";
+    public static final String KEY_LIKE_COUNT = "like_count";
+    public static final String KEY_COMMENT_COUNT = "comment_count";
 
     private static final String DATABASE_CREATE =
-        "CREATE TABLE posts ( " +
+        "CREATE TABLE " + TABLE_NAME + " ( " +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "post_id INTEGER NOT NULL, " +
             "created_at TEXT NOT NULL, " +
@@ -24,14 +38,6 @@ public class PostDao {
             "comment_count INTEGER NOT NULL " +
         ");";
     
-    private static Context _context;
-    private static SQLiteDatabase _db;
-    private static KamprDatabaseHelper _dbHelper;
-
-    public PostDao(Context context) {
-        _context = context;
-    }
-    
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
     }
@@ -39,15 +45,6 @@ public class PostDao {
     public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS posts");
         onCreate(database);
-    }
-
-    public static void open() throws SQLException {
-        _dbHelper = new KamprDatabaseHelper(_context);
-        _db = _dbHelper.getWritableDatabase();
-    }
-
-    public static void close() {
-        _dbHelper.close();
     }
 
 }
