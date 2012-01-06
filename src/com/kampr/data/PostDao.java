@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.kampr.data.schema.KamprDatabaseHelper;
@@ -33,7 +32,8 @@ public class PostDao {
             "view_count, " +
             "like_count, " +
             "comment_count " +
-         "FROM posts ";
+         "FROM posts " +
+         "WHERE DATETIME(created_at) > DATETIME(JULIANDAY(DATE('now')) - 8)";
 
     private static Context _context;
     private static SQLiteDatabase _db;
@@ -82,7 +82,7 @@ public class PostDao {
             }
         } catch (Exception e) {
             posts = null;
-            Log.i("POSTDAO", "Error getting posts from last week");
+            Log.e("KAMPR-POSTS-DATA-GET", "Error getting posts from last week");
         } finally {
             cursor.close();
         }
@@ -98,6 +98,7 @@ public class PostDao {
                 ContentValues values = new ContentValues();
                 values.put("post_id", post.getId());
                 values.put("created_at", post.getCreatedAt());
+                Log.i("POSTDAO", post.getCreatedAt());
                 values.put("username", post.getUserName());
                 values.put("title", post.getTitle());
                 values.put("url", post.getUrl());
@@ -113,9 +114,10 @@ public class PostDao {
                 values.put("comment_count", post.getCommentCount());
                 _db.insert(PostSchemaHelper.TABLE_NAME, null, values);
             }
+
             postsCached = posts.size();
         } catch (Exception e) {
-            Log.e("Error setting posts for past week", e.getMessage());
+            Log.e("KAMPR-POSTS-DATA-SET", "Error setting posts for past week");
         }
         
         return postsCached;
