@@ -27,11 +27,11 @@ public class PostSchemaHelper {
             "created_at TEXT NOT NULL, " +
             "username TEXT NOT NULL, " +
             "title TEXT NOT NULL, " +
-            "url TEXT NOT NULL, " +
+            "url TEXT, " +
             "type TEXT NOT NULL, " +
-            "content TEXT NOT NULL, " +
-            "description TEXT NOT NULL, " +
-            "snap TEXT NOT NULL, " +
+            "content TEXT, " +
+            "description TEXT, " +
+            "snap TEXT, " +
             "user_icon_filename TEXT NOT NULL, " +
             "view_count INTEGER NOT NULL, " +
             "like_count INTEGER NOT NULL, " +

@@ -3,11 +3,15 @@ package com.kampr.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.kampr.data.schema.KamprDatabaseHelper;
@@ -68,7 +72,8 @@ public class PostDao {
                 post.setContent(cursor.getString(6));
                 post.setDescription(cursor.getString(7));
                 post.setSnap(cursor.getString(8));
-                // get user icon filename + post.setUserIcon();
+                String filename = DigestUtils.sha256Hex(post.getUser().getUsername());
+                post.setUserIcon(BitmapFactory.decodeFile(_context.getCacheDir().getAbsolutePath() + "/" + filename));
                 post.setViewCount(cursor.getInt(10));
                 post.setLikeCount(cursor.getInt(11));
                 post.setCommentCount(cursor.getInt(12));                
@@ -96,7 +101,9 @@ public class PostDao {
                 values.put("content", post.getContent());
                 values.put("description", post.getDescription());
                 values.put("snap", post.getSnap());
-                //values.put("", post);
+                String filename = DigestUtils.sha256Hex(post.getUser().getUsername());
+                post.getUserIcon().compress(CompressFormat.PNG, 100, _context.openFileOutput(filename, Context.MODE_PRIVATE));
+                values.put("user_icon_filename", filename);
                 values.put("view_count", post.getViewCount());
                 values.put("like_count", post.getLikeCount());
                 values.put("comment_count", post.getCommentCount());
