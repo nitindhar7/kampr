@@ -1,13 +1,10 @@
 package com.kampr.posts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -22,7 +19,7 @@ import android.widget.ListView;
 import com.kampr.PostsActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
-import com.kampr.adapters.PostsAdapter;
+import com.kampr.data.PostDao;
 import com.kampr.handlers.PostsHandler;
 import com.kampr.models.Post;
 import com.kampr.models.User;
@@ -33,24 +30,24 @@ import com.kampr.util.NetworkUtils;
 
 public class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
 
-    protected ListView _posts;
-    protected Map<String,Bitmap> _userIcons;
-    protected List<Post> _listOfPosts;
-    protected Thread _fetchPostsThread;
-    protected PostsHandler<Post> _handler;
-    protected PostsAdapter<T> _postsAdapter;
-    protected String _postsType;
-    protected boolean _trueResume;
+    private ListView _posts;
+    private List<Post> _listOfPosts;
+    private Thread _fetchPostsThread;
+    private PostsHandler<Post> _handler;
+    private String _postsType;
+    private static PostDao _postDao;
     
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
-        _userIcons = new HashMap<String,Bitmap>();
         _listOfPosts = new ArrayList<Post>();
+        _postDao = new PostDao(this);
     }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        _postDao.open();
         
         PostsActivity.getSpinner().setVisibility(View.VISIBLE);
         
@@ -62,8 +59,8 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
         _posts.setOnItemClickListener(this);
         registerForContextMenu(_posts);
         
-        _handler = new PostsHandler<Post>(this, PostsActivity.getSpinner(), _posts, _listOfPosts);
-        
+        _handler = new PostsHandler<Post>(this, PostsActivity.getSpinner(), _posts, _listOfPosts, _postDao);
+
         _postsType = getIntent().getStringExtra("post_type");
         if (_postsType.equals("all"))
             _fetchPostsThread = new Thread(new AllRunnable(this, _handler, _listOfPosts, null));

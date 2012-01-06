@@ -3,8 +3,6 @@ package com.kampr.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,26 +15,25 @@ import android.util.Log;
 import com.kampr.data.schema.KamprDatabaseHelper;
 import com.kampr.data.schema.PostSchemaHelper;
 import com.kampr.models.Post;
+import com.kampr.util.TextUtils;
 
 public class PostDao {
     
     private static final String GET_POSTS_FROM_LAST_WEEK =
         "SELECT " +
-            "post_id " +
-            "created_at " +
-            "username " +
-            "title " +
-            "url " +
-            "type " +
-            "content " +
-            "description " +
-            "snap " +
-            "user_icon_filename " +
-            "view_count " +
-            "like_count " +
+            "post_id, " +
+            "created_at, " +
+            "username, " +
+            "title, " +
+            "url, " +
+            "type, " +
+            "content, " +
+            "description, " +
+            "snap, " +
+            "view_count, " +
+            "like_count, " +
             "comment_count " +
-         "FROM posts " +
-         "WHERE DATETIME(created_at) > DATETIME(JULIANDAY(DATE('now')) - 8);";
+         "FROM posts ";
 
     private static Context _context;
     private static SQLiteDatabase _db;
@@ -46,12 +43,12 @@ public class PostDao {
         _context = context;
     }
 
-    public static void open() throws SQLException {
+    public void open() throws SQLException {
         _dbHelper = new KamprDatabaseHelper(_context);
         _db = _dbHelper.getWritableDatabase();
     }
 
-    public static void close() {
+    public void close() {
         _dbHelper.close();
     }
     
@@ -61,34 +58,41 @@ public class PostDao {
         
         try {
             posts = new ArrayList<Post>();
-            while(cursor.moveToNext()) {
-                Post post = new Post();
-                post.setId(cursor.getInt(0));
-                post.setCreatedAt(cursor.getString(1));
-                post.setUserName(cursor.getString(2));
-                post.setTitle(cursor.getString(3));
-                post.setUrl(cursor.getString(4));
-                post.setType(cursor.getString(5));
-                post.setContent(cursor.getString(6));
-                post.setDescription(cursor.getString(7));
-                post.setSnap(cursor.getString(8));
-                String filename = DigestUtils.sha256Hex(post.getUser().getUsername());
-                post.setUserIcon(BitmapFactory.decodeFile(_context.getCacheDir().getAbsolutePath() + "/" + filename));
-                post.setViewCount(cursor.getInt(10));
-                post.setLikeCount(cursor.getInt(11));
-                post.setCommentCount(cursor.getInt(12));                
-                posts.add(post);
+            
+            if (cursor != null) {
+                while(cursor.moveToNext()) {
+                    Log.i("POSTDAO", "username: " + cursor.getString(2));
+                    Post post = new Post();
+                    post.setId(cursor.getInt(0));
+                    post.setCreatedAt(cursor.getString(1));
+                    post.setUserName(cursor.getString(2));
+                    post.setTitle(cursor.getString(3));
+                    post.setUrl(cursor.getString(4));
+                    post.setType(cursor.getString(5));
+                    post.setContent(cursor.getString(6));
+                    post.setDescription(cursor.getString(7));
+                    post.setSnap(cursor.getString(8));
+//                    String filename = TextUtils.toMD5(post.getUser().getUsername());
+//                    post.setUserIcon(BitmapFactory.decodeFile(filename));
+                    post.setViewCount(cursor.getInt(9));
+                    post.setLikeCount(cursor.getInt(10));
+                    post.setCommentCount(cursor.getInt(11));                
+                    posts.add(post);
+                }
             }
         } catch (Exception e) {
             posts = null;
-            Log.e("Error getting posts from last week", e.getMessage());
-            throw new RuntimeException("Error retrieving posts from last week: " + e.getMessage());
+            Log.i("POSTDAO", "Error getting posts from last week");
+        } finally {
+            cursor.close();
         }
         
         return posts;
     }
     
-    public void setPostsForPastWeek(List<Post> posts) {
+    public int setPostsForPastWeek(List<Post> posts) {
+        int postsCached = 0;
+
         try {
             for(Post post : posts) {
                 ContentValues values = new ContentValues();
@@ -101,7 +105,7 @@ public class PostDao {
                 values.put("content", post.getContent());
                 values.put("description", post.getDescription());
                 values.put("snap", post.getSnap());
-                String filename = DigestUtils.sha256Hex(post.getUser().getUsername());
+                String filename = TextUtils.toMD5(post.getUser().getUsername());
                 post.getUserIcon().compress(CompressFormat.PNG, 100, _context.openFileOutput(filename, Context.MODE_PRIVATE));
                 values.put("user_icon_filename", filename);
                 values.put("view_count", post.getViewCount());
@@ -109,11 +113,12 @@ public class PostDao {
                 values.put("comment_count", post.getCommentCount());
                 _db.insert(PostSchemaHelper.TABLE_NAME, null, values);
             }
+            postsCached = posts.size();
         } catch (Exception e) {
-            posts = null;
             Log.e("Error setting posts for past week", e.getMessage());
-            throw new RuntimeException("Error setting posts for past week: " + e.getMessage());
         }
+        
+        return postsCached;
     }
 
 }
