@@ -4,16 +4,15 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/action_bar"
-    android:minHeight="50dp" >
+    android:minHeight="40dp" >
 
     <TextView
         android:id="@+id/actionbar_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:gravity="center_vertical"
-        android:minHeight="50dp"
+        android:minHeight="40dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:shadowColor="#333"
@@ -21,7 +20,7 @@
         android:shadowDy="1"
         android:shadowRadius="1"
         android:textColor="#FFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -36,8 +35,8 @@
     <ProgressBar
         android:id="@+id/actionbar_spinner"
         style="?android:attr/progressBarStyle"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:indeterminate="true" />
