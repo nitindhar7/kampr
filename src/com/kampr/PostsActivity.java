@@ -23,8 +23,7 @@ public class PostsActivity extends TabActivity {
     protected static ProgressBar _spinner;
     
     private final int LOGOUT_RESULT_CODE = 1;
-    
-    private static TextView _actionbarLogo;
+
     private static TextView _allTabLabel;
     private static TextView _linkTabLabel;
     private static TextView _snapTabLabel;
@@ -51,9 +50,6 @@ public class PostsActivity extends TabActivity {
 
         _inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _tabHost = getTabHost();
-        
-        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
-        _actionbarLogo.setText("Activity");
 
         _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
         _view.setBackgroundResource(R.drawable.tab_selected);
@@ -113,23 +109,18 @@ public class PostsActivity extends TabActivity {
                 clearTabStyles();
                 if (tag.equals("all")) {
                     _allTabIcon.setImageResource(R.drawable.tab_activity_selected);
-                    _actionbarLogo.setText("Activity");
                 }
                 else if (tag.equals("links")) {
                     _linkTabIcon.setImageResource(R.drawable.tab_links_selected);
-                    _actionbarLogo.setText("Posts > Links");
                 }
                 else if (tag.equals("snaps")) {
                     _snapTabIcon.setImageResource(R.drawable.tab_snaps_selected);
-                    _actionbarLogo.setText("Posts > Snaps");
                 }
                 else if (tag.equals("codes")) {
                     _codeTabIcon.setImageResource(R.drawable.tab_code_selected);
-                    _actionbarLogo.setText("Posts > Codes");
                 }
                 else if (tag.equals("questions")) {
                     _questionTabIcon.setImageResource(R.drawable.tab_question_selected);
-                    _actionbarLogo.setText("Posts > Questions");
                 }
                 _tabHost.getCurrentTabView().setBackgroundResource(R.drawable.tab_selected);
             }       
