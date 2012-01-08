@@ -47,12 +47,24 @@
                 android:id="@+id/post_item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/post_item_type_icon"
                 android:gravity="center_vertical"
                 android:text="date"
                 android:textColor="@color/post_item_date"
                 android:textSize="14sp" >
             </TextView>
+
+            <ImageView
+                android:id="@+id/post_item_type_icon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="1dp"
+                android:maxHeight="15dp"
+                android:maxWidth="15dp"
+                android:minHeight="15dp"
+                android:minWidth="15dp" />
         </RelativeLayout>
 
         <TextView
