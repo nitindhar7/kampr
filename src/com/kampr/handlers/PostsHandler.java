@@ -10,8 +10,9 @@ import android.widget.ProgressBar;
 
 import com.kampr.adapters.PostsAdapter;
 
-public class PostsHandler<T> extends AbstractHandler<T> {
+public class PostsHandler<T> extends AbstractHandler {
 
+    private List<T> _listOfItems;
     private PostsAdapter<T> _postsAdapter;
     
     public PostsHandler(Context context, ProgressBar spinner, ListView posts, List<T> listOfPosts) {

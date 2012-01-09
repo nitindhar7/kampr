@@ -45,6 +45,6 @@
         android:layout_margin="5dp"
         android:minHeight="30dp"
         android:minWidth="30dp"
-        android:src="@drawable/logo_actionbar_plain" />
+        android:src="@drawable/logo_actionbar_solid_shadow" />
 
 </RelativeLayout>

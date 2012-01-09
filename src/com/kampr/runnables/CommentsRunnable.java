@@ -19,14 +19,12 @@ import com.kampr.util.TimeUtils;
 
 public class CommentsRunnable extends AbstractRunnable {
 
-    protected Context _context;
     protected List<Comment> _listOfComments;
     protected SharedPreferences _settings;
     protected int _postId;
     
     public CommentsRunnable(Context context, Handler handler, List<Comment> listOfComments, int postId) {
-        super(handler);
-        _context = context;
+        super(context, handler);
         _listOfComments = listOfComments;
         _settings = _context.getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
         _postId = postId;
