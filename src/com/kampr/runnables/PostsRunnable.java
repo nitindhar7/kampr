@@ -22,12 +22,10 @@ public class PostsRunnable extends AbstractRunnable {
 
     protected String _postType;
     protected Map<String,String> _forrstParams;
-    protected Context _context;
     protected List<Post> _posts;
     
     public PostsRunnable(Context context, PostsHandler<Post> handler, List<Post> posts, Map<String,String> forrstParams, String postType) {
-        super(handler);
-        _context = context;
+        super(context, handler);
         _forrstParams = forrstParams;
         _postType = postType;
         _posts = posts;

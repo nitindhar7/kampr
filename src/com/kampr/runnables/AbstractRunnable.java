@@ -1,5 +1,6 @@
 package com.kampr.runnables;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,8 +14,10 @@ public abstract class AbstractRunnable implements Runnable {
     protected static final ForrstAPI _forrst = new ForrstAPIClient(); 
     
     protected Handler _handler;
+    protected Context _context;
     
-    public AbstractRunnable(Handler handler) {
+    public AbstractRunnable(Context context, Handler handler) {
+        _context = context;
         _handler = handler;
     }
     

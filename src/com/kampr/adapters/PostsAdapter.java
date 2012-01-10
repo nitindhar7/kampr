@@ -23,6 +23,21 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         Post post = (Post) _objects.get(position);
 
+        ImageView postTypeIcon = (ImageView) getViewHandle(convertView, R.id.post_item_type_icon);
+        
+        if (post.getType().equals("link")) {
+            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_link));
+        }
+        else if (post.getType().equals("snap")) {
+            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_snap));
+        }
+        else if (post.getType().equals("code")) {
+            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_code));
+        }
+        else {
+            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_question));
+        }
+
         ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
         postUserIcon.setImageBitmap(post.getUserIcon());
 

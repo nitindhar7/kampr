@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,10 @@ import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
+import com.kampr.handlers.SnapHandler;
 import com.kampr.models.Post;
 import com.kampr.models.User;
+import com.kampr.runnables.SnapRunnable;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
@@ -41,6 +44,9 @@ public class PostActivity extends Activity implements OnClickListener {
     protected static final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     protected static Post _post;
+    protected static ProgressBar _spinner;
+    protected static Thread _fetchSnapThread;
+    protected static SnapHandler _handler;
 
     protected JSONObject _postJSON;
     protected Thread _fetchPostThread;
@@ -58,6 +64,7 @@ public class PostActivity extends Activity implements OnClickListener {
     protected TextView _postDate;
     protected TextView _postDescription;
     protected TextView _postContent;
+    protected TextView _postSnapLabel;
     protected RelativeLayout _postViewComments;
     protected ImageView _postUserIcon;
     protected ImageView _postOriginal;
@@ -70,6 +77,7 @@ public class PostActivity extends Activity implements OnClickListener {
         LayoutUtils.layoutOverride(findViewById(R.id.post_comments), View.GONE);
         LayoutUtils.layoutOverride(findViewById(R.id.post_comments_count), View.GONE);
 
+        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
         _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _postTitle = (TextView) findViewById(R.id.post_title);
         _postUrl = (TextView) findViewById(R.id.post_url);
@@ -82,11 +90,14 @@ public class PostActivity extends Activity implements OnClickListener {
         _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
         _postViewsCount = (TextView) findViewById(R.id.post_views_count);
         _postOriginal = (ImageView) findViewById(R.id.snap_large_url);
+        _postSnapLabel = (TextView) findViewById(R.id.post_snap_call_to_action);
         _postContent = (TextView) findViewById(R.id.post_content);
         _postViewComments = (RelativeLayout) findViewById(R.id.post_view_comments);
 
         _postOriginal.setOnClickListener(this);
         _postUserIcon.setOnClickListener(this);
+        
+        _handler = new SnapHandler(this, _spinner, _postOriginal);
 
         _post = (Post) getIntent().getSerializableExtra("post");
 
@@ -117,34 +128,36 @@ public class PostActivity extends Activity implements OnClickListener {
         _postUserIcon.setImageBitmap(_userIconBitmap);
 
         if (_post.getType().equals("link")) {
-            _actionbarLogo.setText("Link");
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postUrl.setText(_post.getUrl());
             //SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
         else if (_post.getType().equals("snap")) {
-            _actionbarLogo.setText("Snap");
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
-            _postOriginal.setImageBitmap(ImageUtils.fetchImageBitmap(_post.getSnap()));
+            _fetchSnapThread = new Thread(new SnapRunnable(this, _handler, _post.getSnap()));
+            _fetchSnapThread.start();
         }
         else if (_post.getType().equals("code")) {
-            _actionbarLogo.setText("Code");
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postContent.setText(_post.getContent());
             _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
         else {
-            _actionbarLogo.setText("Question");
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
             _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
-        LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
     }
 
     @Override

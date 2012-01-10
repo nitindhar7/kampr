@@ -82,21 +82,26 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, view, menuInfo);
         menu.add(0, Menu.FIRST, 0, "View Profile");
+        menu.add(0, Menu.FIRST + 1, 0, "View Comments");
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        Post post = _handler.getAdapter().getViewObject(info.position);
 
         switch(item.getItemId()) {
             case Menu.FIRST:
-                Post post = _handler.getAdapter().getViewObject(info.position);
                 User user = post.getUser();
                 Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
                 userIntent.putExtra("user", user);
                 userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(user.getUserIcon()));
                 startActivity(userIntent);
                 break;
+            case Menu.FIRST + 1:
+                Intent comments = new Intent(PostsListActivity.this, CommentsActivity.class);
+                comments.putExtra("post_id", post.getId());
+                startActivity(comments);
         }
         
         return super.onContextItemSelected(item);

@@ -13,8 +13,9 @@ import com.kampr.adapters.PostsAdapter;
 import com.kampr.data.PostDao;
 import com.kampr.models.Post;
 
-public class PostsHandler<T> extends AbstractHandler<T> {
+public class PostsHandler<T> extends AbstractHandler {
 
+    private List<T> _listOfItems;
     private PostsAdapter<T> _postsAdapter;
     private static PostDao _postDao;
     
