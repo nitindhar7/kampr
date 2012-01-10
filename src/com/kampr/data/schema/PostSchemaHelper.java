@@ -35,7 +35,8 @@ public class PostSchemaHelper {
             "user_icon_filename TEXT NOT NULL, " +
             "view_count INTEGER NOT NULL, " +
             "like_count INTEGER NOT NULL, " +
-            "comment_count INTEGER NOT NULL " +
+            "comment_count INTEGER NOT NULL, " +
+            "UNIQUE(post_id) " +
         ");";
     
     public static void onCreate(SQLiteDatabase database) {

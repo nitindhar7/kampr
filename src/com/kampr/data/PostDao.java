@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.kampr.data.schema.KamprDatabaseHelper;
@@ -32,8 +33,7 @@ public class PostDao {
             "view_count, " +
             "like_count, " +
             "comment_count " +
-         "FROM posts " +
-         "WHERE DATETIME(created_at) > DATETIME(JULIANDAY(DATE('now')) - 8)";
+         "FROM posts ";
 
     private static Context _context;
     private static SQLiteDatabase _db;
@@ -61,7 +61,6 @@ public class PostDao {
             
             if (cursor != null) {
                 while(cursor.moveToNext()) {
-                    Log.i("POSTDAO", "username: " + cursor.getString(2));
                     Post post = new Post();
                     post.setId(cursor.getInt(0));
                     post.setCreatedAt(cursor.getString(1));
@@ -98,7 +97,6 @@ public class PostDao {
                 ContentValues values = new ContentValues();
                 values.put("post_id", post.getId());
                 values.put("created_at", post.getCreatedAt());
-                Log.i("POSTDAO", post.getCreatedAt());
                 values.put("username", post.getUserName());
                 values.put("title", post.getTitle());
                 values.put("url", post.getUrl());
