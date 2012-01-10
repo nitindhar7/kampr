@@ -22,7 +22,7 @@
     <LinearLayout
         android:id="@+id/actionbar_divider"
         android:layout_width="fill_parent"
-        android:layout_height="2px"
+        android:layout_height="1px"
         android:layout_below="@+id/actionbar_logo"
         android:background="@color/actionbar_separator_dark"
         android:orientation="vertical" >

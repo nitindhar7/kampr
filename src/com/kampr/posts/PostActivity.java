@@ -64,6 +64,7 @@ public class PostActivity extends Activity implements OnClickListener {
     protected TextView _postDate;
     protected TextView _postDescription;
     protected TextView _postContent;
+    protected TextView _postSnapLabel;
     protected RelativeLayout _postViewComments;
     protected ImageView _postUserIcon;
     protected ImageView _postOriginal;
@@ -89,6 +90,7 @@ public class PostActivity extends Activity implements OnClickListener {
         _postLikesCount = (TextView) findViewById(R.id.post_likes_count);
         _postViewsCount = (TextView) findViewById(R.id.post_views_count);
         _postOriginal = (ImageView) findViewById(R.id.snap_large_url);
+        _postSnapLabel = (TextView) findViewById(R.id.post_snap_call_to_action);
         _postContent = (TextView) findViewById(R.id.post_content);
         _postViewComments = (RelativeLayout) findViewById(R.id.post_view_comments);
 
@@ -128,6 +130,7 @@ public class PostActivity extends Activity implements OnClickListener {
         if (_post.getType().equals("link")) {
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postUrl.setText(_post.getUrl());
             //SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
@@ -141,6 +144,7 @@ public class PostActivity extends Activity implements OnClickListener {
         else if (_post.getType().equals("code")) {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postContent.setText(_post.getContent());
             _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
@@ -149,6 +153,7 @@ public class PostActivity extends Activity implements OnClickListener {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            _postSnapLabel.setVisibility(View.GONE);
             _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
             _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);

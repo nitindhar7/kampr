@@ -110,6 +110,14 @@
                 android:background="@drawable/snap_image_bg" />
 
             <TextView
+                android:id="@+id/post_snap_call_to_action"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Tap to enlarge snap"
+                android:textSize="12sp" android:layout_marginBottom="5dp" android:textColor="@color/gray" android:gravity="center"/>
+
+            <TextView
                 android:id="@+id/post_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -118,7 +126,7 @@
                 android:padding="5dp"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:textColor="#333"
-                android:textSize="18sp" >
+                android:textSize="14sp" >
             </TextView>
 
             <TextView
@@ -128,7 +136,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 android:textColor="#333"
-                android:textSize="18sp" >
+                android:textSize="14sp" >
             </TextView>
         </LinearLayout>
     </ScrollView>
