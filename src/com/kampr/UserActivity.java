@@ -15,22 +15,21 @@ import com.kampr.util.LayoutUtils;
 
 public class UserActivity extends Activity {
     
-    protected static final NumberFormat _usFormat = NumberFormat.getIntegerInstance(Locale.US);
+    private static final NumberFormat _usFormat = NumberFormat.getIntegerInstance(Locale.US);
     
-    protected static User _user;
-    
-    protected TextView _actionbarLogo;
-    protected ImageView _userIcon;
-    protected TextView _name;
-    protected TextView _username;
-    protected TextView _userPostsCount;
-    protected TextView _userCommentsCount;
-    protected TextView _userLikesCount;
-    protected TextView _userFollowersCount;
-    protected TextView _userFollowingCount;
-    protected TextView _userBio;
-    protected TextView _userUrl;
-    protected TextView _userRole;
+    private static User _user;
+
+    private ImageView _userIcon;
+    private TextView _name;
+    private TextView _username;
+    private TextView _userPostsCount;
+    private TextView _userCommentsCount;
+    private TextView _userLikesCount;
+    private TextView _userFollowersCount;
+    private TextView _userFollowingCount;
+    private TextView _userBio;
+    private TextView _userUrl;
+    private TextView _userRole;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class UserActivity extends Activity {
 
         _user = (User) getIntent().getSerializableExtra("user");
 
-        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _userIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
         _name = (TextView) findViewById(R.id.user_infobar_name);
         _username = (TextView) findViewById(R.id.user_infobar_username);
@@ -62,8 +60,7 @@ public class UserActivity extends Activity {
         _userUrl.setText(_user.getHomepageUrl());
         _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
-        _actionbarLogo.setText(_user.getName());
-        
+
         LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
     }
 
