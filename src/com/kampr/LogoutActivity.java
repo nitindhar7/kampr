@@ -3,11 +3,8 @@ package com.kampr;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 public class LogoutActivity extends Activity {
-    
-    private final String ACTIVITY_TAG = "LogoutActivity";
 
     public static final int RESULT_SUCCESS = 1;
     public static final int RESULT_FAILURE = -1;
@@ -15,8 +12,7 @@ public class LogoutActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(ACTIVITY_TAG, "onCreate");
-        
+
         SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.remove("login_username");
