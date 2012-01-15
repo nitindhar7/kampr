@@ -14,8 +14,7 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".KamprActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".KamprActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,35 +25,30 @@
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".PostsActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".PostsActivity" >
         </activity>
         <activity android:name=".LogoutActivity" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".UserActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".UserActivity" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".posts.PostsListActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".posts.PostsListActivity" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".posts.PostActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".posts.PostActivity" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".posts.SnapFullscreenActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".posts.SnapFullscreenActivity" >
         </activity>
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".posts.CommentsActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:name=".posts.CommentsActivity" >
         </activity>
     </application>
 

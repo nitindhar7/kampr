@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,8 +28,9 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private static final int POST_QUIT_CODE = 2;
     private static final int ENTER_KEY_CODE = 66;
     
-    private TextView _actionbarLogo;
-    private TextView _actionbarByline;
+    private TextView _signUpLink;
+    private TextView _loginUsernameLabel;
+    private TextView _loginPasswordLabel;
     private EditText _loginUsername;
     private EditText _loginPassword;
     private Button _loginSubmit;
@@ -47,8 +49,9 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         else {
             setContentView(R.layout.login);
             
-            _actionbarLogo = (TextView)findViewById(R.id.actionbar_logo);
-            _actionbarByline = (TextView)findViewById(R.id.actionbar_byline);
+            _signUpLink = (TextView)findViewById(R.id.sign_up_link);
+            _loginUsernameLabel = (TextView)findViewById(R.id.login_label_username);
+            _loginPasswordLabel = (TextView)findViewById(R.id.login_label_password);
             _loginUsername = (EditText)findViewById(R.id.login_username);
             _loginPassword = (EditText)findViewById(R.id.login_password);
             _loginSubmit = (Button)findViewById(R.id.login_submit);
@@ -56,9 +59,13 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
             _loginSubmit.setOnClickListener(this);
             _loginUsername.setOnKeyListener(this);
             _loginPassword.setOnKeyListener(this);
+
+            _signUpLink.setAutoLinkMask(Linkify.WEB_URLS);
+            _signUpLink.setText("Or, Sign Up At Forrst.com/signup");
             
-            SpanUtils.setFont(this, _actionbarLogo, SpanUtils.FONT_BOLD);
-            SpanUtils.setFont(this, _actionbarByline);
+            SpanUtils.setFont(this, _signUpLink, SpanUtils.FONT_ITALIC);
+            SpanUtils.setFont(this, _loginUsernameLabel);
+            SpanUtils.setFont(this, _loginPasswordLabel);
         }
     }
 

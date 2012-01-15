@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 public class SpanUtils extends URLSpan {
     
-    public static final String FONT_REGULAR = "qlassik_regular.ttf";
-    public static final String FONT_BOLD = "qlassik_bold.ttf";
+    public static final String FONT_REGULAR = "Roboto-Condensed.ttf";
+    public static final String FONT_BOLD = "Roboto-BoldCondensed.ttf";
+    public static final String FONT_ITALIC = "Roboto-Italic.ttf";
     
     public SpanUtils(String url) {
         super(url);

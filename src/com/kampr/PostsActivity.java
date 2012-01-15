@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kampr.posts.PostsListActivity;
+import com.kampr.util.SpanUtils;
 
 public class PostsActivity extends TabActivity {
     
@@ -29,17 +29,13 @@ public class PostsActivity extends TabActivity {
     private static TextView _snapTabLabel;
     private static TextView _codeTabLabel;
     private static TextView _questionTabLabel;
-    private static ImageView _allTabIcon;
-    private static ImageView _linkTabIcon;
-    private static ImageView _snapTabIcon;
-    private static ImageView _codeTabIcon;
-    private static ImageView _questionTabIcon;
     private static TabHost _tabHost;
     private static TabHost.TabSpec _spec;
     private static Intent _intent;
     private static LayoutInflater _inflater;
 
-    private View _view;
+    private View _tab;
+    private View _tabSelectedDivider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,55 +47,52 @@ public class PostsActivity extends TabActivity {
         _inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _tabHost = getTabHost();
 
-        _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
-        _view.setBackgroundResource(R.drawable.tab_selected);
-        _allTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
-        _allTabIcon.setImageResource(R.drawable.tab_activity_selected);
-        _allTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
-        _allTabLabel.setText("Activity");
+        _tab = _inflater.inflate(R.layout.tab, getTabWidget(), false);
+        _tab.setBackgroundResource(R.drawable.tab_selected);
+        _allTabLabel = (TextView) _tab.findViewById(R.id.tabLabel);
+        _allTabLabel.setText("ACTIVITY");
+        _tabSelectedDivider = (TextView) _tab.findViewById(R.id.tabSelectedDivider);
+        _tabSelectedDivider.setVisibility(View.VISIBLE);
+        SpanUtils.setFont(this, _allTabLabel);
         _intent = new Intent(PostsActivity.this, PostsListActivity.class);
         _intent.putExtra("post_type", "all");
-        _spec = _tabHost.newTabSpec("all").setIndicator(_view).setContent(_intent);
+        _spec = _tabHost.newTabSpec("all").setIndicator(_tab).setContent(_intent);
         _tabHost.addTab(_spec);
 
-        _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
-        _linkTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
-        _linkTabIcon.setImageResource(R.drawable.tab_links_unselected);
-        _linkTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
-        _linkTabLabel.setText("Links");
+        _tab = _inflater.inflate(R.layout.tab, getTabWidget(), false);
+        _linkTabLabel = (TextView) _tab.findViewById(R.id.tabLabel);
+        _linkTabLabel.setText("LINKS");
+        SpanUtils.setFont(this, _linkTabLabel);
         _intent = new Intent(PostsActivity.this, PostsListActivity.class);
         _intent.putExtra("post_type", "link");
-        _spec = _tabHost.newTabSpec("links").setIndicator(_view).setContent(_intent);
+        _spec = _tabHost.newTabSpec("links").setIndicator(_tab).setContent(_intent);
         _tabHost.addTab(_spec);
         
-        _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
-        _snapTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
-        _snapTabIcon.setImageResource(R.drawable.tab_snaps_unselected);
-        _snapTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
-        _snapTabLabel.setText("Snaps");
+        _tab = _inflater.inflate(R.layout.tab, getTabWidget(), false);
+        _snapTabLabel = (TextView) _tab.findViewById(R.id.tabLabel);
+        _snapTabLabel.setText("SNAPS");
+        SpanUtils.setFont(this, _snapTabLabel);
         _intent = new Intent(PostsActivity.this, PostsListActivity.class);
         _intent.putExtra("post_type", "snap");
-        _spec = _tabHost.newTabSpec("snaps").setIndicator(_view).setContent(_intent);
+        _spec = _tabHost.newTabSpec("snaps").setIndicator(_tab).setContent(_intent);
         _tabHost.addTab(_spec);
 
-        _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
-        _codeTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
-        _codeTabIcon.setImageResource(R.drawable.tab_code_unselected);
-        _codeTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
-        _codeTabLabel.setText("Code");
+        _tab = _inflater.inflate(R.layout.tab, getTabWidget(), false);
+        _codeTabLabel = (TextView) _tab.findViewById(R.id.tabLabel);
+        _codeTabLabel.setText("CODE");
+        SpanUtils.setFont(this, _codeTabLabel);
         _intent = new Intent(PostsActivity.this, PostsListActivity.class);
         _intent.putExtra("post_type", "code");
-        _spec = _tabHost.newTabSpec("codes").setIndicator(_view).setContent(_intent);
+        _spec = _tabHost.newTabSpec("codes").setIndicator(_tab).setContent(_intent);
         _tabHost.addTab(_spec);
 
-        _view = _inflater.inflate(R.layout.tab, getTabWidget(), false);
-        _questionTabIcon = (ImageView) _view.findViewById(R.id.tabImage);
-        _questionTabIcon.setImageResource(R.drawable.tab_question_unselected);
-        _questionTabLabel = (TextView) _view.findViewById(R.id.tabLabel);
-        _questionTabLabel.setText("Questions");
+        _tab = _inflater.inflate(R.layout.tab, getTabWidget(), false);
+        _questionTabLabel = (TextView) _tab.findViewById(R.id.tabLabel);
+        _questionTabLabel.setText("Q & A");
+        SpanUtils.setFont(this, _questionTabLabel);
         _intent = new Intent(PostsActivity.this, PostsListActivity.class);
         _intent.putExtra("post_type", "question");
-        _spec = _tabHost.newTabSpec("questions").setIndicator(_view).setContent(_intent);
+        _spec = _tabHost.newTabSpec("questions").setIndicator(_tab).setContent(_intent);
         _tabHost.addTab(_spec);
         
         // http://bit.ly/w1QV6k
@@ -107,21 +100,23 @@ public class PostsActivity extends TabActivity {
             @Override
             public void onTabChanged(String tag) {
                 clearTabStyles();
+                View tabView = null;
                 if (tag.equals("all")) {
-                    _allTabIcon.setImageResource(R.drawable.tab_activity_selected);
+                    tabView = getTabWidget().getChildAt(0);
                 }
                 else if (tag.equals("links")) {
-                    _linkTabIcon.setImageResource(R.drawable.tab_links_selected);
+                    tabView = getTabWidget().getChildAt(1);
                 }
                 else if (tag.equals("snaps")) {
-                    _snapTabIcon.setImageResource(R.drawable.tab_snaps_selected);
+                    tabView = getTabWidget().getChildAt(2);
                 }
                 else if (tag.equals("codes")) {
-                    _codeTabIcon.setImageResource(R.drawable.tab_code_selected);
+                    tabView = getTabWidget().getChildAt(3);
                 }
                 else if (tag.equals("questions")) {
-                    _questionTabIcon.setImageResource(R.drawable.tab_question_selected);
+                    tabView = getTabWidget().getChildAt(4);
                 }
+                tabView.findViewById(R.id.tabSelectedDivider).setVisibility(View.VISIBLE);
                 _tabHost.getCurrentTabView().setBackgroundResource(R.drawable.tab_selected);
             }       
         });
@@ -168,14 +163,10 @@ public class PostsActivity extends TabActivity {
     }
     
     private void clearTabStyles() {
-        _allTabIcon.setImageResource(R.drawable.tab_activity_unselected);
-        _linkTabIcon.setImageResource(R.drawable.tab_links_unselected);
-        _snapTabIcon.setImageResource(R.drawable.tab_snaps_unselected);
-        _codeTabIcon.setImageResource(R.drawable.tab_code_unselected);
-        _questionTabIcon.setImageResource(R.drawable.tab_question_unselected);
         for (int i = 0; i < getTabWidget().getChildCount(); i++) {
-            _view = getTabWidget().getChildAt(i);
-            _view.setBackgroundResource(R.drawable.tab);
+            _tab = getTabWidget().getChildAt(i);
+            _tab.setBackgroundResource(R.drawable.tab);
+            _tab.findViewById(R.id.tabSelectedDivider).setVisibility(View.GONE);
         }
     }
     
