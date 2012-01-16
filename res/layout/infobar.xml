@@ -2,52 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/post_user"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/post_title"
-    android:background="@color/lighter_gray"
-    android:padding="5dp" >
+    android:layout_height="48dp"
+    android:padding="5dp"
+    android:layout_below="@+id/post_title_divider"
+    android:background="@drawable/infobar_bg" >
 
-    <include layout="@layout/user_icon" />
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/user_icon_thumbnail"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentLeft="true"
+        android:clickable="true" >
+    </ImageView>
 
-    <RelativeLayout
-        android:id="@+id/post_user_top"
+    <TextView
+        android:id="@+id/post_user_name"
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
+        android:layout_height="38dp"
+        android:layout_toLeftOf="@+id/infobar_arrow"
         android:layout_toRightOf="@+id/user_icon_thumbnail"
-        android:minHeight="20dp" android:layout_marginBottom="5dp">
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/post_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="25dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/post_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:minHeight="25dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="#555"
-            android:textSize="16sp" />
-    </RelativeLayout>
-
-    <include
-        android:id="@+id/post_nav"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/post_user_top"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/user_icon_thumbnail"
-        layout="@layout/counts" />
+    <TextView
+        android:id="@+id/infobar_arrow"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/infobar_arrow" />
 
 </RelativeLayout>
