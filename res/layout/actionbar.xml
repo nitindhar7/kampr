@@ -3,23 +3,29 @@
     android:id="@+id/actionbar"
     android:layout_width="fill_parent"
     android:layout_height="48dp"
-    android:background="@drawable/actionbar_bg">
+    android:background="@drawable/actionbar_bg" >
 
     <TextView
         android:id="@+id/actionbar_logo"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_alignParentTop="true"
-        android:gravity="center_vertical"
-        android:background="@drawable/actionbar_logo"/>
+        android:background="@drawable/actionbar_logo"
+        android:gravity="center_vertical" />
 
     <ProgressBar
         android:id="@+id/actionbar_spinner"
         style="?android:attr/progressBarStyle"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:indeterminate="true" android:layout_toLeftOf="@+id/actionbar_search" android:layout_marginBottom="10dp" android:layout_marginLeft="10dp" android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/actionbar_search"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:indeterminate="true" />
+        android:background="@drawable/actionbar_search"/>
 
 </RelativeLayout>

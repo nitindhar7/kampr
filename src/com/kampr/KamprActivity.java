@@ -1,8 +1,10 @@
 package com.kampr;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private static final int LOGIN_RESULT_CODE = 1;
     private static final int POST_QUIT_CODE = 2;
     private static final int ENTER_KEY_CODE = 66;
+    private static final boolean EULA_DEFAULT = false;
     
     private TextView _signUpLink;
     private TextView _loginUsernameLabel;
@@ -42,6 +45,27 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         super.onCreate(savedInstanceState);
         
         _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
+        
+        if (!hasAgreedToEula()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getResources().getText(R.string.eula))
+                   .setCancelable(false)
+                   .setPositiveButton("Yes, I agree", new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                           SharedPreferences.Editor editor = _settings.edit();
+                           editor.putBoolean("agreed_to_eula", true);
+                           editor.commit();
+                       }
+                   })
+                   .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                           Toast.makeText(getApplicationContext(), "You have to agree to the EULA to continue using Kampr", Toast.LENGTH_LONG);
+                           finish();
+                       }
+                   });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
         if(sessionExists() && NetworkUtils.isOnline(getApplicationContext())) {
             startPostsActivity();
@@ -130,6 +154,10 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
         validate.putExtra("login_username", _loginUsername.getText().toString());
         validate.putExtra("login_password", _loginPassword.getText().toString());
         startActivityForResult(validate, LOGIN_RESULT_CODE);
+    }
+    
+    private boolean hasAgreedToEula() {
+        return _settings.getBoolean("agreed_to_eula", EULA_DEFAULT);
     }
 
 }
