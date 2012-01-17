@@ -19,7 +19,7 @@ import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.handlers.CommentsHandler;
-import com.kampr.models.Comment;
+import com.kampr.models.CommentDecorator;
 import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.NetworkUtils;
 
@@ -37,12 +37,12 @@ public class CommentsActivity extends ListActivity {
 
     private ListView _comments;
     private ProgressBar _spinner;
-    private List<Comment> _listOfComments;
+    private List<CommentDecorator> _listOfComments;
     private CommentsHandler _handler;
     private Thread _fetchCommentsThread;
     
     public CommentsActivity() {
-        _listOfComments = new ArrayList<Comment>();
+        _listOfComments = new ArrayList<CommentDecorator>();
         NetworkUtils.trustAllHosts();
     }
     

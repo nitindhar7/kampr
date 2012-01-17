@@ -9,14 +9,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.kampr.adapters.CommentsAdapter;
-import com.kampr.models.Comment;
+import com.kampr.models.CommentDecorator;
 
 public class CommentsHandler extends AbstractHandler {
 
-    private List<Comment> _listOfItems;
+    private List<CommentDecorator> _listOfItems;
     private CommentsAdapter _commentsAdapter;
     
-    public CommentsHandler(Context context, ProgressBar spinner, ListView comments, List<Comment> listOfComments) {
+    public CommentsHandler(Context context, ProgressBar spinner, ListView comments, List<CommentDecorator> listOfComments) {
         _context = context;
         _spinner = spinner;
         _list = comments;
