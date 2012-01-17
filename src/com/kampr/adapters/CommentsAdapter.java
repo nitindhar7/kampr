@@ -8,12 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.forrst.api.model.Comment;
 import com.kampr.R;
-import com.kampr.models.Comment;
+import com.kampr.models.CommentDecorator;
+import com.kampr.util.SpanUtils;
+import com.kampr.util.TextUtils;
+import com.kampr.util.TimeUtils;
 
-public class CommentsAdapter extends AbstractListAdapter<Comment> {
+public class CommentsAdapter extends AbstractListAdapter<CommentDecorator> {
 
-    public CommentsAdapter(Context context, List<Comment> comments) {
+    public CommentsAdapter(Context context, List<CommentDecorator> comments) {
         super(context, comments);
     }
 
@@ -21,21 +25,26 @@ public class CommentsAdapter extends AbstractListAdapter<Comment> {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = getConvertView(convertView, R.layout.comment_item);
         
-        Comment comment = (Comment) _objects.get(position);
+        CommentDecorator cd = (CommentDecorator) _objects.get(position);
+        Comment comment = cd.getComment();
         
         ImageView commentUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
-        commentUserIcon.setImageBitmap(comment.getUserIcon());
+        commentUserIcon.setImageBitmap(cd.getUserIcon());
 
         TextView commentUsername = (TextView) getViewHandle(convertView, R.id.comment_item_username);
         commentUsername.setText(comment.getUserName());
 
         TextView commentDate = (TextView) getViewHandle(convertView, R.id.comment_item_date);
-        commentDate.setText(comment.getCreatedAt());
+        commentDate.setText(TimeUtils.getPostDate(comment.getCreatedAt().toString()));
 
         TextView commentTitle = (TextView) getViewHandle(convertView, R.id.comment_item_content);
-        commentTitle.setText(comment.getBody());
+        commentTitle.setText(TextUtils.convertHtmlToText(comment.getBody()));
 
         convertView.setId(comment.getId());
+        
+        SpanUtils.setFont(_context, commentUsername, SpanUtils.FONT_BOLD);
+        SpanUtils.setFont(_context, commentDate);
+        SpanUtils.setFont(_context, commentTitle);
 
         return convertView;
     }

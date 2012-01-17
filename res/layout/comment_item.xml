@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="username"
                 android:textColor="#333"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" >
             </TextView>
 
@@ -48,7 +48,7 @@
                 android:layout_alignParentRight="true"
                 android:text="date"
                 android:textColor="#999"
-                android:textSize="18sp" >
+                android:textSize="14sp" >
             </TextView>
         </RelativeLayout>
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="content"
             android:textColor="#333"
-            android:textSize="18sp" >
+            android:textSize="14sp" >
         </TextView>
     </LinearLayout>
 
