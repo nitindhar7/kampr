@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Spannable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -121,18 +122,23 @@ public class PostActivity extends Activity implements OnClickListener {
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postUrl.setText(_post.getUrl());
-            //SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
+            SpanUtils.setFont(getApplicationContext(), _postDescription);
+            SpanUtils.setFont(getApplicationContext(), _postUrl);
+            SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
         else if (_post.getType().equals("snap")) {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            SpanUtils.setFont(getApplicationContext(), _postDescription);
             _fetchSnapThread = new Thread(new SnapRunnable(this, _handler, _post.getSnap()));
             _fetchSnapThread.start();
         }
         else if (_post.getType().equals("code")) {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
+            SpanUtils.setFont(getApplicationContext(), _postDescription);
+            SpanUtils.setFont(getApplicationContext(), _postContent);
             _postContent.setText(_post.getContent());
             _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
@@ -141,6 +147,7 @@ public class PostActivity extends Activity implements OnClickListener {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
+            SpanUtils.setFont(getApplicationContext(), _postDescription);
             _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
             _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
