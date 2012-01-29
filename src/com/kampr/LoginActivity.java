@@ -3,15 +3,13 @@ package com.kampr;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.forrst.api.ForrstAPI;
 import com.forrst.api.ForrstAPIClient;
+import com.forrst.api.model.Auth;
 import com.forrst.api.util.ForrstAuthenticationException;
 import com.kampr.util.NetworkUtils;
 
@@ -56,9 +54,8 @@ public class LoginActivity extends Activity {
     }
     
     private boolean validateCredentials(String username, String password) throws ForrstAuthenticationException {
-        JSONObject json = null;
         try {
-            json = _forrst.usersAuth(username, password);
+            Auth auth = _forrst.usersAuth(username, password);
             SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
             SharedPreferences.Editor editor = settings.edit();
 
@@ -67,12 +64,10 @@ public class LoginActivity extends Activity {
             
             editor.putString("login_username", _loginUsername);
             editor.putString("login_password", hashedPassword.toString());
-            editor.putString("login_token", json.getString("token"));
-            editor.putString("login_user_id", json.getString("user_id"));
+            editor.putString("login_token", auth.getAccessToken());
+            editor.putString("login_user_id", Integer.toString(auth.getUserId()));
             editor.commit();
             return true;
-        } catch (JSONException e) {
-            throw new RuntimeException("Error retrieving user data from Forrst authentication", e);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error validating user", e);
         }

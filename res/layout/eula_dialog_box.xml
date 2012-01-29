@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/eula_dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/eula_dialog_box_bg" android:gravity="center">
+
+    <TextView
+        android:id="@+id/eula_dialog_box_title"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:text="KAMPR EULA" android:gravity="center" android:textColor="@color/white" android:textStyle="bold" android:background="@color/dark_blue"/>
+
+    <ScrollView
+        android:id="@+id/eula_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/eula_dialog_button"
+        android:layout_below="@+id/eula_dialog_box_title" android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/eula_body"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/eula" android:textColor="@color/black" android:textSize="12sp"/>
+
+    </ScrollView>
+
+</RelativeLayout>

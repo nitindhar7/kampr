@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -39,31 +40,36 @@ public class KamprActivity extends Activity implements OnClickListener, OnKeyLis
     private Button _loginSubmit;
     private ProgressDialog _dialog;
     private SharedPreferences _settings;
+    private LayoutInflater _inflater;
+    private View _eula;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         _settings = getSharedPreferences(KAMPR_APP_PREFS, 0);
-        
+
         if (!hasAgreedToEula()) {
+            _inflater = getLayoutInflater();
+            _eula = _inflater.inflate(R.layout.eula_dialog_box, null);
+            
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(getResources().getText(R.string.eula))
-                   .setCancelable(false)
+            builder.setCancelable(false)
+                   .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                           Toast.makeText(getApplicationContext(), "You have to agree to the EULA to continue using Kampr", Toast.LENGTH_LONG);
+                           finish();
+                       }
+                   })
                    .setPositiveButton("Yes, I agree", new DialogInterface.OnClickListener() {
                        public void onClick(DialogInterface dialog, int id) {
                            SharedPreferences.Editor editor = _settings.edit();
                            editor.putBoolean("agreed_to_eula", true);
                            editor.commit();
                        }
-                   })
-                   .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           Toast.makeText(getApplicationContext(), "You have to agree to the EULA to continue using Kampr", Toast.LENGTH_LONG);
-                           finish();
-                       }
                    });
             AlertDialog alert = builder.create();
+            alert.setView(_eula, 0, 0, 0, 0);
             alert.show();
         }
 
