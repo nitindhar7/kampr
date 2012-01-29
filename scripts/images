@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+# Paths for original PNG assets
+ASSETS_DIR = "assets/images"
+ASSETS_XHDPI_DIR = "#{ASSETS_DIR}/xhdpi"
+ASSETS_HDPI_DIR = "#{ASSETS_DIR}/hdpi"
+ASSETS_MDPI_DIR = "#{ASSETS_DIR}/mdpi"
+ASSETS_LDPI_DIR = "#{ASSETS_DIR}/ldpi"
+
+# Paths for app resources
+RES_DIR = "res"
+RES_XHDPI_DIR = "#{RES_DIR}/drawable-xhdpi"
+RES_HDPI_DIR = "#{RES_DIR}/drawable-hdpi"
+RES_MDPI_DIR = "#{RES_DIR}/drawable-mdpi"
+RES_LDPI_DIR = "#{RES_DIR}/drawable-ldpi"
+
+MAPPINGS = Hash.new
+MAPPINGS[ASSETS_XHDPI_DIR] = RES_XHDPI_DIR
+MAPPINGS[ASSETS_HDPI_DIR] = RES_HDPI_DIR
+MAPPINGS[ASSETS_MDPI_DIR] = RES_MDPI_DIR
+MAPPINGS[ASSETS_LDPI_DIR] = RES_LDPI_DIR
+
+# for each assets folder
+#   for each image
+#     optimize image
+#     move to dest
+
+MAPPINGS.each do |asset_dir,res_dir|
+  puts "Optimizing [#{asset_dir}]"
+  images = `ls #{asset_dir}`.split("\n")
+  images.each do |image|
+    `cp #{asset_dir}/#{image} /tmp`
+    `optipng -o5 --quiet /tmp/#{image}`
+    `convert -depth 6 -quality 90 /tmp/#{image} #{res_dir}/#{image}`
+    `rm /tmp/#{image}`
+    puts "  * #{image} => #{res_dir}/#{image}"
+  end
+end
+

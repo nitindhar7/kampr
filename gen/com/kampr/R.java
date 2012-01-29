@@ -92,14 +92,13 @@ public final class R {
         public static final int post_link_bg=0x7f02001b;
         public static final int post_view_comments_states=0x7f02001c;
         public static final int posts_menu_logout=0x7f02001d;
-        public static final int posts_menu_settings=0x7f02001e;
-        public static final int sactionbar_arrow=0x7f02001f;
-        public static final int snap_image_bg=0x7f020020;
-        public static final int tab=0x7f020021;
-        public static final int tab_selected=0x7f020022;
-        public static final int tabs_bg=0x7f020023;
-        public static final int user_bio_bg=0x7f020024;
-        public static final int user_icon_bg=0x7f020025;
+        public static final int sactionbar_arrow=0x7f02001e;
+        public static final int snap_image_bg=0x7f02001f;
+        public static final int tab=0x7f020020;
+        public static final int tab_selected=0x7f020021;
+        public static final int tabs_bg=0x7f020022;
+        public static final int user_bio_bg=0x7f020023;
+        public static final int user_icon_bg=0x7f020024;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f070046;
