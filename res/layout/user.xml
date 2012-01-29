@@ -41,7 +41,7 @@
             android:maxHeight="25dp"
             android:minHeight="25dp"
             android:textColor="@color/medium_gray"
-            android:textSize="14sp" android:textStyle="bold"/>
+            android:textSize="12sp" android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/user_infobar_role"
