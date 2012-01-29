@@ -109,7 +109,9 @@ public class PostActivity extends Activity implements OnClickListener {
             _postViewComments = (TextView) findViewById(R.id.actionbar_comment);
             
             LayoutUtils.layoutOverride(_postViewComments, View.VISIBLE);
-
+            SpanUtils.setFont(getApplicationContext(), _postViewComments);
+            
+            _postViewComments.setText(Integer.toString(_post.getCommentCount()));
             _postViewComments.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

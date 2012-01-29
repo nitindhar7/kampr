@@ -51,6 +51,6 @@
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/actionbar_search"
         android:background="@drawable/actionbar_comment"
-        android:visibility="gone" />
+        android:textColor="@color/dark_blue" android:textSize="12sp" android:gravity="center_horizontal" android:paddingTop="3dp" android:textStyle="bold" android:visibility="gone"/>
 
 </RelativeLayout>

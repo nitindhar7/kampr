@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.kampr.PostsActivity;
 import com.kampr.R;
@@ -102,10 +103,14 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
                 startActivity(userIntent);
                 break;
             case Menu.FIRST + 1:
-                Intent comments = new Intent(PostsListActivity.this, CommentsActivity.class);
-                comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(post.getUserIcon()));
-                comments.putExtra("post", post);
-                startActivity(comments);
+                if(post.getCommentCount() > 0) {
+                    Intent comments = new Intent(PostsListActivity.this, CommentsActivity.class);
+                    comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(post.getUserIcon()));
+                    comments.putExtra("post", post);
+                    startActivity(comments);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "No comments", Toast.LENGTH_SHORT);
         }
         
         return super.onContextItemSelected(item);
