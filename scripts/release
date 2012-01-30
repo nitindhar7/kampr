@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-KAMPR_KEYSTORE = "kampr-release"
+KAMPR_KEYSTORE = "kampr-release-key"
 KAMPR_ALIAS = "kampr-key"
 
 if args[1] == 'release'
