@@ -40,7 +40,7 @@
         android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:background="@drawable/actionbar_search" />
+        android:background="@drawable/actionbar_search" android:visibility="gone"/>
 
     <TextView
         android:id="@+id/actionbar_comment"
@@ -51,6 +51,6 @@
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@+id/actionbar_search"
         android:background="@drawable/actionbar_comment"
-        android:textColor="@color/dark_blue" android:textSize="12sp" android:gravity="center_horizontal" android:paddingTop="3dp" android:textStyle="bold" android:visibility="gone"/>
+        android:textColor="@color/dark_blue" android:textSize="12sp" android:gravity="center_horizontal" android:paddingTop="3dp" android:textStyle="bold" android:visibility="gone" android:layout_alignParentRight="true" android:layout_marginRight="10dp"/>
 
 </RelativeLayout>
