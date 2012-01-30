@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+KAMPR_KEYSTORE = "kampr-release"
+KAMPR_ALIAS = "kampr-key"
+
+if args[1] == 'release'
+    `keytool -genkey -v -keystore #{KAMPR_KEYSTORE}-key.keystore -alias #{KAMPR_ALIAS} -keyalg RSA -keysize 2048 -validity 18250`
+end
+
+

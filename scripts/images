@@ -20,11 +20,6 @@ MAPPINGS[ASSETS_HDPI_DIR] = RES_HDPI_DIR
 MAPPINGS[ASSETS_MDPI_DIR] = RES_MDPI_DIR
 MAPPINGS[ASSETS_LDPI_DIR] = RES_LDPI_DIR
 
-# for each assets folder
-#   for each image
-#     optimize image
-#     move to dest
-
 MAPPINGS.each do |asset_dir,res_dir|
   puts "Optimizing [#{asset_dir}]"
   images = `ls #{asset_dir}`.split("\n")
