@@ -27,7 +27,7 @@ public class AllRunnable extends PostsRunnable {
     @Override
     public void run() {
         try {
-            JSONObject postsJSON = _forrst.postsAll();
+            JSONObject postsJSON = _forrst.postsAll(null);
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
