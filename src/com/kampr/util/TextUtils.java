@@ -1,8 +1,13 @@
 package com.kampr.util;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import android.text.Html;
 
 public class TextUtils {
+    
+    private static final NumberFormat _usFormat = NumberFormat.getIntegerInstance(Locale.US);
     
     /**
      * Synonymous to innerHTML in Javascript
@@ -19,6 +24,10 @@ public class TextUtils {
     
     public static String cleanseText(String text) {
         return convertHtmlToText(text);
+    }
+    
+    public static String numberToUSFormat(int num) {
+        return _usFormat.format(num);
     }
 
 }

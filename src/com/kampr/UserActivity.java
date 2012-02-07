@@ -1,8 +1,5 @@
 package com.kampr;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +9,9 @@ import android.widget.TextView;
 import com.kampr.models.User;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
+import com.kampr.util.TextUtils;
 
 public class UserActivity extends Activity {
-    
-    private static final NumberFormat _usFormat = NumberFormat.getIntegerInstance(Locale.US);
     
     private static User _user;
 
@@ -52,11 +48,11 @@ public class UserActivity extends Activity {
         
         _name.setText(_user.getName());
         _username.setText("@" + _user.getUsername());
-        _userPostsCount.setText(_usFormat.format(_user.getPostsCount()));
-        _userCommentsCount.setText(_usFormat.format(_user.getCommentsCount()));
-        _userLikesCount.setText(_usFormat.format(_user.getLikesCount()));
-        _userFollowersCount.setText(_usFormat.format(_user.getFollowersCount()));
-        _userFollowingCount.setText(_usFormat.format(_user.getFollowingCount()));
+        _userPostsCount.setText(TextUtils.numberToUSFormat(_user.getPostsCount()));
+        _userCommentsCount.setText(TextUtils.numberToUSFormat(_user.getCommentsCount()));
+        _userLikesCount.setText(TextUtils.numberToUSFormat(_user.getLikesCount()));
+        _userFollowersCount.setText(TextUtils.numberToUSFormat(_user.getFollowersCount()));
+        _userFollowingCount.setText(TextUtils.numberToUSFormat(_user.getFollowingCount()));
         if(_user.getBio() == null || _user.getBio().length() == 0)
             _userBio.setVisibility(View.GONE);
         else
