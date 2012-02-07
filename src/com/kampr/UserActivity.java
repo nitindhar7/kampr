@@ -49,6 +49,7 @@ public class UserActivity extends Activity {
         _userBio = (TextView) findViewById(R.id.user_bio);
         _userUrl = (TextView) findViewById(R.id.user_url);
         _userRole = (TextView) findViewById(R.id.user_infobar_role);
+        
         _name.setText(_user.getName());
         _username.setText("@" + _user.getUsername());
         _userPostsCount.setText(_usFormat.format(_user.getPostsCount()));
@@ -56,8 +57,14 @@ public class UserActivity extends Activity {
         _userLikesCount.setText(_usFormat.format(_user.getLikesCount()));
         _userFollowersCount.setText(_usFormat.format(_user.getFollowersCount()));
         _userFollowingCount.setText(_usFormat.format(_user.getFollowingCount()));
-        _userBio.setText(_user.getBio());
-        _userUrl.setText(_user.getHomepageUrl());
+        if(_user.getBio() == null || _user.getBio().length() == 0)
+            _userBio.setVisibility(View.GONE);
+        else
+            _userBio.setText(_user.getBio());
+        if(_user.getHomepageUrl() == null || _user.getHomepageUrl().length() == 0)
+            _userUrl.setVisibility(View.GONE);
+        else
+            _userUrl.setText(_user.getHomepageUrl());
         _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
 
