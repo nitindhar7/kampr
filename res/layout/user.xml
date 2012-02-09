@@ -278,9 +278,9 @@
                 android:id="@+id/user_url"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/user_bio_bg"
                 android:padding="5dp"
                 android:shadowColor="@color/white"
@@ -295,13 +295,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="24dp"
                 android:background="@drawable/post_counts_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:shadowColor="@color/white"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:text="Posts"
                 android:textColor="@color/medium_gray"
-                android:textSize="12sp" android:gravity="center_vertical" android:paddingLeft="5dp" android:paddingRight="5dp"/>
+                android:textSize="12sp" />
 
             <ListView
                 android:id="@android:id/list"

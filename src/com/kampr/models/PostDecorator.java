@@ -2,11 +2,11 @@ package com.kampr.models;
 
 import android.graphics.Bitmap;
 
-import com.forrst.api.model.Comment;
+import com.forrst.api.model.Post;
 
-public class CommentDecorator {
+public class PostDecorator {
     
-    private Comment comment;
+    private Post post;
     private transient Bitmap userIcon;
 
     public Bitmap getUserIcon() {
@@ -17,12 +17,12 @@ public class CommentDecorator {
         this.userIcon = userIcon;
     }
 
-    public Comment getComment() {
-        return comment;
+    public Post getPost() {
+        return post;
     }
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
 }

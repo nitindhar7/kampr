@@ -10,9 +10,10 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.forrst.api.model.Post;
 import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Post;
+import com.kampr.models.PostDecorator;
 import com.kampr.models.User;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.TextUtils;
@@ -22,9 +23,9 @@ public class PostsRunnable extends AbstractRunnable {
 
     protected String _postType;
     protected Map<String,String> _forrstParams;
-    protected List<Post> _posts;
+    protected List<PostDecorator> _posts;
     
-    public PostsRunnable(Context context, PostsHandler<Post> handler, List<Post> posts, Map<String,String> forrstParams, String postType) {
+    public PostsRunnable(Context context, PostsHandler<PostDecorator> handler, List<PostDecorator> posts, Map<String,String> forrstParams, String postType) {
         super(context, handler);
         _forrstParams = forrstParams;
         _postType = postType;

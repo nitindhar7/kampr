@@ -1,19 +1,25 @@
 package com.kampr;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.kampr.models.PostDecorator;
 import com.kampr.models.User;
+import com.kampr.posts.PostActivity;
 import com.kampr.runnables.UserPostsTask;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.SpanUtils;
 import com.kampr.util.TextUtils;
 
-public class UserActivity extends ListActivity {
+public class UserActivity extends ListActivity implements OnItemClickListener {
     
     private static User _user;
     private static ListView _userPosts;
@@ -61,12 +67,16 @@ public class UserActivity extends ListActivity {
         _userFollowingCount.setText(TextUtils.numberToUSFormat(_user.getFollowingCount()));
         if(_user.getBio() == null || _user.getBio().length() == 0)
             _userBio.setVisibility(View.GONE);
-        else
+        else {
             _userBio.setText(_user.getBio());
+            SpanUtils.setFont(this, _userBio);
+        }
         if(_user.getHomepageUrl() == null || _user.getHomepageUrl().length() == 0)
             _userUrl.setVisibility(View.GONE);
-        else
+        else {
             _userUrl.setText(_user.getHomepageUrl());
+            SpanUtils.setFont(this, _userUrl);
+        }
         _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
 
@@ -75,9 +85,27 @@ public class UserActivity extends ListActivity {
         _userPosts.setVerticalFadingEdgeEnabled(false);
         _userPosts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _userPosts.setDividerHeight(1);
+        _userPosts.setOnItemClickListener(this);
         
-        _userPostsTask = new UserPostsTask(getApplicationContext(), _userPosts);
+        _userPostsTask = new UserPostsTask(this, _userPosts);
         _userPostsTask.execute(_user.getId());
+        
+        SpanUtils.setFont(this, _name);
+        SpanUtils.setFont(this, _username);
+        SpanUtils.setFont(this, _userPostsCount);
+        SpanUtils.setFont(this, _userCommentsCount);
+        SpanUtils.setFont(this, _userLikesCount);
+        SpanUtils.setFont(this, _userFollowersCount);
+        SpanUtils.setFont(this, _userRole);
+    }
+    
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
+        PostDecorator pd = (PostDecorator) _userPosts.getItemAtPosition(position);
+        postIntent.putExtra("post", pd.getPost());
+        postIntent.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
+        startActivity(postIntent);
     }
     
     public static ProgressBar getSpinner() {
