@@ -41,20 +41,21 @@
             android:maxHeight="25dp"
             android:minHeight="25dp"
             android:textColor="@color/medium_gray"
-            android:textSize="12sp" android:textStyle="bold"/>
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/user_infobar_role"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/user_infobar_username"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/user_icon_thumbnail"
             android:gravity="center_vertical"
             android:maxHeight="20dp"
             android:minHeight="20dp"
             android:textColor="@color/medium_gray"
-            android:textSize="14sp" android:layout_below="@+id/user_infobar_username"/>
-
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -90,6 +91,7 @@
                     android:id="@+id/user_post_count_value"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="bottom|center_horizontal"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -97,15 +99,17 @@
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
                     android:textSize="24sp"
-                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_post_count_label"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="top|center_horizontal"
                     android:text="posts"
-                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
+                    android:textColor="#999"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,6 +124,7 @@
                     android:id="@+id/user_like_count_value"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="bottom|center_horizontal"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -127,15 +132,17 @@
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
                     android:textSize="24sp"
-                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_like_count_label"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="top|center_horizontal"
                     android:text="likes"
-                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
+                    android:textColor="#999"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -150,6 +157,7 @@
                     android:id="@+id/user_comment_count_value"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="bottom|center_horizontal"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -157,15 +165,17 @@
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
                     android:textSize="24sp"
-                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_comment_count_label"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="top|center_horizontal"
                     android:text="comments"
-                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
+                    android:textColor="#999"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -180,6 +190,7 @@
                     android:id="@+id/user_following_count_value"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="bottom|center_horizontal"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -187,15 +198,17 @@
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
                     android:textSize="24sp"
-                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_following_count_label"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="top|center_horizontal"
                     android:text="following"
-                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
+                    android:textColor="#999"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,6 +223,7 @@
                     android:id="@+id/user_follower_count_value"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="bottom|center_horizontal"
                     android:shadowColor="@color/white"
                     android:shadowDx="1"
@@ -217,15 +231,17 @@
                     android:shadowRadius="1"
                     android:textColor="@color/medium_gray"
                     android:textSize="24sp"
-                    android:textStyle="bold" android:layout_marginTop="-5dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_follower_count_label"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
                     android:gravity="top|center_horizontal"
                     android:text="followers"
-                    android:textSize="14sp" android:layout_marginTop="-5dp" android:textColor="#999"/>
+                    android:textColor="#999"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -235,20 +251,20 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/user_counts"
+        android:fillViewport="true"
         android:scrollbars="none" >
 
         <LinearLayout
             android:id="@+id/user_details_container"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="5dp" >
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/user_bio"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:background="@drawable/user_bio_bg"
                 android:padding="5dp"
                 android:shadowColor="@color/white"
@@ -262,6 +278,9 @@
                 android:id="@+id/user_url"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/user_bio_bg"
                 android:padding="5dp"
                 android:shadowColor="@color/white"
@@ -270,6 +289,29 @@
                 android:shadowRadius="1"
                 android:textColor="@color/medium_gray"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/user_posts_infobar"
+                android:layout_width="fill_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/post_counts_bg"
+                android:shadowColor="@color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="Posts"
+                android:textColor="@color/medium_gray"
+                android:textSize="12sp" android:gravity="center_vertical" android:paddingLeft="5dp" android:paddingRight="5dp"/>
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@color/post_item_divider"
+                android:dividerHeight="1px"
+                android:scrollingCache="false" >
+            </ListView>
         </LinearLayout>
     </ScrollView>
 

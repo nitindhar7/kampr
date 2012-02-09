@@ -1,19 +1,24 @@
 package com.kampr;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kampr.models.User;
+import com.kampr.runnables.UserPostsTask;
 import com.kampr.util.ImageUtils;
-import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
 
-public class UserActivity extends Activity {
+public class UserActivity extends ListActivity {
     
     private static User _user;
+    private static ListView _userPosts;
+    private static ProgressBar _spinner;
+    private static UserPostsTask _userPostsTask;
 
     private ImageView _userIcon;
     private TextView _name;
@@ -33,6 +38,7 @@ public class UserActivity extends Activity {
         setContentView(R.layout.user);
 
         _user = (User) getIntent().getSerializableExtra("user");
+        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         _userIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
         _name = (TextView) findViewById(R.id.user_infobar_name);
@@ -64,7 +70,18 @@ public class UserActivity extends Activity {
         _userRole.setText(_user.getRole());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
 
-        LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
+        _userPosts = getListView();
+        _userPosts.setVerticalScrollBarEnabled(false);
+        _userPosts.setVerticalFadingEdgeEnabled(false);
+        _userPosts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        _userPosts.setDividerHeight(1);
+        
+        _userPostsTask = new UserPostsTask(getApplicationContext(), _userPosts);
+        _userPostsTask.execute(_user.getId());
+    }
+    
+    public static ProgressBar getSpinner() {
+        return _spinner;
     }
 
 }

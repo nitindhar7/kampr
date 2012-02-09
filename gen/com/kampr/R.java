@@ -169,7 +169,7 @@ public final class R {
         public static final int post_view_count_label=0x7f07001a;
         public static final int post_views=0x7f07001e;
         public static final int post_views_count=0x7f07001f;
-        public static final int posts_menu_logout=0x7f070067;
+        public static final int posts_menu_logout=0x7f07006e;
         public static final int sign_up_link=0x7f070034;
         public static final int snap_large_url=0x7f07003a;
         public static final int tab=0x7f070048;
@@ -203,6 +203,13 @@ public final class R {
         public static final int user_post_count_label=0x7f070056;
         public static final int user_post_count_value=0x7f070055;
         public static final int user_post_counts=0x7f070054;
+        public static final int user_post_item=0x7f070068;
+        public static final int user_post_item_content=0x7f07006d;
+        public static final int user_post_item_date=0x7f07006b;
+        public static final int user_post_item_details=0x7f070069;
+        public static final int user_post_item_title=0x7f07006a;
+        public static final int user_post_item_type_icon=0x7f07006c;
+        public static final int user_posts_infobar=0x7f070067;
         public static final int user_url=0x7f070066;
         public static final int webview=0x7f070047;
     }
@@ -221,6 +228,7 @@ public final class R {
         public static final int tab=0x7f03000b;
         public static final int user=0x7f03000c;
         public static final int user_icon=0x7f03000d;
+        public static final int user_post_item=0x7f03000e;
     }
     public static final class menu {
         public static final int posts_menu=0x7f060000;
