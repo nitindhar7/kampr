@@ -1,10 +1,13 @@
 package com.kampr.models;
 
+import java.io.Serializable;
+
 import android.graphics.Bitmap;
 
 import com.forrst.api.model.Post;
 
-public class PostDecorator {
+@SuppressWarnings("serial")
+public class PostDecorator implements Serializable {
     
     private Post post;
     private transient Bitmap userIcon;

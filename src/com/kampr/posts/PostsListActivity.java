@@ -20,13 +20,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.forrst.api.model.User;
 import com.kampr.PostsActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
 import com.kampr.adapters.PostsAdapter;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Post;
-import com.kampr.models.User;
+import com.kampr.models.PostDecorator;
 import com.kampr.runnables.AllRunnable;
 import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.ImageUtils;
@@ -36,9 +36,9 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
 
     protected ListView _posts;
     protected Map<String,Bitmap> _userIcons;
-    protected List<Post> _listOfPosts;
+    protected List<PostDecorator> _listOfPosts;
     protected Thread _fetchPostsThread;
-    protected PostsHandler<Post> _handler;
+    protected PostsHandler<PostDecorator> _handler;
     protected PostsAdapter<T> _postsAdapter;
     protected String _postsType;
     protected boolean _trueResume;
@@ -46,7 +46,7 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
         _userIcons = new HashMap<String,Bitmap>();
-        _listOfPosts = new ArrayList<Post>();
+        _listOfPosts = new ArrayList<PostDecorator>();
     }
     
     @Override
@@ -63,7 +63,7 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
         _posts.setOnItemClickListener(this);
         registerForContextMenu(_posts);
         
-        _handler = new PostsHandler<Post>(this, PostsActivity.getSpinner(), _posts, _listOfPosts);
+        _handler = new PostsHandler<PostDecorator>(this, PostsActivity.getSpinner(), _posts, _listOfPosts);
         
         _postsType = getIntent().getStringExtra("post_type");
         if (_postsType.equals("all"))
@@ -76,9 +76,9 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
-        Post post = _handler.getAdapter().getViewObject(position);
-        postIntent.putExtra("post", post);
-        postIntent.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(post.getUserIcon()));
+        PostDecorator pd = _handler.getAdapter().getViewObject(position);
+        postIntent.putExtra("post", pd.getPost());
+        postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
     }
     
@@ -92,21 +92,21 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        Post post = _handler.getAdapter().getViewObject(info.position);
+        PostDecorator pd = _handler.getAdapter().getViewObject(info.position);
 
         switch(item.getItemId()) {
             case Menu.FIRST:
-                User user = post.getUser();
+                User user = pd.getPost().getUser();
                 Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
                 userIntent.putExtra("user", user);
-                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(user.getUserIcon()));
+                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
                 startActivity(userIntent);
                 break;
             case Menu.FIRST + 1:
-                if(post.getCommentCount() > 0) {
+                if(pd.getPost().getCommentCount() > 0) {
                     Intent comments = new Intent(PostsListActivity.this, CommentsActivity.class);
-                    comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(post.getUserIcon()));
-                    comments.putExtra("post", post);
+                    comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
+                    comments.putExtra("post", pd.getPost());
                     startActivity(comments);
                 }
                 else

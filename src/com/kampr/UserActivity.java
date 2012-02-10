@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.forrst.api.model.User;
 import com.kampr.models.PostDecorator;
-import com.kampr.models.User;
 import com.kampr.posts.PostActivity;
 import com.kampr.runnables.UserPostsTask;
 import com.kampr.util.ImageUtils;
@@ -60,11 +60,11 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         
         _name.setText(_user.getName());
         _username.setText("@" + _user.getUsername());
-        _userPostsCount.setText(TextUtils.numberToUSFormat(_user.getPostsCount()));
-        _userCommentsCount.setText(TextUtils.numberToUSFormat(_user.getCommentsCount()));
-        _userLikesCount.setText(TextUtils.numberToUSFormat(_user.getLikesCount()));
-        _userFollowersCount.setText(TextUtils.numberToUSFormat(_user.getFollowersCount()));
-        _userFollowingCount.setText(TextUtils.numberToUSFormat(_user.getFollowingCount()));
+        _userPostsCount.setText(TextUtils.numberToUSFormat(_user.getPosts()));
+        _userCommentsCount.setText(TextUtils.numberToUSFormat(_user.getComments()));
+        _userLikesCount.setText(TextUtils.numberToUSFormat(_user.getLikes()));
+        _userFollowersCount.setText(TextUtils.numberToUSFormat(_user.getFollowers()));
+        _userFollowingCount.setText(TextUtils.numberToUSFormat(_user.getFollowing()));
         if(_user.getBio() == null || _user.getBio().length() == 0)
             _userBio.setVisibility(View.GONE);
         else {
@@ -77,7 +77,7 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
             _userUrl.setText(_user.getHomepageUrl());
             SpanUtils.setFont(this, _userUrl);
         }
-        _userRole.setText(_user.getRole());
+        _userRole.setText(_user.getIsA());
         _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
 
         _userPosts = getListView();
@@ -104,7 +104,7 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
         PostDecorator pd = (PostDecorator) _userPosts.getItemAtPosition(position);
         postIntent.putExtra("post", pd.getPost());
-        postIntent.putExtra("post_user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
+        postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
     }
     

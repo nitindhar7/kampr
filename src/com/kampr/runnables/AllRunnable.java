@@ -10,17 +10,19 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.forrst.api.model.Post;
+import com.forrst.api.model.Snap;
+import com.forrst.api.model.User;
 import com.kampr.R;
 import com.kampr.handlers.PostsHandler;
-import com.kampr.models.Post;
-import com.kampr.models.User;
+import com.kampr.models.PostDecorator;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.TextUtils;
 import com.kampr.util.TimeUtils;
 
 public class AllRunnable extends PostsRunnable {
 
-    public AllRunnable(Context context, PostsHandler<Post> handler, List<Post> posts, Map<String,String> forrstParams) {
+    public AllRunnable(Context context, PostsHandler<PostDecorator> handler, List<PostDecorator> posts, Map<String,String> forrstParams) {
         super(context, handler, posts, forrstParams, null);
     }
     
@@ -41,26 +43,24 @@ public class AllRunnable extends PostsRunnable {
                 user.setUsername(userJson.getString("username"));
                 user.setName(userJson.getString("name"));
                 user.setUrl(userJson.getString("url"));
-                user.setPostsCount(userJson.getInt("posts"));
-                user.setCommentsCount(userJson.getInt("comments"));
-                user.setLikesCount(userJson.getInt("likes"));
-                user.setFollowersCount(userJson.getInt("followers"));
-                user.setFollowingCount(userJson.getInt("following"));
+                user.setPosts(userJson.getInt("posts"));
+                user.setComments(userJson.getInt("comments"));
+                user.setLikes(userJson.getInt("likes"));
+                user.setFollowers(userJson.getInt("followers"));
+                user.setFollowing(userJson.getInt("following"));
                 user.setBio(TextUtils.convertHtmlToText(userJson.getString("bio")));
-                user.setRole(userJson.getString("is_a"));
+                user.setIsA(userJson.getString("is_a"));
                 user.setHomepageUrl(userJson.getString("homepage_url"));
                 if (userJson.has("twitter")) {
                     user.setTwitter(userJson.getString("twitter"));
                 }
                 user.setTagString(userJson.getString("tag_string"));
-                user.setUserIcon(userIcon);
 
                 Post post = new Post();
                 post.setId(json.getInt("id"));
                 post.setUser(user);
-                post.setType(json.getString("post_type"));
+                post.setPostType(json.getString("post_type"));
                 post.setCreatedAt(TimeUtils.getPostDate(json.getString("created_at")));
-                post.setUserName(user.getName());
                 post.setTitle(json.getString("title"));
                 post.setUrl(json.getString("url"));
                 post.setContent(json.getString("content"));
@@ -68,17 +68,22 @@ public class AllRunnable extends PostsRunnable {
                 post.setViewCount(json.getInt("view_count"));
                 post.setLikeCount(json.getInt("like_count"));
                 post.setCommentCount(json.getInt("comment_count"));
-                post.setUserIcon(userIcon);
                 if (json.getString("post_type").equals("snap")) {
-                    post.setSnap(json.getJSONObject("snaps").getString("original_url"));
+                    Snap snap = new Snap();
+                    snap.setOriginalUrl(json.getJSONObject("snaps").getString("original_url"));
+                    post.setSnap(snap);
                 }
+                
+                PostDecorator pd = new PostDecorator();
+                pd.setPost(post);
+                pd.setUserIcon(userIcon);
 
-                _posts.add(post);
+                _posts.add(pd);
             }
 
             notifyHandler();
         } catch (JSONException e) {
-            throw new RuntimeException("Error fetching post from Forrst", e);
+            throw new RuntimeException("Error fetching posts from Forrst", e);
         }
     }
 

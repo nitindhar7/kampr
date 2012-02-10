@@ -20,14 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.forrst.api.model.Post;
+import com.forrst.api.model.User;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
 import com.kampr.handlers.CommentsHandler;
 import com.kampr.models.CommentDecorator;
-import com.kampr.models.Post;
-import com.kampr.models.User;
 import com.kampr.runnables.CommentsRunnable;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.NetworkUtils;
@@ -93,7 +93,7 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
         
         _postViews.setText(Integer.toString(_post.getViewCount()));
         _postLikes.setText(Integer.toString(_post.getLikeCount()));
-        _postUserName.setText(_post.getUserName());
+        _postUserName.setText(_post.getUser().getUsername());
         _userIconThumbnail.setImageBitmap(_userIcon);
         
         SpanUtils.setFont(getApplicationContext(), _postViews);

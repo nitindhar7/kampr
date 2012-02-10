@@ -1,9 +1,5 @@
 package com.kampr.posts;
 
-import java.text.SimpleDateFormat;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,15 +17,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
+import com.forrst.api.model.Post;
+import com.forrst.api.model.User;
 import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
 import com.kampr.handlers.SnapHandler;
-import com.kampr.models.Post;
-import com.kampr.models.User;
 import com.kampr.runnables.SnapRunnable;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
@@ -38,35 +32,27 @@ import com.kampr.util.TextUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
 
-    protected static final int LOGOUT_RESULT_CODE = 1;
-    protected static final int TRUNCATED_URL_LENGTH = 35;
-    protected static final int FETCH_COMPLETE = 1;
-    protected static final String FETCH_STATUS = "fetch_status";
-    protected static final ForrstAPI _forrst = new ForrstAPIClient();
-    protected static final SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final int LOGOUT_RESULT_CODE = 1;
 
-    protected static Post _post;
-    protected static ProgressBar _spinner;
-    protected static Thread _fetchSnapThread;
-    protected static SnapHandler _handler;
+    private static Post _post;
+    private static ProgressBar _spinner;
+    private static Thread _fetchSnapThread;
+    private static SnapHandler _handler;
 
     private RelativeLayout _infobar;
-    protected JSONObject _postJSON;
-    protected Thread _fetchPostThread;
-    protected TextView _actionbarLogo;
-    protected Bitmap _userIconBitmap;
-    protected TextView _postLikes;
-    protected TextView _postViews;
-    protected TextView _postTitle;
-    protected TextView _postUrl;
-    protected TextView _postUsername;
-    protected TextView _postDate;
-    protected TextView _postDescription;
-    protected TextView _postContent;
-    protected TextView _postViewComments;
-    protected TextView _postSnapLabel;
-    protected ImageView _postUserIcon;
-    protected ImageView _postOriginal;
+    private Bitmap _userIconBitmap;
+    private TextView _postLikes;
+    private TextView _postViews;
+    private TextView _postTitle;
+    private TextView _postUrl;
+    private TextView _postUsername;
+    private TextView _postDate;
+    private TextView _postDescription;
+    private TextView _postContent;
+    private TextView _postViewComments;
+    private TextView _postSnapLabel;
+    private ImageView _postUserIcon;
+    private ImageView _postOriginal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +60,6 @@ public class PostActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
 
         _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
-        _actionbarLogo = (TextView) findViewById(R.id.actionbar_logo);
         _infobar = (RelativeLayout) findViewById(R.id.post_infobar);
         _postTitle = (TextView) findViewById(R.id.post_title);
         _postUrl = (TextView) findViewById(R.id.post_url);
@@ -96,13 +81,13 @@ public class PostActivity extends Activity implements OnClickListener {
         _post = (Post) getIntent().getSerializableExtra("post");
 
         _postTitle.setText(_post.getTitle().toUpperCase());
-        _postUsername.setText(_post.getUserName());
+        _postUsername.setText(_post.getUser().getUsername());
         _postDate.setText(_post.getCreatedAt());
         _postDescription.setText(TextUtils.cleanseText(_post.getDescription()));
         _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikes.setText(Integer.toString(_post.getLikeCount()));
         _postViews.setText(Integer.toString(_post.getViewCount()));
-        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("post_user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon"));
         _postUserIcon.setImageBitmap(_userIconBitmap);
         
         if (_post.getCommentCount() > 0) {
@@ -123,7 +108,7 @@ public class PostActivity extends Activity implements OnClickListener {
             });
         }
 
-        if (_post.getType().equals("link")) {
+        if (_post.getPostType().equals("link")) {
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
@@ -133,14 +118,14 @@ public class PostActivity extends Activity implements OnClickListener {
             SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
-        else if (_post.getType().equals("snap")) {
+        else if (_post.getPostType().equals("snap")) {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _fetchSnapThread = new Thread(new SnapRunnable(this, _handler, _post.getSnap()));
             _fetchSnapThread.start();
             SpanUtils.setFont(getApplicationContext(), _postDescription);
         }
-        else if (_post.getType().equals("code")) {
+        else if (_post.getPostType().equals("code")) {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
