@@ -1,13 +1,7 @@
 package com.kampr.posts;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -24,29 +18,19 @@ import com.forrst.api.model.User;
 import com.kampr.PostsActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
-import com.kampr.adapters.PostsAdapter;
-import com.kampr.handlers.PostsHandler;
+import com.kampr.async.PostsTask;
 import com.kampr.models.PostDecorator;
-import com.kampr.runnables.AllRunnable;
-import com.kampr.runnables.PostsRunnable;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.NetworkUtils;
 
 public class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
 
-    protected ListView _posts;
-    protected Map<String,Bitmap> _userIcons;
-    protected List<PostDecorator> _listOfPosts;
-    protected Thread _fetchPostsThread;
-    protected PostsHandler<PostDecorator> _handler;
-    protected PostsAdapter<T> _postsAdapter;
-    protected String _postsType;
-    protected boolean _trueResume;
+    private static PostsTask _postsTask;
+    
+    private ListView _posts;
     
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
-        _userIcons = new HashMap<String,Bitmap>();
-        _listOfPosts = new ArrayList<PostDecorator>();
     }
     
     @Override
@@ -63,20 +47,14 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
         _posts.setOnItemClickListener(this);
         registerForContextMenu(_posts);
         
-        _handler = new PostsHandler<PostDecorator>(this, PostsActivity.getSpinner(), _posts, _listOfPosts);
-        
-        _postsType = getIntent().getStringExtra("post_type");
-        if (_postsType.equals("all"))
-            _fetchPostsThread = new Thread(new AllRunnable(this, _handler, _listOfPosts, null));
-        else
-            _fetchPostsThread = new Thread(new PostsRunnable(this, _handler, _listOfPosts, null, _postsType));
-        _fetchPostsThread.start();
+        _postsTask = new PostsTask(this, _posts);
+        _postsTask.execute(getIntent().getStringExtra("post_type"));
     }
     
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
-        PostDecorator pd = _handler.getAdapter().getViewObject(position);
+        PostDecorator pd = _postsTask.getAdapter().getViewObject(position);
         postIntent.putExtra("post", pd.getPost());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
@@ -92,7 +70,7 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        PostDecorator pd = _handler.getAdapter().getViewObject(info.position);
+        PostDecorator pd = _postsTask.getAdapter().getViewObject(info.position);
 
         switch(item.getItemId()) {
             case Menu.FIRST:

@@ -12,12 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.forrst.api.model.User;
+import com.kampr.async.UserPostsTask;
 import com.kampr.models.PostDecorator;
 import com.kampr.posts.PostActivity;
-import com.kampr.runnables.UserPostsTask;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.SpanUtils;
 import com.kampr.util.TextUtils;
+import com.kampr.util.TimeUtils;
 
 public class UserActivity extends ListActivity implements OnItemClickListener {
     
@@ -95,6 +96,7 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         SpanUtils.setFont(this, _userPostsCount);
         SpanUtils.setFont(this, _userCommentsCount);
         SpanUtils.setFont(this, _userLikesCount);
+        SpanUtils.setFont(this, _userFollowingCount);
         SpanUtils.setFont(this, _userFollowersCount);
         SpanUtils.setFont(this, _userRole);
     }
@@ -103,6 +105,7 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
         PostDecorator pd = (PostDecorator) _userPosts.getItemAtPosition(position);
+        pd.getPost().setCreatedAt(TimeUtils.getPostDate(pd.getPost().getCreatedAt()));
         postIntent.putExtra("post", pd.getPost());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);

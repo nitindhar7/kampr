@@ -1,7 +1,7 @@
-package com.kampr.runnables;
+package com.kampr.async;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,33 +9,48 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ListView;
 
+import com.forrst.api.ForrstAPI;
+import com.forrst.api.ForrstAPIClient;
 import com.forrst.api.model.Post;
 import com.forrst.api.model.Snap;
 import com.forrst.api.model.User;
+import com.kampr.PostsActivity;
 import com.kampr.R;
-import com.kampr.handlers.PostsHandler;
+import com.kampr.adapters.PostsAdapter;
 import com.kampr.models.PostDecorator;
 import com.kampr.util.ImageUtils;
+import com.kampr.util.LayoutUtils;
 import com.kampr.util.TextUtils;
 import com.kampr.util.TimeUtils;
 
-public class PostsRunnable extends AbstractRunnable {
-
-    protected String _postType;
-    protected Map<String,String> _forrstParams;
-    protected List<PostDecorator> _posts;
+public class PostsTask extends AsyncTask<String, Integer, List<PostDecorator>> {
     
-    public PostsRunnable(Context context, PostsHandler<PostDecorator> handler, List<PostDecorator> posts, Map<String,String> forrstParams, String postType) {
-        super(context, handler);
-        _forrstParams = forrstParams;
-        _postType = postType;
+    protected static final ForrstAPI _forrst = new ForrstAPIClient();
+    
+    private static PostsAdapter<PostDecorator> _postsAdapter;
+    
+    private Context _context;
+    private ListView _posts;
+
+    public PostsTask(Context context, ListView posts) {
+        _context = context;
         _posts = posts;
     }
-    
-    public void run() {
+
+    protected List<PostDecorator> doInBackground(String... params) {
+        List<PostDecorator> listOfPosts = new ArrayList<PostDecorator>();
+        
         try {
-            JSONObject postsJSON = _forrst.postsList(_postType, _forrstParams);
+            JSONObject postsJSON = null;
+            if(params[0].equals("all"))
+                postsJSON = _forrst.postsAll(null);
+            else
+                postsJSON = _forrst.postsList(params[0], null);
+            
             JSONArray postsJSONArray = (JSONArray) postsJSON.get("posts");
             
             for(int count = 0; count < postsJSONArray.length(); count++) {
@@ -79,18 +94,27 @@ public class PostsRunnable extends AbstractRunnable {
                     snap.setOriginalUrl(json.getJSONObject("snaps").getString("original_url"));
                     post.setSnap(snap);
                 }
-                
+
                 PostDecorator pd = new PostDecorator();
                 pd.setPost(post);
                 pd.setUserIcon(userIcon);
-
-                _posts.add(pd);
+                listOfPosts.add(pd);
             }
-
-            notifyHandler();
         } catch (JSONException e) {
             throw new RuntimeException("Error fetching posts from Forrst", e);
         }
+        
+        return listOfPosts;
+    }
+    
+    protected void onPostExecute(List<PostDecorator> listOfPosts) {
+        _postsAdapter = new PostsAdapter<PostDecorator>(_context, listOfPosts);
+        _posts.setAdapter(_postsAdapter);
+        LayoutUtils.layoutOverride(PostsActivity.getSpinner(), View.GONE);
+    }
+    
+    public PostsAdapter<PostDecorator> getAdapter() {
+        return _postsAdapter;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.kampr.runnables;
+package com.kampr.async;
 
 import java.util.ArrayList;
 import java.util.HashMap;

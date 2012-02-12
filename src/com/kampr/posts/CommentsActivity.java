@@ -1,16 +1,11 @@
 package com.kampr.posts;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -26,9 +21,7 @@ import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
-import com.kampr.handlers.CommentsHandler;
-import com.kampr.models.CommentDecorator;
-import com.kampr.runnables.CommentsRunnable;
+import com.kampr.async.CommentsTask;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.NetworkUtils;
 import com.kampr.util.SpanUtils;
@@ -36,17 +29,15 @@ import com.kampr.util.SpanUtils;
 public class CommentsActivity extends ListActivity implements OnClickListener {
     
     protected static SimpleDateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+    
     private static final int LOGOUT_RESULT_CODE = 1;
+    
+    private static CommentsTask _commentsTask;
+    private static ProgressBar _spinner;
 
     private Post _post;
     private Bitmap _userIcon;
-
     private ListView _comments;
-    private ProgressBar _spinner;
-    private List<CommentDecorator> _listOfComments;
-    private CommentsHandler _handler;
-    private Thread _fetchCommentsThread;
     private TextView _postViews;
     private TextView _postLikes;
     private TextView _commentHeaderTitle;
@@ -56,7 +47,6 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
     private RelativeLayout _commentInfobar;
     
     public CommentsActivity() {
-        _listOfComments = new ArrayList<CommentDecorator>();
         NetworkUtils.trustAllHosts();
     }
     
@@ -68,8 +58,7 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
 
         _post = (Post) getIntent().getSerializableExtra("post");
         _userIcon = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon"));
-        
-        
+
         _postViews = (TextView) findViewById(R.id.post_view_count_label);
         _postLikes = (TextView) findViewById(R.id.post_like_count_label);
         _commentHeaderTitle = (TextView) findViewById(R.id.comment_header_title);
@@ -87,37 +76,18 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
         _comments.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _comments.setDividerHeight(1);
         
-        _handler = new CommentsHandler(this, _spinner, _comments, _listOfComments);
-        _fetchCommentsThread = new Thread(new CommentsRunnable(this, _handler, _listOfComments, _post.getId()));
-        _fetchCommentsThread.start();
-        
         _postViews.setText(Integer.toString(_post.getViewCount()));
         _postLikes.setText(Integer.toString(_post.getLikeCount()));
         _postUserName.setText(_post.getUser().getUsername());
         _userIconThumbnail.setImageBitmap(_userIcon);
         
+        _commentsTask = new CommentsTask(this, _comments);
+        _commentsTask.execute(_post.getId());
+        
         SpanUtils.setFont(getApplicationContext(), _postViews);
         SpanUtils.setFont(getApplicationContext(), _postLikes);
         SpanUtils.setFont(getApplicationContext(), _commentHeaderTitle, SpanUtils.FONT_BOLD);
         SpanUtils.setFont(getApplicationContext(), _postUserName);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.posts_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.posts_menu_logout:
-                Intent logout = new Intent(CommentsActivity.this, LogoutActivity.class);
-                startActivityForResult(logout, LOGOUT_RESULT_CODE);
-                break;
-        }
-        return true;
     }
     
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -151,6 +121,10 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
                 startActivity(userIntent);
                 break;
         }
+    }
+    
+    public static ProgressBar getSpinner() {
+        return _spinner;
     }
 
 }

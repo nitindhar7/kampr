@@ -20,10 +20,9 @@ import com.kampr.util.SpanUtils;
 
 public class PostsActivity extends TabActivity {
     
-    protected static ProgressBar _spinner;
+    private static final int LOGOUT_RESULT_CODE = 1;
     
-    private final int LOGOUT_RESULT_CODE = 1;
-
+    private static ProgressBar _spinner;
     private static TextView _allTabLabel;
     private static TextView _linkTabLabel;
     private static TextView _snapTabLabel;

@@ -23,8 +23,7 @@ import com.kampr.KamprActivity;
 import com.kampr.LogoutActivity;
 import com.kampr.R;
 import com.kampr.UserActivity;
-import com.kampr.handlers.SnapHandler;
-import com.kampr.runnables.SnapRunnable;
+import com.kampr.async.SnapTask;
 import com.kampr.util.ImageUtils;
 import com.kampr.util.LayoutUtils;
 import com.kampr.util.SpanUtils;
@@ -36,8 +35,6 @@ public class PostActivity extends Activity implements OnClickListener {
 
     private static Post _post;
     private static ProgressBar _spinner;
-    private static Thread _fetchSnapThread;
-    private static SnapHandler _handler;
 
     private RelativeLayout _infobar;
     private Bitmap _userIconBitmap;
@@ -75,8 +72,6 @@ public class PostActivity extends Activity implements OnClickListener {
 
         _postOriginal.setOnClickListener(this);
         _infobar.setOnClickListener(this);
-        
-        _handler = new SnapHandler(this, _spinner, _postOriginal);
 
         _post = (Post) getIntent().getSerializableExtra("post");
 
@@ -121,8 +116,8 @@ public class PostActivity extends Activity implements OnClickListener {
         else if (_post.getPostType().equals("snap")) {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
-            _fetchSnapThread = new Thread(new SnapRunnable(this, _handler, _post.getSnap()));
-            _fetchSnapThread.start();
+            SnapTask snapTask = new SnapTask(_postOriginal);
+            snapTask.execute(_post);
             SpanUtils.setFont(getApplicationContext(), _postDescription);
         }
         else if (_post.getPostType().equals("code")) {
@@ -154,7 +149,7 @@ public class PostActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.snap_large_url:
                 Intent fullScreen = new Intent(PostActivity.this, SnapFullscreenActivity.class);
-                fullScreen.putExtra("snaps_original_url", _post.getSnap());
+                fullScreen.putExtra("snaps_original_url", _post.getSnap().getOriginalUrl());
                 startActivity(fullScreen);
                 break;
             case R.id.post_infobar:
@@ -199,6 +194,10 @@ public class PostActivity extends Activity implements OnClickListener {
                 Toast.makeText(getApplicationContext(), "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
             break;
         }
+    }
+    
+    public static ProgressBar getSpinner() {
+        return _spinner;
     }
 
 }
