@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.models.PostDecorator;
+import com.nitindhar.kampr.util.TimeUtils;
 
 public class PostsAdapter<T> extends AbstractListAdapter<T> {
     
@@ -45,7 +46,7 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
         postUsername.setText(pd.getPost().getUser().getName());
 
         TextView postDate = (TextView) getViewHandle(convertView, R.id.post_item_date);
-        postDate.setText(pd.getPost().getCreatedAt());
+        postDate.setText(TimeUtils.getPostDate(pd.getPost().getCreatedAt()));
         
         TextView postLikes = (TextView) getViewHandle(convertView, R.id.post_likes_count);
         postLikes.setText(Integer.toString(pd.getPost().getLikeCount()));

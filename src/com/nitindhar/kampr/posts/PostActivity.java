@@ -28,6 +28,7 @@ import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 import com.nitindhar.kampr.util.SpanUtils;
 import com.nitindhar.kampr.util.TextUtils;
+import com.nitindhar.kampr.util.TimeUtils;
 
 public class PostActivity extends Activity implements OnClickListener {
 
@@ -77,7 +78,7 @@ public class PostActivity extends Activity implements OnClickListener {
 
         _postTitle.setText(_post.getTitle().toUpperCase());
         _postUsername.setText(_post.getUser().getUsername());
-        _postDate.setText(_post.getCreatedAt());
+        _postDate.setText(TimeUtils.getPostDate(_post.getCreatedAt()));
         _postDescription.setText(TextUtils.cleanseText(_post.getDescription()));
         _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         _postLikes.setText(Integer.toString(_post.getLikeCount()));
