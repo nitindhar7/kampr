@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -22,6 +23,7 @@ public class PostsActivity extends TabActivity {
     
     private static final int LOGOUT_RESULT_CODE = 1;
     
+    private static ListView _notificationsList;
     private static ProgressBar _spinner;
     private static TextView _allTabLabel;
     private static TextView _linkTabLabel;
