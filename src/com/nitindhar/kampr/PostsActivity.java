@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SlidingDrawer;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nitindhar.kampr.async.NotificationsTask;
 import com.nitindhar.kampr.posts.PostsListActivity;
 import com.nitindhar.kampr.util.SpanUtils;
 
@@ -34,6 +36,8 @@ public class PostsActivity extends TabActivity {
     private static TabHost.TabSpec _spec;
     private static Intent _intent;
     private static LayoutInflater _inflater;
+    private static SlidingDrawer _notificationbar;
+    private static NotificationsTask _notificationsTask;
 
     private View _tab;
     private View _tabSelectedDivider;
@@ -44,6 +48,7 @@ public class PostsActivity extends TabActivity {
         setContentView(R.layout.posts);
         
         _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
+        _notificationbar = (SlidingDrawer) findViewById(R.id.notificationbar);
 
         _inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _tabHost = getTabHost();
@@ -119,8 +124,17 @@ public class PostsActivity extends TabActivity {
                 }
                 tabView.findViewById(R.id.tabSelectedDivider).setVisibility(View.VISIBLE);
                 _tabHost.getCurrentTabView().setBackgroundResource(R.drawable.tab_selected);
-            }       
+            }
         });
+
+        _notificationsList = (ListView) findViewById(R.id.notifications_list);
+        _notificationsList.setVerticalScrollBarEnabled(false);
+        _notificationsList.setScrollbarFadingEnabled(false);
+        _notificationsList.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        _notificationsList.setDividerHeight(1);
+        
+        _notificationsTask = new NotificationsTask(this, _notificationsList);
+        _notificationsTask.execute(0);
     }
 
     @Override
@@ -173,6 +187,10 @@ public class PostsActivity extends TabActivity {
     
     public static ProgressBar getSpinner() {
         return _spinner;
+    }
+    
+    public static SlidingDrawer getNotificationbar() {
+        return _notificationbar;
     }
 
 }

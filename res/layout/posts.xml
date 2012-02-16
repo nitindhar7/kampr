@@ -26,10 +26,11 @@
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_above="@+id/handle"
             android:layout_below="@android:id/tabs"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
-            android:scrollbars="@null" android:layout_above="@+id/handle">
+            android:scrollbars="@null" >
 
             <ListView
                 android:id="@android:id/list"
@@ -47,40 +48,54 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:content="@+id/content"
-            android:handle="@+id/handle" >
+            android:handle="@+id/handle"
+            android:visibility="gone" >
 
             <RelativeLayout
                 android:id="@+id/handle"
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
-                android:text="Handle" android:background="@drawable/actionbar_bg">
+                android:background="@drawable/actionbar_bg"
+                android:text="Handle" >
 
                 <TextView
                     android:id="@+id/notification_icon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/notification_icon_bg"
                     android:gravity="center"
-                    android:text="11" android:background="@drawable/notification_icon_bg" android:layout_margin="10dp" android:textColor="@color/white" android:textStyle="bold" android:textSize="14sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/notification_label"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:text="Notifications" android:textColor="@color/white" android:textSize="18sp" android:layout_toRightOf="@+id/notification_icon" android:gravity="center_vertical"/>
-
+                    android:layout_toRightOf="@+id/notification_icon"
+                    android:gravity="center_vertical"
+                    android:text="Notifications"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/content"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" android:orientation="vertical" android:background="@color/white">
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:orientation="vertical" >
 
                 <ListView
-                    android:id="@+id/notificationsList"
+                    android:id="@+id/notifications_list"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" >
+                    android:layout_height="fill_parent"
+                    android:addStatesFromChildren="true"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@color/post_item_divider"
+                    android:dividerHeight="1px" >
                 </ListView>
-
             </LinearLayout>
         </SlidingDrawer>
     </RelativeLayout>
