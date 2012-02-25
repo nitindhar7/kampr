@@ -1,7 +1,5 @@
 package com.nitindhar.kampr.adapters;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -39,7 +37,7 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
         notificationUsername.setText(notification.getData().getActor());
 
         TextView notificationDate = (TextView) getViewHandle(convertView, R.id.notification_item_date);
-        notificationDate.setText(TimeUtils.getPostDate(new Timestamp(new Date(notification.getTimestamp()).getTime()).toString()));
+        notificationDate.setText(TimeUtils.getPostDate(notification.getTimestamp()));
 
         TextView notificationTitle = (TextView) getViewHandle(convertView, R.id.notification_item_content);
         StringBuilder sb = new StringBuilder(notification.getBehavior().replace('_', ' '));

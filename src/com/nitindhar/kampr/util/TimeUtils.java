@@ -17,5 +17,9 @@ public class TimeUtils {
             throw new RuntimeException("Error parsing post date", e);
         }
     }
+    
+    public static String getPostDate(long timeAsLong){
+        return DateUtils.formatDateTime(null, timeAsLong, DateUtils.FORMAT_ABBREV_ALL);
+    }
 
 }
