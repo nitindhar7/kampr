@@ -126,6 +126,8 @@ public class PostsActivity extends TabActivity {
                 _tabHost.getCurrentTabView().setBackgroundResource(R.drawable.tab_selected);
             }
         });
+        
+        // TODO: start notifications tasks from executor. check every 2 minutes or so.
 
         _notificationsList = (ListView) findViewById(R.id.notifications_list);
         _notificationsList.setVerticalScrollBarEnabled(false);

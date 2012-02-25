@@ -29,10 +29,12 @@ public class NotificationsTask extends AsyncTask<Integer, Integer, List<Notifica
     
     private Context _context;
     private ListView _notificationsList;
+    private List<Bitmap> userIcons;
     
     public NotificationsTask(Context context, ListView notificationsList) {
         _context = context;
         _notificationsList = notificationsList;
+        userIcons = new ArrayList<Bitmap>();
     }
     
     protected List<Notification> doInBackground(Integer... params) {
@@ -40,7 +42,12 @@ public class NotificationsTask extends AsyncTask<Integer, Integer, List<Notifica
         Map<String,String> opts = new HashMap<String,String>();
         opts.put("grouped", "true");
 
-        return _forrst.notifications(loginToken, opts);
+        List<Notification> listOfNotifications = _forrst.notifications(loginToken, opts);
+        for(Notification notification : listOfNotifications) {
+            userIcons.add(ImageUtils.fetchImageBitmap(notification.getData().getPhoto()));
+        }
+        
+        return listOfNotifications;
     }
     
     protected void onPostExecute(List<Notification> listOfNotifications) {
@@ -49,11 +56,6 @@ public class NotificationsTask extends AsyncTask<Integer, Integer, List<Notifica
             RelativeLayout handle = (RelativeLayout) PostsActivity.getNotificationbar().findViewById(R.id.handle);
             TextView notificationIcon = (TextView) handle.findViewById(R.id.notification_icon);
             notificationIcon.setText(Integer.toString(listOfNotifications.size()));
-            
-            List<Bitmap> userIcons = new ArrayList<Bitmap>();
-            for(Notification notification : listOfNotifications) {
-                userIcons.add(ImageUtils.fetchImageBitmap(notification.getData().getPhoto()));
-            }
             
             NotificationsAdapter notificationsAdapter = new NotificationsAdapter(_context, listOfNotifications, userIcons);
             _notificationsList.setAdapter(notificationsAdapter);

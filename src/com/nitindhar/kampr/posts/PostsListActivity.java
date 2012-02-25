@@ -41,7 +41,7 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
         
         _posts = getListView();
         _posts.setVerticalScrollBarEnabled(false);
-        _posts.setScrollbarFadingEnabled(false);
+        _posts.setVerticalFadingEdgeEnabled(false);
         _posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _posts.setDividerHeight(1);
         _posts.setOnItemClickListener(this);
