@@ -22,89 +22,89 @@ import com.nitindhar.kampr.util.TimeUtils;
 
 public class UserActivity extends ListActivity implements OnItemClickListener {
     
-    private static User _user;
-    private static ListView _userPosts;
-    private static ProgressBar _spinner;
-    private static UserPostsTask _userPostsTask;
+    private static User user;
+    private static ListView userPosts;
+    private static ProgressBar spinner;
+    private static UserPostsTask userPostsTask;
 
-    private ImageView _userIcon;
-    private TextView _name;
-    private TextView _username;
-    private TextView _userPostsCount;
-    private TextView _userCommentsCount;
-    private TextView _userLikesCount;
-    private TextView _userFollowersCount;
-    private TextView _userFollowingCount;
-    private TextView _userBio;
-    private TextView _userUrl;
-    private TextView _userRole;
+    private ImageView userIcon;
+    private TextView name;
+    private TextView username;
+    private TextView userPostsCount;
+    private TextView userCommentsCount;
+    private TextView userLikesCount;
+    private TextView userFollowersCount;
+    private TextView userFollowingCount;
+    private TextView userBio;
+    private TextView userUrl;
+    private TextView userRole;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user);
 
-        _user = (User) getIntent().getSerializableExtra("user");
-        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
+        user = (User) getIntent().getSerializableExtra("user");
+        spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
-        _userIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
-        _name = (TextView) findViewById(R.id.user_infobar_name);
-        _username = (TextView) findViewById(R.id.user_infobar_username);
-        _userPostsCount = (TextView) findViewById(R.id.user_post_count_value);
-        _userCommentsCount = (TextView) findViewById(R.id.user_comment_count_value);
-        _userLikesCount = (TextView) findViewById(R.id.user_like_count_value);
-        _userFollowersCount = (TextView) findViewById(R.id.user_follower_count_value);
-        _userFollowingCount = (TextView) findViewById(R.id.user_following_count_value);
-        _userBio = (TextView) findViewById(R.id.user_bio);
-        _userUrl = (TextView) findViewById(R.id.user_url);
-        _userRole = (TextView) findViewById(R.id.user_infobar_role);
+        userIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
+        name = (TextView) findViewById(R.id.user_infobar_name);
+        username = (TextView) findViewById(R.id.user_infobar_username);
+        userPostsCount = (TextView) findViewById(R.id.user_post_count_value);
+        userCommentsCount = (TextView) findViewById(R.id.user_comment_count_value);
+        userLikesCount = (TextView) findViewById(R.id.user_like_count_value);
+        userFollowersCount = (TextView) findViewById(R.id.user_follower_count_value);
+        userFollowingCount = (TextView) findViewById(R.id.user_following_count_value);
+        userBio = (TextView) findViewById(R.id.user_bio);
+        userUrl = (TextView) findViewById(R.id.user_url);
+        userRole = (TextView) findViewById(R.id.user_infobar_role);
         
-        _name.setText(_user.getName());
-        _username.setText("@" + _user.getUsername());
-        _userPostsCount.setText(TextUtils.numberToUSFormat(_user.getPosts()));
-        _userCommentsCount.setText(TextUtils.numberToUSFormat(_user.getComments()));
-        _userLikesCount.setText(TextUtils.numberToUSFormat(_user.getLikes()));
-        _userFollowersCount.setText(TextUtils.numberToUSFormat(_user.getFollowers()));
-        _userFollowingCount.setText(TextUtils.numberToUSFormat(_user.getFollowing()));
-        if(_user.getBio() == null || _user.getBio().length() == 0)
-            _userBio.setVisibility(View.GONE);
+        name.setText(user.getName());
+        username.setText("@" + user.getUsername());
+        userPostsCount.setText(TextUtils.numberToUSFormat(user.getPosts()));
+        userCommentsCount.setText(TextUtils.numberToUSFormat(user.getComments()));
+        userLikesCount.setText(TextUtils.numberToUSFormat(user.getLikes()));
+        userFollowersCount.setText(TextUtils.numberToUSFormat(user.getFollowers()));
+        userFollowingCount.setText(TextUtils.numberToUSFormat(user.getFollowing()));
+        if(user.getBio() == null || user.getBio().length() == 0)
+            userBio.setVisibility(View.GONE);
         else {
-            _userBio.setText(_user.getBio());
-            SpanUtils.setFont(this, _userBio);
+            userBio.setText(user.getBio());
+            SpanUtils.setFont(this, userBio);
         }
-        if(_user.getHomepageUrl() == null || _user.getHomepageUrl().length() == 0)
-            _userUrl.setVisibility(View.GONE);
+        if(user.getHomepageUrl() == null || user.getHomepageUrl().length() == 0)
+            userUrl.setVisibility(View.GONE);
         else {
-            _userUrl.setText(_user.getHomepageUrl());
-            SpanUtils.setFont(this, _userUrl);
+            userUrl.setText(user.getHomepageUrl());
+            SpanUtils.setFont(this, userUrl);
         }
-        _userRole.setText(_user.getIsA());
-        _userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
+        userRole.setText(user.getIsA());
+        userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
 
-        _userPosts = getListView();
-        _userPosts.setVerticalScrollBarEnabled(false);
-        _userPosts.setVerticalFadingEdgeEnabled(false);
-        _userPosts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
-        _userPosts.setDividerHeight(1);
-        _userPosts.setOnItemClickListener(this);
+        userPosts = getListView();
+        userPosts.setVerticalScrollBarEnabled(false);
+        userPosts.setVerticalFadingEdgeEnabled(false);
+        userPosts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        userPosts.setDividerHeight(1);
+        userPosts.setOnItemClickListener(this);
         
-        _userPostsTask = new UserPostsTask(this, _userPosts);
-        _userPostsTask.execute(_user.getId());
+        userPostsTask = new UserPostsTask(this, userPosts);
+        userPostsTask.execute(user.getId());
         
-        SpanUtils.setFont(this, _name);
-        SpanUtils.setFont(this, _username);
-        SpanUtils.setFont(this, _userPostsCount);
-        SpanUtils.setFont(this, _userCommentsCount);
-        SpanUtils.setFont(this, _userLikesCount);
-        SpanUtils.setFont(this, _userFollowingCount);
-        SpanUtils.setFont(this, _userFollowersCount);
-        SpanUtils.setFont(this, _userRole);
+        SpanUtils.setFont(this, name);
+        SpanUtils.setFont(this, username);
+        SpanUtils.setFont(this, userPostsCount);
+        SpanUtils.setFont(this, userCommentsCount);
+        SpanUtils.setFont(this, userLikesCount);
+        SpanUtils.setFont(this, userFollowingCount);
+        SpanUtils.setFont(this, userFollowersCount);
+        SpanUtils.setFont(this, userRole);
     }
     
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
-        PostDecorator pd = (PostDecorator) _userPosts.getItemAtPosition(position);
+        PostDecorator pd = (PostDecorator) userPosts.getItemAtPosition(position);
         pd.getPost().setCreatedAt(TimeUtils.getPostDate(pd.getPost().getCreatedAt()));
         postIntent.putExtra("post", pd.getPost());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
@@ -112,7 +112,7 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
     }
     
     public static ProgressBar getSpinner() {
-        return _spinner;
+        return spinner;
     }
 
 }

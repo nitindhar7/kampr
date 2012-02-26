@@ -18,8 +18,8 @@ public class LoginActivity extends Activity {
     protected static final int RESULT_SUCCESS = 1;
     protected static final int RESULT_FAILURE = -1;
     
-    private String _loginUsername;
-    private String _loginPassword;
+    private String loginUsername;
+    private String loginPassword;
     
     private static ForrstAPI _forrst = new ForrstAPIClient();
     
@@ -27,12 +27,12 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        _loginUsername = getIntent().getStringExtra("login_username");
-        _loginPassword = getIntent().getStringExtra("login_password");
+        loginUsername = getIntent().getStringExtra("login_username");
+        loginPassword = getIntent().getStringExtra("login_password");
 
-        if(validateCredentialsFormat(_loginUsername, _loginPassword) && NetworkUtils.isOnline(getApplicationContext())) {
+        if(validateCredentialsFormat(loginUsername, loginPassword) && NetworkUtils.isOnline(getApplicationContext())) {
             try {
-                validateCredentials(_loginUsername, _loginPassword);
+                validateCredentials(loginUsername, loginPassword);
                 setResult(RESULT_SUCCESS);
             } catch (ForrstAuthenticationException e) {
                 setResult(RESULT_FAILURE);
@@ -60,9 +60,9 @@ public class LoginActivity extends Activity {
             SharedPreferences.Editor editor = settings.edit();
 
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hashedPassword = md.digest(_loginPassword.getBytes());
+            byte[] hashedPassword = md.digest(loginPassword.getBytes());
             
-            editor.putString("login_username", _loginUsername);
+            editor.putString("login_username", loginUsername);
             editor.putString("login_password", hashedPassword.toString());
             editor.putString("login_token", auth.getAccessToken());
             editor.putString("login_user_id", Integer.toString(auth.getUserId()));
