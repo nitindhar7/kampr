@@ -13,9 +13,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
-import com.forrst.api.model.Notification;
+import com.nitindhar.forrst.ForrstAPI;
+import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.model.Notification;
 import com.nitindhar.kampr.KamprActivity;
 import com.nitindhar.kampr.PostsActivity;
 import com.nitindhar.kampr.R;

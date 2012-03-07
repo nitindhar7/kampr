@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.forrst.api.model.User;
+import com.nitindhar.forrst.model.User;
 import com.nitindhar.kampr.async.UserPostsTask;
 import com.nitindhar.kampr.models.PostDecorator;
 import com.nitindhar.kampr.posts.PostActivity;

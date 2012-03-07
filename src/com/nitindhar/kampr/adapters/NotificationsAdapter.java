@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.forrst.api.model.Notification;
+import com.nitindhar.forrst.model.Notification;
 import com.nitindhar.kampr.R;
-import com.nitindhar.kampr.util.TimeUtils;
 
 public class NotificationsAdapter extends AbstractListAdapter<Notification> {
 
@@ -36,8 +35,9 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
         TextView notificationUsername = (TextView) getViewHandle(convertView, R.id.notification_item_username);
         notificationUsername.setText(notification.getData().getActor());
 
-        TextView notificationDate = (TextView) getViewHandle(convertView, R.id.notification_item_date);
-        notificationDate.setText(TimeUtils.getPostDate(notification.getTimestamp()));
+        // FIXME: forrst lib is not getting the correct notification timestamp
+//        TextView notificationDate = (TextView) getViewHandle(convertView, R.id.notification_item_date);
+//        notificationDate.setText(TimeUtils.getPostDate(notification.getTimestamp()));
 
         TextView notificationTitle = (TextView) getViewHandle(convertView, R.id.notification_item_content);
         StringBuilder sb = new StringBuilder(notification.getBehavior().replace('_', ' '));
@@ -48,7 +48,7 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
         }
         notificationTitle.setText(WordUtils.capitalize(sb.toString()));
 
-        //convertView.setId(notification.getId());
+        convertView.setTag(notification.getId());
 
         return convertView;
     }

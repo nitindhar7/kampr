@@ -134,9 +134,9 @@ public class PostsActivity extends TabActivity {
         _notificationsList.setScrollbarFadingEnabled(false);
         _notificationsList.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         _notificationsList.setDividerHeight(1);
-        
+
         _notificationsTask = new NotificationsTask(this, _notificationsList);
-        _notificationsTask.execute(0);
+        _notificationsTask.execute();
     }
 
     @Override

@@ -7,10 +7,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
-import com.forrst.api.model.Auth;
-import com.forrst.api.util.ForrstAuthenticationException;
+import com.nitindhar.forrst.ForrstAPI;
+import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.model.Auth;
+import com.nitindhar.forrst.util.ForrstAuthenticationException;
 import com.nitindhar.kampr.util.NetworkUtils;
 
 public class LoginActivity extends Activity {

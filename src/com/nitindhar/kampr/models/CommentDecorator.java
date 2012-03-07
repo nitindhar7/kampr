@@ -2,7 +2,7 @@ package com.nitindhar.kampr.models;
 
 import android.graphics.Bitmap;
 
-import com.forrst.api.model.Comment;
+import com.nitindhar.forrst.model.Comment;
 
 public class CommentDecorator {
     

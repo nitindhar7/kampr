@@ -17,8 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.forrst.api.model.Post;
-import com.forrst.api.model.User;
+import com.nitindhar.forrst.model.Post;
+import com.nitindhar.forrst.model.User;
 import com.nitindhar.kampr.KamprActivity;
 import com.nitindhar.kampr.LogoutActivity;
 import com.nitindhar.kampr.R;

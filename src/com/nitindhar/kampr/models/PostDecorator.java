@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import android.graphics.Bitmap;
 
-import com.forrst.api.model.Post;
+import com.nitindhar.forrst.model.Post;
 
 @SuppressWarnings("serial")
 public class PostDecorator implements Serializable {

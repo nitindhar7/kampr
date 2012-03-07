@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.forrst.api.model.Post;
+import com.nitindhar.forrst.model.Post;
 import com.nitindhar.kampr.posts.PostActivity;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;

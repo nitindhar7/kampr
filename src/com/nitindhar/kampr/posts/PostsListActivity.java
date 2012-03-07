@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.forrst.api.model.User;
+import com.nitindhar.forrst.model.User;
 import com.nitindhar.kampr.PostsActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.UserActivity;

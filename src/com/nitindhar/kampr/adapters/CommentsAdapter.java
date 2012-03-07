@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.forrst.api.model.Comment;
+import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.models.CommentDecorator;
 import com.nitindhar.kampr.util.SpanUtils;

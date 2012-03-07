@@ -9,9 +9,9 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ListView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
-import com.forrst.api.model.Post;
+import com.nitindhar.forrst.ForrstAPI;
+import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.model.Post;
 import com.nitindhar.kampr.PostsActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.adapters.PostsAdapter;

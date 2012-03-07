@@ -8,9 +8,9 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ListView;
 
-import com.forrst.api.ForrstAPI;
-import com.forrst.api.ForrstAPIClient;
-import com.forrst.api.model.Comment;
+import com.nitindhar.forrst.ForrstAPI;
+import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.KamprActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.adapters.CommentsAdapter;
