@@ -3,7 +3,7 @@
     android:id="@+id/comment_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/post_item_states"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="5dp" >
 
