@@ -30,19 +30,12 @@ All major contributers will be acknowledged.
 - Nitin Dhar
 
   - Forrst: https://forrst.com/people/nitindhar7
-  - Site: http://coding-sense.blogspot.com
+  - Site: http://nitin-dhar.blogspot.com
   - Twitter: @nitin_dhar
-
-- Rene Merino
-
-  - UI Design
-  - Forrst: http://forrst.com/people/Alxmerino
-  - Site: http://amayamedia.com
-  - Twitter: @ReneMerino
 
 Copyright
 ---------
-Copyright (c) 2011 Nitin Dhar. See MIT-LICENSE for details.
+Copyright (c) 2012 Nitin Dhar. See MIT-LICENSE for details.
 
 Resources
 ---------

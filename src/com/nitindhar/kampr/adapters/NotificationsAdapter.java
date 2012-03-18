@@ -49,6 +49,8 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
         notificationTitle.setText(WordUtils.capitalize(sb.toString()));
 
         convertView.setTag(notification.getId());
+        
+        // TODO: set fonts for notification item
 
         return convertView;
     }

@@ -3,7 +3,7 @@
     android:id="@+id/notification_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/post_item_states"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="5dp" >
 
@@ -46,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="date"
                 android:textColor="#999"
                 android:textSize="14sp" >
             </TextView>
