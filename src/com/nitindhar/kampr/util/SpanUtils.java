@@ -9,20 +9,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SpanUtils extends URLSpan {
-    
+
     public static final String FONT_REGULAR = "Roboto-Condensed.ttf";
     public static final String FONT_BOLD = "Roboto-BoldCondensed.ttf";
     public static final String FONT_ITALIC = "Roboto-Italic.ttf";
-    
+
     public SpanUtils(String url) {
         super(url);
     }
- 
+
+    @Override
     public void updateDrawState(TextPaint drawState) {
         super.updateDrawState(drawState);
         drawState.setUnderlineText(false);
     }
-    
+
     /**
      * Removes URL underlines in a string by replacing URLSpan occurrences by
      * URLSpanUtils objects.
@@ -31,7 +32,7 @@ public class SpanUtils extends URLSpan {
      */
     public static void removeUnderlines(Spannable text) {
         URLSpan[] spans = text.getSpans(0, text.length(), URLSpan.class);
-     
+
         for(URLSpan span:spans) {
             int start = text.getSpanStart(span);
             int end = text.getSpanEnd(span);
@@ -40,9 +41,9 @@ public class SpanUtils extends URLSpan {
             text.setSpan(span, start, end, 0);
         }
      }
-    
+
     /**
-     * Set the font on a textview using the regular font as default 
+     * Set the font on a textview using the regular font as default
      * @param context
      * @param textview
      */
@@ -52,7 +53,7 @@ public class SpanUtils extends URLSpan {
             textview.setTypeface(font);
         }
     }
-    
+
     /**
      * Set the font on a textview
      * @param context
@@ -65,9 +66,9 @@ public class SpanUtils extends URLSpan {
             textview.setTypeface(font);
         }
     }
-    
+
     /**
-     * Set the font on a textview using the regular font as default 
+     * Set the font on a textview using the regular font as default
      * @param context
      * @param button
      */
@@ -77,7 +78,7 @@ public class SpanUtils extends URLSpan {
             button.setTypeface(font);
         }
     }
-    
+
     /**
      * Set the font on a button
      * @param context

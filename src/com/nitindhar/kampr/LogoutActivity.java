@@ -8,7 +8,7 @@ public class LogoutActivity extends Activity {
 
     public static final int RESULT_SUCCESS = 1;
     public static final int RESULT_FAILURE = -1;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,7 @@ public class LogoutActivity extends Activity {
         editor.remove("login_password");
         editor.remove("login_token");
         editor.remove("login_user_id");
-        
+
         if(editor.commit()) {
             setResult(RESULT_SUCCESS);
             finish();

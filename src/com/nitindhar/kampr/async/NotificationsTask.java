@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.nitindhar.forrst.ForrstAPI;
 import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Notification;
 import com.nitindhar.kampr.KamprActivity;
 import com.nitindhar.kampr.PostsActivity;
@@ -24,41 +25,43 @@ import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class NotificationsTask extends AsyncTask<Integer, Integer, List<Notification>> {
-    
-    protected static final ForrstAPI _forrst = new ForrstAPIClient();
-    
-    private Context _context;
-    private ListView _notificationsList;
-    private List<Bitmap> userIcons;
-    
+
+    protected static final ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
+
+    private final Context context;
+    private final ListView notificationsList;
+    private final List<Bitmap> userIcons;
+
     public NotificationsTask(Context context, ListView notificationsList) {
-        _context = context;
-        _notificationsList = notificationsList;
-        userIcons = new ArrayList<Bitmap>();
+        this.context = context;
+        this.notificationsList = notificationsList;
+        this.userIcons = new ArrayList<Bitmap>();
     }
-    
+
+    @Override
     protected List<Notification> doInBackground(Integer... params) {
-        String loginToken = _context.getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0).getString("login_token", null);
+        String loginToken = context.getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0).getString("login_token", null);
         Map<String,String> opts = new HashMap<String,String>();
         opts.put("grouped", "true");
 
-        List<Notification> listOfNotifications = _forrst.notifications(loginToken, opts);
+        List<Notification> listOfNotifications = forrst.notifications(loginToken, opts);
         for(Notification notification : listOfNotifications) {
             userIcons.add(ImageUtils.fetchImageBitmap(notification.getData().getPhoto()));
         }
-        
+
         return listOfNotifications;
     }
-    
+
+    @Override
     protected void onPostExecute(List<Notification> listOfNotifications) {
         if(listOfNotifications.size() > 0) {
             LayoutUtils.layoutOverride(PostsActivity.getNotificationbar(), View.VISIBLE);
             RelativeLayout handle = (RelativeLayout) PostsActivity.getNotificationbar().findViewById(R.id.handle);
             TextView notificationIcon = (TextView) handle.findViewById(R.id.notification_icon);
             notificationIcon.setText(Integer.toString(listOfNotifications.size()));
-            
-            NotificationsAdapter notificationsAdapter = new NotificationsAdapter(_context, listOfNotifications, userIcons);
-            _notificationsList.setAdapter(notificationsAdapter);
+
+            NotificationsAdapter notificationsAdapter = new NotificationsAdapter(context, listOfNotifications, userIcons);
+            notificationsList.setAdapter(notificationsAdapter);
         }
     }
 

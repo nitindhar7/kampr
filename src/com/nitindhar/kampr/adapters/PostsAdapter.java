@@ -13,7 +13,7 @@ import com.nitindhar.kampr.models.PostDecorator;
 import com.nitindhar.kampr.util.TimeUtils;
 
 public class PostsAdapter<T> extends AbstractListAdapter<T> {
-    
+
     public PostsAdapter(Context context, List<T> posts) {
         super(context, posts);
     }
@@ -22,21 +22,21 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = getConvertView(convertView, R.layout.post_item);
 
-        PostDecorator pd = (PostDecorator) _objects.get(position);
+        PostDecorator pd = (PostDecorator) objects.get(position);
 
         ImageView postTypeIcon = (ImageView) getViewHandle(convertView, R.id.post_item_type_icon);
-        
+
         if (pd.getPost().getPostType().equals("link")) {
-            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_link));
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_link));
         }
         else if (pd.getPost().getPostType().equals("snap")) {
-            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_snap));
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_snap));
         }
         else if (pd.getPost().getPostType().equals("code")) {
-            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_code));
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_code));
         }
         else {
-            postTypeIcon.setImageDrawable(_context.getResources().getDrawable(R.drawable.list_question));
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_question));
         }
 
         ImageView postUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
@@ -47,13 +47,13 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         TextView postDate = (TextView) getViewHandle(convertView, R.id.post_item_date);
         postDate.setText(TimeUtils.getPostDate(pd.getPost().getCreatedAt()));
-        
+
         TextView postLikes = (TextView) getViewHandle(convertView, R.id.post_likes_count);
         postLikes.setText(Integer.toString(pd.getPost().getLikeCount()));
-        
+
         TextView postViews = (TextView) getViewHandle(convertView, R.id.post_views_count);
         postViews.setText(Integer.toString(pd.getPost().getViewCount()));
-        
+
         TextView postComments = (TextView) getViewHandle(convertView, R.id.post_comments_count);
         postComments.setText(Integer.toString(pd.getPost().getCommentCount()));
 
@@ -64,9 +64,9 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         return convertView;
     }
-    
+
     public PostDecorator getViewObject(int position) {
-        return (PostDecorator) _objects.get(position);
+        return (PostDecorator) objects.get(position);
     }
 
 }

@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import com.nitindhar.forrst.model.Comment;
 
 public class CommentDecorator {
-    
+
     private Comment comment;
     private transient Bitmap userIcon;
 

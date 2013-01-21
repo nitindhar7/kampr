@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.nitindhar.forrst.ForrstAPI;
 import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Post;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.UserActivity;
@@ -21,37 +22,39 @@ import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class UserPostsTask extends AsyncTask<Integer, Integer, List<PostDecorator>> {
-    
-    protected static final ForrstAPI _forrst = new ForrstAPIClient();
-    
-    private Context _context;
-    private ListView _userPosts;
-    private List<PostDecorator> _listOfPosts;
-    private UserPostsAdapter<PostDecorator> _userPostsAdapter;
-    
+
+    protected static final ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
+
+    private final Context context;
+    private final ListView userPosts;
+    private final List<PostDecorator> listOfPosts;
+    private UserPostsAdapter<PostDecorator> userPostsAdapter;
+
     public UserPostsTask(Context context, ListView userPosts) {
-        _listOfPosts = new ArrayList<PostDecorator>();
-        _context = context;
-        _userPosts = userPosts;
+        this.listOfPosts = new ArrayList<PostDecorator>();
+        this.context = context;
+        this.userPosts = userPosts;
     }
 
+    @Override
     protected List<PostDecorator> doInBackground(Integer... ints) {
         Map<String,String> userInfo = new HashMap<String,String>();
         userInfo.put("id", Integer.toString(ints[0]));
-        
-        for(Post post : _forrst.userPosts(userInfo, null)) {
+
+        for(Post post : forrst.userPosts(userInfo, null)) {
             PostDecorator pd = new PostDecorator();
             pd.setPost(post);
-            pd.setUserIcon(ImageUtils.fetchUserIcon(_context, post.getUser().getPhoto().getThumbUrl(), R.drawable.forrst_default_25));
-            _listOfPosts.add(pd);
+            pd.setUserIcon(ImageUtils.fetchUserIcon(context, post.getUser().getPhoto().getThumbUrl(), R.drawable.forrst_default_25));
+            listOfPosts.add(pd);
         }
 
-        return _listOfPosts;
+        return listOfPosts;
     }
-    
+
+    @Override
     protected void onPostExecute(List<PostDecorator> listOfPosts) {
-        _userPostsAdapter = new UserPostsAdapter<PostDecorator>(_context, _listOfPosts);
-        _userPosts.setAdapter(_userPostsAdapter);
+        userPostsAdapter = new UserPostsAdapter<PostDecorator>(context, listOfPosts);
+        userPosts.setAdapter(userPostsAdapter);
         LayoutUtils.layoutOverride(UserActivity.getSpinner(), View.GONE);
     }
 

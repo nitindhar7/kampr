@@ -34,8 +34,8 @@ public class PostActivity extends Activity implements OnClickListener {
 
     private static final int LOGOUT_RESULT_CODE = 1;
 
-    private static Post _post;
-    private static ProgressBar _spinner;
+    private static Post post;
+    private static ProgressBar spinner;
 
     private RelativeLayout _infobar;
     private Bitmap _userIconBitmap;
@@ -57,7 +57,7 @@ public class PostActivity extends Activity implements OnClickListener {
         setContentView(R.layout.post);
         super.onCreate(savedInstanceState);
 
-        _spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
+        spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
         _infobar = (RelativeLayout) findViewById(R.id.post_infobar);
         _postTitle = (TextView) findViewById(R.id.post_title);
         _postUrl = (TextView) findViewById(R.id.post_url);
@@ -74,58 +74,58 @@ public class PostActivity extends Activity implements OnClickListener {
         _postOriginal.setOnClickListener(this);
         _infobar.setOnClickListener(this);
 
-        _post = (Post) getIntent().getSerializableExtra("post");
+        post = (Post) getIntent().getSerializableExtra("post");
 
-        _postTitle.setText(_post.getTitle().toUpperCase());
-        _postUsername.setText(_post.getUser().getUsername());
-        _postDate.setText(TimeUtils.getPostDate(_post.getCreatedAt()));
-        _postDescription.setText(TextUtils.cleanseText(_post.getDescription()));
+        _postTitle.setText(post.getTitle().toUpperCase());
+        _postUsername.setText(post.getUser().getUsername());
+        _postDate.setText(TimeUtils.getPostDate(post.getCreatedAt()));
+        _postDescription.setText(TextUtils.cleanseText(post.getDescription()));
         _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        _postLikes.setText(Integer.toString(_post.getLikeCount()));
-        _postViews.setText(Integer.toString(_post.getViewCount()));
+        _postLikes.setText(Integer.toString(post.getLikeCount()));
+        _postViews.setText(Integer.toString(post.getViewCount()));
         _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon"));
         _postUserIcon.setImageBitmap(_userIconBitmap);
-        
-        if (_post.getCommentCount() > 0) {
+
+        if (post.getCommentCount() > 0) {
             _postViewComments = (TextView) findViewById(R.id.actionbar_comment);
-            
+
             LayoutUtils.layoutOverride(_postViewComments, View.VISIBLE);
             SpanUtils.setFont(getApplicationContext(), _postViewComments);
-            
-            _postViewComments.setText(Integer.toString(_post.getCommentCount()));
+
+            _postViewComments.setText(Integer.toString(post.getCommentCount()));
             _postViewComments.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
-                    comments.putExtra("post", _post);
+                    comments.putExtra("post", post);
                     comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
                     startActivity(comments);
                 }
             });
         }
 
-        if (_post.getPostType().equals("link")) {
+        if (post.getPostType().equals("link")) {
             _postOriginal.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
-            _postUrl.setText(_post.getUrl());
+            _postUrl.setText(post.getUrl());
             SpanUtils.setFont(getApplicationContext(), _postDescription);
             SpanUtils.setFont(getApplicationContext(), _postUrl);
             SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
-        else if (_post.getPostType().equals("snap")) {
+        else if (post.getPostType().equals("snap")) {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             SnapTask snapTask = new SnapTask(_postOriginal);
-            snapTask.execute(_post);
+            snapTask.execute(post);
             SpanUtils.setFont(getApplicationContext(), _postDescription);
         }
-        else if (_post.getPostType().equals("code")) {
+        else if (post.getPostType().equals("code")) {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
-            _postContent.setText(_post.getContent());
+            _postContent.setText(post.getContent());
             _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             SpanUtils.setFont(getApplicationContext(), _postDescription);
             SpanUtils.setFont(getApplicationContext(), _postContent);
@@ -136,12 +136,12 @@ public class PostActivity extends Activity implements OnClickListener {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
-            _postDescription.setText(TextUtils.cleanseText(_post.getContent()));
+            _postDescription.setText(TextUtils.cleanseText(post.getContent()));
             _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             SpanUtils.setFont(getApplicationContext(), _postDescription);
             LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
         }
-        
+
         SpanUtils.setFont(getApplicationContext(), _postTitle);
     }
 
@@ -150,11 +150,11 @@ public class PostActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.snap_large_url:
                 Intent fullScreen = new Intent(PostActivity.this, SnapFullscreenActivity.class);
-                fullScreen.putExtra("snaps_original_url", _post.getSnap().getOriginalUrl());
+                fullScreen.putExtra("snaps_original_url", post.getSnap().getOriginalUrl());
                 startActivity(fullScreen);
                 break;
             case R.id.post_infobar:
-                User user = _post.getUser();
+                User user = post.getUser();
                 Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
                 userIntent.putExtra("user", user);
                 userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
@@ -181,6 +181,7 @@ public class PostActivity extends Activity implements OnClickListener {
         return true;
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -189,16 +190,17 @@ public class PostActivity extends Activity implements OnClickListener {
             if (resultCode == LogoutActivity.RESULT_SUCCESS) {
                 Intent kampr = new Intent(PostActivity.this, KamprActivity.class);
                 startActivity(kampr);
-            } else if (resultCode == LogoutActivity.RESULT_FAILURE)
+            } else if (resultCode == LogoutActivity.RESULT_FAILURE) {
                 Toast.makeText(getApplicationContext(), "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
-            else
+            } else {
                 Toast.makeText(getApplicationContext(), "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+            }
             break;
         }
     }
-    
+
     public static ProgressBar getSpinner() {
-        return _spinner;
+        return spinner;
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.nitindhar.forrst.ForrstAPI;
 import com.nitindhar.forrst.ForrstAPIClient;
+import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.KamprActivity;
 import com.nitindhar.kampr.R;
@@ -20,35 +21,37 @@ import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class CommentsTask extends AsyncTask<Integer, Integer, List<CommentDecorator>> {
-    
-    protected static final ForrstAPI _forrst = new ForrstAPIClient();
-    
-    private Context _context;
-    private ListView _comments;
-    
+
+    protected static final ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
+
+    private final Context context;
+    private final ListView comments;
+
     public CommentsTask(Context context, ListView comments) {
-        _context = context;
-        _comments = comments;
+        this.context = context;
+        this.comments = comments;
     }
-    
+
+    @Override
     protected List<CommentDecorator> doInBackground(Integer... params) {
         List<CommentDecorator> listOfComments = new ArrayList<CommentDecorator>();
-        
-        String loginToken = _context.getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0).getString("login_token", null);
-        
-        for(Comment comment : _forrst.postComments(loginToken, params[0])) {
+
+        String loginToken = context.getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0).getString("login_token", null);
+
+        for(Comment comment : forrst.postComments(loginToken, params[0])) {
             CommentDecorator cd = new CommentDecorator();
             cd.setComment(comment);
-            cd.setUserIcon(ImageUtils.fetchUserIcon(_context, comment.getUserIconUrl(), R.drawable.forrst_default_25));
+            cd.setUserIcon(ImageUtils.fetchUserIcon(context, comment.getUser().getPhoto().getMediumUrl(), R.drawable.forrst_default_25));
             listOfComments.add(cd);
         }
-        
+
         return listOfComments;
     }
-    
+
+    @Override
     protected void onPostExecute(List<CommentDecorator> listOfComments) {
-        CommentsAdapter commentsAdapter = new CommentsAdapter(_context, listOfComments);
-        _comments.setAdapter(commentsAdapter);
+        CommentsAdapter commentsAdapter = new CommentsAdapter(context, listOfComments);
+        comments.setAdapter(commentsAdapter);
         LayoutUtils.layoutOverride(CommentsActivity.getSpinner(), View.GONE);
     }
 

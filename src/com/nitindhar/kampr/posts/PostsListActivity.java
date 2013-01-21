@@ -25,41 +25,41 @@ import com.nitindhar.kampr.util.NetworkUtils;
 
 public class PostsListActivity<T> extends ListActivity implements OnItemClickListener {
 
-    private static PostsTask _postsTask;
-    
-    private ListView _posts;
-    
+    private static PostsTask postsTask;
+
+    private ListView posts;
+
     public PostsListActivity() {
         NetworkUtils.trustAllHosts();
     }
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         PostsActivity.getSpinner().setVisibility(View.VISIBLE);
-        
-        _posts = getListView();
-        _posts.setVerticalScrollBarEnabled(false);
-        _posts.setVerticalFadingEdgeEnabled(false);
-        _posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
-        _posts.setDividerHeight(1);
-        _posts.setOnItemClickListener(this);
-        registerForContextMenu(_posts);
-        
-        _postsTask = new PostsTask(this, _posts);
-        _postsTask.execute(getIntent().getStringExtra("post_type"));
+
+        posts = getListView();
+        posts.setVerticalScrollBarEnabled(false);
+        posts.setVerticalFadingEdgeEnabled(false);
+        posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        posts.setDividerHeight(1);
+        posts.setOnItemClickListener(this);
+        registerForContextMenu(posts);
+
+        postsTask = new PostsTask(this, posts);
+        postsTask.execute(getIntent().getStringExtra("post_type"));
     }
-    
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
-        PostDecorator pd = _postsTask.getAdapter().getViewObject(position);
+        PostDecorator pd = postsTask.getAdapter().getViewObject(position);
         postIntent.putExtra("post", pd.getPost());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
     }
-    
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, view, menuInfo);
@@ -70,7 +70,7 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        PostDecorator pd = _postsTask.getAdapter().getViewObject(info.position);
+        PostDecorator pd = postsTask.getAdapter().getViewObject(info.position);
 
         switch(item.getItemId()) {
             case Menu.FIRST:
@@ -86,11 +86,11 @@ public class PostsListActivity<T> extends ListActivity implements OnItemClickLis
                     comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
                     comments.putExtra("post", pd.getPost());
                     startActivity(comments);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No comments", Toast.LENGTH_SHORT).show();
                 }
-                else
-                    Toast.makeText(getApplicationContext(), "No comments", Toast.LENGTH_SHORT);
         }
-        
+
         return super.onContextItemSelected(item);
     }
 

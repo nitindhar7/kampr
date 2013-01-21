@@ -12,12 +12,13 @@ import com.nitindhar.kampr.util.LayoutUtils;
 
 public class SnapTask extends AsyncTask<Post, Integer, Bitmap> {
 
-    private ImageView _postOriginal;
-    
+    private final ImageView postOriginal;
+
     public SnapTask(ImageView postOriginal) {
-        _postOriginal = postOriginal;
+        this.postOriginal = postOriginal;
     }
-    
+
+    @Override
     protected Bitmap doInBackground(Post... posts) {
         Bitmap snapBitmap = ImageUtils.fetchImageBitmap(posts[0].getSnap().getOriginalUrl());
         if (snapBitmap == null) {
@@ -25,9 +26,10 @@ public class SnapTask extends AsyncTask<Post, Integer, Bitmap> {
         }
         return snapBitmap;
     }
-    
+
+    @Override
     protected void onPostExecute(Bitmap bitmap) {
-        _postOriginal.setImageBitmap(bitmap);
+        postOriginal.setImageBitmap(bitmap);
         LayoutUtils.layoutOverride(PostActivity.getSpinner(), View.GONE);
     }
 

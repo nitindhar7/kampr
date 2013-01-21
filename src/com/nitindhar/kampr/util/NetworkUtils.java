@@ -18,7 +18,7 @@ public class NetworkUtils {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo().isConnected();
     }
-    
+
     /**
      * Trust every server - dont check for any certificate
      * 1. Create a trust manager that does not validate certificate chains
@@ -26,6 +26,7 @@ public class NetworkUtils {
      */
     public static void trustAllHosts() {
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            @Override
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                 return new java.security.cert.X509Certificate[] {};
             }

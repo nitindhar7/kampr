@@ -11,17 +11,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class ImageUtils {
-    
+
     public static Bitmap getBitmapFromByteArray(byte[] imageData) {
         return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
     }
-    
+
     public static byte[] getByteArrayFromBitmap(Bitmap imageData) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         imageData.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
-    
+
     public static Bitmap fetchUserIcon(Context context, String url, int defaultDrawableId) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
@@ -32,7 +32,7 @@ public class ImageUtils {
             throw new RuntimeException("Error: could not read from stream", e);
         }
     }
-    
+
     public static Bitmap getBitmapFromStream(InputStream is, Context context, int drawableId) {
         Bitmap bmp = BitmapFactory.decodeStream(is);
         if(bmp == null) {

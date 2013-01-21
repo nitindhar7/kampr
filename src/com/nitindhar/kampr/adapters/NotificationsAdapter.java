@@ -16,21 +16,21 @@ import com.nitindhar.kampr.R;
 
 public class NotificationsAdapter extends AbstractListAdapter<Notification> {
 
-    private List<Bitmap> _userIcons;
-    
+    private final List<Bitmap> userIcons;
+
     public NotificationsAdapter(Context context, List<Notification> notifications, List<Bitmap> userIcons) {
         super(context, notifications);
-        _userIcons = userIcons;
+        this.userIcons = userIcons;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = getConvertView(convertView, R.layout.notification_item);
-        
-        Notification notification = (Notification) _objects.get(position);
-        
+
+        Notification notification = objects.get(position);
+
         ImageView notificationUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
-        notificationUserIcon.setImageBitmap(_userIcons.get(position));
+        notificationUserIcon.setImageBitmap(userIcons.get(position));
 
         TextView notificationUsername = (TextView) getViewHandle(convertView, R.id.notification_item_username);
         notificationUsername.setText(notification.getData().getActor());
@@ -41,7 +41,7 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
 
         TextView notificationTitle = (TextView) getViewHandle(convertView, R.id.notification_item_content);
         StringBuilder sb = new StringBuilder(notification.getBehavior().replace('_', ' '));
-        
+
         if(!notification.getBehavior().equals("new_follow")) {
             sb.append(" - ");
             sb.append(notification.getData().getPostTitle());
@@ -49,10 +49,10 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
         notificationTitle.setText(WordUtils.capitalize(sb.toString()));
 
         convertView.setTag(notification.getId());
-        
+
         // TODO: set fonts for notification item
 
         return convertView;
     }
-    
+
 }

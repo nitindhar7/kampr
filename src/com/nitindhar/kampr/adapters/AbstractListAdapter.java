@@ -8,32 +8,32 @@ import android.view.View;
 import android.widget.BaseAdapter;
 
 public abstract class AbstractListAdapter<T> extends BaseAdapter {
-    
-    protected Context _context;
-    protected LayoutInflater _inflater;
-    protected List<T> _objects;
-    
+
+    protected Context context;
+    protected LayoutInflater inflater;
+    protected List<T> objects;
+
     public AbstractListAdapter(Context context, List<T> objects) {
-        this._context = context;
-        this._objects = objects;
-        _inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context = context;
+        this.objects = objects;
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    
+
     @Override
     public int getCount() {
-        return _objects.size();
+        return objects.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return _objects.get(position);
+        return objects.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return position;
     }
-    
+
     protected Object getViewHandle(View parent, int viewId) {
         Object view = parent.getTag(viewId);
         if(view == null) {
@@ -42,10 +42,10 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
         }
         return view;
     }
-    
+
     protected View getConvertView(View view, int viewId) {
         if(view == null) {
-            return _inflater.inflate(viewId, null);
+            return inflater.inflate(viewId, null);
         }
         else {
             return view;

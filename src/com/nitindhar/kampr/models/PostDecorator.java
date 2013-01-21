@@ -8,7 +8,7 @@ import com.nitindhar.forrst.model.Post;
 
 @SuppressWarnings("serial")
 public class PostDecorator implements Serializable {
-    
+
     private Post post;
     private transient Bitmap userIcon;
 
