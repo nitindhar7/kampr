@@ -1,17 +1,17 @@
 package com.nitindhar.kampr;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.google.common.base.Optional;
 import com.nitindhar.forrst.ForrstAPI;
 import com.nitindhar.forrst.ForrstAPIClient;
 import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Auth;
-import com.nitindhar.forrst.util.ForrstAuthenticationException;
+import com.nitindhar.kampr.data.SessionDao;
+import com.nitindhar.kampr.data.SessionSharedPreferencesDao;
+import com.nitindhar.kampr.models.Session;
 import com.nitindhar.kampr.util.NetworkUtils;
 
 public class LoginActivity extends Activity {
@@ -19,61 +19,55 @@ public class LoginActivity extends Activity {
     protected static final int RESULT_SUCCESS = 1;
     protected static final int RESULT_FAILURE = -1;
 
+    private static SessionDao sessionDao;
+
     private String loginUsername;
     private String loginPassword;
 
-    private static ForrstAPI _forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
+    private static ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences preferences = getSharedPreferences(
+                KamprActivity.KAMPR_APP_PREFS, MODE_PRIVATE);
+
+        sessionDao = new SessionSharedPreferencesDao(preferences);
+
         loginUsername = getIntent().getStringExtra("login_username");
         loginPassword = getIntent().getStringExtra("login_password");
 
-        if(validateCredentialsFormat(loginUsername, loginPassword) && NetworkUtils.isOnline(getApplicationContext())) {
+        if (!NetworkUtils.isOnline(getApplicationContext())) {
+            setResult(RESULT_FAILURE);
+            finish();
+        } else {
             try {
-                validateCredentials(loginUsername, loginPassword);
-                setResult(RESULT_SUCCESS);
-            } catch (ForrstAuthenticationException e) {
-                setResult(RESULT_FAILURE);
+                boolean validCredentials = validateCredentials(loginUsername,
+                        loginPassword);
+                if (validCredentials) {
+                    setResult(RESULT_SUCCESS);
+                } else {
+                    setResult(RESULT_FAILURE);
+                }
             } finally {
                 finish();
             }
         }
-        else {
-            setResult(RESULT_FAILURE);
-            finish();
-        }
     }
 
-    private boolean validateCredentialsFormat(String username, String password) {
-        if(username.length() > 0 && password.length() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean validateCredentials(String username, String password) throws ForrstAuthenticationException {
+    private boolean validateCredentials(String username, String password) {
+        boolean validCredentials = false;
         try {
-            Auth auth = _forrst.usersAuth(username, password);
-            SharedPreferences settings = getSharedPreferences(KamprActivity.KAMPR_APP_PREFS, 0);
-            SharedPreferences.Editor editor = settings.edit();
+            Optional<Auth> auth = forrst.usersAuth(username, password);
+            if (auth.isPresent()) {
+                Session session = new Session(username, password, auth.get()
+                        .getAccessToken(), auth.get().getUserId());
 
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hashedPassword = md.digest(loginPassword.getBytes());
-
-            editor.putString("login_username", loginUsername);
-            editor.putString("login_password", hashedPassword.toString());
-            editor.putString("login_token", auth.getAccessToken());
-            editor.putString("login_user_id", Integer.toString(auth.getUserId()));
-            editor.commit();
-            return true;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error validating user", e);
+                validCredentials = sessionDao.storeSession(session);
+            }
+        } catch (Exception e) {
         }
-
+        return validCredentials;
     }
-
 }
