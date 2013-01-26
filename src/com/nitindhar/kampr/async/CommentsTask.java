@@ -8,9 +8,6 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ListView;
 
-import com.nitindhar.forrst.ForrstAPI;
-import com.nitindhar.forrst.ForrstAPIClient;
-import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.adapters.CommentsAdapter;
@@ -18,14 +15,12 @@ import com.nitindhar.kampr.data.SessionDao;
 import com.nitindhar.kampr.data.SessionSharedPreferencesDao;
 import com.nitindhar.kampr.models.CommentDecorator;
 import com.nitindhar.kampr.posts.CommentsActivity;
+import com.nitindhar.kampr.util.ForrstUtil;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class CommentsTask extends
         AsyncTask<Integer, Integer, List<CommentDecorator>> {
-
-    protected static final ForrstAPI forrst = new ForrstAPIClient(
-            HttpProvider.JAVA_NET);
 
     private final Context context;
     private final ListView comments;
@@ -41,7 +36,7 @@ public class CommentsTask extends
 
         SessionDao sessionDao = SessionSharedPreferencesDao.instance();
 
-        for (Comment comment : forrst.postComments(
+        for (Comment comment : ForrstUtil.client().postComments(
                 sessionDao.getSessionToken(), params[0])) {
             CommentDecorator cd = new CommentDecorator();
             cd.setComment(comment);

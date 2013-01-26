@@ -18,7 +18,8 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
 
     private final List<Bitmap> userIcons;
 
-    public NotificationsAdapter(Context context, List<Notification> notifications, List<Bitmap> userIcons) {
+    public NotificationsAdapter(Context context,
+            List<Notification> notifications, List<Bitmap> userIcons) {
         super(context, notifications);
         this.userIcons = userIcons;
     }
@@ -29,20 +30,25 @@ public class NotificationsAdapter extends AbstractListAdapter<Notification> {
 
         Notification notification = objects.get(position);
 
-        ImageView notificationUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
+        ImageView notificationUserIcon = (ImageView) getViewHandle(convertView,
+                R.id.user_icon_thumbnail);
         notificationUserIcon.setImageBitmap(userIcons.get(position));
 
-        TextView notificationUsername = (TextView) getViewHandle(convertView, R.id.notification_item_username);
+        TextView notificationUsername = (TextView) getViewHandle(convertView,
+                R.id.notification_item_username);
         notificationUsername.setText(notification.getData().getActor());
 
         // FIXME: forrst lib is not getting the correct notification timestamp
-//        TextView notificationDate = (TextView) getViewHandle(convertView, R.id.notification_item_date);
-//        notificationDate.setText(TimeUtils.getPostDate(notification.getTimestamp()));
+        // TextView notificationDate = (TextView) getViewHandle(convertView,
+        // R.id.notification_item_date);
+        // notificationDate.setText(TimeUtils.getPostDate(notification.getTimestamp()));
 
-        TextView notificationTitle = (TextView) getViewHandle(convertView, R.id.notification_item_content);
-        StringBuilder sb = new StringBuilder(notification.getBehavior().replace('_', ' '));
+        TextView notificationTitle = (TextView) getViewHandle(convertView,
+                R.id.notification_item_content);
+        StringBuilder sb = new StringBuilder(notification.getBehavior()
+                .replace('_', ' '));
 
-        if(!notification.getBehavior().equals("new_follow")) {
+        if (!notification.getBehavior().equals("new_follow")) {
             sb.append(" - ");
             sb.append(notification.getData().getPostTitle());
         }

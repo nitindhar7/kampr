@@ -30,20 +30,26 @@ public class CommentsAdapter extends AbstractListAdapter<CommentDecorator> {
         CommentDecorator cd = objects.get(position);
         Comment comment = cd.getComment();
 
-        ImageView commentUserIcon = (ImageView) getViewHandle(convertView, R.id.user_icon_thumbnail);
+        ImageView commentUserIcon = (ImageView) getViewHandle(convertView,
+                R.id.user_icon_thumbnail);
         commentUserIcon.setImageBitmap(cd.getUserIcon());
 
-        TextView commentUsername = (TextView) getViewHandle(convertView, R.id.comment_item_username);
+        TextView commentUsername = (TextView) getViewHandle(convertView,
+                R.id.comment_item_username);
         commentUsername.setText(comment.getUser().getName());
 
-        TextView commentDate = (TextView) getViewHandle(convertView, R.id.comment_item_date);
+        TextView commentDate = (TextView) getViewHandle(convertView,
+                R.id.comment_item_date);
         try {
-            commentDate.setText(TimeUtils.getPostDate(comment.getCreatedAt().toString()));
+            commentDate.setText(TimeUtils.getPostDate(comment.getCreatedAt()
+                    .toString()));
         } catch (ParseException e) {
-            commentDate.setText(TimeUtils.getPostDate((new Timestamp(System.currentTimeMillis())).toString()));
+            commentDate.setText(TimeUtils.getPostDate((new Timestamp(System
+                    .currentTimeMillis())).toString()));
         }
 
-        TextView commentTitle = (TextView) getViewHandle(convertView, R.id.comment_item_content);
+        TextView commentTitle = (TextView) getViewHandle(convertView,
+                R.id.comment_item_content);
         commentTitle.setText(TextUtils.convertHtmlToText(comment.getBody()));
 
         convertView.setId(comment.getId());

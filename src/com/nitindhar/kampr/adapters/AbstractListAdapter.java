@@ -16,7 +16,8 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
     public AbstractListAdapter(Context context, List<T> objects) {
         this.context = context;
         this.objects = objects;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -36,7 +37,7 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
 
     protected Object getViewHandle(View parent, int viewId) {
         Object view = parent.getTag(viewId);
-        if(view == null) {
+        if (view == null) {
             view = parent.findViewById(viewId);
             parent.setTag(viewId, view);
         }
@@ -44,10 +45,9 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
     }
 
     protected View getConvertView(View view, int viewId) {
-        if(view == null) {
+        if (view == null) {
             return inflater.inflate(viewId, null);
-        }
-        else {
+        } else {
             return view;
         }
     }

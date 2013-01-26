@@ -13,23 +13,18 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nitindhar.forrst.ForrstAPI;
-import com.nitindhar.forrst.ForrstAPIClient;
-import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Notification;
 import com.nitindhar.kampr.PostsActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.adapters.NotificationsAdapter;
 import com.nitindhar.kampr.data.SessionDao;
 import com.nitindhar.kampr.data.SessionSharedPreferencesDao;
+import com.nitindhar.kampr.util.ForrstUtil;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class NotificationsTask extends
         AsyncTask<Integer, Integer, List<Notification>> {
-
-    protected static final ForrstAPI forrst = new ForrstAPIClient(
-            HttpProvider.JAVA_NET);
 
     private final Context context;
     private final ListView notificationsList;
@@ -48,8 +43,8 @@ public class NotificationsTask extends
         Map<String, String> opts = new HashMap<String, String>();
         opts.put("grouped", "true");
 
-        List<Notification> listOfNotifications = forrst.notifications(
-                sessionDao.getSessionToken(), opts);
+        List<Notification> listOfNotifications = ForrstUtil.client()
+                .notifications(sessionDao.getSessionToken(), opts);
         for (Notification notification : listOfNotifications) {
             userIcons.add(ImageUtils.fetchImageBitmap(notification.getData()
                     .getPhoto()));

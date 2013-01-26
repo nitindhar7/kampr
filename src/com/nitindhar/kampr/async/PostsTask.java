@@ -9,20 +9,16 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ListView;
 
-import com.nitindhar.forrst.ForrstAPI;
-import com.nitindhar.forrst.ForrstAPIClient;
-import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Post;
 import com.nitindhar.kampr.PostsActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.adapters.PostsAdapter;
 import com.nitindhar.kampr.models.PostDecorator;
+import com.nitindhar.kampr.util.ForrstUtil;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.LayoutUtils;
 
 public class PostsTask extends AsyncTask<String, Integer, List<PostDecorator>> {
-
-    protected static final ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
 
     private static PostsAdapter<PostDecorator> postsAdapter;
 
@@ -39,14 +35,15 @@ public class PostsTask extends AsyncTask<String, Integer, List<PostDecorator>> {
         List<Post> posts = null;
         List<PostDecorator> listOfPosts = new ArrayList<PostDecorator>();
 
-        if(params[0].equals("all")) {
-            posts = forrst.postsAll(null);
+        if (params[0].equals("all")) {
+            posts = ForrstUtil.client().postsAll(null);
         } else {
-            posts = forrst.postsList(params[0], null);
+            posts = ForrstUtil.client().postsList(params[0], null);
         }
 
-        for(Post post : posts) {
-            Bitmap userIcon = ImageUtils.fetchUserIcon(context, post.getUser().getPhoto().getMediumUrl(), R.drawable.forrst_default_25);
+        for (Post post : posts) {
+            Bitmap userIcon = ImageUtils.fetchUserIcon(context, post.getUser()
+                    .getPhoto().getMediumUrl(), R.drawable.forrst_default_25);
             PostDecorator pd = new PostDecorator();
             pd.setPost(post);
             pd.setUserIcon(userIcon);

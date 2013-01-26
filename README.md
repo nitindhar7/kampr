@@ -22,7 +22,11 @@ Submit well documented code and I will merge your changes in
 as long as your code does not break the build. For a list of some things that need
 to be done visit [my pivotal tracker](https://www.pivotaltracker.com/projects/413087).
 Tests coming up soon! Until then please help me find bugs.
- 
+
+TODO
+----
+- forrst lib is not getting the correct notification timestamp
+
 Contributors
 ------------
 Kampr is for the people by the people! Contribute & be acknowledged :)
@@ -35,7 +39,7 @@ Kampr is for the people by the people! Contribute & be acknowledged :)
 
 Copyright
 ---------
-Copyright (c) 2013 Nitin Dhar. See [MIT-LICENSE](MIT-LICENSE) for details.
+Copyright (c) 2013 Nitin Dhar. See [MIT-LICENSE](https://github.com/nitindhar7/kampr/blob/master/MIT-LICENSE) for details.
 
 Resources
 ---------

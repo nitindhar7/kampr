@@ -25,33 +25,40 @@ public class UserPostsAdapter<T> extends AbstractListAdapter<T> {
 
         PostDecorator pd = (PostDecorator) objects.get(position);
 
-        ImageView postTypeIcon = (ImageView) getViewHandle(convertView, R.id.user_post_item_type_icon);
+        ImageView postTypeIcon = (ImageView) getViewHandle(convertView,
+                R.id.user_post_item_type_icon);
         if (pd.getPost().getPostType().equals("link")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_link));
-        }
-        else if (pd.getPost().getPostType().equals("snap")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_snap));
-        }
-        else if (pd.getPost().getPostType().equals("code")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_code));
-        }
-        else {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.list_question));
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
+                    R.drawable.list_link));
+        } else if (pd.getPost().getPostType().equals("snap")) {
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
+                    R.drawable.list_snap));
+        } else if (pd.getPost().getPostType().equals("code")) {
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
+                    R.drawable.list_code));
+        } else {
+            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
+                    R.drawable.list_question));
         }
 
-        TextView postDate = (TextView) getViewHandle(convertView, R.id.user_post_item_date);
+        TextView postDate = (TextView) getViewHandle(convertView,
+                R.id.user_post_item_date);
         postDate.setText(TimeUtils.getPostDate(pd.getPost().getCreatedAt()));
 
-        TextView postLikes = (TextView) getViewHandle(convertView, R.id.post_likes_count);
+        TextView postLikes = (TextView) getViewHandle(convertView,
+                R.id.post_likes_count);
         postLikes.setText(Integer.toString(pd.getPost().getLikeCount()));
 
-        TextView postViews = (TextView) getViewHandle(convertView, R.id.post_views_count);
+        TextView postViews = (TextView) getViewHandle(convertView,
+                R.id.post_views_count);
         postViews.setText(Integer.toString(pd.getPost().getViewCount()));
 
-        TextView postComments = (TextView) getViewHandle(convertView, R.id.post_comments_count);
+        TextView postComments = (TextView) getViewHandle(convertView,
+                R.id.post_comments_count);
         postComments.setText(Integer.toString(pd.getPost().getCommentCount()));
 
-        TextView postTitle = (TextView) getViewHandle(convertView, R.id.user_post_item_content);
+        TextView postTitle = (TextView) getViewHandle(convertView,
+                R.id.user_post_item_content);
         postTitle.setText(pd.getPost().getTitle());
 
         convertView.setId(pd.getPost().getId());

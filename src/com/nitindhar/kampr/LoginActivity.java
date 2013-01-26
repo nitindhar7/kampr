@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.common.base.Optional;
-import com.nitindhar.forrst.ForrstAPI;
-import com.nitindhar.forrst.ForrstAPIClient;
-import com.nitindhar.forrst.http.HttpProvider;
 import com.nitindhar.forrst.model.Auth;
 import com.nitindhar.kampr.data.SessionDao;
 import com.nitindhar.kampr.data.SessionSharedPreferencesDao;
 import com.nitindhar.kampr.models.Session;
+import com.nitindhar.kampr.util.ForrstUtil;
 import com.nitindhar.kampr.util.NetworkUtils;
 
 public class LoginActivity extends Activity {
@@ -19,8 +17,6 @@ public class LoginActivity extends Activity {
     protected static final int LOGIN_FAILURE = -1;
 
     private static SessionDao sessionDao;
-
-    private static ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +46,7 @@ public class LoginActivity extends Activity {
     private boolean validateCredentials(String username, String password) {
         boolean validCredentials = false;
         try {
-            Optional<Auth> auth = forrst.usersAuth(username, password);
+            Optional<Auth> auth = ForrstUtil.client().usersAuth(username, password);
             if (auth.isPresent()) {
                 Session session = new Session(username, password, auth.get()
                         .getAccessToken(), auth.get().getUserId());
