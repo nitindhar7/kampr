@@ -80,10 +80,13 @@ public class PostActivity extends Activity implements OnClickListener {
         _postUsername.setText(post.getUser().getUsername());
         _postDate.setText(TimeUtils.getPostDate(post.getCreatedAt()));
         _postDescription.setText(TextUtils.cleanseText(post.getDescription()));
-        _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        _postDescription
+                .setTransformationMethod(HideReturnsTransformationMethod
+                        .getInstance());
         _postLikes.setText(Integer.toString(post.getLikeCount()));
         _postViews.setText(Integer.toString(post.getViewCount()));
-        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon"));
+        _userIconBitmap = ImageUtils.getBitmapFromByteArray(getIntent()
+                .getByteArrayExtra("user_icon"));
         _postUserIcon.setImageBitmap(_userIconBitmap);
 
         if (post.getCommentCount() > 0) {
@@ -96,9 +99,11 @@ public class PostActivity extends Activity implements OnClickListener {
             _postViewComments.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent comments = new Intent(PostActivity.this, CommentsActivity.class);
+                    Intent comments = new Intent(PostActivity.this,
+                            CommentsActivity.class);
                     comments.putExtra("post", post);
-                    comments.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
+                    comments.putExtra("user_icon",
+                            ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
                     startActivity(comments);
                 }
             });
@@ -112,34 +117,38 @@ public class PostActivity extends Activity implements OnClickListener {
             SpanUtils.setFont(getApplicationContext(), _postDescription);
             SpanUtils.setFont(getApplicationContext(), _postUrl);
             SpanUtils.removeUnderlines((Spannable) _postUrl.getText());
-            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
-        }
-        else if (post.getPostType().equals("snap")) {
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner),
+                    View.GONE);
+        } else if (post.getPostType().equals("snap")) {
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             SnapTask snapTask = new SnapTask(_postOriginal);
             snapTask.execute(post);
             SpanUtils.setFont(getApplicationContext(), _postDescription);
-        }
-        else if (post.getPostType().equals("code")) {
+        } else if (post.getPostType().equals("code")) {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
             _postContent.setText(post.getContent());
-            _postContent.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            _postContent
+                    .setTransformationMethod(HideReturnsTransformationMethod
+                            .getInstance());
             SpanUtils.setFont(getApplicationContext(), _postDescription);
             SpanUtils.setFont(getApplicationContext(), _postContent);
-            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
-        }
-        else {
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner),
+                    View.GONE);
+        } else {
             _postOriginal.setVisibility(View.GONE);
             _postUrl.setVisibility(View.GONE);
             _postContent.setVisibility(View.GONE);
             _postSnapLabel.setVisibility(View.GONE);
             _postDescription.setText(TextUtils.cleanseText(post.getContent()));
-            _postDescription.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            _postDescription
+                    .setTransformationMethod(HideReturnsTransformationMethod
+                            .getInstance());
             SpanUtils.setFont(getApplicationContext(), _postDescription);
-            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner), View.GONE);
+            LayoutUtils.layoutOverride(findViewById(R.id.actionbar_spinner),
+                    View.GONE);
         }
 
         SpanUtils.setFont(getApplicationContext(), _postTitle);
@@ -148,18 +157,22 @@ public class PostActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.snap_large_url:
-                Intent fullScreen = new Intent(PostActivity.this, SnapFullscreenActivity.class);
-                fullScreen.putExtra("snaps_original_url", post.getSnap().getOriginalUrl());
-                startActivity(fullScreen);
-                break;
-            case R.id.post_infobar:
-                User user = post.getUser();
-                Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
-                userIntent.putExtra("user", user);
-                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
-                startActivity(userIntent);
-                break;
+        case R.id.snap_large_url:
+            Intent fullScreen = new Intent(PostActivity.this,
+                    SnapFullscreenActivity.class);
+            fullScreen.putExtra("snaps_original_url", post.getSnap()
+                    .getOriginalUrl());
+            startActivity(fullScreen);
+            break;
+        case R.id.post_infobar:
+            User user = post.getUser();
+            Intent userIntent = new Intent(getApplicationContext(),
+                    UserActivity.class);
+            userIntent.putExtra("user", user);
+            userIntent.putExtra("user_icon",
+                    ImageUtils.getByteArrayFromBitmap(_userIconBitmap));
+            startActivity(userIntent);
+            break;
         }
     }
 
@@ -187,13 +200,20 @@ public class PostActivity extends Activity implements OnClickListener {
 
         switch (requestCode) {
         case LOGOUT_RESULT_CODE:
-            if (resultCode == LogoutActivity.RESULT_SUCCESS) {
-                Intent kampr = new Intent(PostActivity.this, KamprActivity.class);
+            if (resultCode == getResources().getInteger(
+                    R.integer.logout_success)) {
+                Intent kampr = new Intent(PostActivity.this,
+                        KamprActivity.class);
                 startActivity(kampr);
-            } else if (resultCode == LogoutActivity.RESULT_FAILURE) {
-                Toast.makeText(getApplicationContext(), "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == getResources().getInteger(
+                    R.integer.logout_failure)) {
+                Toast.makeText(getApplicationContext(),
+                        "Error logging out. Try Again!", Toast.LENGTH_SHORT)
+                        .show();
             } else {
-                Toast.makeText(getApplicationContext(), "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "Unexpected error. Try again!", Toast.LENGTH_SHORT)
+                        .show();
             }
             break;
         }

@@ -9,18 +9,22 @@ import com.nitindhar.kampr.models.Session;
 
 public class SessionSharedPreferencesDao implements SessionDao {
 
+    private static final SessionDao INSTANCE = new SessionSharedPreferencesDao();
     private static final String SESSION_KEY_USERNAME = "login_username";
     private static final String SESSION_KEY_PASSWORD = "login_password";
     private static final String SESSION_KEY_TOKEN = "login_token";
     private static final String SESSION_KEY_USER_ID = "login_user_id";
     private static final String SESSION_KEY_EULA_ACCEPTED = "agreed_to_eula";
-
     private static final String SESSION_PASSWORD_HASH_ALGO = "MD5";
 
-    private final SharedPreferences preferences;
+    private static SharedPreferences preferences;
 
-    public SessionSharedPreferencesDao(SharedPreferences preferences) {
-        this.preferences = preferences;
+    public static SessionDao instance() {
+        return INSTANCE;
+    }
+
+    public static void setSharedPreferences(SharedPreferences preferences) {
+        SessionSharedPreferencesDao.preferences = preferences;
     }
 
     @Override
@@ -68,6 +72,11 @@ public class SessionSharedPreferencesDao implements SessionDao {
         editor.remove(SESSION_KEY_TOKEN);
         editor.remove(SESSION_KEY_USER_ID);
         return editor.commit();
+    }
+
+    @Override
+    public String getSessionToken() {
+        return preferences.getString(SESSION_KEY_TOKEN, null);
     }
 
 }

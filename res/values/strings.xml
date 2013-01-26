@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Kampr</string>
-    <string name="eula">
-By downloading Kampr (here after referenced to as the “Application”), installing or using this application or any portion thereof (“Application”), you agree to the following terms and conditions (the “Terms and Conditions”).\n\n
+  <string name="app_name">Kampr</string>
+  <string name="app_prefs">KamprAppPrefs</string>
+  <string name="eula">By downloading Kampr (here after referenced to as the “Application”), installing or using this application or any portion thereof (“Application”), you agree to the following terms and conditions (the “Terms and Conditions”).\n\n
 
 1. USE OF APPLICATION\n
 a. You are granted the non-exclusive, non-transferable, limited right and license to install and use this Application solely and exclusively for your personal use.\n
@@ -42,7 +42,7 @@ a. These Terms and Conditions constitute the entire Agreement between you and Th
 b. The failure of The Creators to exercise or enforce any right or provision of these Terms and Conditions does not constitute a waiver of such right or provision, which will still be available to The Creators.\n
 c. If any court of law, having the jurisdiction to decide on this matter, rules that any provision of these Terms and Conditions is invalid, then that provision will be removed from the Terms and Conditions without affecting the rest of the Terms and Conditions. The remaining provisions of these Terms and Conditions will continue to be valid and enforceable.\n
 d. The rights granted in these Terms and Conditions may not be assigned or transferred by either you or The Creators without the prior written approval of the other party. Neither you nor The Creators are permitted to delegate their responsibilities or obligations under these Terms and Conditions without the prior written approval of the other party.\n
-e. These Terms and Conditions and your relationship with The Creators under these Terms and Conditions will be governed by the laws of the State of New York without regard to its conflict of laws provisions. You and The Creators agree to submit to the exclusive jurisdiction of the courts located within the city of New York, New York to resolve any legal matter arising from these Terms and Conditions. Notwithstanding this, you agree that The Creators will still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.
-</string>
+e. These Terms and Conditions and your relationship with The Creators under these Terms and Conditions will be governed by the laws of the State of New York without regard to its conflict of laws provisions. You and The Creators agree to submit to the exclusive jurisdiction of the courts located within the city of New York, New York to resolve any legal matter arising from these Terms and Conditions. Notwithstanding this, you agree that The Creators will still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.</string>
+  <string name="login_forrst_signup">Or, Sign Up At Forrst.com/signup</string>
 
 </resources>

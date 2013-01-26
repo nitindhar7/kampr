@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <integer name="enter_key_code">66</integer>
+  <integer name="logout_success">1</integer>
+  <integer name="logout_failure">-1</integer>
+
+</resources>

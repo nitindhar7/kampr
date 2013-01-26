@@ -28,11 +28,8 @@ import com.nitindhar.kampr.util.SpanUtils;
 public class KamprActivity extends Activity implements OnClickListener,
         OnKeyListener {
 
-    public static final String KAMPR_APP_PREFS = "KamprAppPrefs";
-
     private static final int LOGIN_RESULT_CODE = 1;
     private static final int POST_QUIT_CODE = 2;
-    private static final int ENTER_KEY_CODE = 66;
 
     private static SessionDao sessionDao;
 
@@ -48,10 +45,11 @@ public class KamprActivity extends Activity implements OnClickListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = getSharedPreferences(KAMPR_APP_PREFS,
-                MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(getResources()
+                .getString(R.string.app_prefs), MODE_PRIVATE);
 
-        sessionDao = new SessionSharedPreferencesDao(preferences);
+        SessionSharedPreferencesDao.setSharedPreferences(preferences);
+        sessionDao = SessionSharedPreferencesDao.instance();
 
         if (!sessionDao.sessionWasEulaAccepted()) {
             AlertDialog alert = getEulaAlertBox();
@@ -76,7 +74,8 @@ public class KamprActivity extends Activity implements OnClickListener,
             loginPassword.setOnKeyListener(this);
 
             signUpLink.setAutoLinkMask(Linkify.WEB_URLS);
-            signUpLink.setText("Or, Sign Up At Forrst.com/signup");
+            signUpLink.setText(getResources().getString(
+                    R.string.login_forrst_signup));
 
             SpanUtils.setFont(this, signUpLink, SpanUtils.FONT_ITALIC);
             SpanUtils.setFont(this, loginUsernameLabel);
@@ -95,7 +94,7 @@ public class KamprActivity extends Activity implements OnClickListener,
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (keyCode == ENTER_KEY_CODE) {
+        if (keyCode == getResources().getInteger(R.integer.enter_key_code)) {
             attemptLogin();
         }
         return false;
@@ -107,16 +106,23 @@ public class KamprActivity extends Activity implements OnClickListener,
 
         switch (requestCode) {
         case LOGIN_RESULT_CODE:
-            if (resultCode == LoginActivity.RESULT_SUCCESS) {
+            switch (resultCode) {
+            case LoginActivity.LOGIN_SUCCESS:
                 startPostsActivity();
-            } else if (resultCode == LoginActivity.RESULT_FAILURE) {
-                Toast.makeText(getApplicationContext(),
-                        "Invalid username or password", Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Unexpected error. Try again!", Toast.LENGTH_SHORT)
-                        .show();
+                break;
+            case LoginActivity.LOGIN_FAILURE:
+                Toast.makeText(
+                        getApplicationContext(),
+                        getResources().getString(
+                                R.string.login_invalid_credentials),
+                        Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(
+                        getApplicationContext(),
+                        getResources().getString(
+                                R.string.login_unexpected_error),
+                        Toast.LENGTH_SHORT).show();
             }
             dialog.cancel();
             break;
@@ -155,7 +161,8 @@ public class KamprActivity extends Activity implements OnClickListener,
                             public void onClick(DialogInterface dialog, int id) {
                                 Toast.makeText(
                                         getApplicationContext(),
-                                        "You have to agree to the EULA to continue using Kampr",
+                                        getResources().getString(
+                                                R.string.eula_disagree),
                                         Toast.LENGTH_LONG).show();
                                 finish();
                             }

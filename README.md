@@ -25,17 +25,17 @@ Tests coming up soon! Until then please help me find bugs.
  
 Contributors
 ------------
-All major contributers will be acknowledged.
+Kampr is for the people by the people! Contribute & be acknowledged :)
 
 - Nitin Dhar
 
   - Forrst: https://forrst.com/people/nitindhar7
-  - Site: http://nitin-dhar.blogspot.com
+  - Site: http://softwarebynitin.com
   - Twitter: @nitin_dhar
 
 Copyright
 ---------
-Copyright (c) 2012 Nitin Dhar. See MIT-LICENSE for details.
+Copyright (c) 2013 Nitin Dhar. See [MIT-LICENSE](MIT-LICENSE) for details.
 
 Resources
 ---------

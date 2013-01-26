@@ -1,7 +1,6 @@
 package com.nitindhar.kampr;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.common.base.Optional;
@@ -16,13 +15,10 @@ import com.nitindhar.kampr.util.NetworkUtils;
 
 public class LoginActivity extends Activity {
 
-    protected static final int RESULT_SUCCESS = 1;
-    protected static final int RESULT_FAILURE = -1;
+    protected static final int LOGIN_SUCCESS = 1;
+    protected static final int LOGIN_FAILURE = -1;
 
     private static SessionDao sessionDao;
-
-    private String loginUsername;
-    private String loginPassword;
 
     private static ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
 
@@ -30,25 +26,20 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = getSharedPreferences(
-                KamprActivity.KAMPR_APP_PREFS, MODE_PRIVATE);
-
-        sessionDao = new SessionSharedPreferencesDao(preferences);
-
-        loginUsername = getIntent().getStringExtra("login_username");
-        loginPassword = getIntent().getStringExtra("login_password");
+        sessionDao = SessionSharedPreferencesDao.instance();
 
         if (!NetworkUtils.isOnline(getApplicationContext())) {
-            setResult(RESULT_FAILURE);
+            setResult(LOGIN_FAILURE);
             finish();
         } else {
             try {
-                boolean validCredentials = validateCredentials(loginUsername,
-                        loginPassword);
+                boolean validCredentials = validateCredentials(getIntent()
+                        .getStringExtra("login_username"), getIntent()
+                        .getStringExtra("login_password"));
                 if (validCredentials) {
-                    setResult(RESULT_SUCCESS);
+                    setResult(LOGIN_SUCCESS);
                 } else {
-                    setResult(RESULT_FAILURE);
+                    setResult(LOGIN_FAILURE);
                 }
             } finally {
                 finish();

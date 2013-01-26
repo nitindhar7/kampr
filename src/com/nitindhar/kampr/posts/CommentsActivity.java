@@ -1,7 +1,5 @@
 package com.nitindhar.kampr.posts;
 
-import java.text.SimpleDateFormat;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,12 +11,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nitindhar.forrst.model.Post;
 import com.nitindhar.forrst.model.User;
-import com.nitindhar.kampr.KamprActivity;
-import com.nitindhar.kampr.LogoutActivity;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.UserActivity;
 import com.nitindhar.kampr.async.CommentsTask;
@@ -27,10 +22,6 @@ import com.nitindhar.kampr.util.NetworkUtils;
 import com.nitindhar.kampr.util.SpanUtils;
 
 public class CommentsActivity extends ListActivity implements OnClickListener {
-
-    protected static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-    private static final int LOGOUT_RESULT_CODE = 1;
 
     private static CommentsTask commentsTask;
     private static ProgressBar spinner;
@@ -57,7 +48,8 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
         spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         _post = (Post) getIntent().getSerializableExtra("post");
-        _userIcon = ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon"));
+        _userIcon = ImageUtils.getBitmapFromByteArray(getIntent()
+                .getByteArrayExtra("user_icon"));
 
         _postViews = (TextView) findViewById(R.id.post_view_count_label);
         _postLikes = (TextView) findViewById(R.id.post_like_count_label);
@@ -73,7 +65,8 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
         _comments = getListView();
         _comments.setVerticalScrollBarEnabled(false);
         _comments.setVerticalFadingEdgeEnabled(true);
-        _comments.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
+        _comments.setDivider(this.getResources().getDrawable(
+                R.color.post_item_divider));
         _comments.setDividerHeight(1);
 
         _postViews.setText(Integer.toString(_post.getViewCount()));
@@ -86,42 +79,26 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
 
         SpanUtils.setFont(getApplicationContext(), _postViews);
         SpanUtils.setFont(getApplicationContext(), _postLikes);
-        SpanUtils.setFont(getApplicationContext(), _commentHeaderTitle, SpanUtils.FONT_BOLD);
+        SpanUtils.setFont(getApplicationContext(), _commentHeaderTitle,
+                SpanUtils.FONT_BOLD);
         SpanUtils.setFont(getApplicationContext(), _postUserName);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch(requestCode) {
-            case LOGOUT_RESULT_CODE:
-                if(resultCode == LogoutActivity.RESULT_SUCCESS) {
-                    Intent kampr = new Intent(CommentsActivity.this, KamprActivity.class);
-                    startActivity(kampr);
-                }
-                else if(resultCode == LogoutActivity.RESULT_FAILURE) {
-                    Toast.makeText(getApplicationContext() , "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.comments_header:
-                finish();
-                break;
-            case R.id.comment_infobar:
-                User user = _post.getUser();
-                Intent userIntent = new Intent(getApplicationContext(), UserActivity.class);
-                userIntent.putExtra("user", user);
-                userIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(_userIcon));
-                startActivity(userIntent);
-                break;
+        case R.id.comments_header:
+            finish();
+            break;
+        case R.id.comment_infobar:
+            User user = _post.getUser();
+            Intent userIntent = new Intent(getApplicationContext(),
+                    UserActivity.class);
+            userIntent.putExtra("user", user);
+            userIntent.putExtra("user_icon",
+                    ImageUtils.getByteArrayFromBitmap(_userIcon));
+            startActivity(userIntent);
+            break;
         }
     }
 

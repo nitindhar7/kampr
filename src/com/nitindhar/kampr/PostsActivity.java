@@ -163,11 +163,11 @@ public class PostsActivity extends TabActivity {
 
         switch(requestCode) {
             case LOGOUT_RESULT_CODE:
-                if(resultCode == LogoutActivity.RESULT_SUCCESS) {
+                if(resultCode == getResources().getInteger(R.integer.logout_success)) {
                     Intent kampr = new Intent(PostsActivity.this, KamprActivity.class);
                     startActivity(kampr);
                 }
-                else if(resultCode == LogoutActivity.RESULT_FAILURE) {
+                else if(resultCode == getResources().getInteger(R.integer.logout_failure)) {
                     Toast.makeText(getApplicationContext() , "Error logging out. Try Again!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext() , "Unexpected error. Try again!", Toast.LENGTH_SHORT).show();

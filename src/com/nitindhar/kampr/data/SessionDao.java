@@ -14,4 +14,6 @@ public interface SessionDao {
 
     public boolean sessionEulaAccepted();
 
+    public String getSessionToken();
+
 }
