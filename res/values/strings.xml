@@ -44,5 +44,6 @@ c. If any court of law, having the jurisdiction to decide on this matter, rules 
 d. The rights granted in these Terms and Conditions may not be assigned or transferred by either you or The Creators without the prior written approval of the other party. Neither you nor The Creators are permitted to delegate their responsibilities or obligations under these Terms and Conditions without the prior written approval of the other party.\n
 e. These Terms and Conditions and your relationship with The Creators under these Terms and Conditions will be governed by the laws of the State of New York without regard to its conflict of laws provisions. You and The Creators agree to submit to the exclusive jurisdiction of the courts located within the city of New York, New York to resolve any legal matter arising from these Terms and Conditions. Notwithstanding this, you agree that The Creators will still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.</string>
   <string name="login_forrst_signup">Or, Sign Up At Forrst.com/signup</string>
+  <string name="login_dialog_message">Logging in. Please wait...</string>
 
 </resources>

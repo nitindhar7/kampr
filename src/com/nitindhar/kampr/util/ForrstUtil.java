@@ -6,7 +6,7 @@ import com.nitindhar.forrst.http.HttpProvider;
 
 public class ForrstUtil {
 
-    private static ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
+    private static final ForrstAPI forrst = new ForrstAPIClient(HttpProvider.JAVA_NET);
 
     public static ForrstAPI client() {
         return forrst;

@@ -5,9 +5,9 @@
   android:versionName="1.2.5" >
 
   <uses-sdk
-    android:maxSdkVersion="10"
+    android:maxSdkVersion="14"
     android:minSdkVersion="7"
-    android:targetSdkVersion="10" />
+    android:targetSdkVersion="14" />
 
   <application
     android:icon="@drawable/icon"
@@ -22,8 +22,6 @@
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-    </activity>
-    <activity android:name=".LoginActivity" >
     </activity>
     <activity
       android:name=".PostsActivity"
