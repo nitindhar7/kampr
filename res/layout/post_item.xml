@@ -1,83 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/post_item"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/post_item_states"
-    android:orientation="vertical"
-    android:padding="8dp" >
+  android:id="@+id/post_item"
+  style="@style/ListItem.Post" >
 
-    <LinearLayout
-        android:id="@+id/post_item_graphics"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:minHeight="50dp"
-        android:minWidth="50dp"
-        android:orientation="vertical" >
+  <LinearLayout
+    android:id="@+id/post_item_graphics"
+    style="@style/ListItem.PostThumbnail" >
 
-        <include layout="@layout/user_icon" />
-    </LinearLayout>
+    <include layout="@layout/user_icon" />
+  </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/post_item_details"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/post_item_graphics"
-        android:orientation="vertical" >
+  <LinearLayout
+    android:id="@+id/post_item_details"
+    style="@style/ListItem.PostDetails"
+    android:layout_toRightOf="@+id/post_item_graphics" >
 
-        <RelativeLayout
-            android:id="@+id/post_item_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top" >
+    <TextView
+      android:id="@+id/post_item_content"
+      style="@style/ListItem.Font.Bold"
+      android:text="content"
+      android:textColor="@color/kampr_green"
+      android:textSize="16sp" >
+    </TextView>
 
-            <TextView
-                android:id="@+id/post_item_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="username"
-                android:textColor="@color/post_title"
-                android:textSize="14sp"
-                android:textStyle="bold" >
-            </TextView>
+    <RelativeLayout
+      android:id="@+id/post_item_title"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:gravity="top" >
 
-            <TextView
-                android:id="@+id/post_item_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/post_item_type_icon"
-                android:gravity="center_vertical"
-                android:text="date"
-                android:textColor="@color/post_item_date"
-                android:textSize="14sp" >
-            </TextView>
+      <TextView
+        android:id="@+id/post_item_username"
+        style="@style/ListItem.Font"
+        android:text="username" >
+      </TextView>
 
-            <ImageView
-                android:id="@+id/post_item_type_icon"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="2dp"
-                android:maxHeight="15dp"
-                android:maxWidth="15dp"
-                android:minHeight="15dp"
-                android:minWidth="15dp" />
-        </RelativeLayout>
+      <TextView
+        android:id="@+id/post_item_date"
+        style="@style/ListItem.Font"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/post_item_type_icon"
+        android:text="date"
+        android:textColor="@color/post_item_date" >
+      </TextView>
 
-        <TextView
-            android:id="@+id/post_item_content"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="content"
-            android:textColor="@color/dark_gray"
-            android:textSize="14sp" >
-        </TextView>
+      <ImageView
+        android:id="@+id/post_item_type_icon"
+        style="@style/ListItem.Image.Mini"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="2dp" />
+    </RelativeLayout>
 
-        <include layout="@layout/counts" />
-    </LinearLayout>
+    <include layout="@layout/counts" />
+  </LinearLayout>
 
 </RelativeLayout>

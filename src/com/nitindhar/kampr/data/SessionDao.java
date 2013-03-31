@@ -16,4 +16,8 @@ public interface SessionDao {
 
     public String getSessionToken();
 
+    public boolean storeSessionPostType(String postType);
+
+    public String getSessionPostType();
+
 }

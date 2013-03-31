@@ -2,13 +2,10 @@ package com.nitindhar.kampr.async;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.nitindhar.forrst.model.Post;
-import com.nitindhar.kampr.posts.PostActivity;
 import com.nitindhar.kampr.util.ImageUtils;
-import com.nitindhar.kampr.util.LayoutUtils;
 
 public class SnapTask extends AsyncTask<Post, Integer, Bitmap> {
 
@@ -30,7 +27,6 @@ public class SnapTask extends AsyncTask<Post, Integer, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         postOriginal.setImageBitmap(bitmap);
-        LayoutUtils.layoutOverride(PostActivity.getSpinner(), View.GONE);
     }
 
 }

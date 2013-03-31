@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.models.PostDecorator;
-import com.nitindhar.kampr.util.SpanUtils;
 import com.nitindhar.kampr.util.TimeUtils;
 
 public class UserPostsAdapter<T> extends AbstractListAdapter<T> {
@@ -62,12 +61,6 @@ public class UserPostsAdapter<T> extends AbstractListAdapter<T> {
         postTitle.setText(pd.getPost().getTitle());
 
         convertView.setId(pd.getPost().getId());
-
-        SpanUtils.setFont(context, postDate);
-        SpanUtils.setFont(context, postLikes);
-        SpanUtils.setFont(context, postViews);
-        SpanUtils.setFont(context, postComments);
-        SpanUtils.setFont(context, postTitle);
 
         return convertView;
     }

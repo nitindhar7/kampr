@@ -1,173 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/post"
+  android:id="@+id/post"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#FFFFFF" >
+
+  <TextView
+    android:id="@+id/post_title"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/actionbar"
+    android:background="@color/black"
+    android:gravity="center_vertical|center_horizontal"
+    android:minHeight="26dp"
+    android:padding="10dp"
+    android:textColor="@color/white"
+    android:textSize="14sp" >
+  </TextView>
+
+  <TextView
+    android:id="@+id/post_title_divider"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@+id/post_title"
+    android:background="@color/light_blue" />
+
+  <include
+    android:id="@+id/post_infobar"
+    layout="@layout/infobar" />
+
+  <RelativeLayout
+    android:id="@+id/post_counts"
+    android:layout_width="fill_parent"
+    android:layout_height="24dp"
+    android:layout_below="@+id/post_infobar"
+    android:background="@drawable/post_counts_bg" >
+
+    <TextView
+      android:id="@+id/post_date"
+      android:layout_width="wrap_content"
+      android:layout_height="24dp"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="5dp"
+      android:gravity="center_vertical|center_horizontal"
+      android:textColor="@color/gray" />
+
+    <TextView
+      android:id="@+id/post_counts_divider_top"
+      android:layout_width="fill_parent"
+      android:layout_height="1px"
+      android:layout_alignParentTop="true"
+      android:background="@color/black" />
+
+    <TextView
+      android:id="@+id/post_counts_divider_bottom"
+      android:layout_width="fill_parent"
+      android:layout_height="1px"
+      android:layout_alignParentBottom="true"
+      android:background="@color/gray" />
+
+    <TextView
+      android:id="@+id/post_view_count"
+      android:layout_width="16dp"
+      android:layout_height="16dp"
+      android:layout_marginLeft="5dp"
+      android:layout_marginTop="4dp"
+      android:background="@drawable/ic_post_views" />
+
+    <TextView
+      android:id="@+id/post_view_count_label"
+      android:layout_width="wrap_content"
+      android:layout_height="24dp"
+      android:layout_marginLeft="3dp"
+      android:layout_toRightOf="@+id/post_view_count"
+      android:gravity="center_vertical" />
+
+    <TextView
+      android:id="@+id/post_like_count"
+      android:layout_width="12dp"
+      android:layout_height="12dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="6dp"
+      android:layout_toRightOf="@+id/post_view_count_label"
+      android:background="@drawable/ic_post_likes" />
+
+    <TextView
+      android:id="@+id/post_like_count_label"
+      android:layout_width="wrap_content"
+      android:layout_height="24dp"
+      android:layout_marginLeft="3dp"
+      android:layout_toRightOf="@+id/post_like_count"
+      android:gravity="center_vertical" />
+  </RelativeLayout>
+
+  <ScrollView
+    android:id="@+id/post_description_scroll"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF" >
+    android:layout_above="@+id/post_url"
+    android:layout_below="@id/post_counts"
+    android:isScrollContainer="true"
+    android:padding="10dp"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    android:scrollbars="@null" >
 
-    <include layout="@layout/actionbar" />
+    <LinearLayout
+      android:id="@+id/post_body"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/post_title"
+      <ImageView
+        android:id="@+id/snap_large_url"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/snap_image_bg" />
+
+      <TextView
+        android:id="@+id/post_snap_call_to_action"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/actionbar"
-        android:background="@color/black"
-        android:gravity="center_vertical|center_horizontal"
-        android:minHeight="26dp"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textSize="14sp" >
-    </TextView>
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Tap to enlarge snap"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/post_title_divider"
+      <TextView
+        android:id="@+id/post_content"
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/post_title"
-        android:background="@color/light_blue" />
-
-    <include
-        android:id="@+id/post_infobar"
-        layout="@layout/infobar" />
-
-    <RelativeLayout
-        android:id="@+id/post_counts"
-        android:layout_width="fill_parent"
-        android:layout_height="24dp"
-        android:layout_below="@+id/post_infobar"
-        android:background="@drawable/post_counts_bg" >
-
-        <TextView
-            android:id="@+id/post_date"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:textColor="@color/gray" />
-
-        <TextView
-            android:id="@+id/post_counts_divider_top"
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentTop="true"
-            android:background="@color/black" />
-
-        <TextView
-            android:id="@+id/post_counts_divider_bottom"
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="@color/gray" />
-
-        <TextView
-            android:id="@+id/post_view_count"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/ic_post_views" />
-
-        <TextView
-            android:id="@+id/post_view_count_label"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@+id/post_view_count"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:id="@+id/post_like_count"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:layout_toRightOf="@+id/post_view_count_label"
-            android:background="@drawable/ic_post_likes" />
-
-        <TextView
-            android:id="@+id/post_like_count_label"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@+id/post_like_count"
-            android:gravity="center_vertical" />
-    </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/post_description_scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/post_url"
-        android:layout_below="@id/post_counts"
-        android:isScrollContainer="true"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="#EEE"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="5dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:scrollbars="@null" >
+        android:textColor="#333"
+        android:textSize="14sp" >
+      </TextView>
 
-        <LinearLayout
-            android:id="@+id/post_body"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/snap_large_url"
-                android:layout_width="fill_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/snap_image_bg" />
-
-            <TextView
-                android:id="@+id/post_snap_call_to_action"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:text="Tap to enlarge snap"
-                android:textColor="@color/gray"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/post_content"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#EEE"
-                android:lineSpacingMultiplier="1.2"
-                android:padding="5dp"
-                android:scrollbarAlwaysDrawVerticalTrack="false"
-                android:textColor="#333"
-                android:textSize="14sp" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/post_description"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.2"
-                android:scrollbarAlwaysDrawVerticalTrack="false"
-                android:textColor="#333"
-                android:textSize="14sp" >
-            </TextView>
-        </LinearLayout>
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/post_url"
+      <TextView
+        android:id="@+id/post_description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:autoLink="web"
-        android:background="@drawable/post_link_bg"
-        android:gravity="center_vertical"
-        android:minHeight="20dp"
-        android:padding="10dp"
-        android:shadowColor="#FFF"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="@color/hyperlink"
-        android:textSize="16sp" />
+        android:lineSpacingMultiplier="1.2"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:textColor="#333"
+        android:textSize="14sp" >
+      </TextView>
+    </LinearLayout>
+  </ScrollView>
+
+  <TextView
+    android:id="@+id/post_url"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:autoLink="web"
+    android:background="@drawable/post_link_bg"
+    android:gravity="center_vertical"
+    android:minHeight="20dp"
+    android:padding="10dp"
+    android:shadowColor="#FFF"
+    android:shadowDx="1"
+    android:shadowDy="1"
+    android:shadowRadius="1"
+    android:textColor="@color/hyperlink"
+    android:textSize="16sp" />
 
 </RelativeLayout>

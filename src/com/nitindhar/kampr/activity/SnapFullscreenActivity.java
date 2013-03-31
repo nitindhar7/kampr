@@ -1,4 +1,4 @@
-package com.nitindhar.kampr.posts;
+package com.nitindhar.kampr.activity;
 
 import android.app.Activity;
 import android.os.Bundle;

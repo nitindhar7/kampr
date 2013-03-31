@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.nitindhar.kampr"
-  android:versionCode="7"
-  android:versionName="1.2.5" >
+  android:versionCode="9"
+  android:versionName="2.1.0" >
 
   <uses-sdk
-    android:maxSdkVersion="14"
+    android:maxSdkVersion="15"
     android:minSdkVersion="7"
-    android:targetSdkVersion="14" />
+    android:targetSdkVersion="15" />
 
   <application
     android:icon="@drawable/icon"
-    android:label="@string/app_name" >
+    android:label="Kampr"
+    android:theme="@style/Kampr" >
     <activity
-      android:name=".KamprActivity"
-      android:label="@string/app_name"
+      android:name=".activity.KamprActivity"
+      android:label="Kampr"
       android:theme="@android:style/Theme.NoTitleBar"
       android:windowSoftInputMode="stateVisible|adjustResize|adjustPan" >
       <intent-filter>
@@ -24,36 +25,27 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".PostsActivity"
+      android:name=".activity.PostsActivity"
       android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
-    </activity>
-    <activity android:name=".LogoutActivity" >
+      android:theme="@style/KamprActionBar" >
     </activity>
     <activity
-      android:name=".UserActivity"
+      android:name=".activity.UserActivity"
       android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
+      android:theme="@style/KamprActionBar" >
     </activity>
     <activity
-      android:name=".posts.PostsListActivity"
+      android:name=".activity.PostActivity"
       android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
+      android:theme="@style/KamprActionBar" >
     </activity>
     <activity
-      android:name=".posts.PostActivity"
-      android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
+      android:name=".activity.SnapFullscreenActivity"
+      android:configChanges="keyboardHidden|orientation" >
     </activity>
     <activity
-      android:name=".posts.SnapFullscreenActivity"
-      android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
-    </activity>
-    <activity
-      android:name=".posts.CommentsActivity"
-      android:configChanges="keyboardHidden|orientation"
-      android:theme="@android:style/Theme.NoTitleBar" >
+      android:name=".activity.CommentsActivity"
+      android:configChanges="keyboardHidden|orientation" >
     </activity>
   </application>
 

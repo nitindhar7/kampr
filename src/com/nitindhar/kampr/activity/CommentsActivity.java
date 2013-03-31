@@ -1,4 +1,4 @@
-package com.nitindhar.kampr.posts;
+package com.nitindhar.kampr.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -8,30 +8,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nitindhar.forrst.model.Post;
 import com.nitindhar.forrst.model.User;
 import com.nitindhar.kampr.R;
-import com.nitindhar.kampr.UserActivity;
 import com.nitindhar.kampr.async.CommentsTask;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.NetworkUtils;
-import com.nitindhar.kampr.util.SpanUtils;
 
 public class CommentsActivity extends ListActivity implements OnClickListener {
 
     private static CommentsTask commentsTask;
-    private static ProgressBar spinner;
 
     private Post _post;
     private Bitmap _userIcon;
     private ListView _comments;
     private TextView _postViews;
     private TextView _postLikes;
-    private TextView _commentHeaderTitle;
     private TextView _postUserName;
     private ImageView _userIconThumbnail;
     private RelativeLayout _commentsHeader;
@@ -45,7 +40,6 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comments);
-        spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         _post = (Post) getIntent().getSerializableExtra("post");
         _userIcon = ImageUtils.getBitmapFromByteArray(getIntent()
@@ -53,7 +47,6 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
 
         _postViews = (TextView) findViewById(R.id.post_view_count_label);
         _postLikes = (TextView) findViewById(R.id.post_like_count_label);
-        _commentHeaderTitle = (TextView) findViewById(R.id.comment_header_title);
         _postUserName = (TextView) findViewById(R.id.post_user_name);
         _userIconThumbnail = (ImageView) findViewById(R.id.user_icon_thumbnail);
         _commentsHeader = (RelativeLayout) findViewById(R.id.comments_header);
@@ -76,12 +69,6 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
 
         commentsTask = new CommentsTask(this, _comments);
         commentsTask.execute(_post.getId());
-
-        SpanUtils.setFont(getApplicationContext(), _postViews);
-        SpanUtils.setFont(getApplicationContext(), _postLikes);
-        SpanUtils.setFont(getApplicationContext(), _commentHeaderTitle,
-                SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(getApplicationContext(), _postUserName);
     }
 
     @Override
@@ -100,10 +87,6 @@ public class CommentsActivity extends ListActivity implements OnClickListener {
             startActivity(userIntent);
             break;
         }
-    }
-
-    public static ProgressBar getSpinner() {
-        return spinner;
     }
 
 }

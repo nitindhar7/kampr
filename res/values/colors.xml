@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- General -->
-    <color name="transparent">#00000000</color>
-    <color name="white">#FFF</color>
-    <color name="light_gray">#EDEDED</color>
-    <color name="gray">#CCC</color>
-    <color name="black">#000</color>
-    <color name="light_blue">#4f85c9</color>
-    <color name="dark_blue">#2961a7</color>
+  <!-- General -->
+  <color name="transparent">#00000000</color>
+  <color name="white">#FFF</color>
+  <color name="light_gray">#EDEDED</color>
+  <color name="gray">#CCC</color>
+  <color name="black">#000</color>
+  <color name="light_blue">#4f85c9</color>
+  <color name="dark_blue">#2961a7</color>
+  <color name="kampr_green">#5c9957</color>
 
-    <!-- ActionBar -->
-    <color name="actionbar_separator_dark">#111</color>
-    <color name="actionbar_separator_light">#102743</color>
-    <color name="actionbar_background_start">#4f85c9</color>
-    <color name="actionbar_background_end">#2961a7</color>
+  <!-- ActionBar -->
+  <color name="actionbar_separator_dark">#111</color>
+  <color name="actionbar_separator_light">#102743</color>
+  <color name="actionbar_settings">#339933</color>
 
-    <!-- Comment Item -->
-    <color name="comment_item_divider">#DDD</color>
+  <!-- Comment Item -->
+  <color name="comment_item_divider">#DDD</color>
 
-    <!-- Buttons -->
-    <color name="login_button_selected">#326db6</color>
+  <!-- Buttons -->
+  <color name="login_button_selected">#326db6</color>
 
-    <!-- tabs -->
-    <color name="tab_background_start">#444</color>
-    <color name="tab_background_end">#222</color>
-    <color name="tab_selected_start">#555</color>
-    <color name="tab_selected_end">#000</color>
+  <!-- tabs -->
+  <color name="tab_background_start">#444</color>
+  <color name="tab_background_end">#222</color>
+  <color name="tab_selected_start">#555</color>
+  <color name="tab_selected_end">#000</color>
 
-    <!-- Post Items -->
-    <color name="post_item_selected">#7BA2D3</color>
-    <color name="post_item_background">#D2D1D0</color>
-    <color name="post_content_background">#f4f4f4</color>
-    <color name="post_background_start">#f5f5f5</color>
-    <color name="post_background_end">#eaeaea</color>
-    <color name="post_title">#2960A7</color>
-    <color name="post_item_divider">#CCC</color>
-    <color name="post_hyperlink_start">#DDD</color>
-    <color name="post_hyperlink_end">#EEE</color>
-    <color name="post_item_date">#666</color>
-    <color name="post_item_counts">#999</color>
+  <!-- Post Items -->
+  <color name="post_item_selected">#7BA2D3</color>
+  <color name="post_item_background">#D2D1D0</color>
+  <color name="post_content_background">#f4f4f4</color>
+  <color name="post_background_start">#f5f5f5</color>
+  <color name="post_background_end">#eaeaea</color>
+  <color name="post_title">#2960A7</color>
+  <color name="post_item_divider">#CCC</color>
+  <color name="post_hyperlink_start">#DDD</color>
+  <color name="post_hyperlink_end">#EEE</color>
+  <color name="post_item_date">#666</color>
+  <color name="post_item_counts">#999</color>
 
-    <!-- Hyperlinks -->
-    <color name="hyperlink">#2961a7</color>
-    <color name="post_view_comments_start">#EEE</color>
-    <color name="post_view_comments_end">#DDD</color>
-    <color name="lighter_gray">#F5F5F5</color>
-    <color name="dark_gray">#333</color>
-    <color name="medium_gray">#666</color>
-    <color name="deep_blue">#143054</color>
+  <!-- Hyperlinks -->
+  <color name="hyperlink">#2961a7</color>
+  <color name="post_view_comments_start">#EEE</color>
+  <color name="post_view_comments_end">#DDD</color>
+  <color name="lighter_gray">#F5F5F5</color>
+  <color name="dark_gray">#333</color>
+  <color name="medium_gray">#666</color>
+  <color name="deep_blue">#143054</color>
 
 </resources>

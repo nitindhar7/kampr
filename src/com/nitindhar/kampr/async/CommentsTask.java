@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.ListView;
 
 import com.nitindhar.forrst.model.Comment;
@@ -14,10 +13,8 @@ import com.nitindhar.kampr.adapters.CommentsAdapter;
 import com.nitindhar.kampr.data.SessionDao;
 import com.nitindhar.kampr.data.SessionSharedPreferencesDao;
 import com.nitindhar.kampr.models.CommentDecorator;
-import com.nitindhar.kampr.posts.CommentsActivity;
 import com.nitindhar.kampr.util.ForrstUtil;
 import com.nitindhar.kampr.util.ImageUtils;
-import com.nitindhar.kampr.util.LayoutUtils;
 
 public class CommentsTask extends
         AsyncTask<Integer, Integer, List<CommentDecorator>> {
@@ -41,7 +38,7 @@ public class CommentsTask extends
             CommentDecorator cd = new CommentDecorator();
             cd.setComment(comment);
             cd.setUserIcon(ImageUtils.fetchUserIcon(context, comment.getUser()
-                    .getPhoto().getMediumUrl(), R.drawable.forrst_default_25));
+                    .getPhoto().getThumbUrl(), R.drawable.forrst_default_25));
             listOfComments.add(cd);
         }
 
@@ -53,7 +50,6 @@ public class CommentsTask extends
         CommentsAdapter commentsAdapter = new CommentsAdapter(context,
                 listOfComments);
         comments.setAdapter(commentsAdapter);
-        LayoutUtils.layoutOverride(CommentsActivity.getSpinner(), View.GONE);
     }
 
 }

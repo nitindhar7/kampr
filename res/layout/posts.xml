@@ -1,104 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/content"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@color/gray" >
+
+  <ListView
+    android:id="@android:id/list"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:addStatesFromChildren="true"
+    android:cacheColorHint="#00000000"
+    android:divider="@color/post_item_divider"
+    android:dividerHeight="1px" >
+  </ListView>
 
-    <RelativeLayout
-        android:id="@+id/content"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/gray" >
-
-        <include
-            android:id="@+id/include1"
-            layout="@layout/actionbar" />
-
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/include1"
-            android:background="@color/black"
-            android:gravity="center_horizontal" />
-
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@+id/handle"
-            android:layout_below="@android:id/tabs"
-            android:fadeScrollbars="false"
-            android:fadingEdge="none"
-            android:scrollbars="@null" >
-
-            <ListView
-                android:id="@android:id/list"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:addStatesFromChildren="true"
-                android:cacheColorHint="#00000000"
-                android:divider="@color/post_item_divider"
-                android:dividerHeight="1px" >
-            </ListView>
-        </FrameLayout>
-
-        <SlidingDrawer
-            android:id="@+id/notificationbar"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:content="@+id/content"
-            android:handle="@+id/handle"
-            android:visibility="gone" >
-
-            <RelativeLayout
-                android:id="@+id/handle"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/actionbar_bg"
-                android:text="Handle" >
-
-                <TextView
-                    android:id="@+id/notification_icon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/notification_icon_bg"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/notification_label"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_toRightOf="@+id/notification_icon"
-                    android:gravity="center_vertical"
-                    android:text="Notifications"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/content"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@color/white"
-                android:orientation="vertical" >
-
-                <ListView
-                    android:id="@+id/notifications_list"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:addStatesFromChildren="true"
-                    android:cacheColorHint="#00000000"
-                    android:divider="@color/post_item_divider"
-                    android:dividerHeight="1px"
-                    android:scrollingCache="false" >
-                </ListView>
-            </LinearLayout>
-        </SlidingDrawer>
-    </RelativeLayout>
-
-</TabHost>
+</RelativeLayout>

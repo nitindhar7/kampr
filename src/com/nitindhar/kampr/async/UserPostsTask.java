@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.ListView;
 
 import com.nitindhar.forrst.model.Post;
-import com.nitindhar.kampr.R;
-import com.nitindhar.kampr.UserActivity;
 import com.nitindhar.kampr.adapters.UserPostsAdapter;
 import com.nitindhar.kampr.models.PostDecorator;
 import com.nitindhar.kampr.util.ForrstUtil;
-import com.nitindhar.kampr.util.ImageUtils;
-import com.nitindhar.kampr.util.LayoutUtils;
 
 public class UserPostsTask extends
         AsyncTask<Integer, Integer, List<PostDecorator>> {
+
+    private static final ExecutorService executor = Executors
+            .newFixedThreadPool(10);
 
     private final Context context;
     private final ListView userPosts;
@@ -28,7 +28,7 @@ public class UserPostsTask extends
     private UserPostsAdapter<PostDecorator> userPostsAdapter;
 
     public UserPostsTask(Context context, ListView userPosts) {
-        this.listOfPosts = new ArrayList<PostDecorator>();
+        listOfPosts = new ArrayList<PostDecorator>();
         this.context = context;
         this.userPosts = userPosts;
     }
@@ -41,8 +41,8 @@ public class UserPostsTask extends
         for (Post post : ForrstUtil.client().userPosts(userInfo, null)) {
             PostDecorator pd = new PostDecorator();
             pd.setPost(post);
-            pd.setUserIcon(ImageUtils.fetchUserIcon(context, post.getUser()
-                    .getPhoto().getThumbUrl(), R.drawable.forrst_default_25));
+            pd.setUserIconFuture(executor.submit(new UserIconFetchTask(context,
+                    post.getUser().getPhoto().getThumbUrl())));
             listOfPosts.add(pd);
         }
 
@@ -54,7 +54,6 @@ public class UserPostsTask extends
         userPostsAdapter = new UserPostsAdapter<PostDecorator>(context,
                 listOfPosts);
         userPosts.setAdapter(userPostsAdapter);
-        LayoutUtils.layoutOverride(UserActivity.getSpinner(), View.GONE);
     }
 
 }

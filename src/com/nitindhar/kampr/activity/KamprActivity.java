@@ -1,4 +1,4 @@
-package com.nitindhar.kampr;
+package com.nitindhar.kampr.activity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.async.LoginTask;
 import com.nitindhar.kampr.data.SessionDao;
 import com.nitindhar.kampr.data.SessionSharedPreferencesDao;

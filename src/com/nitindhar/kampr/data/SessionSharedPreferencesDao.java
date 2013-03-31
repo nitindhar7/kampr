@@ -15,6 +15,7 @@ public class SessionSharedPreferencesDao implements SessionDao {
     private static final String SESSION_KEY_TOKEN = "login_token";
     private static final String SESSION_KEY_USER_ID = "login_user_id";
     private static final String SESSION_KEY_EULA_ACCEPTED = "agreed_to_eula";
+    private static final String SESSION_KEY_POST_TYPE = "post_type";
     private static final String SESSION_PASSWORD_HASH_ALGO = "MD5";
 
     private static SharedPreferences preferences;
@@ -71,12 +72,25 @@ public class SessionSharedPreferencesDao implements SessionDao {
         editor.remove(SESSION_KEY_PASSWORD);
         editor.remove(SESSION_KEY_TOKEN);
         editor.remove(SESSION_KEY_USER_ID);
+        editor.remove(SESSION_KEY_POST_TYPE);
         return editor.commit();
     }
 
     @Override
     public String getSessionToken() {
         return preferences.getString(SESSION_KEY_TOKEN, null);
+    }
+
+    @Override
+    public boolean storeSessionPostType(String postType) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(SESSION_KEY_POST_TYPE, postType);
+        return editor.commit();
+    }
+
+    @Override
+    public String getSessionPostType() {
+        return preferences.getString(SESSION_KEY_POST_TYPE, null);
     }
 
 }

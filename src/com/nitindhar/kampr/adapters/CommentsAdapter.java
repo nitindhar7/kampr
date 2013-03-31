@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.models.CommentDecorator;
-import com.nitindhar.kampr.util.SpanUtils;
 import com.nitindhar.kampr.util.TextUtils;
 import com.nitindhar.kampr.util.TimeUtils;
 
@@ -53,10 +52,6 @@ public class CommentsAdapter extends AbstractListAdapter<CommentDecorator> {
         commentTitle.setText(TextUtils.convertHtmlToText(comment.getBody()));
 
         convertView.setId(comment.getId());
-
-        SpanUtils.setFont(context, commentUsername, SpanUtils.FONT_BOLD);
-        SpanUtils.setFont(context, commentDate);
-        SpanUtils.setFont(context, commentTitle);
 
         return convertView;
     }

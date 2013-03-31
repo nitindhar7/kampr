@@ -1,87 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/post_counts"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_toRightOf="@+id/user_icon_thumbnail" >
+  android:id="@+id/post_counts"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@+id/user_icon_thumbnail" >
 
-    <TextView
-        android:id="@+id/post_views"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/ic_post_views"
-        android:gravity="center_vertical"
-        android:minHeight="15dp"
-        android:minWidth="15dp" />
+  <TextView
+    android:id="@+id/post_views"
+    style="@style/ListItem.Stats.Counts"
+    android:background="@drawable/ic_post_views" />
 
-    <TextView
-        android:id="@+id/post_views_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/post_views"
-        android:gravity="center_vertical"
-        android:minHeight="16dp"
-        android:paddingLeft="3dp"
-        android:shadowColor="@color/white"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="@color/post_item_counts"
-        android:textSize="14sp" />
+  <TextView
+    android:id="@+id/post_views_count"
+    style="@style/ListItem.Stats.Counts"
+    android:layout_toRightOf="@+id/post_views"
+    android:paddingLeft="3dp" />
 
-    <TextView
-        android:id="@+id/post_likes"
-        android:layout_width="13dp"
-        android:layout_height="13dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/post_views_count"
-        android:background="@drawable/ic_post_likes"
-        android:gravity="center_vertical"
-        android:minHeight="13dp"
-        android:minWidth="13dp" />
+  <TextView
+    android:id="@+id/post_likes"
+    style="@style/ListItem.Stats.Counts"
+    android:layout_marginLeft="8dp"
+    android:layout_toRightOf="@+id/post_views_count"
+    android:background="@drawable/ic_post_likes" />
 
-    <TextView
-        android:id="@+id/post_likes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/post_likes"
-        android:gravity="center_vertical"
-        android:minHeight="16dp"
-        android:paddingLeft="3dp"
-        android:shadowColor="@color/white"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="@color/post_item_counts"
-        android:textSize="14sp" />
+  <TextView
+    android:id="@+id/post_likes_count"
+    style="@style/ListItem.Stats.Counts"
+    android:layout_toRightOf="@+id/post_likes"
+    android:paddingLeft="3dp" />
 
-    <TextView
-        android:id="@+id/post_comments"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="3dp"
-        android:layout_toRightOf="@+id/post_likes_count"
-        android:background="@drawable/ic_post_comments"
-        android:gravity="center_vertical"
-        android:minHeight="15dp"
-        android:minWidth="15dp" />
+  <TextView
+    android:id="@+id/post_comments"
+    style="@style/ListItem.Stats.Counts"
+    android:layout_marginLeft="8dp"
+    android:layout_toRightOf="@+id/post_likes_count"
+    android:background="@drawable/ic_post_comments" />
 
-    <TextView
-        android:id="@+id/post_comments_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/post_comments"
-        android:gravity="center_vertical"
-        android:minHeight="16dp"
-        android:paddingLeft="3dp"
-        android:shadowColor="@color/white"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:textColor="@color/post_item_counts"
-        android:textSize="14sp" />
+  <TextView
+    android:id="@+id/post_comments_count"
+    style="@style/ListItem.Stats.Counts"
+    android:layout_toRightOf="@+id/post_comments"
+    android:paddingLeft="3dp" />
 
 </RelativeLayout>

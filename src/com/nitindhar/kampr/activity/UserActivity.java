@@ -1,5 +1,6 @@
-package com.nitindhar.kampr;
+package com.nitindhar.kampr.activity;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,22 +9,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nitindhar.forrst.model.User;
+import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.async.UserPostsTask;
 import com.nitindhar.kampr.models.PostDecorator;
-import com.nitindhar.kampr.posts.PostActivity;
 import com.nitindhar.kampr.util.ImageUtils;
-import com.nitindhar.kampr.util.SpanUtils;
 import com.nitindhar.kampr.util.TextUtils;
 
 public class UserActivity extends ListActivity implements OnItemClickListener {
 
     private static User user;
     private static ListView userPosts;
-    private static ProgressBar spinner;
     private static UserPostsTask userPostsTask;
 
     private ImageView userIcon;
@@ -43,8 +41,10 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+
         user = (User) getIntent().getSerializableExtra("user");
-        spinner = (ProgressBar) findViewById(R.id.actionbar_spinner);
 
         userIcon = (ImageView) findViewById(R.id.user_icon_thumbnail);
         name = (TextView) findViewById(R.id.user_infobar_name);
@@ -69,13 +69,11 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
             userBio.setVisibility(View.GONE);
         } else {
             userBio.setText(user.getBio());
-            SpanUtils.setFont(this, userBio);
         }
         if(user.getHomepageUrl() == null || user.getHomepageUrl().length() == 0) {
             userUrl.setVisibility(View.GONE);
         } else {
             userUrl.setText(user.getHomepageUrl());
-            SpanUtils.setFont(this, userUrl);
         }
         userRole.setText(user.getIsA());
         userIcon.setImageBitmap(ImageUtils.getBitmapFromByteArray(getIntent().getByteArrayExtra("user_icon")));
@@ -89,15 +87,6 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
 
         userPostsTask = new UserPostsTask(this, userPosts);
         userPostsTask.execute(user.getId());
-
-        SpanUtils.setFont(this, name);
-        SpanUtils.setFont(this, username);
-        SpanUtils.setFont(this, userPostsCount);
-        SpanUtils.setFont(this, userCommentsCount);
-        SpanUtils.setFont(this, userLikesCount);
-        SpanUtils.setFont(this, userFollowingCount);
-        SpanUtils.setFont(this, userFollowersCount);
-        SpanUtils.setFont(this, userRole);
     }
 
     @Override
@@ -107,10 +96,6 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         postIntent.putExtra("post", pd.getPost());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
-    }
-
-    public static ProgressBar getSpinner() {
-        return spinner;
     }
 
 }
