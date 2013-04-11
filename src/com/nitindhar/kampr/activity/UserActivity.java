@@ -2,11 +2,8 @@ package com.nitindhar.kampr.activity;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,11 +11,10 @@ import android.widget.TextView;
 import com.nitindhar.forrst.model.User;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.async.UserPostsTask;
-import com.nitindhar.kampr.models.PostDecorator;
 import com.nitindhar.kampr.util.ImageUtils;
 import com.nitindhar.kampr.util.TextUtils;
 
-public class UserActivity extends ListActivity implements OnItemClickListener {
+public class UserActivity extends ListActivity {
 
     private static User user;
     private static ListView userPosts;
@@ -83,19 +79,9 @@ public class UserActivity extends ListActivity implements OnItemClickListener {
         userPosts.setVerticalFadingEdgeEnabled(false);
         userPosts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         userPosts.setDividerHeight(1);
-        userPosts.setOnItemClickListener(this);
 
         userPostsTask = new UserPostsTask(this, userPosts);
         userPostsTask.execute(user.getId());
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
-        PostDecorator pd = (PostDecorator) userPosts.getItemAtPosition(position);
-        postIntent.putExtra("post", pd.getPost());
-        postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
-        startActivity(postIntent);
     }
 
 }

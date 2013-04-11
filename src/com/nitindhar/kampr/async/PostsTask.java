@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.nitindhar.forrst.model.Post;
@@ -41,6 +42,7 @@ public class PostsTask extends AsyncTask<String, Integer, List<PostDecorator>> {
         }
 
         for (Post post : posts) {
+            Log.i(getClass().getSimpleName(), post.toString());
             PostDecorator pd = new PostDecorator();
             pd.setPost(post);
             pd.setUserIconFuture(executor.submit(new UserIconFetchTask(context,

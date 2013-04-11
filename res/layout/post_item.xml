@@ -34,6 +34,7 @@
       <TextView
         android:id="@+id/post_item_username"
         style="@style/ListItem.Font"
+        android:background="@drawable/post_item_username_states"
         android:text="username" >
       </TextView>
 

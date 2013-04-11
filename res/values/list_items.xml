@@ -10,7 +10,7 @@
   <!-- Global List Item Font Styles -->
   <style name="ListItem.Font">
     <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
     <item name="android:gravity">center_vertical</item>
     <item name="android:textSize">14sp</item>
     <item name="android:textColor">@color/dark_gray</item>
@@ -41,7 +41,7 @@
 
   <!-- Posts List Items -->
   <style name="ListItem.Post">
-    <item name="android:background">@drawable/post_item_states</item>
+    <item name="android:background">@color/white</item>
     <item name="android:padding">8dp</item>
   </style>
 

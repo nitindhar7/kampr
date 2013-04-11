@@ -42,10 +42,6 @@
       android:textStyle="bold" />
   </RelativeLayout>
 
-  <include
-    android:id="@+id/comment_infobar"
-    layout="@layout/infobar" />
-
   <RelativeLayout
     android:id="@+id/post_counts"
     android:layout_width="fill_parent"

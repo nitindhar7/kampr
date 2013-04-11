@@ -103,9 +103,9 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent postIntent = new Intent(getApplicationContext(), PostActivity.class);
+        Intent postIntent = new Intent(getApplicationContext(), UserActivity.class);
         PostDecorator pd = postsTask.getAdapter().getViewObject(position);
-        postIntent.putExtra("post", pd.getPost());
+        postIntent.putExtra("user", pd.getPost().getUser());
         postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
         startActivity(postIntent);
     }
