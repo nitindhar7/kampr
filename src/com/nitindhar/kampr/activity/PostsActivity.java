@@ -37,6 +37,7 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setIcon(this.getResources().getDrawable(R.drawable.actionbar_icon));
 
         setContentView(R.layout.posts);
 

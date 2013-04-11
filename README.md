@@ -6,15 +6,8 @@ Android
 -------
 The project is being tested on:
 
-* Android 2.1 (emulator/device)
-* Android 2.2 (emulator)
-* Android 2.3 (device)
-
-Devices Tested On
------------------
-
-* Samsung Galaxy S (2.1)
-* Google G2 (2.3.4)
+* Android 4.0 (emulator)
+* Android 4.1 (emulator)
 
 Contribute
 ------------
@@ -22,10 +15,6 @@ Submit well documented code and I will merge your changes in
 as long as your code does not break the build. For a list of some things that need
 to be done visit [my pivotal tracker](https://www.pivotaltracker.com/projects/413087).
 Tests coming up soon! Until then please help me find bugs.
-
-TODO
-----
-- forrst lib is not getting the correct notification timestamp
 
 Contributors
 ------------
