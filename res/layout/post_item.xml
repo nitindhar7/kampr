@@ -27,7 +27,9 @@
       android:id="@+id/post_item_title"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:gravity="top" >
+      android:gravity="center_vertical"
+      android:paddingBottom="5dp"
+      android:paddingTop="5dp" >
 
       <TextView
         android:id="@+id/post_item_username"
@@ -38,18 +40,20 @@
       <TextView
         android:id="@+id/post_item_date"
         style="@style/ListItem.Font"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/post_item_type_icon"
-        android:text="date"
-        android:textColor="@color/post_item_date" >
-      </TextView>
-
-      <ImageView
-        android:id="@+id/post_item_type_icon"
-        style="@style/ListItem.Image.Mini"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="2dp" />
+        android:layout_marginRight="5dp"
+        android:text="date" >
+      </TextView>
     </RelativeLayout>
+
+    <TextView
+      android:id="@+id/post_item_description"
+      style="@style/ListItem.Font"
+      android:layout_width="fill_parent"
+      android:background="@drawable/post_item_description"
+      android:padding="5dp"
+      android:text="description" >
+    </TextView>
 
     <include layout="@layout/counts" />
   </LinearLayout>

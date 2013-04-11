@@ -2,16 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
   <item
-    android:id="@+id/actionbar_post_types"
-    android:icon="@drawable/actionbar_post_types"
-    android:showAsAction="always"
-    android:title="Post Types"/>
-  <item
-    android:id="@+id/actionbar_refresh"
-    android:icon="@drawable/actionbar_refresh"
-    android:showAsAction="always"
-    android:title="Refresh"/>
-  <item
     android:id="@+id/actionbar_settings"
     android:icon="@drawable/actionbar_settings"
     android:showAsAction="always"

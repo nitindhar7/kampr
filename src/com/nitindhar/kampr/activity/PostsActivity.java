@@ -74,13 +74,6 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
         case R.id.actionbar_settings:
             inflater.inflate(R.menu.actionbar_settings_menu, popup.getMenu());
             break;
-        case R.id.actionbar_post_types:
-            inflater.inflate(R.menu.actionbar_post_types_menu, popup.getMenu());
-            break;
-        case R.id.actionbar_refresh:
-            postsTask = new PostsTask(this, posts);
-            postsTask.execute("all");
-            break;
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -99,20 +92,9 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
             Intent kampr = new Intent(PostsActivity.this, KamprActivity.class);
             startActivity(kampr);
             return true;
-        case R.id.post_types_menu_all:
+        case R.id.settings_menu_refresh:
+            postsTask = new PostsTask(this, posts);
             postsTask.execute("all");
-            return true;
-        case R.id.post_types_menu_links:
-            postsTask.execute("link");
-            return true;
-        case R.id.post_types_menu_snaps:
-            postsTask.execute("snap");
-            return true;
-        case R.id.post_types_menu_code:
-            postsTask.execute("code");
-            return true;
-        case R.id.post_types_menu_questions:
-            postsTask.execute("question");
             return true;
         default:
             return false;

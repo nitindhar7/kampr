@@ -10,6 +10,7 @@
   <color name="light_blue">#4f85c9</color>
   <color name="dark_blue">#2961a7</color>
   <color name="kampr_green">#5c9957</color>
+  <color name="kampr_light_green">#9DC29A</color>
 
   <!-- ActionBar -->
   <color name="actionbar_separator_dark">#111</color>

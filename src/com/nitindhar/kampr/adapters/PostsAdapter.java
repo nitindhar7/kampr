@@ -24,23 +24,6 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
         PostDecorator pd = (PostDecorator) objects.get(position);
 
-        ImageView postTypeIcon = (ImageView) getViewHandle(convertView,
-                R.id.post_item_type_icon);
-
-        if (pd.getPost().getPostType().equals("link")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
-                    R.drawable.list_link));
-        } else if (pd.getPost().getPostType().equals("snap")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
-                    R.drawable.list_snap));
-        } else if (pd.getPost().getPostType().equals("code")) {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
-                    R.drawable.list_code));
-        } else {
-            postTypeIcon.setImageDrawable(context.getResources().getDrawable(
-                    R.drawable.list_question));
-        }
-
         ImageView postUserIcon = (ImageView) getViewHandle(convertView,
                 R.id.user_icon_thumbnail);
         postUserIcon.setImageBitmap(pd.getUserIcon());
@@ -68,6 +51,10 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
         TextView postTitle = (TextView) getViewHandle(convertView,
                 R.id.post_item_content);
         postTitle.setText(pd.getPost().getTitle());
+
+        TextView postDescription = (TextView) getViewHandle(convertView,
+                R.id.post_item_description);
+        postDescription.setText(pd.getPost().getDescription());
 
         convertView.setId(pd.getPost().getId());
 
