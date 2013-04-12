@@ -39,6 +39,7 @@ public class UserActivity extends ListActivity {
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setIcon(this.getResources().getDrawable(R.drawable.ic_action_kampr));
 
         user = (User) getIntent().getSerializableExtra("user");
 
