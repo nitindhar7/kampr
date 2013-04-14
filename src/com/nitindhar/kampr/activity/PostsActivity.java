@@ -10,9 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
@@ -20,10 +17,8 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.async.LogoutTask;
 import com.nitindhar.kampr.async.PostsTask;
-import com.nitindhar.kampr.models.PostDecorator;
-import com.nitindhar.kampr.util.ImageUtils;
 
-public class PostsActivity extends ListActivity implements OnMenuItemClickListener, OnItemClickListener {
+public class PostsActivity extends ListActivity implements OnMenuItemClickListener {
 
     private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -37,7 +32,16 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setIcon(this.getResources().getDrawable(R.drawable.ic_action_kampr));
+        actionBar.setLogo(this.getResources().getDrawable(R.drawable.ic_action_kampr));
+        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar));
+        actionBar.setHomeButtonEnabled(true);
+
+//        //
+//
+//        ProgressBar spinner =
+//
+//        MenuItem actionbarRefresh = (MenuItem) findViewById(R.id.actionbar_refresh);
+//        actionbarRefresh.s
 
         setContentView(R.layout.posts);
 
@@ -46,8 +50,6 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
         posts.setVerticalFadingEdgeEnabled(false);
         posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
         posts.setDividerHeight(1);
-        posts.setOnItemClickListener(this);
-        registerForContextMenu(posts);
 
         postsTask = new PostsTask(this, posts);
         postsTask.execute("all");
@@ -61,7 +63,7 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar_posts_menu, menu);
+        inflater.inflate(R.menu.actionbar, menu);
         return true;
     }
 
@@ -73,7 +75,11 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
 
         switch (item.getItemId()) {
         case R.id.actionbar_settings:
-            inflater.inflate(R.menu.actionbar_settings_menu, popup.getMenu());
+            inflater.inflate(R.menu.actionbar_setting_items, popup.getMenu());
+            break;
+        case R.id.actionbar_refresh:
+            postsTask = new PostsTask(this, posts);
+            postsTask.execute("all");
             break;
         default:
             return super.onOptionsItemSelected(item);
@@ -93,22 +99,9 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
             Intent kampr = new Intent(PostsActivity.this, KamprActivity.class);
             startActivity(kampr);
             return true;
-        case R.id.settings_menu_refresh:
-            postsTask = new PostsTask(this, posts);
-            postsTask.execute("all");
-            return true;
         default:
             return false;
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent postIntent = new Intent(getApplicationContext(), UserActivity.class);
-        PostDecorator pd = postsTask.getAdapter().getViewObject(position);
-        postIntent.putExtra("user", pd.getPost().getUser());
-        postIntent.putExtra("user_icon", ImageUtils.getByteArrayFromBitmap(pd.getUserIcon()));
-        startActivity(postIntent);
     }
 
 }

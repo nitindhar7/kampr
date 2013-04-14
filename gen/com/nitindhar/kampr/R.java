@@ -64,36 +64,38 @@ public final class R {
         public static final int white=0x7f040001;
     }
     public static final class drawable {
-        public static final int actionbar_refresh=0x7f020000;
-        public static final int actionbar_settings=0x7f020001;
-        public static final int eula_dialog_box_bg=0x7f020002;
-        public static final int forrst_default_25=0x7f020003;
-        public static final int ic_action_kampr=0x7f020004;
-        public static final int ic_launcher_kampr=0x7f020005;
-        public static final int ic_post_comments=0x7f020006;
-        public static final int ic_post_likes=0x7f020007;
-        public static final int ic_post_views=0x7f020008;
-        public static final int icon=0x7f020009;
-        public static final int login_button_pressed=0x7f02000a;
-        public static final int login_logo=0x7f02000b;
-        public static final int notification_icon_bg=0x7f02000c;
-        public static final int post_content_bg=0x7f02000d;
-        public static final int post_counts_bg=0x7f02000e;
-        public static final int post_item_bg=0x7f02000f;
-        public static final int post_item_description=0x7f020010;
-        public static final int post_item_states=0x7f020011;
-        public static final int post_item_username=0x7f020012;
-        public static final int post_item_username_states=0x7f020013;
-        public static final int post_link_bg=0x7f020014;
-        public static final int post_view_comments_states=0x7f020015;
-        public static final int snap_image_bg=0x7f020016;
-        public static final int user_bio_bg=0x7f020017;
-        public static final int user_icon_bg=0x7f020018;
+        public static final int actionbar=0x7f020000;
+        public static final int actionbar_refresh=0x7f020001;
+        public static final int actionbar_settings=0x7f020002;
+        public static final int eula_dialog_box_bg=0x7f020003;
+        public static final int forrst_default_25=0x7f020004;
+        public static final int ic_action_kampr=0x7f020005;
+        public static final int ic_launcher_kampr=0x7f020006;
+        public static final int ic_post_comments=0x7f020007;
+        public static final int ic_post_likes=0x7f020008;
+        public static final int ic_post_views=0x7f020009;
+        public static final int icon=0x7f02000a;
+        public static final int login_button_pressed=0x7f02000b;
+        public static final int login_logo=0x7f02000c;
+        public static final int notification_icon_bg=0x7f02000d;
+        public static final int post_content_bg=0x7f02000e;
+        public static final int post_counts_bg=0x7f02000f;
+        public static final int post_item_bg=0x7f020010;
+        public static final int post_item_description=0x7f020011;
+        public static final int post_item_states=0x7f020012;
+        public static final int post_item_username=0x7f020013;
+        public static final int post_item_username_states=0x7f020014;
+        public static final int post_link_bg=0x7f020015;
+        public static final int post_view_comments_states=0x7f020016;
+        public static final int snap_image_bg=0x7f020017;
+        public static final int user_bio_bg=0x7f020018;
+        public static final int user_icon_bg=0x7f020019;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f090038;
         public static final int actionbar=0x7f090009;
-        public static final int actionbar_settings=0x7f09005c;
+        public static final int actionbar_refresh=0x7f09005c;
+        public static final int actionbar_settings=0x7f09005d;
         public static final int comment_header_arrow=0x7f09000a;
         public static final int comment_header_title=0x7f09000d;
         public static final int comment_item=0x7f090000;
@@ -149,7 +151,6 @@ public final class R {
         public static final int post_views=0x7f090018;
         public static final int post_views_count=0x7f090019;
         public static final int settings_menu_logout=0x7f09005e;
-        public static final int settings_menu_refresh=0x7f09005d;
         public static final int sign_up_link=0x7f090028;
         public static final int user_bio=0x7f090053;
         public static final int user_comment_count_label=0x7f09004a;
@@ -207,9 +208,8 @@ public final class R {
         public static final int user_post_item=0x7f03000b;
     }
     public static final class menu {
-        public static final int actionbar_post_menu=0x7f080000;
-        public static final int actionbar_posts_menu=0x7f080001;
-        public static final int actionbar_settings_menu=0x7f080002;
+        public static final int actionbar=0x7f080000;
+        public static final int actionbar_setting_items=0x7f080001;
     }
     public static final class string {
         public static final int app_name=0x7f070000;

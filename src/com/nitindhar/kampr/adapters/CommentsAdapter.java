@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.nitindhar.forrst.model.Comment;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.models.CommentDecorator;
-import com.nitindhar.kampr.util.TextUtils;
 import com.nitindhar.kampr.util.TimeUtils;
 
 public class CommentsAdapter extends AbstractListAdapter<CommentDecorator> {
@@ -49,7 +48,7 @@ public class CommentsAdapter extends AbstractListAdapter<CommentDecorator> {
 
         TextView commentTitle = (TextView) getViewHandle(convertView,
                 R.id.comment_item_content);
-        commentTitle.setText(TextUtils.convertHtmlToText(comment.getBody()));
+        commentTitle.setText(comment.getBody());
 
         convertView.setId(comment.getId());
 
