@@ -19,7 +19,6 @@
       android:layout_height="16dp"
       android:layout_marginLeft="5dp"
       android:layout_marginTop="18dp"
-      android:background="@drawable/sactionbar_arrow"
       android:gravity="center_vertical|center_horizontal" >
     </TextView>
 

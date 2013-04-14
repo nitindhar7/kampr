@@ -1,79 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
+  android:id="@+id/content"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@color/kampr_green"
+  android:orientation="vertical"
+  android:padding="10dp" >
+
+  <TextView
+    android:id="@+id/login_logo"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/login_logo" />
+
+  <EditText
+    android:id="@+id/login_username"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/login_bg"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="50dp"
+    android:autoText="true"
+    android:background="@color/white"
+    android:hint="Username or Email"
+    android:minHeight="40dp"
+    android:padding="5dp"
+    android:textColor="@color/kampr_dark_green"
+    android:textColorHint="@color/kampr_light_green"
+    android:textSize="18sp"
+    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/login_logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login_logo" />
+  <EditText
+    android:id="@+id/login_password"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:background="@color/white"
+    android:hint="Password"
+    android:inputType="textPassword"
+    android:minHeight="40dp"
+    android:padding="5dp"
+    android:textColor="@color/kampr_dark_green"
+    android:textColorHint="@color/kampr_light_green"
+    android:textSize="18sp"
+    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/login_label_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:text="Username/Email"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" android:layout_marginTop="10dp"/>
+  <Button
+    android:id="@+id/login_submit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    android:background="@color/kampr_dark_green"
+    android:minHeight="60dp"
+    android:minWidth="64dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:text="Login"
+    android:textColor="@color/white"
+    android:textColorHint="@color/white"
+    android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/login_username"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:autoText="true"
-        android:textColor="#666666"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/login_label_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:text="Password"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/login_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword"
-        android:textColor="#666666"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/login_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/login_button_states"
-        android:minHeight="60dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp" android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/sign_up_link"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Or, Sign Up At Forrst.com"
-        android:textColor="@color/light_blue"
-        android:textSize="16sp"/>
+  <TextView
+    android:id="@+id/sign_up_link"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:text="Don&apos;t have an account? Sign up on Forrst"
+    android:textColor="@color/white"
+    android:textSize="16sp" />
 
 </LinearLayout>
