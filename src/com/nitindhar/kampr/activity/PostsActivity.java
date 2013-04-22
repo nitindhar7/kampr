@@ -7,9 +7,11 @@ import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
@@ -23,6 +25,8 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
     private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     private static PostsTask postsTask;
+    private static LayoutInflater layoutInflater;
+    private static View spinner;
 
     private ListView posts;
 
@@ -33,15 +37,11 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setLogo(this.getResources().getDrawable(R.drawable.ic_action_kampr));
-        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar));
+        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.color.kampr_green));
         actionBar.setHomeButtonEnabled(true);
 
-//        //
-//
-//        ProgressBar spinner =
-//
-//        MenuItem actionbarRefresh = (MenuItem) findViewById(R.id.actionbar_refresh);
-//        actionbarRefresh.s
+        layoutInflater = getLayoutInflater();
+        spinner = layoutInflater.inflate(R.layout.actionbar_spinner, null);
 
         setContentView(R.layout.posts);
 
@@ -64,6 +64,9 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar, menu);
+        MenuItem actionbarRefresh = menu.findItem(R.id.actionbar_refresh);
+        actionbarRefresh.setActionView(spinner);
+        postsTask.setActionbarRefresh(actionbarRefresh);
         return true;
     }
 
@@ -78,8 +81,10 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
             inflater.inflate(R.menu.actionbar_setting_items, popup.getMenu());
             break;
         case R.id.actionbar_refresh:
+            item.setActionView(spinner);
             postsTask = new PostsTask(this, posts);
             postsTask.execute("all");
+            postsTask.setActionbarRefresh(item);
             break;
         default:
             return super.onOptionsItemSelected(item);

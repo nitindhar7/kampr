@@ -43,6 +43,10 @@ public class UserPostsAdapter<T> extends AbstractListAdapter<T> {
                 R.id.user_post_item_content);
         postTitle.setText(pd.getPost().getTitle());
 
+        TextView postDescription = (TextView) getViewHandle(convertView,
+                R.id.user_post_item_description);
+        postDescription.setText(pd.getPost().getDescription().trim());
+
         convertView.setId(pd.getPost().getId());
 
         return convertView;

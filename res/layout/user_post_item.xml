@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/user_post_item"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  android:background="@drawable/post_item_states"
-  android:orientation="vertical"
-  android:padding="8dp" >
+  style="@style/ListItem.Post" >
 
-  <LinearLayout
-    android:id="@+id/user_post_item_details"
+  <RelativeLayout
+    android:id="@+id/user_post_item_top"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
+
+    <TextView
+      android:id="@+id/user_post_item_content"
+      style="@style/ListItem.Font.Bold"
+      android:layout_width="fill_parent"
+      android:text="content"
+      android:textColor="@color/kampr_green"
+      android:textSize="16sp" >
+    </TextView>
 
     <RelativeLayout
       android:id="@+id/user_post_item_title"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:gravity="top" >
-
-      <include
-        android:layout_width="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/user_post_item_date"
-        layout="@layout/counts" />
+      android:layout_below="@id/user_post_item_content"
+      android:gravity="center_vertical"
+      android:paddingBottom="5dp"
+      android:paddingTop="5dp" >
 
       <TextView
         android:id="@+id/user_post_item_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/user_post_item_type_icon"
-        android:gravity="center_vertical"
-        android:text="date"
-        android:textColor="@color/post_item_date"
-        android:textSize="14sp" >
+        style="@style/ListItem.Font"
+        android:layout_alignParentLeft="true"
+        android:text="date" >
       </TextView>
-
-      <ImageView
-        android:id="@+id/user_post_item_type_icon"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="2dp"
-        android:maxHeight="15dp"
-        android:maxWidth="15dp"
-        android:minHeight="15dp"
-        android:minWidth="15dp" />
     </RelativeLayout>
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/user_post_item_bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/user_post_item_top" >
 
     <TextView
-      android:id="@+id/user_post_item_content"
-      style="@style/UserPostItemContent" >
-    </TextView>
-  </LinearLayout>
+      android:id="@+id/user_post_item_description"
+      style="@style/ListItem.Font"
+      android:layout_width="fill_parent"
+      android:background="@drawable/post_item_description"
+      android:padding="5dp"
+      android:text="description" />
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/user_post_item_counts"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/user_post_item_bottom"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/post_item_states" >
+
+    <include layout="@layout/counts" />
+  </RelativeLayout>
 
 </RelativeLayout>

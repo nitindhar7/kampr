@@ -3,21 +3,26 @@
   android:id="@+id/post_item"
   style="@style/ListItem.Post" >
 
-  <LinearLayout
-    android:id="@+id/post_item_graphics"
-    style="@style/ListItem.PostThumbnail" >
+  <RelativeLayout
+    android:id="@+id/post_item_top"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-    <include layout="@layout/user_icon" />
-  </LinearLayout>
+    <LinearLayout
+      android:id="@+id/post_item_graphics"
+      style="@style/ListItem.PostThumbnail"
+      android:layout_height="wrap_content" >
 
-  <LinearLayout
-    android:id="@+id/post_item_details"
-    style="@style/ListItem.PostDetails"
-    android:layout_toRightOf="@+id/post_item_graphics" >
+      <include layout="@layout/user_icon" />
+    </LinearLayout>
 
     <TextView
       android:id="@+id/post_item_content"
       style="@style/ListItem.Font.Bold"
+      android:layout_width="fill_parent"
+      android:layout_marginLeft="5dp"
+      android:layout_toRightOf="@id/post_item_graphics"
       android:text="content"
       android:textColor="@color/kampr_green"
       android:textSize="16sp" >
@@ -27,6 +32,9 @@
       android:id="@+id/post_item_title"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:layout_below="@id/post_item_content"
+      android:layout_marginLeft="5dp"
+      android:layout_toRightOf="@id/post_item_graphics"
       android:gravity="center_vertical"
       android:paddingBottom="5dp"
       android:paddingTop="5dp" >
@@ -42,21 +50,37 @@
         android:id="@+id/post_item_date"
         style="@style/ListItem.Font"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
         android:text="date" >
       </TextView>
     </RelativeLayout>
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/post_item_bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/post_item_top" >
 
     <TextView
       android:id="@+id/post_item_description"
       style="@style/ListItem.Font"
       android:layout_width="fill_parent"
+      android:layout_marginTop="10dp"
       android:background="@drawable/post_item_description"
       android:padding="5dp"
-      android:text="description" >
-    </TextView>
+      android:text="description" />
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/post_item_counts"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/post_item_bottom"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/post_item_states" >
 
     <include layout="@layout/counts" />
-  </LinearLayout>
+  </RelativeLayout>
 
 </RelativeLayout>

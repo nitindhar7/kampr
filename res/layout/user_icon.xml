@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/user_icon_thumbnail"
-  style="@style/ImageUserIcon" >
+  style="@style/Image.UserIcon" >
 
 </ImageView>

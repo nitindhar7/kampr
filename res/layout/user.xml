@@ -244,7 +244,7 @@
     </LinearLayout>
   </LinearLayout>
 
-  <ScrollView
+  <LinearLayout
     android:id="@+id/user_details"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -314,6 +314,6 @@
         android:scrollingCache="false" >
       </ListView>
     </LinearLayout>
-  </ScrollView>
+  </LinearLayout>
 
 </RelativeLayout>

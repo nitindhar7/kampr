@@ -3,35 +3,19 @@
 
   <style name="Kampr"></style>
 
-  <style name="KamprActionBar">
-    <item name="android:actionBarStyle">@style/KamprActionBarStyle</item>
-  </style>
+  <style name="KamprActionBar"></style>
 
-  <style name="KamprActionBarStyle" parent="android:Widget.Holo.Light.ActionBar">
-    <item name="android:background">@color/kampr_green</item>
-    <item name="android:icon">@drawable/icon</item>
-  </style>
+  <style name="Image"></style>
 
-  <style name="ImageUserIcon">
+  <style name="Image.UserIcon">
     <item name="android:layout_width">50dp</item>
     <item name="android:layout_height">50dp</item>
     <item name="android:layout_alignParentLeft">true</item>
-    <item name="android:background">@drawable/user_icon_bg</item>
-    <item name="android:clickable">true</item>
+    <item name="android:background">@drawable/post_item_user_icon_states</item>
     <item name="android:maxHeight">50dp</item>
     <item name="android:maxWidth">50dp</item>
     <item name="android:minWidth">50dp</item>
     <item name="android:minHeight">50dp</item>
-  </style>
-
-  <style name="UserPostItemDate">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_marginRight">5dp</item>
-    <item name="android:gravity">center_vertical</item>
-    <item name="android:text">date</item>
-    <item name="android:textColor">@color/post_item_date</item>
-    <item name="android:textSize">14sp</item>
   </style>
 
   <style name="UserPostItemContent">
