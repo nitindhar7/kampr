@@ -7,7 +7,7 @@ Android
 The project is being tested on:
 
 * Android 4.0 (emulator)
-* Android 4.1 (emulator)
+* Android 4.1 (Samsung Galaxy S III/emulator)
 
 Contribute
 ------------
