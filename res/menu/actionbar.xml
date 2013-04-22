@@ -3,15 +3,15 @@
 
   <item
     android:id="@+id/actionbar_refresh"
+    android:actionBarDivider="@null"
     android:icon="@drawable/ic_menu_refresh"
     android:showAsAction="always"
-    android:showDividers="none"
     android:title="Refresh"/>
   <item
     android:id="@+id/actionbar_settings"
+    android:actionBarDivider="@null"
     android:icon="@drawable/ic_menu_settings"
     android:showAsAction="always"
-    android:showDividers="none"
     android:title="Settings"/>
 
 </menu>

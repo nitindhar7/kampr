@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.nitindhar.forrst.model.Post;
@@ -25,7 +26,9 @@ public class UserPostsTask extends
     private final Context context;
     private final ListView userPosts;
     private final List<PostDecorator> listOfPosts;
+
     private UserPostsAdapter<PostDecorator> userPostsAdapter;
+    private MenuItem actionbarRefresh;
 
     public UserPostsTask(Context context, ListView userPosts) {
         listOfPosts = new ArrayList<PostDecorator>();
@@ -54,6 +57,13 @@ public class UserPostsTask extends
         userPostsAdapter = new UserPostsAdapter<PostDecorator>(context,
                 listOfPosts);
         userPosts.setAdapter(userPostsAdapter);
+        if(actionbarRefresh != null) {
+            actionbarRefresh.setActionView(null);
+        }
+    }
+
+    public void setActionbarRefresh(MenuItem actionbarRefresh) {
+        this.actionbarRefresh = actionbarRefresh;
     }
 
 }

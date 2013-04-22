@@ -41,9 +41,18 @@
 
   <!-- Posts List Items -->
   <style name="ListItem.Post">
-    <item name="android:background">@color/white</item>
-    <item name="android:padding">5dp</item>
-    <item name="android:layout_margin">5dp</item>
+    <item name="android:background">@color/kampr_light_green</item>
+  </style>
+
+  <style name="ListItem.Post.Container">
+    <item name="android:background">@drawable/post_item_bg</item>
+    <item name="android:layout_margin">10dp</item>
+    <item name="android:paddingLeft">10dp</item>
+    <item name="android:paddingTop">10dp</item>
+    <item name="android:paddingRight">10dp</item>
+    <item name="android:shadowColor">@color/kampr_dark_green</item>
+    <item name="android:shadowRadius">10</item>
+    <item name="android:shadowDy">3</item>
   </style>
 
   <style name="ListItem.PostThumbnail">

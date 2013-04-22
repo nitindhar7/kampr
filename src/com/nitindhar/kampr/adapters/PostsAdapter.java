@@ -99,7 +99,7 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
                 ListView comments = (ListView) commentsFlyout.findViewById(android.R.id.list);
                 comments.setVerticalScrollBarEnabled(false);
                 comments.setVerticalFadingEdgeEnabled(false);
-                comments.setDivider(context.getResources().getDrawable(R.color.post_item_divider));
+                comments.setDivider(context.getResources().getDrawable(R.color.kampr_light_green));
                 comments.setDividerHeight(1);
 
                 CommentsTask commentsTask = new CommentsTask(context, comments);
@@ -107,7 +107,7 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 AlertDialog alert = builder.create();
-                alert.setView(commentsFlyout, 0, 0, 0, 0);
+                alert.setView(commentsFlyout);
                 alert.show();
             }
         };
@@ -125,6 +125,11 @@ public class PostsAdapter<T> extends AbstractListAdapter<T> {
 
     public PostDecorator getViewObject(int position) {
         return (PostDecorator) objects.get(position);
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
     }
 
 }

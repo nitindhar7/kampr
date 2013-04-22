@@ -3,7 +3,6 @@ package com.nitindhar.kampr.activity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import com.nitindhar.kampr.R;
 import com.nitindhar.kampr.async.LogoutTask;
 import com.nitindhar.kampr.async.PostsTask;
+import com.nitindhar.kampr.util.LayoutUtils;
 
 public class PostsActivity extends ListActivity implements OnMenuItemClickListener {
 
@@ -34,11 +34,7 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setLogo(this.getResources().getDrawable(R.drawable.ic_action_kampr));
-        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.color.kampr_green));
-        actionBar.setHomeButtonEnabled(true);
+        LayoutUtils.createActionBar(this);
 
         layoutInflater = getLayoutInflater();
         spinner = layoutInflater.inflate(R.layout.actionbar_spinner, null);
@@ -48,8 +44,7 @@ public class PostsActivity extends ListActivity implements OnMenuItemClickListen
         posts = getListView();
         posts.setVerticalScrollBarEnabled(false);
         posts.setVerticalFadingEdgeEnabled(false);
-        posts.setDivider(this.getResources().getDrawable(R.color.post_item_divider));
-        posts.setDividerHeight(1);
+        posts.setClickable(false);
 
         postsTask = new PostsTask(this, posts);
         postsTask.execute("all");

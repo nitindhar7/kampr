@@ -40,6 +40,15 @@ public class CommentsTask extends
             cd.setUserIcon(ImageUtils.fetchUserIcon(context, comment.getUser()
                     .getPhoto().getMediumUrl(), R.drawable.forrst_default_25));
             listOfComments.add(cd);
+
+            // TODO: figure out why replies to comments are returning a NPE
+//            for(Comment reply : comment.getReplies()) {
+//                CommentsDecorator replyDecorator = new CommentsDecorator();
+//                replyDecorator.setComment(reply);
+//                replyDecorator.setUserIcon(ImageUtils.fetchUserIcon(context, reply.getUser()
+//                        .getPhoto().getMediumUrl(), R.drawable.forrst_default_25));
+//                listOfComments.add(replyDecorator);
+//            }
         }
 
         return listOfComments;
